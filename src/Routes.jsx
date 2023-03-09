@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Routes as Switch } from "react-router-dom";
 import Homepage from "./pages/Home";
+import CustomerSignUp from "./pages/CustomerSignUp"
 
 // jsdoc
 /**
@@ -11,6 +12,7 @@ const Routes = () => {
   return (
     <Switch>
       <Route exact path="/" element={<Homepage />} />
+      <Route exact path="/customer-signup" element={<CustomerSignUp />} />
     </Switch>
   );
 };
