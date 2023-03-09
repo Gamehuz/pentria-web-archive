@@ -1,0 +1,146 @@
+.homeNavbar {
+  width: 100%;
+  height: 100px;
+  padding: 0 5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.HomeNavbar_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 70%;
+}
+
+.defaultBg {
+  background-color: var(--secondary-color);
+}
+
+.homeNavbarLogo {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 38px;
+  line-height: 56px;
+  color: var(--primary-color);
+
+  letter-spacing: 1px;
+}
+
+.homeNavbarLinks {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 50%;
+}
+
+.homeNavbarLink {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  text-decoration: none;
+  margin: 0 1rem;
+  list-style: none;
+}
+
+.homeNavbarLink a {
+  text-decoration: none;
+  color: var(--primary-color);
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 56px;
+}
+
+.homeNavbar_btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 30%;
+}
+
+.homeNavbar_login {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  text-decoration: none;
+  margin: 0 1rem;
+  list-style: none;
+  color: var(--primary-color);
+}
+
+.homeNavbar_signup {
+  background-color: var(--tertiary-color);
+  padding: 0px 30px;
+}
+
+.homeNavbar_signup a {
+  text-decoration: none;
+  color: var(--primary-color);
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 56px;
+}
+
+.mobile_menu {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .homeNavbar {
+    padding: 0 1rem;
+  }
+
+  .homeNavbarLogo {
+    font-size: 28px;
+  }
+  .homeNavbar_btn {
+    width: 100%;
+    padding: 0 1rem;
+    // justify-content: initial;
+  }
+  .HomeNavbar_container {
+    width: 100%;
+    position: absolute;
+    top: -20rem;
+    left: 0;
+    background-color: var(--secondary-color);
+    z-index: 10;
+    flex-direction: column;
+    align-items: start;
+    padding-bottom: 1rem;
+    transition: all 0.5s ease-in-out;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+  }
+
+  .activeHomeNav .HomeNavbar_container {
+    top: 6rem;
+  }
+
+  .homeNavbar_signup {
+    padding: 3px 5px;
+    width: 100%;
+    text-align: center;
+  }
+  .homeNavbar_login {
+    width: 100%;
+    text-align: center;
+  }
+  .mobile_menu {
+    display: block;
+    font-size: 1.8rem;
+    cursor: pointer;
+  }
+}
