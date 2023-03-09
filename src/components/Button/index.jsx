@@ -1,8 +1,14 @@
 import React from "react";
-import "./button.scss";
+import styles from "./button.module.scss";
 
-const Button = () => {
-  return <div>Button</div>;
+const Button = ({ text, bg, onClick, type }) => {
+  return (
+    <div className={styles.button} onClick={onClick}>
+      <button type={type} className={bg ? bg : styles.defaultBg}>
+        {text}
+      </button>
+    </div>
+  );
 };
 
 export default Button;

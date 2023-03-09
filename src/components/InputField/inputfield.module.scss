@@ -1,0 +1,28 @@
+.inputField {
+  width: 540px;
+  background: var(--primary-color);
+  padding: 1rem;
+  border: 1px solid rgba(57, 53, 64, 0.2);
+  border-radius: 18px;
+  height: 50px;
+  margin: 1rem;
+  input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    width: 100%;
+    color: rgb(52, 51, 51);
+    font-size: 1.2rem;
+    padding: 0 1rem;
+    &::placeholder {
+      color: var(--dim-color);
+      font-family: "Poppins";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 21px;
+    }
+  }
+}
