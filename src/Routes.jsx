@@ -1,6 +1,9 @@
 import React from "react";
 import { Route, Routes as Switch } from "react-router-dom";
 import Homepage from "./pages/Home";
+import PromptPage from "./pages/PromptPage";
+import BookingPage from "./pages/BookingPage";
+import BlogPage from "./pages/BlogPage";
 
 // jsdoc
 /**
@@ -11,6 +14,9 @@ const Routes = () => {
   return (
     <Switch>
       <Route exact path="/" element={<Homepage />} />
+      <Route exact path="/prompt" element={<PromptPage />} />
+      <Route exact path="/booking" element={<BookingPage />} />
+      <Route exact path="/blog" element={<BlogPage />} />
     </Switch>
   );
 };
