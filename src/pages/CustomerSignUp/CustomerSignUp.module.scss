@@ -1,0 +1,132 @@
+.container {
+    width: 80%;
+    margin: 3rem auto 0 auto;
+
+    h3 {
+        color: #000;
+        font-weight: 700;
+        font-size: 30px;
+        margin-bottom: 2rem;
+    }
+
+    form {
+        .form_container {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+
+            .left_form {
+                width: 40%;
+
+                .input_container {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    box-sizing: border-box;
+
+                    .inputs {
+                        display: flex;
+                        align-items: flex-start;
+                        row-gap: 10px;
+                        flex-direction: column;
+                        width: 45%;
+                        margin-bottom: 20px;
+
+                        label {
+                            color: #7E7E7E;
+                            font-size: 13px;
+                        }
+
+                        input {
+                            width: 100%;
+                            padding: 12px 15px;
+                            border-radius: 10px;
+                            border: 1px solid #393540;
+                            outline: 0;
+                            font-family: "Poppins";
+                            font-style: normal;
+                            font-weight: 400;
+                            color: #3E2180;
+                            box-sizing: border-box;
+
+                            &:focus {
+                                border-color: #3E2180;
+                                transition: 2s linear;
+                            }
+                        }
+                    }
+                }
+
+                .inputs {
+                    display: flex;
+                    align-items: flex-start;
+                    row-gap: 10px;
+                    flex-direction: column;
+                    width: 100%;
+                    margin-bottom: 20px;
+                    box-sizing: border-box;
+
+                    label {
+                        color: #7E7E7E;
+                        font-size: 13px;
+                    }
+
+                    input {
+                        width: 100%;
+                        padding: 12px 15px;
+                        border-radius: 10px;
+                        border: 1px solid #393540;
+                        outline: 0;
+                        font-family: "Poppins";
+                        font-style: normal;
+                        font-weight: 400;
+                        color: #3E2180;
+                        box-sizing: border-box;
+
+                        &:focus {
+                            border-color: #3E2180;
+                            transition: 2s linear;
+                        }
+                    }
+                }
+            }
+
+            .right_form {
+                width: 40%;
+
+                .identification {
+                    label {
+                        color: #7E7E7E;
+                        font-size: 13px;
+                    }
+
+                    p {
+                        color: #3E2180;
+                        font-style: italic;
+                        font-weight: 400;
+                        font-size: 15px;
+                        margin: 30px 0;
+                    }
+
+                    button {
+                        cursor: pointer;
+                        font-family: "Poppins";
+                        font-style: normal;
+                        background: #fff;
+                        border: 0;
+                        outline: 0;
+                        filter: drop-shadow(1px 1px 5px rgba(165, 165, 165, 0.141));
+                        padding: 10px;
+                        border-radius: 10px;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                        color: #3E2180;
+                        font-weight: 500;
+                    }
+
+                }
+            }
+        }
+    }
+}
