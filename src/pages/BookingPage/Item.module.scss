@@ -1,0 +1,63 @@
+@import "../../assets/styles/colors";
+@import "../../assets/styles/functions";
+
+.Item {
+  display: flex;
+
+  .item_details {
+    display: flex;
+    flex-direction: column;
+    row-gap: 43px;
+
+    h3 {
+      color: black;
+      font-size: 32px;
+      line-height: 33px;
+      font-weight: 500;
+    }
+
+    .item_text {
+      display: flex;
+      column-gap: 22px;
+
+      img {
+        width: 400px;
+        height: auto;
+      }
+
+      .item_text_properties {
+        display: flex;
+        flex-direction: column;
+        row-gap: 22px;
+
+        h5 {
+          color: $primary;
+          font-size: 36px;
+          line-height: 56px;
+          font-weight: 700;
+
+          span {
+            color: #7e7e7e;
+          }
+        }
+
+        p {
+          color: black;
+          font-size: 36px;
+          line-height: 33px;
+          font-weight: 700;
+        }
+
+        input {
+          width: 100px;
+          height: 74px;
+          background: #f3f5f7;
+          border-radius: 8px;
+          border: none;
+          font-size: 32px;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
