@@ -108,11 +108,12 @@
                         margin: 30px 0;
                     }
 
-                    button {
+                    .upload {
                         cursor: pointer;
                         font-family: "Poppins";
                         font-style: normal;
                         background: #fff;
+                        width: 175px;
                         border: 0;
                         outline: 0;
                         filter: drop-shadow(1px 1px 5px rgba(165, 165, 165, 0.141));

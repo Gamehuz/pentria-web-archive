@@ -1,20 +1,24 @@
 import { React, useRef } from "react";
 import styles from "./CustomerSignUp.module.scss";
 
-import upload from "./assets/upload.svg"
-import Button from "../../components/Button/index"
+import upload from "./assets/upload.svg";
+import Button from "../../components/Button/index";
 
 const Index = () => {
   const selectFile = useRef();
 
   const handleSelectFile = () => {
     selectFile.current.click();
-  }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
 
   return (
     <div className={styles.container}>
       <h3>Sign Up</h3>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className={styles.form_container}>
           <div className={styles.left_form}>
             <div className={styles.input_container}>
@@ -71,10 +75,10 @@ const Index = () => {
                 ref={selectFile}
                 hidden
               />
-              <button onClick={handleSelectFile}>
+              <div className={styles.upload} onClick={handleSelectFile}>
                 <img src={upload} alt="upload" />
                 Upload your ID
-              </button>
+              </div>
             </div>
           </div>
         </div>
