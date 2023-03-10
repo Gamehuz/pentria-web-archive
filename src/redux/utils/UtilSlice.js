@@ -6,6 +6,7 @@ const initialState = {
     type: "",
   },
   isLoading: false,
+  toggleSidebar: false,
   searchQuery: "",
 };
 
@@ -26,9 +27,13 @@ const UtilSlice = createSlice({
     setSearchQuery: (state, action) => {
       state.searchQuery = action.payload;
     },
+    setToggleSidebar: (state, action) => {
+      state.toggleSidebar = action.payload;
+    },
   },
 });
 
-export const { setLoading, createResponse, setSearchQuery } = UtilSlice.actions;
+export const { setLoading, createResponse, setToggleSidebar, setSearchQuery } =
+  UtilSlice.actions;
 
 export default UtilSlice.reducer;

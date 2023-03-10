@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 
 import styles from "./userSidebar.module.scss";
 
+import { useSelector } from "react-redux";
+import { dispatch } from "../../redux/store";
+import { setToggleSidebar } from "../../redux/utils/UtilSlice";
 import Button from "../Button";
 
 /**
@@ -15,11 +18,10 @@ import Button from "../Button";
  */
 function UserSidebar({ children }) {
   // const { user } = useSelector((state) => state.user);
-  const [show, setShow] = useState(false);
-  const toggleSidebar = localStorage.getItem("toggleSidebar");
+  const { toggleSidebar } = useSelector((state) => state.util);
 
   const handleCloseSidebar = () => {
-    localStorage.setItem("toggleSidebar", false);
+    dispatch(setToggleSidebar(false));
   };
   return (
     <div

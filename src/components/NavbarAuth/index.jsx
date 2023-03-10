@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { dispatch } from "../../redux/store";
+import { setToggleSidebar } from "../../redux/utils/UtilSlice";
 // import { NavSkeleton } from "../LoadingSkeleton";
 import SearchInput from "../SearchInput";
 import toggleNavIcon from "./assets/menu-hamburger.svg";
@@ -8,11 +10,12 @@ import styles from "./navbarAuth.module.scss";
 const NavbarAuth = ({ search }) => {
   const [show, setShow] = useState(false);
   // const { user } = useSelector((state) => state.user);
+
   const [user, setUser] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [response, setResponse] = useState({ type: "", message: "" });
   const [loading, setLoading] = useState(true);
-  const [toggleSidebar, setToggleSidebar] = useState(false);
+  const [sidebar, setSidebar] = useState(false);
 
   useEffect(() => {
     if (user) {
@@ -21,9 +24,8 @@ const NavbarAuth = ({ search }) => {
   }, [user]);
 
   const openSidebar = () => {
-    console.log(toggleSidebar);
-    setToggleSidebar(!toggleSidebar);
-    localStorage.setItem("toggleSidebar", `${toggleSidebar}`);
+    setSidebar(!sidebar);
+    dispatch(setToggleSidebar(sidebar));
   };
 
   return (
