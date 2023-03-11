@@ -39,7 +39,8 @@ const VendorSignup = () => {
   const passwordTest = new RegExp(
     /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,10}$/
   );
-  const nameTest = new RegExp(/^[A-Za-z]{5,29}$/);
+  const nameTest = new RegExp(/^[A-Za-z][0-9]{5,20}$/);
+  const cityStateTest = new RegExp(/^[A-Za-z][0-9]{5,20}$/);
   const phoneNumberTest = new RegExp(
     /^[+]*[(]{0,3}[0-9]{1,4}[)]{0,1}[-\s./0-9]{8,15}$/
   );
@@ -95,53 +96,166 @@ const VendorSignup = () => {
   const handleBlur = (e) => {
     const { name } = e.target;
     validateField(name);
-    };
-    
-    const validateField = () => {
-        let isValid = false;
+  };
 
-        switch (key) {
-          case "firstname":
-            isValid = validateFirstname();
-            break;
-          case "lastname":
-            isValid = validateLastname();
-            break;
-          case "address":
-            isValid = validateAddress();
-            break;
-          case "city":
-            isValid = validateCity();
-            break;
-          case "state":
-            isValid = validateState();
-            break;
-          case "email":
-            isValid = validateEmail();
-            break;
-          case "phoneNumber":
-            isValid = validatePhonenumber();
-            break;
-          case "password":
-            isValid = validatepassword();
-            break;
-          case "businessName":
-            isValid = validateBusinessname();
-            break;
-          case "bankNumber":
-            isValid = validateBankDetails();
-            break;
-          case "occupation":
-            isValid = validateOccupation();
-            break;
-          case "identification":
-            isValid = validateIdentification();
-            break;
+  const validateField = (name) => {
+    let isValid = false;
 
-          default:
-            break;
-        }
+    switch (name) {
+      case "firstname":
+        isValid = validateFirstname();
+        break;
+      case "lastname":
+        isValid = validateLastname();
+        break;
+      case "address":
+        isValid = validateAddress();
+        break;
+      case "city":
+        isValid = validateCity();
+        break;
+      case "state":
+        isValid = validateState();
+        break;
+      case "email":
+        isValid = validateEmail();
+        break;
+      case "phoneNumber":
+        isValid = validatePhonenumber();
+        break;
+      case "password":
+        isValid = validatepassword();
+        break;
+      case "businessName":
+        isValid = validateBusinessname();
+        break;
+      case "bankNumber":
+        isValid = validateBankDetails();
+        break;
+      case "occupation":
+        isValid = validateOccupation();
+        break;
+      case "identification":
+        isValid = validateIdentification();
+        break;
+
+      default:
+        break;
     }
+  };
+
+  const validateFirstname = () => {
+    let firstnameError = "";
+    const value = firstname;
+    if (value.trim() === "") firstnameError = "Firstname is required";
+    else if (!nameTest.test(value))
+      firstnameError = "firstname must be atleast 5 characters";
+    setFirstnameError(firstnameError);
+    return firstnameError === "";
+  };
+
+  const validateLastname = () => {
+    let lastnameError = "";
+    const value = firstname;
+    if (value.trim() === "") lastnameError = "Lastname is required";
+    else if (!nameTest.test(value))
+      lastnameError = "Lastname must be atleast 5 characters";
+    setLastnameError(lastnameError);
+    return lastnameError === "";
+  };
+
+  const validateAddress = () => {
+    let addressError = "";
+    const value = address;
+    if (value.trim() === "") addressError = "Address is requred";
+
+    setAddressError(addressError);
+    return addressError === "";
+  };
+
+  const validateCity = () => {
+    let cityError = "";
+    const value = city;
+    if (value.trim() === "") cityError = "City is requred";
+    else if (!cityStateTest.test(value)) cityError = "Pls add a valid address";
+    setCityError(cityError);
+
+    return cityError === "";
+  };
+
+  const validateState = () => {
+    let stateError = "";
+    const value = state;
+    if (value.trim() === "") stateError = "State is requred";
+    else if (!cityStateTest.test(value)) stateError = "Pls add a valid address";
+    setStateError(stateError);
+
+    return stateError === "";
+  };
+
+  const validateEmail = () => {
+    let emailError = "";
+    const value = email;
+    if (value.trim() === "") emailError = "Email is required";
+    else if (!emailTest.test(value)) emailError = "Enter a valid email";
+    setEmailError(emailError);
+    return emailError === "";
+    };
+
+  const validatePhonenumber = () => {
+    let phoneNumberError = "";
+    const value = phoneNumber;
+
+    if (value === null) phoneNumberError = "Phone number is required";
+    else if (!phoneNumberTest.test(value))
+      phoneNumberError = "Enter a valid mobile number";
+    setPhoneNumberError(phoneNumberError);
+    return phoneNumberError === "";
+  };
+
+  const validatepassword = () => {
+    let passwordError = "";
+    const value = password;
+
+    if (value.trim() === "") passwordError = "Password is required";
+    else if (!passwordTest.test(value))
+      passwordError =
+        "Password must be atleast 8 characters 1 uppercase and lowercase";
+
+    setPasswordError(passwordError);
+    return passwordError === "";
+  };
+
+  const validateBusinessname = () => {
+    let businessnameError = "";
+    const value = businessname;
+
+    if (value.trim() === "") businessnameError = "Business name is required";
+    setBusinessnameError(businessnameError);
+    return businessnameError === "";
+  };
+
+  const validateBankDetails = () => {
+    let bankDetailsError = "";
+    const value = bankDetails;
+
+    if (value === null) bankDetailsError = "Pls add your bank details";
+    setBankdetails(bankDetailsError);
+    return bankDetailsError === "";
+  };
+
+  const validateOccupation = () => {
+    let occupationError = "";
+    const value = occupation;
+
+    if (value.trim() === "") occupationError = "Occupation is required";
+    setOccupation(occupationError);
+
+    return occupationError === "";
+  };
+
+
+  const validateIdentification = () => {};
 
   const handleSelectFile = () => {
     selectFile.current.click();
@@ -167,6 +281,7 @@ const VendorSignup = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
+                {firstnameError && <p>{firstnameError}</p>}
               </div>
               <div className={styles.inputs}>
                 <label htmlFor="lastname">Last Name</label>
@@ -176,6 +291,7 @@ const VendorSignup = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
+                {lastnameError && <p>{lastnameError}</p>}
               </div>
             </div>
 
@@ -187,6 +303,7 @@ const VendorSignup = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
+              {addressError && <p>{addressError}</p>}
             </div>
 
             <div className={styles.input_container}>
@@ -198,6 +315,7 @@ const VendorSignup = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
+                {cityError && <p>{cityError}</p>}
               </div>
               <div className={styles.inputs}>
                 <label htmlFor="state">State</label>
@@ -207,6 +325,7 @@ const VendorSignup = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
+                {stateError && <p>{stateError}</p>}
               </div>
             </div>
 
@@ -218,6 +337,7 @@ const VendorSignup = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
+              {emailError && <p>{emailError}</p>}
             </div>
 
             <div className={styles.inputs}>
@@ -228,6 +348,7 @@ const VendorSignup = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
+              {phoneNumberError && <p>{phoneNumberError}</p>}
             </div>
 
             <div className={styles.inputs}>
@@ -238,6 +359,7 @@ const VendorSignup = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
+              {passwordError && <p>{passwordError}</p>}
             </div>
           </div>
 
@@ -250,6 +372,7 @@ const VendorSignup = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
+              {businessnameError && <p>{businessnameError}</p>}
             </div>
 
             <div className={styles.banking}>
@@ -278,6 +401,7 @@ const VendorSignup = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
+              {occupationError && <p>{occupationError}</p>}
             </div>
 
             <div className={styles.identification}>
