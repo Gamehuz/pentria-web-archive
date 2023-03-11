@@ -31,10 +31,18 @@
                         flex-direction: column;
                         width: 45%;
                         margin-bottom: 20px;
+                        position: relative;
 
                         label {
                             color: #7E7E7E;
                             font-size: 13px;
+                        }
+
+                        p {
+                            font-size: 13px;
+                            position: absolute;
+                            color: rgb(245, 65, 65);
+                            bottom: -20px;
                         }
 
                         input {
@@ -65,6 +73,7 @@
                     width: 100%;
                     margin-bottom: 20px;
                     box-sizing: border-box;
+                    position: relative;
 
                     label {
                         color: #7E7E7E;
@@ -88,6 +97,13 @@
                             transition: 2s linear;
                         }
                     }
+
+                    p {
+                        font-size: 13px;
+                        position: absolute;
+                        color: rgb(245, 65, 65);
+                        bottom: -20px;
+                    }
                 }
             }
 
@@ -95,17 +111,26 @@
                 width: 40%;
 
                 .identification {
+                    position: relative;
+
                     label {
                         color: #7E7E7E;
                         font-size: 13px;
                     }
 
-                    p {
+                    p:nth-child(2) {
                         color: #3E2180;
                         font-style: italic;
                         font-weight: 400;
                         font-size: 15px;
                         margin: 30px 0;
+                    }
+
+                    p:nth-child(5) {
+                        font-size: 13px;
+                        position: absolute;
+                        color: rgb(245, 65, 65);
+                        bottom: -20px;
                     }
 
                     .upload {

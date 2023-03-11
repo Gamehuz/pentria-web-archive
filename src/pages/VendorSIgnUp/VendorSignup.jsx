@@ -174,7 +174,7 @@ const VendorSignup = () => {
 
   const validateLastname = () => {
     let lastnameError = "";
-    const value = firstname;
+    const value = lastname;
     if (value.trim() === "") lastnameError = "Lastname is required";
     else if (!nameTest.test(value))
       lastnameError = "Lastname must be atleast 5 characters";
