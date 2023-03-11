@@ -59,13 +59,6 @@
                             font-size: 13px;
                         }
 
-                        p {
-                            font-size: 13px;
-                            position: absolute;
-                            color: rgb(245, 65, 65);
-                            bottom: -20px;
-                        }
-
                         input {
                             width: 100%;
                             padding: 12px 15px;
@@ -82,6 +75,13 @@
                                 border-color: #3E2180;
                                 transition: 2s linear;
                             }
+                        }
+
+                        p {
+                            font-size: 13px;
+                            position: absolute;
+                            color: rgb(245, 65, 65);
+                            bottom: -20px;
                         }
                     }
                 }
@@ -140,6 +140,7 @@
                 .identification {
                     position: relative;
 
+
                     label {
                         color: #7E7E7E;
                         font-size: 13px;
@@ -178,6 +179,95 @@
                         font-weight: 500;
                     }
 
+                }
+
+                .inputs {
+                    display: flex;
+                    align-items: flex-start;
+                    row-gap: 10px;
+                    flex-direction: column;
+                    width: 100%;
+                    margin-bottom: 20px;
+                    box-sizing: border-box;
+                    position: relative;
+
+                    label {
+                        color: #7E7E7E;
+                        font-size: 13px;
+                    }
+
+                    input {
+                        width: 100%;
+                        padding: 12px 15px;
+                        border-radius: 10px;
+                        border: 1px solid #393540;
+                        outline: 0;
+                        font-family: "Poppins";
+                        font-style: normal;
+                        font-weight: 400;
+                        color: #3E2180;
+                        box-sizing: border-box;
+
+                        &:focus {
+                            border-color: #3E2180;
+                            transition: 2s linear;
+                        }
+                    }
+
+                    p {
+                        font-size: 13px;
+                        position: absolute;
+                        color: rgb(245, 65, 65);
+                        bottom: -20px;
+                    }
+                }
+
+                .banking {
+                    display: flex;
+                    align-items: flex-start;
+                    gap: 20px;
+                    flex-direction: column;
+                    margin: 30px 0;
+
+                    label {
+                        color: #7E7E7E;
+                        font-size: 13px;
+                    }
+
+                    select {
+                        padding: 5px 10px;
+                        border: 0;
+                        outline: 0;
+                        background: #fff;
+                        color: #3E2180;
+                        font-weight: 600;
+                        font-family: "poppins";
+                        cursor: pointer;
+                    }
+
+                    p {
+                        color: #3E2180;
+                        font-style: italic;
+                        font-size: 15px;
+                    }
+
+                    input {
+                        width: 100%;
+                        padding: 12px 15px;
+                        border-radius: 10px;
+                        border: 1px solid #393540;
+                        outline: 0;
+                        font-family: "Poppins";
+                        font-style: normal;
+                        font-weight: 400;
+                        color: #3E2180;
+                        box-sizing: border-box;
+
+                        &:focus {
+                            border-color: #3E2180;
+                            transition: 2s linear;
+                        }
+                    }
                 }
             }
         }

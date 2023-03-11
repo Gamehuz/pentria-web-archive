@@ -1,11 +1,11 @@
 import { React, useRef, useState } from "react";
-import styles from "./CustomerSignUp.module.scss";
+import styles from "./VendorSignup.module.scss";
+
+import Button from "../../components/Button";
 
 import upload from "./assets/upload.svg";
 
-import Button from "../../components/Button/index";
-
-const Index = () => {
+const VendorSignup = () => {
   // input states
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
@@ -44,6 +44,8 @@ const Index = () => {
   const phoneNumberTest = new RegExp(
     /^[+]*[(]{0,3}[0-9]{1,4}[)]{0,1}[-\s./0-9]{8,15}$/
   );
+
+  const selectFile = useRef();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -124,6 +126,15 @@ const Index = () => {
       case "password":
         isValid = validatepassword();
         break;
+      case "businessName":
+        isValid = validateBusinessname();
+        break;
+      case "bankNumber":
+        isValid = validateBankDetails();
+        break;
+      case "occupation":
+        isValid = validateOccupation();
+        break;
       case "identification":
         isValid = validateIdentification();
         break;
@@ -143,6 +154,9 @@ const Index = () => {
       setEmailError(false);
       setPhoneNumberError(false);
       setPasswordError(false);
+      setBusinessnameError(false);
+      setBankdetailsError(false);
+      setOccupationError(false);
       setUploadIDError(false);
     }, 4000);
   };
@@ -237,6 +251,36 @@ const Index = () => {
     return passwordError === "";
   };
 
+  const validateBusinessname = () => {
+    let businessnameError = "";
+    const value = businessname;
+
+    if (value.trim() === "") businessnameError = "Business name is required";
+    setBusinessnameError(businessnameError);
+    clearError();
+    return businessnameError === "";
+  };
+
+  const validateBankDetails = () => {
+    let bankDetailsError = "";
+    const value = bankDetails;
+
+    if (value === null) bankDetailsError = "Pls add your bank details";
+    setBankdetailsError(bankDetailsError);
+    return bankDetailsError === "";
+  };
+
+  const validateOccupation = () => {
+    let occupationError = "";
+    const value = occupation;
+
+    if (value.trim() === "") occupationError = "Occupation is required";
+    setOccupationError(occupationError);
+    clearError();
+
+    return occupationError === "";
+  };
+
   const validateIdentification = () => {
     let uploadIDError = "";
 
@@ -247,8 +291,6 @@ const Index = () => {
 
     return uploadIDError === "";
   };
-
-  const selectFile = useRef();
 
   const handleSelectFile = (e) => {
     selectFile.current.click();
@@ -267,6 +309,9 @@ const Index = () => {
       "email",
       "password",
       "phoneNumber",
+      "businessName",
+      "bankNumber",
+      "occupation",
       "identification",
     ];
 
@@ -293,7 +338,6 @@ const Index = () => {
                 />
                 {firstnameError && <p>{firstnameError}</p>}
               </div>
-
               <div className={styles.inputs}>
                 <label htmlFor="lastname">Last Name</label>
                 <input
@@ -307,7 +351,7 @@ const Index = () => {
             </div>
 
             <div className={styles.inputs}>
-              <label htmlFor="lastname">Address</label>
+              <label htmlFor="address">Address</label>
               <input
                 type="text"
                 name="address"
@@ -375,16 +419,56 @@ const Index = () => {
           </div>
 
           <div className={styles.right_form}>
+            <div className={styles.inputs}>
+              <label htmlFor="businessName">Business Name</label>
+              <input
+                type="text"
+                name="businessName"
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              {businessnameError && <p>{businessnameError}</p>}
+            </div>
+
+            <div className={styles.banking}>
+              <label htmlFor="bank">Banking Information</label>
+              <select name="bank" id="">
+                <option value="select">Select</option>
+                <option value="bank"></option>
+              </select>
+              <p>
+                Banking information should tally with the details on your ID
+              </p>
+
+              <input
+                type="number"
+                name="bankNumber"
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+            </div>
+
+            <div className={styles.inputs}>
+              <label htmlFor="occupation">Occupation</label>
+              <input
+                type="text"
+                name="occupation"
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              {occupationError && <p>{occupationError}</p>}
+            </div>
+
             <div className={styles.identification}>
               <label htmlFor="identification">Identification</label>
               <p>Upload a photo of your NIN or other government approved ID</p>
               <input
-                onChange={handleChange}
-                onBlur={handleBlur}
                 type="file"
                 name="identification"
                 accept="image/*"
                 ref={selectFile}
+                onBlur={handleBlur}
+                onChange={handleChange}
                 hidden
               />
               <div className={styles.upload} onClick={handleSelectFile}>
@@ -401,4 +485,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default VendorSignup;
