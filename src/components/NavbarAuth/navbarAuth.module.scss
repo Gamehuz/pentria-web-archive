@@ -91,14 +91,6 @@
               -webkit-transition: all;
             }
           }
-          .workspace_name {
-            font-family: "Poppins";
-            font-style: normal;
-            font-weight: 300;
-            font-size: 14px;
-            line-height: 20px;
-            color: #454545;
-          }
         }
       }
     }
@@ -141,12 +133,43 @@
     display: none;
   }
 }
-.showDropup .arrow {
-  transform: rotate(180deg);
-  -webkit-transform: rotate(180deg);
-  -moz-transform: rotate(180deg);
-  -ms-transform: rotate(180deg);
-  -o-transform: rotate(180deg);
+
+.authNavbar_btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  // width: 30%;
+}
+
+.authNavbar_login {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  text-decoration: none;
+  margin: 0 1rem;
+  list-style: none;
+  color: var(--primary-color);
+}
+
+.authNavbar_signup {
+  background-color: var(--tertiary-color);
+  padding: 0px 30px;
+}
+
+.authNavbar_signup a {
+  text-decoration: none;
+  color: var(--primary-color);
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 56px;
+}
+
+.bg-light {
+  background: #f3f5f7;
 }
 
 // responsive
