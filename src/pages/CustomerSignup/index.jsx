@@ -5,7 +5,7 @@ import upload from "./assets/upload.svg";
 
 import Button from "../../components/Button/index";
 
-const Index = () => {
+const CustomerSignup = () => {
   // input states
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
@@ -401,4 +401,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default CustomerSignup;

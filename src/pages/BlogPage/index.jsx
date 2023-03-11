@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import styles from "./BlogPage.module.scss";
-import HomeNavbar from "../../components/HomeNavbar";
-import SectionStories from "./components/SectionStories";
+import React from "react";
 import { Link } from "react-router-dom";
+import HomeNavbar from "../../components/HomeNavbar";
 import heroImage from "./assets/pexels-rodnae-productions-6224736 3.png";
+import styles from "./BlogPage.module.scss";
+import SectionStories from "./components/SectionStories";
 
 const BlogPage = () => {
   const staticPropsArray = [
