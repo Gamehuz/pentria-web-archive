@@ -144,6 +144,23 @@ const VendorSignup = () => {
     }
   };
 
+  const clearError = () => {
+    setTimeout(() => {
+      setFirstnameError(false);
+      setLastnameError(false);
+      setAddressError(false);
+      setCityError(false);
+      setStateError(false);
+      setEmailError(false);
+      setPhoneNumberError(false);
+      setPasswordError(false);
+      setBusinessnameError(false);
+      setBankdetailsError(false);
+      setOccupationError(false);
+      setUploadIDError(false);
+    }, 4000);
+  };
+
   const validateFirstname = () => {
     let firstnameError = "";
     const value = firstname;
@@ -151,6 +168,7 @@ const VendorSignup = () => {
     else if (!nameTest.test(value))
       firstnameError = "firstname must be atleast 5 characters";
     setFirstnameError(firstnameError);
+    clearError();
     return firstnameError === "";
   };
 
@@ -161,6 +179,7 @@ const VendorSignup = () => {
     else if (!nameTest.test(value))
       lastnameError = "Lastname must be atleast 5 characters";
     setLastnameError(lastnameError);
+    clearError();
     return lastnameError === "";
   };
 
@@ -170,6 +189,7 @@ const VendorSignup = () => {
     if (value.trim() === "") addressError = "Address is requred";
 
     setAddressError(addressError);
+    clearError();
     return addressError === "";
   };
 
@@ -179,6 +199,7 @@ const VendorSignup = () => {
     if (value.trim() === "") cityError = "City is requred";
     else if (!cityStateTest.test(value)) cityError = "Pls add a valid address";
     setCityError(cityError);
+    clearError();
 
     return cityError === "";
   };
@@ -189,6 +210,7 @@ const VendorSignup = () => {
     if (value.trim() === "") stateError = "State is requred";
     else if (!cityStateTest.test(value)) stateError = "Pls add a valid address";
     setStateError(stateError);
+    clearError();
 
     return stateError === "";
   };
@@ -199,8 +221,9 @@ const VendorSignup = () => {
     if (value.trim() === "") emailError = "Email is required";
     else if (!emailTest.test(value)) emailError = "Enter a valid email";
     setEmailError(emailError);
+    clearError();
     return emailError === "";
-    };
+  };
 
   const validatePhonenumber = () => {
     let phoneNumberError = "";
@@ -210,6 +233,7 @@ const VendorSignup = () => {
     else if (!phoneNumberTest.test(value))
       phoneNumberError = "Enter a valid mobile number";
     setPhoneNumberError(phoneNumberError);
+    clearError();
     return phoneNumberError === "";
   };
 
@@ -223,6 +247,7 @@ const VendorSignup = () => {
         "Password must be atleast 8 characters 1 uppercase and lowercase";
 
     setPasswordError(passwordError);
+    clearError();
     return passwordError === "";
   };
 
@@ -232,6 +257,7 @@ const VendorSignup = () => {
 
     if (value.trim() === "") businessnameError = "Business name is required";
     setBusinessnameError(businessnameError);
+    clearError();
     return businessnameError === "";
   };
 
@@ -240,7 +266,7 @@ const VendorSignup = () => {
     const value = bankDetails;
 
     if (value === null) bankDetailsError = "Pls add your bank details";
-    setBankdetails(bankDetailsError);
+    setBankdetailsError(bankDetailsError);
     return bankDetailsError === "";
   };
 
@@ -249,21 +275,50 @@ const VendorSignup = () => {
     const value = occupation;
 
     if (value.trim() === "") occupationError = "Occupation is required";
-    setOccupation(occupationError);
+    setOccupationError(occupationError);
+    clearError();
 
     return occupationError === "";
   };
 
+  const validateIdentification = () => {
+    let uploadIDError = "";
 
-  const validateIdentification = () => {};
+    const value = uploadID;
+    if (value.length === undefined) uploadIDError = "A means of ID is required";
+    setUploadIDError(uploadIDError);
+    clearError();
 
-  const handleSelectFile = () => {
+    return uploadIDError === "";
+  };
+
+  const handleSelectFile = (e) => {
     selectFile.current.click();
-    setUploadID(e.target.files[0]);
+    setUploadID(e.target?.files[0]);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const formFields = [
+      "firstname",
+      "lastname",
+      "address",
+      "city",
+      "state",
+      "email",
+      "password",
+      "phoneNumber",
+      "businessName",
+      "bankNumber",
+      "occupation",
+      "identification",
+    ];
+
+    let isValid = true;
+    formFields.forEach((field) => {
+      isValid = validateField(field) && isValid;
+    });
   };
 
   return (
@@ -420,6 +475,7 @@ const VendorSignup = () => {
                 <img src={upload} alt="upload" />
                 Upload your ID
               </div>
+              {uploadIDError && <p>{uploadIDError}</p>}
             </div>
           </div>
         </div>

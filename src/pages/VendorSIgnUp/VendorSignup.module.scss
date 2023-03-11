@@ -111,17 +111,25 @@
                 width: 40%;
 
                 .identification {
+                    position: relative;
                     label {
                         color: #7E7E7E;
                         font-size: 13px;
                     }
 
-                    p {
+                    p:nth-child(2) {
                         color: #3E2180;
                         font-style: italic;
                         font-weight: 400;
                         font-size: 15px;
                         margin: 30px 0;
+                    }
+
+                    p:nth-child(5) {
+                        font-size: 13px;
+                        position: absolute;
+                        color: rgb(245, 65, 65);
+                        bottom: -20px;
                     }
 
                     .upload {
@@ -152,6 +160,7 @@
                     width: 100%;
                     margin-bottom: 20px;
                     box-sizing: border-box;
+                    position: relative;
 
                     label {
                         color: #7E7E7E;
@@ -174,6 +183,13 @@
                             border-color: #3E2180;
                             transition: 2s linear;
                         }
+                    }
+
+                    p {
+                        font-size: 13px;
+                        position: absolute;
+                        color: rgb(245, 65, 65);
+                        bottom: -20px;
                     }
                 }
 
