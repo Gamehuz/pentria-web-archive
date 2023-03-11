@@ -12,11 +12,21 @@
     form {
         .form_container {
             display: flex;
-            align-items: flex-start;
+            align-items: baseline;
             justify-content: space-between;
 
+            @media (max-width: 666px) {
+                flex-direction: column;
+            }
+
             .left_form {
-                width: 40%;
+                max-width: 100%;
+                width: 45%;
+
+                @media (max-width: 666px) {
+                    max-width: 100%;
+                    width: 100%;
+                }
 
                 .input_container {
                     display: flex;
@@ -24,14 +34,25 @@
                     justify-content: space-between;
                     box-sizing: border-box;
 
+                    @media (max-width: 880px) {
+                        flex-direction: column;
+                        width: 100%;
+                    }
+
                     .inputs {
                         display: flex;
                         align-items: flex-start;
                         row-gap: 10px;
                         flex-direction: column;
+                        max-width: 100%;
                         width: 45%;
                         margin-bottom: 20px;
                         position: relative;
+
+                        @media (max-width: 880px) {
+                            max-width: 100%;
+                            width: 100%;
+                        }
 
                         label {
                             color: #7E7E7E;
@@ -108,8 +129,14 @@
             }
 
             .right_form {
-                width: 40%;
+                max-width: 100%;
+                width: 45%;
 
+                @media (max-width: 666px) {
+                    max-width: 100%;
+                    width: 100%;
+                }
+                
                 .identification {
                     position: relative;
 
