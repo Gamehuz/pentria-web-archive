@@ -5,7 +5,7 @@ import BookingPage from "./pages/BookingPage";
 import CustomerSignup from "./pages/CustomerSignup";
 import Homepage from "./pages/Home";
 import PromptPage from "./pages/PromptPage";
-import VendorSignup from "./pages/VendorSIgnUp/VendorSignup";
+import VendorSignup from "./pages/VendorSIgnUp";
 
 // jsdoc
 /**
