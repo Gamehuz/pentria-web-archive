@@ -55,7 +55,7 @@ const Index = () => {
 
             <div className={styles.inputs}>
               <label htmlFor="phoneNumber">Phone Number</label>
-              <input type="phoneNumber" name="phoneNumber" />
+              <input type="number" name="phoneNumber" />
             </div>
 
             <div className={styles.inputs}>
