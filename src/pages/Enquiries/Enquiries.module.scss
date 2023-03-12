@@ -8,9 +8,19 @@
         width: 80%;
         margin: 4rem auto;
 
+        @media (max-width:928px) {
+            flex-direction: column;
+            gap: 5rem;
+        }
+
 
         .sec_one {
             width: 50%;
+
+            @media (max-width:928px) {
+                width: 80%;
+                margin: auto;
+            }
 
             h1 {
                 color: #3E2180;
@@ -41,6 +51,11 @@
             width: 40%;
             max-width: 100%;
 
+            @media (max-width:928px) {
+                width: 80%;
+                margin: auto;
+            }
+
             img {
                 width: 100%;
             }
@@ -64,6 +79,7 @@
             justify-content: space-around;
             flex-wrap: wrap;
             gap: 5rem;
+
             .tag {
                 max-width: 100%;
                 width: 500px;
@@ -76,6 +92,11 @@
                 align-items: center;
                 justify-content: center;
                 flex-direction: column;
+
+                @media (max-width: 582px) {
+                    width: 100%;
+                    height: auto;
+                }
 
                 h4 {
                     color: #3E2180;
