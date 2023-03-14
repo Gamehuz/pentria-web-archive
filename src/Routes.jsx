@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Routes as Switch } from "react-router-dom";
+import UserLayout from "./Layouts/User/index";
 import BlogPage from "./pages/BlogPage";
 import BookingPage from "./pages/BookingPage";
 import CustomerSignup from "./pages/CustomerSignup";
@@ -7,6 +8,7 @@ import Enquiries from "./pages/Enquiries";
 import Homepage from "./pages/Home";
 import Partners from "./pages/Partners";
 import PromptPage from "./pages/PromptPage";
+import UserDashboard from "./pages/UserDashboard";
 import VendorSignup from "./pages/VendorSIgnUp";
 
 // jsdoc
@@ -25,6 +27,14 @@ const Routes = () => {
       <Route exact path="/blog" element={<BlogPage />} />
       <Route exact path="/enquiries" element={<Enquiries />} />
       <Route exact path="/partners" element={<Partners />} />
+      <Route
+        path="/user/dashboard"
+        element={
+          <UserLayout>
+            <UserDashboard />
+          </UserLayout>
+        }
+      />
     </Switch>
   );
 };
