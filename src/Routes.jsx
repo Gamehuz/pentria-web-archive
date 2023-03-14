@@ -3,11 +3,11 @@ import { Route, Routes as Switch } from "react-router-dom";
 import BlogPage from "./pages/BlogPage";
 import BookingPage from "./pages/BookingPage";
 import CustomerSignup from "./pages/CustomerSignup";
+import Enquiries from "./pages/Enquiries";
 import Homepage from "./pages/Home";
+import Partners from "./pages/Partners";
 import PromptPage from "./pages/PromptPage";
 import VendorSignup from "./pages/VendorSIgnUp";
-import Enquiries from "./pages/Enquiries";
-import Partners from "./pages/Partners";
 
 // jsdoc
 /**

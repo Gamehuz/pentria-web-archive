@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import HomeNavbar from "../../components/HomeNavbar";
+import bang from "./assets/bang.png";
+import cruize from "./assets/cruize.png";
 import heroImage from "./assets/pexels-rodnae-productions-6224736 3.png";
 import styles from "./BlogPage.module.scss";
 import SectionStories from "./components/SectionStories";
@@ -8,44 +10,46 @@ import SectionStories from "./components/SectionStories";
 const BlogPage = () => {
   const staticPropsArray = [
     {
+      id: 1,
       smallHeader: "BLOG",
       mainHeader: "Latest Stories",
       mainContent: [
         {
-          contentHeader: "How to Create a Pentria Business Account in Seconds",
-          contentBody:
-            "Despite it raining cats and dogs in Victoria Island, Lagos, a sea of fans gathered at the...",
+          title: "AstroTurf Bang",
+          desc: "Despite it raining cats and dogs in Victoria Island, Lagos, a sea of fans gathered at the...",
+          img: "https://images.unsplash.com/photo-1519519336991-cf2dc8897ffb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=896&q=80",
         },
         {
-          contentHeader: "How to Create a Pentria Business Account in Seconds",
-          contentBody:
-            "Despite it raining cats and dogs in Victoria Island, Lagos, a sea of fans gathered at the...",
+          title: "Lagos AstroTurf 2023",
+          desc: "Despite it raining cats and dogs in Victoria Island, Lagos, a sea of fans gathered at the...",
+          img: cruize,
         },
         {
-          contentHeader: "How to Create a Pentria Business Account in Seconds",
-          contentBody:
-            "Despite it raining cats and dogs in Victoria Island, Lagos, a sea of fans gathered at the...",
+          title: "Road Show Ends with a Bang",
+          desc: "Despite it raining cats and dogs in Victoria Island, Lagos, a sea of fans gathered at the...",
+          img: bang,
         },
       ],
     },
     {
+      id: 2,
       smallHeader: "LEARN",
       mainHeader: "Resources",
       mainContent: [
         {
-          contentHeader: "How to Create a Pentria Business Account in Seconds",
-          contentBody:
-            "Despite it raining cats and dogs in Victoria Island, Lagos, a sea of fans gathered at the...",
+          title: "How to Create a Pentria Business Account in Seconds",
+          desc: "Despite it raining cats and dogs in Victoria Island, Lagos, a sea of fans gathered at the...",
+          img: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
         },
         {
-          contentHeader: "How to Create a Pentria Business Account in Seconds",
-          contentBody:
-            "Despite it raining cats and dogs in Victoria Island, Lagos, a sea of fans gathered at the...",
+          title: "How to Withdraw Earnings from Your Pentria Wallet",
+          desc: "Despite it raining cats and dogs in Victoria Island, Lagos, a sea of fans gathered at the...",
+          img: "https://images.unsplash.com/photo-1518458028785-8fbcd101ebb9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
         },
         {
-          contentHeader: "How to Create a Pentria Business Account in Seconds",
-          contentBody:
-            "Despite it raining cats and dogs in Victoria Island, Lagos, a sea of fans gathered at the...",
+          title: "Steps to Cancel A Paid Reservation on Pentria",
+          desc: "Despite it raining cats and dogs in Victoria Island, Lagos, a sea of fans gathered at the...",
+          img: "https://images.unsplash.com/photo-1634234498573-29224acf2907?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
         },
       ],
     },
@@ -54,19 +58,19 @@ const BlogPage = () => {
       mainHeader: "Photo Splash",
       mainContent: [
         {
-          contentHeader: "How to Create a Pentria Business Account in Seconds",
-          contentBody:
-            "Despite it raining cats and dogs in Victoria Island, Lagos, a sea of fans gathered at the...",
+          title: "",
+          desc: "",
+          img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
         },
         {
-          contentHeader: "How to Create a Pentria Business Account in Seconds",
-          contentBody:
-            "Despite it raining cats and dogs in Victoria Island, Lagos, a sea of fans gathered at the...",
+          title: "",
+          desc: "",
+          img: "https://images.unsplash.com/photo-1537963447914-dbc04b81de27?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=812&q=80",
         },
         {
-          contentHeader: "How to Create a Pentria Business Account in Seconds",
-          contentBody:
-            "Despite it raining cats and dogs in Victoria Island, Lagos, a sea of fans gathered at the...",
+          title: "",
+          desc: "",
+          img: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=757&q=80",
         },
       ],
     },
@@ -74,8 +78,8 @@ const BlogPage = () => {
 
   return (
     <>
+      <HomeNavbar />
       <div className={styles.BlogPage}>
-        <HomeNavbar />
         <main>
           <header>
             <div className={styles.left_hero}>
@@ -101,7 +105,9 @@ const BlogPage = () => {
                 </svg>
               </Link>
             </div>
-            <img src={heroImage} alt="" />
+            <div className={styles.img_wrap}>
+              <img src={heroImage} alt="" />
+            </div>
           </header>
 
           <section className={styles.sectionStories}>

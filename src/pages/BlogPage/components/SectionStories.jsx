@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./SectionStories.module.scss";
-import contentImage from "../assets/unsplash_b0dCy17Zaoo.png";
 
 const SectionStories = ({ smallHeader, mainHeader, mainContent }) => {
   return (
@@ -26,9 +25,11 @@ const SectionStories = ({ smallHeader, mainHeader, mainContent }) => {
           {mainContent.map((story) => {
             return (
               <Link className={styles.card}>
-                <img src={contentImage} alt="" />
-                <h3>{story.contentHeader}</h3>
-                <p>{story.contentBody}</p>
+                <div className={styles.card__imgWrap}>
+                  <img src={story.img} alt="" />
+                </div>
+                <h3>{story.title}</h3>
+                <p>{story.desc}</p>
               </Link>
             );
           })}
