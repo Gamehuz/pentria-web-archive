@@ -6,6 +6,8 @@ import CustomerSignup from "./pages/CustomerSignup";
 import Homepage from "./pages/Home";
 import PromptPage from "./pages/PromptPage";
 import VendorSignup from "./pages/VendorSIgnUp";
+import Enquiries from "./pages/Enquiries";
+import Partners from "./pages/Partners";
 
 // jsdoc
 /**
@@ -21,6 +23,8 @@ const Routes = () => {
       <Route exact path="/prompt" element={<PromptPage />} />
       <Route exact path="/booking" element={<BookingPage />} />
       <Route exact path="/blog" element={<BlogPage />} />
+      <Route exact path="/enquiries" element={<Enquiries />} />
+      <Route exact path="/partners" element={<Partners />} />
     </Switch>
   );
 };
