@@ -13,6 +13,7 @@ import Enquiries from "./pages/Enquiries";
 import Partners from "./pages/Partners";
 import PromptPage from "./pages/PromptPage";
 import VendorSignup from "./pages/VendorSIgnUp";
+import CreateListing from "./pages/CreateListing/CreateListing";
 
 // jsdoc
 /**
@@ -35,6 +36,7 @@ const Routes = () => {
       <Route exact path="/blog" element={<BlogPage />} />
       <Route exact path="/enquiries" element={<Enquiries />} />
       <Route exact path="/partners" element={<Partners />} />
+      <Route exact path="/create/listing" element={<CreateListing />} />
     </Switch>
   );
 };
