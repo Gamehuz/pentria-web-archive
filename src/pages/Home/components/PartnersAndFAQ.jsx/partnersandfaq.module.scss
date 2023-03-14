@@ -2,11 +2,17 @@
     width: 85vw;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 150px;
+    margin-top: 80px;
 
     .FAQ {
-        padding-bottom: 100px;
-        margin-top: 130px;
+        padding-bottom: 50px;
+        padding-top: 20px;
+        margin-top: 70px;
+
+        h5,
+        p {
+            font-size: 24px;
+        }
     }
 
     div {
@@ -76,6 +82,7 @@
         font-weight: 600;
         font-size: 18px;
         color: white;
+        margin-bottom: 30px;
     }
 
 }
@@ -98,7 +105,7 @@
     span:first-child {
         display: block;
         width: 40vw;
-        font-size: 50px;
+        font-size: 30px;
         font-weight: 700;
         color: white;
     }
@@ -106,7 +113,7 @@
     :nth-child(2) {
         display: block;
         font-weight: 500;
-        font-size: 28px;
+        font-size: 18px;
         color: white;
         width: 40vw;
         margin-top: 43px;
@@ -150,20 +157,27 @@
 
 @media (max-width: 1024px) {
     .partnersAndFAQ {
-        div:first-child {
-            padding-bottom: 20px;
-        }
+        .partners {
+            justify-content: space-between;
 
-        .sales {
-            :nth-child(2) {
-                width: 100%;
+            .sales {
+                width: 50%;
+
+                :nth-child(2) {
+                    width: 100%;
+                }
             }
         }
+
     }
 
     .FAQ {
         div {
             display: grid;
+        }
+
+        img {
+            height: 200px !important;
         }
     }
 }

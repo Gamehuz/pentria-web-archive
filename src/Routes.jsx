@@ -13,6 +13,8 @@ import Enquiries from "./pages/Enquiries";
 import Partners from "./pages/Partners";
 import PromptPage from "./pages/PromptPage";
 import VendorSignup from "./pages/VendorSIgnUp";
+import HistoryGuest from "./pages/HistoryGuest";
+import VendorSettings from "./pages/VendorSettings";
 
 // jsdoc
 /**
@@ -35,6 +37,8 @@ const Routes = () => {
       <Route exact path="/blog" element={<BlogPage />} />
       <Route exact path="/enquiries" element={<Enquiries />} />
       <Route exact path="/partners" element={<Partners />} />
+      <Route path="/history/guest" element={<HistoryGuest />}/>
+      <Route path="vendor/settings" element={<VendorSettings />} />
     </Switch>
   );
 };

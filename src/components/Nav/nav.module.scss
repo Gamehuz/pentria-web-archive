@@ -1,5 +1,5 @@
 .header {
-    height: 140px;
+    height: 100px;
     background-color: var(--secondary-color);
 
     .nav {
@@ -14,17 +14,23 @@
         span {
             color: white;
             font-weight: 700;
-            font-size: 34px;
+            font-size: 30px;
         }
 
         div {
             display: flex;
             align-items: center;
+            gap: 30px;
 
             a {
                 font-weight: 700;
                 color: white;
                 text-decoration: none;
+                font-size: 14px;
+
+                div {
+                    width: 150px;
+                }
             }
         }
 
@@ -79,19 +85,23 @@
                 width: 70vw;
                 margin-left: auto;
                 margin-right: auto;
+                gap: 30px;
 
                 a {
                     font-weight: 700;
                     color: white;
                     font-size: 14px;
                     text-decoration: none;
+
+                    div {
+                        width: 150px;
+                    }
                 }
 
                 .button {
                     background-color: var(--tertiary-color);
                     color: white;
                     height: 40px;
-                    width: 200px
                 }
             }
 

@@ -20,12 +20,10 @@ import { ReactComponent as Youtube } from "./assets/youtube.svg"
 //     }
 // }
 
-
-
 const Footer = ({ bg, purple }) => {
     return (
         <footer className={bg ? bg : styles.footer}>
-            <div>
+            <div className={styles.footercontainer}>
                 <h2>Pentria</h2>
                 <div className={styles.info}>
                     <span className={styles.subscribe}>Subscribe to our Newsletter</span>

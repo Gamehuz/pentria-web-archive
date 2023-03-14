@@ -1,37 +1,43 @@
 footer {
     padding-bottom: 30px;
 
-    div {
+    .footercontainer {
         display: flex;
+        gap: 120px;
         width: 85vw;
         margin-left: auto;
         margin-right: auto;
-        padding-top: 15px;
 
         h2 {
             font-weight: 700;
-            font-size: 38px;
-            width: 20%;
+            font-size: 28px;
+            width: 10%;
             align-self: center;
         }
 
-        .subscribe {
-            text-align: center;
-        }
 
-        div {
+
+        .info {
             display: grid;
             width: 60%;
+
+            .subscribe {
+                font-size: 16px;
+                text-align: center;
+                padding-top: 15px;
+            }
 
             .inputGroup {
                 display: flex;
                 align-items: center;
                 max-width: 550px;
+                margin-left: 60px;
 
                 div {
                     padding-top: 0;
                     height: 50px;
                     border-radius: 0;
+
 
                     input {
                         padding-top: 10px;
@@ -41,8 +47,9 @@ footer {
                         background-color: var(--tertiary-color);
                         margin-bottom: 15px;
                         width: 150px;
-                        margin-left: -35px;
+                        margin-left: -45px;
                         height: 50px;
+                        font-size: 14px;
                     }
 
                 }
@@ -54,34 +61,42 @@ footer {
             display: flex;
             justify-content: start;
             margin-left: 0;
-            justify-content: space-between;
+            justify-content: space-around;
             width: 100%;
-            padding-bottom: 50px;
+            padding-bottom: 20px;
 
             div {
                 span {
                     font-weight: 600;
-                    font-size: 28px;
+                    font-size: 18px;
                 }
 
                 a {
                     display: flex;
                     align-items: center;
                     gap: 8px;
-                    font-size: 20px;
+                    font-size: 14px;
                     font-weight: 500;
                     text-decoration: none;
                     color: black;
-                    height: 60px;
+                    height: 30px;
                     justify-self: start;
+
+                    svg {
+                        width: 25px;
+                        height: 25px;
+                    }
                 }
 
 
             }
 
-            :nth-last-child(1) {
-                text-align: center;
-            }
+
+        }
+
+        span {
+            text-align: center;
+            font-size: 12px;
         }
     }
 
@@ -102,18 +117,30 @@ footer {
 
 @media (max-width: 1024px) {
     footer {
-        div {
+        .footercontainer {
             display: grid;
+            gap: 0;
 
-            .subscribe {
-                text-align: center;
-            }
+            .info {
+                width: 85vw;
 
-            div {
-                width: 100%;
-
-                :nth-last-child(1) {
+                .subscribe {
                     text-align: center;
+                }
+
+                .inputGroup {
+
+                    div:first-child {
+                        margin-right: 0;
+
+                        input {
+                            padding-top: 5px;
+                        }
+                    }
+
+                    div:nth-child(2) {
+                        width: 150px;
+                    }
                 }
             }
 
@@ -128,11 +155,29 @@ footer {
 
 @media (max-width: 768px) {
     footer {
-        div {
+        .footercontainer {
+            .info {
+                .inputGroup {
+                    max-width: 65vw;
 
+                    div {
+                        margin-left: 25px;
+                        height: 45px;
+
+                        input {
+                            padding-left: 0;
+                        }
+
+                        .button {
+                            width: 100px;
+                            height: 45px;
+                        }
+                    }
+                }
+            }
 
             .pageLinks {
-                justify-content: center;
+                // justify-content: center;
                 display: grid;
 
                 div {

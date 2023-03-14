@@ -8,10 +8,12 @@
         display: flex;
         align-items: center;
         gap: 12px;
+        font-size: 12px;
 
         div {
             border-top: 1px solid var(--dim-color);
             width: 61px;
+
         }
     }
 }
@@ -23,7 +25,7 @@
     padding-bottom: 45px;
 
     h2 {
-        font-size: 34px;
+        font-size: 24px;
     }
 }
 
@@ -35,7 +37,6 @@
     display: flex;
     align-items: center;
     gap: 30px;
-    justify-content: space-between;
 
 
     article {
@@ -85,16 +86,20 @@
             display: flex;
             align-items: center;
             padding-left: 15px;
-            padding-top: 15px;
+            justify-content: space-around;
 
             div {
                 display: flex;
                 align-items: center;
                 padding-left: 0;
-                height: 56px;
+                height: 50px;
+                width: 120px;
 
                 button {
                     margin: 0;
+                    font-size: 14px;
+                    background-color: var(--secondary-color);
+
                 }
             }
         }
@@ -112,7 +117,7 @@
 
     span {
         font-weight: 700;
-        font-size: 32px;
+        font-size: 24px;
         color: white;
         padding-bottom: 40px;
     }
@@ -121,11 +126,11 @@
         display: flex;
         align-items: center;
         gap: 20px;
-        justify-content: space-between;
 
         article {
             height: max-content;
-            width: 350px;
+            width: 318px;
+            max-width: 350px;
             background-color: white;
             padding-bottom: 25px;
 
@@ -163,6 +168,17 @@
                     gap: 0;
                 }
 
+                div:nth-child(3) {
+                    height: 50px;
+                    margin-right: 20px;
+
+                    button {
+                        font-size: 14px;
+                        background-color: var(--secondary-color);
+
+                    }
+                }
+
                 .eventDate {
                     display: grid;
 
@@ -193,7 +209,7 @@
     }
 }
 
-@media (max-width: 1439px) {
+@media (max-width: 1325px) {
     .spaces {
         display: flex;
         flex-wrap: wrap;
@@ -206,6 +222,11 @@
 
     .arrows {
         display: block;
+
+        svg {
+            width: 25px;
+            height: 25px;
+        }
     }
 
     .upcoming {
@@ -226,24 +247,25 @@
                 div {
                     display: flex;
                     align-items: center;
-                    gap: 0;
+                    gap: 20px;
                     padding-left: 15px;
                     margin-top: 15px;
 
                     div:first-child {
                         display: block;
                         padding-left: 0;
+                        width: 100px;
                     }
 
                     div:last-child {
-                        width: 130px;
+                        width: 88px;
                         padding-left: 0;
                         margin: 0;
                     }
 
                     .eventDate {
                         display: grid;
-                        width: 70px;
+                        width: 60px;
                         gap: 0;
                         padding-left: 0;
                         margin-top: 0;
