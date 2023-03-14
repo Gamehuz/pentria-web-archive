@@ -4,6 +4,7 @@ import styles from "./CreateListing.module.scss";
 import InputField from "../../components/InputField";
 import Button from "../../components/Button";
 import NavbarAuth from "../../components/NavbarAuth";
+import Menu from "./Menu/Menu";
 
 import upload from "./assets/upload.svg"
 
@@ -127,7 +128,8 @@ const CreateListing = () => {
           </div>
 
           <Button text="create listing" />
-        </form>
+              </form>
+              <Menu />
       </div>
     </>
   );
