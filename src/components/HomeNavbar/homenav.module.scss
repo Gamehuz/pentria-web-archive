@@ -144,3 +144,59 @@
     cursor: pointer;
   }
 }
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .homeNavbar {
+    padding: 0 2rem;
+  }
+  .homeNavbarLogo {
+    font-size: 28px;
+  }
+  .homeNavbar_btn {
+    width: 100%;
+    padding: 0 1rem;
+    // justify-content: initial;
+  }
+  .HomeNavbar_container {
+    width: 100%;
+    position: absolute;
+    top: -20rem;
+    left: 0;
+    background-color: var(--secondary-color);
+    z-index: 10;
+    flex-direction: column;
+    align-items: start;
+    padding-bottom: 1rem;
+    transition: all 0.5s ease-in-out;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+  }
+
+  .homeNavbarLinks {
+    display: flex;
+    padding: 0 1rem;
+    margin: 1rem 0;
+    width: 100%;
+  }
+
+  .activeHomeNav .HomeNavbar_container {
+    top: 6rem;
+  }
+
+  .homeNavbar_signup {
+    padding: 3px 5px;
+    width: 100%;
+    text-align: center;
+  }
+  .homeNavbar_login {
+    width: 100%;
+    text-align: center;
+  }
+  .mobile_menu {
+    display: block;
+    font-size: 1.8rem;
+    cursor: pointer;
+  }
+}
