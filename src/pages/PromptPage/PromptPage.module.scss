@@ -1,0 +1,59 @@
+@import "../../assets/styles/colors";
+
+.PromptPage {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 57px;
+
+    form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      row-gap: 20px;
+
+      p {
+        color: $primary;
+        font-size: 26px;
+        line-height: 56px;
+        font-weight: 500;
+      }
+
+      .radio_inputs {
+        display: flex;
+        justify-content: space-between;
+        column-gap: 110px;
+
+        .radio_option {
+          display: flex;
+          align-items: center;
+          column-gap: 11px;
+
+          label {
+            color: black;
+            font-size: 20px;
+            line-height: 30px;
+            font-weight: 400;
+          }
+        }
+      }
+    }
+
+    p {
+      color: $greyedOut;
+      font-size: 14px;
+      line-height: 21px;
+      font-weight: 400;
+    }
+  }
+}
