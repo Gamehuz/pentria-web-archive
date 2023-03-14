@@ -36,7 +36,7 @@ function UserSidebar({ children }) {
 
           <div className={styles.navLinks}>
             <NavLink
-              to="/user/history"
+              to="/user/dashboard?checkpoint=listings"
               className={({ isActive }) =>
                 isActive
                   ? `${styles.active} ${styles.navLink}`
@@ -47,7 +47,7 @@ function UserSidebar({ children }) {
               <p>History</p>
             </NavLink>
             <NavLink
-              to="/user/favorites"
+              to="/user/dashboard?checkpoint=listings"
               className={({ isActive }) =>
                 isActive
                   ? `${styles.active} ${styles.navLink}`
