@@ -72,24 +72,24 @@
             h4 {
                 color: #7E7E7E;
                 margin-bottom: 1.5rem;
-                font-size: 30px;
+                font-size: 40px;
                 font-weight: 500;
             }
 
-            div {
+            .feat {
                 display: flex;
                 align-items: center;
                 justify-content: flex-start;
                 flex-wrap: wrap;
                 gap: 30px;
-                margin-bottom: 3rem;
+                margin-bottom: 4rem;
 
                 .features_content {
                     display: flex;
                     align-items: center;
                     justify-content: flex-start;
                     gap: 15px;
-                    width: 13%;
+                    width: 200px;
                     max-width: 100%;
 
 

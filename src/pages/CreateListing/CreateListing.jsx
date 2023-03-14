@@ -66,7 +66,7 @@ const CreateListing = () => {
 
           <div className={styles.features}>
             <h4>Features</h4>
-            <div>
+            <div className={styles.feat}>
               <div className={styles.features_content}>
                 <input type="checkbox" name="pool" id="pool" />
                 <p>Pool</p>
