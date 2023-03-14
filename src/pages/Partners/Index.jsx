@@ -12,6 +12,7 @@ import playstation from "./assets/playstation.svg";
 import user from "./assets/user.svg";
 import quote_right from "./assets/quote_right.svg";
 import quote_left from "./assets/quote_left.svg";
+import rating from "./assets/rating.svg";
 
 const Partners = () => {
   return (
@@ -125,6 +126,86 @@ const Partners = () => {
                 your local bank account. Get credited within minutes. And smile;
                 it’s free!
               </p>
+            </div>
+          </div>
+          <hr className={styles.hr} />
+        </div>
+
+        <div className={styles.reveiw_section}>
+          <div className={styles.review_header}>
+            <img src={quote_left} alt="" />
+            <div>
+              <hr />
+              <p>Partner Reviews</p>
+              <hr />
+            </div>
+            <img src={quote_right} alt="" />
+          </div>
+
+          <div className={styles.testimony}>
+            <h1>What Are They Saying?</h1>
+            <p>Hear from verified business owners using Pentria</p>
+
+            <div className={styles.user_testimony}>
+              <div className={styles.testimony_container}>
+                <img src={user} alt="user" />
+                <div>
+                  <p>
+                    Amazing platform, didn’t know how I could get more customers
+                    easily until I found Pentria.
+                  </p>
+                  <div>
+                    <img src={rating} alt="rating" />
+                    <p>4.0 rating</p>
+                  </div>
+                  <p>Victoria Ekpo (Hugly Ent., Lagos)</p>
+                </div>
+              </div>
+
+              <div className={styles.testimony_container}>
+                <img src={user} alt="user" />
+                <div>
+                  <p>
+                    Disruptive indeed! Now, we have a database to help keep up
+                    with our regular customers, thanks to Pentria.
+                  </p>
+                  <div>
+                    <img src={rating} alt="rating" />
+                    <p>4.0 rating</p>
+                  </div>
+                  <p>Desmond Ugo (Cubana, Owerri)</p>
+                </div>
+              </div>
+
+              <div className={styles.testimony_container}>
+                <img src={user} alt="user" />
+                <div>
+                  <p>
+                    Less crowd and queue of customers waiting for their turn to
+                    use the facility. Less stress for me too. Feels good!
+                  </p>
+                  <div>
+                    <img src={rating} alt="rating" />
+                    <p>4.0 rating</p>
+                  </div>
+                  <p>Mike V. (Alpha Paintball, PH City) </p>
+                </div>
+              </div>
+
+              <div className={styles.testimony_container}>
+                <img src={user} alt="user" />
+                <div>
+                  <p>
+                    Pentria has helped me launch and maintain a cool membership
+                    package for my clients. And everyone’s happy.
+                  </p>
+                  <div>
+                    <img src={rating} alt="rating" />
+                    <p>4.0 rating</p>
+                  </div>
+                  <p>Olumide Sogo (KO Gym & Spa, Abuja) </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
