@@ -20,14 +20,14 @@ const HomeNavbar = ({ bg }) => {
             <Link to="/partners">Partners</Link>
           </li>
           <li className={styles.homeNavbarLink}>
-            <Link to="#">About</Link>
+            <Link to="/aboutus">About</Link>
           </li>
-          <li className={styles.homeNavbarLink}>
+          <Link className={styles.homeNavbarLink}>
             <Link to="/enquiries">Enquiries</Link>
-          </li>
-          <li className={styles.homeNavbarLink}>
-            <Link to="#">Blog</Link>
-          </li>
+          </Link>
+          <Link className={styles.homeNavbarLink}>
+            <Link to='/blog'>Blog</Link>
+          </Link>
         </ul>
         <div className={styles.homeNavbar_btn}>
           <div className={styles.homeNavbar_login}>

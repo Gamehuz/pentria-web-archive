@@ -39,7 +39,7 @@ const Footer = ({ bg, purple }) => {
                             <span>About</span>
                             <Link to="aboutUs">About us</Link>
                             <Link to="blog">Blog</Link>
-                            <Link to="contactUs">Contact us</Link>
+                            <Link to="enquiries">Contact us</Link>
                         </div>
                         <div>
                             <span>Legal</span>
