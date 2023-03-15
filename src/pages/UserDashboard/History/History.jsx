@@ -15,7 +15,7 @@ const History = () => {
           <h1>COMMING SOON</h1>
           <p>Legacy points</p>
         </div>
-        <Button text="redeem" type="submit" />
+        <Button text="redeem" type="submit" bg={"#3E2180"} />
       </div>
 
       <div className={styles.booking_history}>
