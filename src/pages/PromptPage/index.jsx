@@ -1,11 +1,16 @@
 import React from "react";
 import styles from "./PromptPage.module.scss";
+import {useNavigate} from "react-router-dom"
+
 import HomeNavbar from "../../components/HomeNavbar";
 
 const PromptPage = () => {
+  
+  const navigate = useNavigate()
+
   const handleSubmit = (e) => {
-    console.log(e);
-  };
+    e.preventDefault()
+  }
 
   return (
     <>
@@ -16,12 +21,24 @@ const PromptPage = () => {
             <p>Sign up as:</p>
             <div className={styles.radio_inputs}>
               <div className={styles.radio_option}>
-                <label for="guest">Guest</label>
-                <input type="radio" id="guest" name="user" value="Guest" />
+                <label htmlFor="guest">Guest</label>
+                <input
+                  type="radio"
+                  id="guest"
+                  name="user"
+                  value="Guest"
+                  onClick={() => navigate("/customer/signup")}
+                />
               </div>
               <div className={styles.radio_option}>
-                <label for="guest">Vendor</label>
-                <input type="radio" id="vendor" name="user" value="Vendor" />
+                <label htmlFor="guest">Vendor</label>
+                <input
+                  type="radio"
+                  id="vendor"
+                  name="user"
+                  value="Vendor"
+                  onClick={() => navigate("/vendor/signup")}
+                />
               </div>
             </div>
           </form>

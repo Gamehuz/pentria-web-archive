@@ -17,6 +17,7 @@ import UserDashboard from "./pages/UserDashboard";
 import VendorSignup from "./pages/VendorSIgnUp";
 import HistoryGuest from "./pages/HistoryGuest";
 import VendorSettings from "./pages/VendorSettings";
+import CreateListing from "./pages/CreateListing/CreateListing";
 
 // jsdoc
 /**
@@ -42,6 +43,7 @@ const Routes = () => {
       <Route exact path="/partners" element={<Partners />} />
       <Route path="/history/guest" element={<HistoryGuest />}/>
       <Route path="vendor/settings" element={<VendorSettings />} />
+      <Route exact path="/user/createListing" element={<CreateListing />} />
       <Route
         path="/user/dashboard"
         element={

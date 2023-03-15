@@ -19,6 +19,9 @@
                 flex-direction: column;
             }
 
+            .signin {
+                background-color: #3E2180 !important;
+            }
             .left_form {
                 max-width: 100%;
                 width: 45%;
@@ -63,13 +66,14 @@
                             width: 100%;
                             padding: 12px 15px;
                             border-radius: 10px;
-                            border: 1px solid #393540;
+                            border: 1px solid rgba(57, 53, 64, 0.2);
                             outline: 0;
                             font-family: "Poppins";
                             font-style: normal;
                             font-weight: 400;
                             color: #3E2180;
                             box-sizing: border-box;
+                            background: transparent;
 
                             &:focus {
                                 border-color: #3E2180;
@@ -105,13 +109,14 @@
                         width: 100%;
                         padding: 12px 15px;
                         border-radius: 10px;
-                        border: 1px solid #393540;
+                        border: 1px solid rgba(57, 53, 64, 0.2);
                         outline: 0;
                         font-family: "Poppins";
                         font-style: normal;
                         font-weight: 400;
                         color: #3E2180;
                         box-sizing: border-box;
+                        background: transparent;
 
                         &:focus {
                             border-color: #3E2180;
@@ -200,13 +205,14 @@
                         width: 100%;
                         padding: 12px 15px;
                         border-radius: 10px;
-                        border: 1px solid #393540;
+                        border: 1px solid rgba(57, 53, 64, 0.2);
                         outline: 0;
                         font-family: "Poppins";
                         font-style: normal;
                         font-weight: 400;
                         color: #3E2180;
                         box-sizing: border-box;
+                        background: transparent;
 
                         &:focus {
                             border-color: #3E2180;
@@ -255,13 +261,14 @@
                         width: 100%;
                         padding: 12px 15px;
                         border-radius: 10px;
-                        border: 1px solid #393540;
+                        border: 1px solid rgba(57, 53, 64, 0.2);
                         outline: 0;
                         font-family: "Poppins";
                         font-style: normal;
                         font-weight: 400;
                         color: #3E2180;
                         box-sizing: border-box;
+                        background: transparent;
 
                         &:focus {
                             border-color: #3E2180;
