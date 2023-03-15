@@ -5,24 +5,9 @@ import { ReactComponent as Star} from "../../assets/star.svg";
 import { ReactComponent as NoStar} from "../../assets/no-star.svg";
 import homepageImg from "../../assets/homepageImg.png";
 import Button from '../../../../components/Button';
-import {useState} from "react";
 
 const Explore = () => {
     const explorables = [{}, {}, {}];
-    const [rating, setRatings] = useState(4);
-    const noRating = 5 - rating;
-
-    // const ratedStar = () => {
-    //     for (let i=0; i <= 4; i++) {
-    //         return (
-    //             <Star />
-    //         )
-    //     }
-    // }
-
-    // const noratedStar = () => {
-
-    // }
     return (
         <section className={styles.explore}>
             <span>
