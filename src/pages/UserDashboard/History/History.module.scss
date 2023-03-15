@@ -1,0 +1,65 @@
+.history_container {
+    .coming_soon {
+        background: #EAEAEA;
+        padding: 20px 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .booking_history {
+        padding: 20px 30px;
+
+        p:nth-child(1) {
+            margin: 30px 0;
+            font-weight: 600;
+            font-size: 17px;
+        }
+
+        .history {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .booking_info {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+
+                div {
+                    .price {
+                        margin: 0 0 10px 0;
+                        color: #BF4D01;
+                        font-weight: 700;
+                    }
+
+                    .item, .ticket, .date {
+                        margin: 0 0 10px 0;
+                        font-weight: 500;
+                    }
+                }
+            }
+
+            .booking_details {
+                .status {
+                    color: #3E2180;
+                    font-weight: 500;
+                }
+                div {
+                    display: flex;
+                    align-items: center;
+                    gap: 15px;
+                    margin-bottom: 15px;
+
+                    img {
+                        width: 17px;
+                    }
+
+                    p {
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+    }
+}
