@@ -2,6 +2,7 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import UserSidebar from "../../components/UserSidebar";
 import UserEarnings from "./UserEarnings";
+import UserFavorites from "./UserFavorites";
 import UserListings from "./UserListings";
 import UserSettings from "./UserSettings";
 import UserWithdrawals from "./UserWithdrawals";
@@ -19,6 +20,8 @@ const UserDashboard = () => {
         return <UserWithdrawals />;
       case "settings":
         return <UserSettings />;
+      case "favorites":
+        return <UserFavorites />;
       default:
         return <UserListings />;
     }
