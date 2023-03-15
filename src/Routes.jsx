@@ -23,6 +23,7 @@ import VendorSettings from "./pages/VendorSettings";
   * @returns {JSX.Element}
  all routes are defined here
   */
+ 
 const Routes = () => {
   return (
     <Switch>

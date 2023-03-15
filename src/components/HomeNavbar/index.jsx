@@ -17,22 +17,22 @@ const HomeNavbar = ({ bg }) => {
       <div className={`${styles.HomeNavbar_container} }`}>
         <ul className={styles.homeNavbarLinks}>
           <li className={styles.homeNavbarLink}>
-            <a href="#">Partners</a>
+            <Link to="/partners">Partners</Link>
           </li>
           <li className={styles.homeNavbarLink}>
-            <a href="#">About</a>
+            <Link to="/aboutus">About</Link>
           </li>
-          <li className={styles.homeNavbarLink}>
-            <a href="#">Enquiries</a>
-          </li>
-          <li className={styles.homeNavbarLink}>
-            <a href="#">Blog</a>
-          </li>
+          <Link className={styles.homeNavbarLink}>
+            <Link to="/enquiries">Enquiries</Link>
+          </Link>
+          <Link className={styles.homeNavbarLink}>
+            <Link to='/blog'>Blog</Link>
+          </Link>
         </ul>
         <div className={styles.homeNavbar_btn}>
-          <div className={styles.homeNavbar_login}>LOGIN</div>
+          <Link to="/login" className={styles.homeNavbar_login} >LOGIN</Link>
           <div className={styles.homeNavbar_signup}>
-            <a href="#">SIGN UP</a>
+            <Link to="/">SIGN UP</Link>
           </div>
         </div>
       </div>

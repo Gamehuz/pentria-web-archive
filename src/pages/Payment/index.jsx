@@ -2,8 +2,14 @@ import Nav from "../../components/Nav";
 import styles from "./payment.module.scss";
 import { ReactComponent as MapPin } from "./assets/map-pin.svg"
 import Button from "../../components/Button";
+import { useNavigate } from "react-router-dom";
 
 const Payment = () => {
+    const navigate = useNavigate();
+
+    const getReceipt = () => {
+        navigate("/receipt")
+    };
     return (
         <div className={styles.payment}>
             <Nav />
@@ -68,7 +74,7 @@ const Payment = () => {
                         <p>TOTAL</p>
                         <p>5940</p>
                     </div>
-                    <Button bg={styles.button} text={"CONFIRM"}/>
+                    <Button bg={styles.button} text={"CONFIRM"} onClick={() => getReceipt()}/>
             </section>
         </div>
     )
