@@ -1,0 +1,197 @@
+footer {
+    padding-bottom: 30px;
+
+    .footercontainer {
+        display: flex;
+        gap: 120px;
+        width: 85vw;
+        margin-left: auto;
+        margin-right: auto;
+
+        h2 {
+            font-weight: 700;
+            font-size: 28px;
+            width: 10%;
+            align-self: center;
+        }
+
+
+
+        .info {
+            display: grid;
+            width: 60%;
+
+            .subscribe {
+                font-size: 16px;
+                text-align: center;
+                padding-top: 15px;
+            }
+
+            .inputGroup {
+                display: flex;
+                align-items: center;
+                max-width: 550px;
+                margin-left: 60px;
+
+                div {
+                    padding-top: 0;
+                    height: 50px;
+                    border-radius: 0;
+
+
+                    input {
+                        padding-top: 10px;
+                    }
+
+                    .button {
+                        background-color: var(--tertiary-color);
+                        margin-bottom: 15px;
+                        width: 150px;
+                        margin-left: -45px;
+                        height: 50px;
+                        font-size: 14px;
+                    }
+
+                }
+
+            }
+        }
+
+        .pageLinks {
+            display: flex;
+            justify-content: start;
+            margin-left: 0;
+            justify-content: space-around;
+            width: 100%;
+            padding-bottom: 20px;
+
+            div {
+                span {
+                    font-weight: 600;
+                    font-size: 18px;
+                }
+
+                a {
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    font-size: 14px;
+                    font-weight: 500;
+                    text-decoration: none;
+                    color: black;
+                    height: 30px;
+                    justify-self: start;
+
+                    svg {
+                        width: 25px;
+                        height: 25px;
+                    }
+                }
+
+
+            }
+
+
+        }
+
+        span {
+            text-align: center;
+            font-size: 12px;
+        }
+    }
+
+}
+
+.footer {
+    background-color: white;
+
+    h2 {
+        color: var(--secondary-color);
+    }
+
+    a,
+    p {
+        color: black;
+    }
+}
+
+@media (max-width: 1024px) {
+    footer {
+        .footercontainer {
+            display: grid;
+            gap: 0;
+
+            .info {
+                width: 85vw;
+
+                .subscribe {
+                    text-align: center;
+                }
+
+                .inputGroup {
+
+                    div:first-child {
+                        margin-right: 0;
+
+                        input {
+                            padding-top: 5px;
+                        }
+                    }
+
+                    div:nth-child(2) {
+                        width: 150px;
+                    }
+                }
+            }
+
+            h2 {
+                width: 100%;
+                text-align: center;
+
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    footer {
+        .footercontainer {
+            .info {
+                .inputGroup {
+                    max-width: 65vw;
+
+                    div {
+                        margin-left: 25px;
+                        height: 45px;
+
+                        input {
+                            padding-left: 0;
+                        }
+
+                        .button {
+                            width: 100px;
+                            height: 45px;
+                        }
+                    }
+                }
+            }
+
+            .pageLinks {
+                // justify-content: center;
+                display: grid;
+
+                div {
+                    padding-bottom: 25px;
+                }
+
+                span {
+                    text-align: center;
+                }
+
+                div>a {
+                    justify-self: center;
+                }
+            }
+        }
+    }
+}
