@@ -6,6 +6,7 @@ import UserFavorites from "./UserFavorites";
 import UserListings from "./UserListings";
 import UserSettings from "./UserSettings";
 import UserWithdrawals from "./UserWithdrawals";
+import History from "./History/History"
 const UserDashboard = () => {
   const location = useLocation();
   const query = new URLSearchParams(location.search);
@@ -22,6 +23,8 @@ const UserDashboard = () => {
         return <UserSettings />;
       case "favorites":
         return <UserFavorites />;
+      case "history":
+        return <History />;
       default:
         return <UserListings />;
     }
