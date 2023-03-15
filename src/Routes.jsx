@@ -42,7 +42,7 @@ const Routes = () => {
       <Route exact path="/partners" element={<Partners />} />
       <Route path="/history/guest" element={<HistoryGuest />}/>
       <Route path="vendor/settings" element={<VendorSettings />} />
-      <Route exact path="/create/listing" element={<CreateListing />} />
+      <Route exact path="/user/createListing" element={<CreateListing />} />
       <Route
         path="/user/dashboard"
         element={
