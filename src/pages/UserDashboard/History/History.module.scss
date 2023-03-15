@@ -5,6 +5,22 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+
+        div {
+            flex-grow: 10;
+            width: 60%;
+
+            h1 {
+                @media (max-width:584px) {
+                    font-size: 20px;
+                }
+
+                @media (max-width: 413px) {
+                    font-size: 15px;
+                }
+            }
+        }
+
     }
 
     .booking_history {
@@ -21,10 +37,22 @@
             align-items: center;
             justify-content: space-between;
 
+            @media (max-width: 903px) {
+                flex-direction: column;
+                gap: 3rem;
+                align-items: flex-start;
+            }
+
             .booking_info {
                 display: flex;
                 align-items: center;
                 gap: 20px;
+
+                @media (max-width: 506px) {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 3rem;
+                }
 
                 div {
                     .price {
@@ -33,7 +61,9 @@
                         font-weight: 700;
                     }
 
-                    .item, .ticket, .date {
+                    .item,
+                    .ticket,
+                    .date {
                         margin: 0 0 10px 0;
                         font-weight: 500;
                     }
@@ -45,6 +75,7 @@
                     color: #3E2180;
                     font-weight: 500;
                 }
+
                 div {
                     display: flex;
                     align-items: center;
