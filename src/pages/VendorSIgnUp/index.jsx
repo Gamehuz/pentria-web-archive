@@ -484,7 +484,7 @@ const VendorSignup = () => {
               </div>
             </div>
           </div>
-          <Button type="submit" text="Sign Up" />
+          <Button type="submit" text="Sign Up" bg={styles.signin} />
         </form>
       </div>
     </>

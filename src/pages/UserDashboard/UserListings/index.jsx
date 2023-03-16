@@ -21,7 +21,7 @@ const UserListings = () => {
       </div>
       <div className={styles.createListing}>
         <h3>My Listings</h3>
-        <Link to="/user/new-listing" className={styles.createListing__button}>
+        <Link to="/user/createListing" className={styles.createListing__button}>
           <img src={plusBtn} alt="" />
           <p>Create new listing</p>
         </Link>
