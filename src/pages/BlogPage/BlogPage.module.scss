@@ -138,3 +138,14 @@
     }
   }
 }
+
+.footer {
+  background-color: var(--secondary-color);
+  color: white;
+
+  p,
+  a,
+  h2 {
+    color: white !important;
+  }
+}
