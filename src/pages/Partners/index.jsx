@@ -3,16 +3,17 @@ import styles from "./Partners.module.scss";
 
 import HomeNavbar from "../../components/HomeNavbar";
 
-import partners from "./assets/partners.svg";
-import cart from "./assets/cart.svg";
+import Footer from "../../components/Footer";
 import mobile from "./assets/9mobile.svg";
+import cart from "./assets/cart.svg";
 import mtn from "./assets/MTN.svg";
 import netflix from "./assets/netflix.svg";
+import partners from "./assets/partners.svg";
 import playstation from "./assets/playstation.svg";
-import user from "./assets/user.svg";
-import quote_right from "./assets/quote_right.svg";
 import quote_left from "./assets/quote_left.svg";
+import quote_right from "./assets/quote_right.svg";
 import rating from "./assets/rating.svg";
+import user from "./assets/user.svg";
 
 const Partners = () => {
   return (
@@ -210,6 +211,7 @@ const Partners = () => {
           </div>
         </div>
       </div>
+      <Footer bg={styles.footer} purple={true} />
     </>
   );
 };

@@ -3,10 +3,11 @@ import styles from "./Enquiries.module.scss";
 
 import HomeNavbar from "../../components/HomeNavbar";
 
-import phone from "./assets/phone.svg";
+import Footer from "../../components/Footer";
+import Img from "./assets/contact.svg";
 import mail from "./assets/email.svg";
 import location from "./assets/location.svg";
-import Img from "./assets/contact.svg";
+import phone from "./assets/phone.svg";
 
 const Enquiries = () => {
   return (
@@ -122,6 +123,7 @@ const Enquiries = () => {
           </div>
         </div>
       </div>
+      <Footer bg={styles.footer} purple={true} />
     </>
   );
 };
