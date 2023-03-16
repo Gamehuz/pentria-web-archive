@@ -4,8 +4,10 @@ import UserLayout from "./Layouts/User";
 import Aboutus from "./pages/AboutUs";
 import BlogPage from "./pages/BlogPage";
 import BookingPage from "./pages/BookingPage";
+import CreateListing from "./pages/CreateListing/CreateListing";
 import CustomerSignup from "./pages/CustomerSignup";
 import Enquiries from "./pages/Enquiries";
+import HistoryGuest from "./pages/HistoryGuest";
 import Homepage from "./pages/Home";
 import LoginPage from "./pages/Login";
 import LoginOrSignUp from "./pages/LoginOrSignUp";
@@ -14,10 +16,8 @@ import Payment from "./pages/Payment";
 import PromptPage from "./pages/PromptPage";
 import Receipt from "./pages/Receipt";
 import UserDashboard from "./pages/UserDashboard";
-import VendorSignup from "./pages/VendorSIgnUp";
-import HistoryGuest from "./pages/HistoryGuest";
 import VendorSettings from "./pages/VendorSettings";
-import CreateListing from "./pages/CreateListing/CreateListing";
+import VendorSignup from "./pages/VendorSIgnUp";
 
 // jsdoc
 /**
@@ -29,7 +29,7 @@ const Routes = () => {
   return (
     <Switch>
       <Route exact path="/" element={<Homepage />} />
-      <Route path="/aboutus" element={<Aboutus />} />
+      <Route path="/about-us" element={<Aboutus />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/loginorsignup" element={<LoginOrSignUp />} />
       <Route path="/payment" element={<Payment />} />

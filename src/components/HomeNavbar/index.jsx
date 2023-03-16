@@ -20,21 +20,21 @@ const HomeNavbar = ({ bg }) => {
             <Link to="/partners">Partners</Link>
           </li>
           <li className={styles.homeNavbarLink}>
-            <Link to="/aboutus">About</Link>
+            <Link to="/about-us">About</Link>
           </li>
-          <Link className={styles.homeNavbarLink}>
+          <li className={styles.homeNavbarLink}>
             <Link to="/enquiries">Enquiries</Link>
-          </Link>
-          <Link className={styles.homeNavbarLink}>
-            <Link to='/blog'>Blog</Link>
-          </Link>
+          </li>
+          <li className={styles.homeNavbarLink}>
+            <Link to="/blog">Blog</Link>
+          </li>
         </ul>
         <div className={styles.homeNavbar_btn}>
           <div className={styles.homeNavbar_login}>
             <Link to="/login">LOGIN</Link>
           </div>
           <div className={styles.homeNavbar_signup}>
-            <Link to="/prompt">SIGN UP</Link>
+            <Link to="/signup">SIGN UP</Link>
           </div>
         </div>
       </div>
