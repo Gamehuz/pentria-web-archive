@@ -1,0 +1,197 @@
+.user_settings {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+
+    @media (max-width: 789px) {
+        flex-direction: column;
+    }
+
+    .account_settings {
+        max-width: 100%;
+        width: 43%;
+
+        @media (max-width: 789px) {
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 25px;
+            margin: 2rem auto;
+        }
+
+        form {
+            .form_container {
+                width: 100%;
+                // display: flex;
+                // align-items: baseline;
+                // justify-content: space-between;
+
+                // @media (max-width: 666px) {
+                //     flex-direction: column;
+                // }
+
+
+                .left_form {
+                    max-width: 100%;
+                    width: 100%;
+
+                    @media (max-width: 666px) {
+                        max-width: 100%;
+                        width: 100%;
+                    }
+
+                    .input_container {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        box-sizing: border-box;
+
+                        @media (max-width: 880px) {
+                            flex-direction: column;
+                            width: 100%;
+                        }
+
+                        .inputs {
+                            display: flex;
+                            align-items: flex-start;
+                            row-gap: 10px;
+                            flex-direction: column;
+                            max-width: 100%;
+                            width: 45%;
+                            margin-bottom: 20px;
+                            position: relative;
+
+                            @media (max-width: 880px) {
+                                max-width: 100%;
+                                width: 100%;
+                            }
+
+                            label {
+                                color: #7E7E7E;
+                                font-size: 13px;
+                            }
+
+                            input {
+                                width: 100%;
+                                padding: 12px 15px;
+                                border-radius: 10px;
+                                border: 1px solid rgba(57, 53, 64, 0.2);
+                                outline: 0;
+                                font-family: "Poppins";
+                                font-style: normal;
+                                font-weight: 400;
+                                color: #3E2180;
+                                box-sizing: border-box;
+                                background: transparent;
+
+                                &:focus {
+                                    border-color: #3E2180;
+                                    transition: 2s linear;
+                                }
+                            }
+                        }
+                    }
+
+                    .inputs {
+                        display: flex;
+                        align-items: flex-start;
+                        row-gap: 10px;
+                        flex-direction: column;
+                        width: 100%;
+                        margin-bottom: 20px;
+                        box-sizing: border-box;
+                        position: relative;
+
+                        label {
+                            color: #7E7E7E;
+                            font-size: 13px;
+                        }
+
+                        input {
+                            width: 100%;
+                            padding: 12px 15px;
+                            border-radius: 10px;
+                            border: 1px solid rgba(57, 53, 64, 0.2);
+                            outline: 0;
+                            font-family: "Poppins";
+                            font-style: normal;
+                            font-weight: 400;
+                            color: #3E2180;
+                            box-sizing: border-box;
+                            background: transparent;
+
+                            &:focus {
+                                border-color: #3E2180;
+                                transition: 2s linear;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .wallet_settings {
+        max-width: 100%;
+        width: 43%;
+
+        @media (max-width: 789px) {
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 25px;
+            margin: 2rem auto;
+        }
+        form {
+            .right_form {
+                max-width: 100%;
+                width: 100%;
+
+                @media (max-width: 666px) {
+                    max-width: 100%;
+                    width: 100%;
+                }
+
+                .inputs {
+                    display: flex;
+                    align-items: flex-start;
+                    row-gap: 10px;
+                    flex-direction: column;
+                    width: 100%;
+                    margin-bottom: 20px;
+                    box-sizing: border-box;
+                    position: relative;
+
+                    label {
+                        color: #7E7E7E;
+                        font-size: 13px;
+                    }
+
+                    input {
+                        width: 100%;
+                        padding: 12px 15px;
+                        border-radius: 10px;
+                        border: 1px solid rgba(57, 53, 64, 0.2);
+                        outline: 0;
+                        font-family: "Poppins";
+                        font-style: normal;
+                        font-weight: 400;
+                        color: #3E2180;
+                        box-sizing: border-box;
+                        background: transparent;
+
+                        &:focus {
+                            border-color: #3E2180;
+                            transition: 2s linear;
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+}
