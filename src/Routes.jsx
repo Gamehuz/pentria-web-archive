@@ -19,6 +19,7 @@ import UserDashboard from "./pages/UserDashboard";
 import VendorSettings from "./pages/VendorSettings";
 import VendorSignup from "./pages/VendorSIgnUp";
 import AdminSettings from "./pages/AdminSettings"
+import AdminTicket from "./pages/AdminTicket"
 
 // jsdoc
 /**
@@ -46,6 +47,7 @@ const Routes = () => {
       <Route path="vendor/settings" element={<VendorSettings />} />
       <Route exact path="/user/createListing" element={<CreateListing />} />
       <Route exact path="/admin/settings" element={<AdminSettings />} />
+      <Route exact path="/admin/ticket" element={<AdminTicket />} />
       <Route
         path="/user/dashboard"
         element={
