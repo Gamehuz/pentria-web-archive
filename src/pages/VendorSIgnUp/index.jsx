@@ -14,12 +14,12 @@ const VendorSignup = () => {
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState(null);
+  const [phoneNumber, setPhoneNumber] = useState(undefined);
   const [password, setPassword] = useState("");
   const [businessname, setBusinessname] = useState("");
-  const [bankDetails, setBankdetails] = useState(null);
+  const [bankDetails, setBankdetails] = useState(undefined);
   const [occupation, setOccupation] = useState("");
-  const [uploadID, setUploadID] = useState({});
+  const [uploadID, setUploadID] = useState("");
 
   // error states
   const [firstnameError, setFirstnameError] = useState(false);

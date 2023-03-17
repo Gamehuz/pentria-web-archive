@@ -14,12 +14,9 @@ const CustomerSignup = () => {
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState(null);
+  const [phoneNumber, setPhoneNumber] = useState(undefined);
   const [password, setPassword] = useState("");
-  const [businessname, setBusinessname] = useState("");
-  const [bankDetails, setBankdetails] = useState(null);
-  const [occupation, setOccupation] = useState("");
-  const [uploadID, setUploadID] = useState({});
+  const [uploadID, setUploadID] = useState("");
 
   // error states
   const [firstnameError, setFirstnameError] = useState(false);
@@ -30,9 +27,6 @@ const CustomerSignup = () => {
   const [emailError, setEmailError] = useState(false);
   const [phoneNumberError, setPhoneNumberError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
-  const [businessnameError, setBusinessnameError] = useState(false);
-  const [bankDetailsError, setBankdetailsError] = useState(false);
-  const [occupationError, setOccupationError] = useState(false);
   const [uploadIDError, setUploadIDError] = useState(false);
 
   // regex for input  validation
@@ -73,15 +67,6 @@ const CustomerSignup = () => {
         break;
       case "password":
         setPassword(value);
-        break;
-      case "businessName":
-        setBusinessname(value);
-        break;
-      case "bankNumber":
-        setBankdetails(value);
-        break;
-      case "occupation":
-        setOccupation(value);
         break;
       case "identification":
         setUploadID(value);
@@ -293,6 +278,7 @@ const CustomerSignup = () => {
                     name="firstname"
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    value={firstname}
                   />
                   {firstnameError && <p>{firstnameError}</p>}
                 </div>
@@ -304,6 +290,7 @@ const CustomerSignup = () => {
                     name="lastname"
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    value={lastname}
                   />
                   {lastnameError && <p>{lastnameError}</p>}
                 </div>
@@ -316,6 +303,7 @@ const CustomerSignup = () => {
                   name="address"
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  value={address}
                 />
                 {addressError && <p>{addressError}</p>}
               </div>
@@ -328,6 +316,7 @@ const CustomerSignup = () => {
                     name="city"
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    value={city}
                   />
                   {cityError && <p>{cityError}</p>}
                 </div>
@@ -338,6 +327,7 @@ const CustomerSignup = () => {
                     name="state"
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    value={state}
                   />
                   {stateError && <p>{stateError}</p>}
                 </div>
@@ -350,6 +340,7 @@ const CustomerSignup = () => {
                   name="email"
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  value={email}
                 />
                 {emailError && <p>{emailError}</p>}
               </div>
@@ -361,6 +352,7 @@ const CustomerSignup = () => {
                   name="phoneNumber"
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  value={phoneNumber}
                 />
                 {phoneNumberError && <p>{phoneNumberError}</p>}
               </div>
@@ -372,6 +364,7 @@ const CustomerSignup = () => {
                   name="password"
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  value={password}
                 />
                 {passwordError && <p>{passwordError}</p>}
               </div>
