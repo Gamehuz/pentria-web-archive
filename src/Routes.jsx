@@ -18,6 +18,7 @@ import Receipt from "./pages/Receipt";
 import UserDashboard from "./pages/UserDashboard";
 import VendorSettings from "./pages/VendorSettings";
 import VendorSignup from "./pages/VendorSIgnUp";
+import AdminSettings from "./pages/AdminSettings"
 
 // jsdoc
 /**
@@ -44,6 +45,7 @@ const Routes = () => {
       <Route path="/history/guest" element={<HistoryGuest />}/>
       <Route path="vendor/settings" element={<VendorSettings />} />
       <Route exact path="/user/createListing" element={<CreateListing />} />
+      <Route exact path="/admin/settings" element={<AdminSettings />} />
       <Route
         path="/user/dashboard"
         element={
