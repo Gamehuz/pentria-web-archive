@@ -338,6 +338,7 @@ const VendorSignup = () => {
                     name="firstname"
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    value={firstname}
                   />
                   {firstnameError && <p>{firstnameError}</p>}
                 </div>
@@ -348,6 +349,7 @@ const VendorSignup = () => {
                     name="lastname"
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    value={lastname}
                   />
                   {lastnameError && <p>{lastnameError}</p>}
                 </div>
@@ -360,6 +362,7 @@ const VendorSignup = () => {
                   name="address"
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  value={address}
                 />
                 {addressError && <p>{addressError}</p>}
               </div>
@@ -372,6 +375,7 @@ const VendorSignup = () => {
                     name="city"
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    value={city}
                   />
                   {cityError && <p>{cityError}</p>}
                 </div>
@@ -382,6 +386,7 @@ const VendorSignup = () => {
                     name="state"
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    value={state}
                   />
                   {stateError && <p>{stateError}</p>}
                 </div>
@@ -394,6 +399,7 @@ const VendorSignup = () => {
                   name="email"
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  value={email}
                 />
                 {emailError && <p>{emailError}</p>}
               </div>
@@ -405,6 +411,7 @@ const VendorSignup = () => {
                   name="phoneNumber"
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  value={phoneNumber}
                 />
                 {phoneNumberError && <p>{phoneNumberError}</p>}
               </div>
@@ -416,6 +423,7 @@ const VendorSignup = () => {
                   name="password"
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  value={password}
                 />
                 {passwordError && <p>{passwordError}</p>}
               </div>
@@ -429,6 +437,7 @@ const VendorSignup = () => {
                   name="businessName"
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  value={businessname}
                 />
                 {businessnameError && <p>{businessnameError}</p>}
               </div>
@@ -448,6 +457,7 @@ const VendorSignup = () => {
                   name="bankNumber"
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  value={bankDetails}
                 />
               </div>
 
@@ -458,6 +468,7 @@ const VendorSignup = () => {
                   name="occupation"
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  value={occupation}
                 />
                 {occupationError && <p>{occupationError}</p>}
               </div>
@@ -474,6 +485,7 @@ const VendorSignup = () => {
                   ref={selectFile}
                   onBlur={handleBlur}
                   onChange={handleChange}
+                  value={uploadID}
                   hidden
                 />
                 <div className={styles.upload} onClick={handleSelectFile}>
