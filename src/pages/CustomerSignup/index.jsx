@@ -1,9 +1,9 @@
-import { React, useRef, useState } from "react";
+import { React, useState } from "react";
 import styles from "./CustomerSignUp.module.scss";
 
 import upload from "./assets/upload.svg";
 
-import Button from "../../components/Button/index";
+import Button from "../../components/Button";
 import Nav from "../../components/Nav";
 
 const CustomerSignup = () => {
@@ -16,7 +16,7 @@ const CustomerSignup = () => {
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState(undefined);
   const [password, setPassword] = useState("");
-  const [uploadID, setUploadID] = useState("");
+  const [uploadID, setUploadID] = useState(null);
 
   // error states
   const [firstnameError, setFirstnameError] = useState(false);
@@ -42,7 +42,7 @@ const CustomerSignup = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
+    console.log(name, value);
     switch (name) {
       case "firstname":
         setFirstname(value);
@@ -234,11 +234,13 @@ const CustomerSignup = () => {
     return uploadIDError === "";
   };
 
-  const selectFile = useRef();
-
   const handleSelectFile = (e) => {
-    selectFile.current.click();
-    setUploadID(e.target?.files[0]);
+    const file = e.target?.files[0];
+    if (file) {
+      setUploadID(URL.createObjectURL(file));
+    } else {
+      setUploadID(null);
+    }
   };
 
   const handleSubmit = (e) => {
@@ -297,7 +299,7 @@ const CustomerSignup = () => {
               </div>
 
               <div className={styles.inputs}>
-                <label htmlFor="lastname">Address</label>
+                <label htmlFor="address">Address</label>
                 <input
                   type="text"
                   name="address"
@@ -377,23 +379,28 @@ const CustomerSignup = () => {
                   Upload a photo of your NIN or other government approved ID
                 </p>
                 <input
-                  onChange={handleChange}
+                  onChange={handleSelectFile}
                   onBlur={handleBlur}
+                  id="identification"
                   type="file"
                   name="identification"
                   accept="image/*"
-                  ref={selectFile}
                   hidden
                 />
-                <div className={styles.upload} onClick={handleSelectFile}>
+                <label className={styles.upload} htmlFor="identification">
                   <img src={upload} alt="upload" />
                   Upload your ID
-                </div>
+                </label>
                 {uploadIDError && <p>{uploadIDError}</p>}
+                {uploadID && (
+                  <div className={styles.uploaded}>
+                    <img width={300} src={uploadID} alt="uploaded" />
+                  </div>
+                )}
               </div>
             </div>
           </div>
-          <Button type="submit" text="Sign Up" />
+          <Button type="submit" text="Sign Up" bg={styles.purple} />
         </form>
       </div>
     </>
