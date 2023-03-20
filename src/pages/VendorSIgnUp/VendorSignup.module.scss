@@ -1,5 +1,5 @@
 .container {
-    width: 80%;
+    width: 90%;
     margin: 3rem auto 0 auto;
 
     h3 {
@@ -19,6 +19,9 @@
                 flex-direction: column;
             }
 
+            .signin {
+                background-color: #3E2180 !important;
+            }
             .left_form {
                 max-width: 100%;
                 width: 45%;

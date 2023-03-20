@@ -2,10 +2,14 @@ import React from "react";
 import { Route, Routes as Switch } from "react-router-dom";
 import UserLayout from "./Layouts/User";
 import Aboutus from "./pages/AboutUs";
+import AdminSettings from "./pages/AdminSettings";
+import AdminTicket from "./pages/AdminTicket";
 import BlogPage from "./pages/BlogPage";
 import BookingPage from "./pages/BookingPage";
+import CreateListing from "./pages/CreateListing/CreateListing";
 import CustomerSignup from "./pages/CustomerSignup";
 import Enquiries from "./pages/Enquiries";
+import HistoryGuest from "./pages/HistoryGuest";
 import Homepage from "./pages/Home";
 import LoginPage from "./pages/Login";
 import LoginOrSignUp from "./pages/LoginOrSignUp";
@@ -14,21 +18,20 @@ import Payment from "./pages/Payment";
 import PromptPage from "./pages/PromptPage";
 import Receipt from "./pages/Receipt";
 import UserDashboard from "./pages/UserDashboard";
-import VendorSignup from "./pages/VendorSIgnUp";
-import HistoryGuest from "./pages/HistoryGuest";
 import VendorSettings from "./pages/VendorSettings";
-import CreateListing from "./pages/CreateListing/CreateListing";
+import VendorSignup from "./pages/VendorSIgnUp";
 
 // jsdoc
 /**
   * @returns {JSX.Element}
  all routes are defined here
   */
+
 const Routes = () => {
   return (
     <Switch>
       <Route exact path="/" element={<Homepage />} />
-      <Route path="/aboutus" element={<Aboutus />} />
+      <Route path="/about-us" element={<Aboutus />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/loginorsignup" element={<LoginOrSignUp />} />
       <Route path="/payment" element={<Payment />} />
@@ -40,9 +43,11 @@ const Routes = () => {
       <Route exact path="/blog" element={<BlogPage />} />
       <Route exact path="/enquiries" element={<Enquiries />} />
       <Route exact path="/partners" element={<Partners />} />
-      <Route path="/history/guest" element={<HistoryGuest />}/>
+      <Route path="/history/guest" element={<HistoryGuest />} />
       <Route path="vendor/settings" element={<VendorSettings />} />
-      <Route exact path="/create/listing" element={<CreateListing />} />
+      <Route exact path="/user/createListing" element={<CreateListing />} />
+      <Route exact path="/admin/settings" element={<AdminSettings />} />
+      <Route exact path="/admin/ticket" element={<AdminTicket />} />
       <Route
         path="/user/dashboard"
         element={

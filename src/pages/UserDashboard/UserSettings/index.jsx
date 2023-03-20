@@ -1,7 +1,9 @@
-import React from "react";
+import React from 'react'
 
-const UserSettings = () => {
-  return <div>UserSettings</div>;
-};
+const index = () => {
+  return (
+    <div>index</div>
+  )
+}
 
-export default UserSettings;
+export default index

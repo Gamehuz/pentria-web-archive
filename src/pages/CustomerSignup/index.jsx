@@ -1,9 +1,9 @@
-import { React, useRef, useState } from "react";
+import { React, useState } from "react";
 import styles from "./CustomerSignUp.module.scss";
 
 import upload from "./assets/upload.svg";
 
-import Button from "../../components/Button/index";
+import Button from "../../components/Button";
 import Nav from "../../components/Nav";
 
 const CustomerSignup = () => {
@@ -14,12 +14,9 @@ const CustomerSignup = () => {
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState(null);
+  const [phoneNumber, setPhoneNumber] = useState(undefined);
   const [password, setPassword] = useState("");
-  const [businessname, setBusinessname] = useState("");
-  const [bankDetails, setBankdetails] = useState(null);
-  const [occupation, setOccupation] = useState("");
-  const [uploadID, setUploadID] = useState({});
+  const [uploadID, setUploadID] = useState(null);
 
   // error states
   const [firstnameError, setFirstnameError] = useState(false);
@@ -30,9 +27,6 @@ const CustomerSignup = () => {
   const [emailError, setEmailError] = useState(false);
   const [phoneNumberError, setPhoneNumberError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
-  const [businessnameError, setBusinessnameError] = useState(false);
-  const [bankDetailsError, setBankdetailsError] = useState(false);
-  const [occupationError, setOccupationError] = useState(false);
   const [uploadIDError, setUploadIDError] = useState(false);
 
   // regex for input  validation
@@ -48,7 +42,7 @@ const CustomerSignup = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
+    console.log(name, value);
     switch (name) {
       case "firstname":
         setFirstname(value);
@@ -73,15 +67,6 @@ const CustomerSignup = () => {
         break;
       case "password":
         setPassword(value);
-        break;
-      case "businessName":
-        setBusinessname(value);
-        break;
-      case "bankNumber":
-        setBankdetails(value);
-        break;
-      case "occupation":
-        setOccupation(value);
         break;
       case "identification":
         setUploadID(value);
@@ -249,11 +234,13 @@ const CustomerSignup = () => {
     return uploadIDError === "";
   };
 
-  const selectFile = useRef();
-
   const handleSelectFile = (e) => {
-    selectFile.current.click();
-    setUploadID(e.target?.files[0]);
+    const file = e.target?.files[0];
+    if (file) {
+      setUploadID(URL.createObjectURL(file));
+    } else {
+      setUploadID(null);
+    }
   };
 
   const handleSubmit = (e) => {
@@ -293,6 +280,7 @@ const CustomerSignup = () => {
                     name="firstname"
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    value={firstname}
                   />
                   {firstnameError && <p>{firstnameError}</p>}
                 </div>
@@ -304,18 +292,20 @@ const CustomerSignup = () => {
                     name="lastname"
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    value={lastname}
                   />
                   {lastnameError && <p>{lastnameError}</p>}
                 </div>
               </div>
 
               <div className={styles.inputs}>
-                <label htmlFor="lastname">Address</label>
+                <label htmlFor="address">Address</label>
                 <input
                   type="text"
                   name="address"
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  value={address}
                 />
                 {addressError && <p>{addressError}</p>}
               </div>
@@ -328,6 +318,7 @@ const CustomerSignup = () => {
                     name="city"
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    value={city}
                   />
                   {cityError && <p>{cityError}</p>}
                 </div>
@@ -338,6 +329,7 @@ const CustomerSignup = () => {
                     name="state"
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    value={state}
                   />
                   {stateError && <p>{stateError}</p>}
                 </div>
@@ -350,6 +342,7 @@ const CustomerSignup = () => {
                   name="email"
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  value={email}
                 />
                 {emailError && <p>{emailError}</p>}
               </div>
@@ -361,6 +354,7 @@ const CustomerSignup = () => {
                   name="phoneNumber"
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  value={phoneNumber}
                 />
                 {phoneNumberError && <p>{phoneNumberError}</p>}
               </div>
@@ -372,6 +366,7 @@ const CustomerSignup = () => {
                   name="password"
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  value={password}
                 />
                 {passwordError && <p>{passwordError}</p>}
               </div>
@@ -384,23 +379,28 @@ const CustomerSignup = () => {
                   Upload a photo of your NIN or other government approved ID
                 </p>
                 <input
-                  onChange={handleChange}
+                  onChange={handleSelectFile}
                   onBlur={handleBlur}
+                  id="identification"
                   type="file"
                   name="identification"
                   accept="image/*"
-                  ref={selectFile}
                   hidden
                 />
-                <div className={styles.upload} onClick={handleSelectFile}>
+                <label className={styles.upload} htmlFor="identification">
                   <img src={upload} alt="upload" />
                   Upload your ID
-                </div>
+                </label>
                 {uploadIDError && <p>{uploadIDError}</p>}
+                {uploadID && (
+                  <div className={styles.uploaded}>
+                    <img width={300} src={uploadID} alt="uploaded" />
+                  </div>
+                )}
               </div>
             </div>
           </div>
-          <Button type="submit" text="Sign Up" />
+          <Button type="submit" text="Sign Up" bg={styles.purple} />
         </form>
       </div>
     </>

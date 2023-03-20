@@ -1,10 +1,10 @@
 import React from "react";
-import styles from "./home.module.scss";
+import Footer from "../../components/Footer";
 import HomeNavbar from "../../components/HomeNavbar";
 import EntryHome from "./components/EntryHomePage";
 import Explore from "./components/Explore";
 import PartnersAndFAQ from "./components/PartnersAndFAQ.jsx";
-import Footer from "../../components/Footer";
+import styles from "./home.module.scss";
 
 const Homepage = () => {
   return (
@@ -13,9 +13,9 @@ const Homepage = () => {
       <EntryHome />
       <Explore />
       <PartnersAndFAQ />
-      <Footer />
+      <Footer bg={styles.footer} purple={true} />
     </div>
-  )
+  );
 };
 
 export default Homepage;

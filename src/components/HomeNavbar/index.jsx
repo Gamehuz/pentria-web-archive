@@ -17,16 +17,16 @@ const HomeNavbar = ({ bg }) => {
       <div className={`${styles.HomeNavbar_container} }`}>
         <ul className={styles.homeNavbarLinks}>
           <li className={styles.homeNavbarLink}>
-            <Link to="#">Partners</Link>
+            <Link to="/partners">Partners</Link>
           </li>
           <li className={styles.homeNavbarLink}>
-            <Link to="#">About</Link>
+            <Link to="/about-us">About</Link>
           </li>
           <li className={styles.homeNavbarLink}>
-            <Link to="#">Enquiries</Link>
+            <Link to="/enquiries">Enquiries</Link>
           </li>
           <li className={styles.homeNavbarLink}>
-            <Link to="#">Blog</Link>
+            <Link to="/blog">Blog</Link>
           </li>
         </ul>
         <div className={styles.homeNavbar_btn}>
@@ -34,7 +34,7 @@ const HomeNavbar = ({ bg }) => {
             <Link to="/login">LOGIN</Link>
           </div>
           <div className={styles.homeNavbar_signup}>
-            <Link to="#">SIGN UP</Link>
+            <Link to="/prompt">SIGN UP</Link>
           </div>
         </div>
       </div>

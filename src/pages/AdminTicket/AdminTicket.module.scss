@@ -1,0 +1,140 @@
+.ticket_container {
+    width: 90%;
+    margin: auto;
+
+    .header {
+        background: #EAEAEA;
+        padding: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .revenue {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+
+            h1 {
+                font-size: 28px;
+            }
+
+            p {
+                font-size: 14px;
+            }
+        }
+    }
+
+    .tickets {
+        margin-top: 2.5rem;
+
+        p:nth-child(1) {
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .confirmed_ticket,
+        .canceld_ticket,
+        .active_ticket,
+        .expired_ticket {
+            margin: 1rem 0;
+
+            p:nth-child(1) {
+                font-weight: 500;
+                font-size: 15px;
+            }
+
+            .confirm_container,
+            .cancle_container,
+            .active_container,
+            .expired_container {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                margin-bottom: 20px;
+
+                .confirm, .active {
+                    background: linear-gradient(107.19deg, rgba(62, 0, 204, 0.5) 0%, rgba(78, 0, 255, 0.395) 145.38%);
+                    width: 250px;
+                    max-width: 100%;
+                    padding: 15px;
+                    border-radius: 9px;
+                        
+                    div:nth-child(1) {
+                        margin-bottom: 10px;
+                    }
+
+                    div {
+                        p:nth-child(1) {
+                            font-weight: 600;
+                            margin-bottom: 0;
+                            font-size: 17px;
+                        }
+
+                        p:nth-child(2) {
+                            font-weight: 400;
+                            margin-bottom: 0;
+                            color: #fff;
+                            font-size: 13px;
+                        }
+                    }
+                }
+
+                .cancle {
+                    background: #FF6E6E;
+                    width: 250px;
+                    max-width: 100%;
+                    padding: 15px;
+                    border-radius: 9px;
+                        
+                    div:nth-child(1) {
+                        margin-bottom: 10px;
+                    }
+
+                    div {
+                        p:nth-child(1) {
+                            font-weight: 600;
+                            margin-bottom: 0;
+                            font-size: 17px;
+                        }
+
+                        p:nth-child(2) {
+                            font-weight: 400;
+                            margin-bottom: 0;
+                            color: #fff;
+                            font-size: 13px;
+                        }
+                    }
+                }
+
+                  .expired {
+                      background: #D9D9D9;
+                      width: 250px;
+                      max-width: 100%;
+                      padding: 15px;
+                      border-radius: 9px;
+
+                      div:nth-child(1) {
+                          margin-bottom: 10px;
+                      }
+
+                      div {
+                          p:nth-child(1) {
+                              font-weight: 600;
+                              margin-bottom: 0;
+                              font-size: 17px;
+                          }
+
+                          p:nth-child(2) {
+                              font-weight: 400;
+                              margin-bottom: 0;
+                              color: #7E7E7E;
+                              font-size: 13px;
+                          }
+                      }
+                  }
+
+              
+            }
+        }
+    }
+}
