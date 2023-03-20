@@ -1,8 +1,8 @@
 import React from "react";
-import styles from "./AdminTicket.module.scss";
 import Button from "../../components/Button";
+import styles from "./AdminTicket.module.scss";
 
-const Index = () => {
+const AdminTicket = () => {
   return (
     <div className={styles.ticket_container}>
       <div className={styles.header}>
@@ -100,4 +100,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default AdminTicket;

@@ -2,6 +2,8 @@ import React from "react";
 import { Route, Routes as Switch } from "react-router-dom";
 import UserLayout from "./Layouts/User";
 import Aboutus from "./pages/AboutUs";
+import AdminSettings from "./pages/AdminSettings";
+import AdminTicket from "./pages/AdminTicket";
 import BlogPage from "./pages/BlogPage";
 import BookingPage from "./pages/BookingPage";
 import CreateListing from "./pages/CreateListing/CreateListing";
@@ -18,15 +20,13 @@ import Receipt from "./pages/Receipt";
 import UserDashboard from "./pages/UserDashboard";
 import VendorSettings from "./pages/VendorSettings";
 import VendorSignup from "./pages/VendorSIgnUp";
-import AdminSettings from "./pages/AdminSettings"
-import AdminTicket from "./pages/AdminTicket"
 
 // jsdoc
 /**
   * @returns {JSX.Element}
  all routes are defined here
   */
- 
+
 const Routes = () => {
   return (
     <Switch>
@@ -43,7 +43,7 @@ const Routes = () => {
       <Route exact path="/blog" element={<BlogPage />} />
       <Route exact path="/enquiries" element={<Enquiries />} />
       <Route exact path="/partners" element={<Partners />} />
-      <Route path="/history/guest" element={<HistoryGuest />}/>
+      <Route path="/history/guest" element={<HistoryGuest />} />
       <Route path="vendor/settings" element={<VendorSettings />} />
       <Route exact path="/user/createListing" element={<CreateListing />} />
       <Route exact path="/admin/settings" element={<AdminSettings />} />
