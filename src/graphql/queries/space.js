@@ -1,53 +1,53 @@
 import { gql } from "@apollo/client";
 
-export const GET_SPACES = gql `
+export const GET_SPACES = gql`
   query {
-  spaces {
-    _id
-    image
-    ac
-    price
-    currency
-    activities {
+    spaces {
       _id
-      currency
-      duration
       image
-      name
+      ac
       price
-    }
-    approved
-    author {
-      _id
-      accountType
-      acctNumber
-    }
-    beds
-    category
-    cleaningSupplies
-    createdAt
-    description
-    facilityType
-    kidFriendly
-    kitchen
-    location
-    name
-    outdoorSpace
-    parking
-    petFriendly
-    policies
-    pool
-    reviews {
-      _id
-      comment
-      rating
+      currency
+      activities {
+        _id
+        currency
+        duration
+        image
+        name
+        price
+      }
+      approved
+      author {
+        _id
+        accountType
+        acctNumber
+      }
+      beds
+      category
+      cleaningSupplies
       createdAt
-      user
+      description
+      facilityType
+      kidFriendly
+      kitchen
+      location
+      name
+      outdoorSpace
+      parking
+      petFriendly
+      policies
+      pool
+      reviews {
+        _id
+        comment
+        rating
+        createdAt
+        user
+      }
+      updatedAt
+      videoGames
+      wifi
+      workspace
     }
-    updatedAt
-    videoGames
-    wifi
-    workspace
   }
-}
-`
+`;
