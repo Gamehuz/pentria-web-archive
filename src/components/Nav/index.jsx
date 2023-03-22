@@ -6,7 +6,6 @@ import styles from "./nav.module.scss";
 
 const Nav = () => {
   const [toggleNav, setToggleNav] = useState(false);
-  console.log(toggleNav);
   return (
     <header className={styles.header}>
       <nav className={styles.nav}>

@@ -31,3 +31,8 @@
   text-transform: uppercase;
   color: white;
 }
+
+.defaultBg {
+  background-color: var(--secondary-color) !important;
+  color: var(--primary-color);
+}
