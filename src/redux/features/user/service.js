@@ -50,7 +50,7 @@ export const signupGuest = (values) => async () => {
         accountType: "GUEST",
       },
     });
-    dispatch(setUser(result.data.user.register));
+    dispatch(setUser(result.data?.register));
     toast.success("Signup successful");
     dispatch(setLoading(false));
     return result.data;

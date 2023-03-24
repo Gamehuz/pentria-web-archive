@@ -1,12 +1,14 @@
 import { React, useState } from "react";
 import styles from "./CustomerSignUp.module.scss";
 
+import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import Nav from "../../components/Nav";
 import { signupGuest } from "../../redux/features/user/service";
 import { dispatch } from "../../redux/store";
 
 const CustomerSignup = () => {
+  const navigate = useNavigate();
   // input states
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
@@ -294,7 +296,7 @@ const CustomerSignup = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const isValid = validateAllFields();
@@ -310,9 +312,11 @@ const CustomerSignup = () => {
     };
 
     if (isValid) {
-      dispatch(signupGuest(values));
-      console.log("making request");
-      resetFields();
+      const res = await dispatch(signupGuest(values));
+      if (res) {
+        navigate("/login");
+        resetFields();
+      } else return;
     }
   };
 
