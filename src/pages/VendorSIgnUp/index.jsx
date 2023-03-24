@@ -143,6 +143,7 @@ const VendorSignup = () => {
       default:
         break;
     }
+    return isValid;
   };
 
   const clearError = () => {
@@ -313,13 +314,13 @@ const VendorSignup = () => {
       "businessName",
       "bankNumber",
       "occupation",
-      "identification",
     ];
 
     let isValid = true;
     formFields.forEach((field) => {
       isValid = validateField(field) && isValid;
     });
+    console.log(isValid);
   };
 
   return (
