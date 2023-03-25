@@ -1,0 +1,52 @@
+// * {
+//   outline: 1px solid black;
+// }
+
+.nav {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 2rem 0px;
+}
+
+.title {
+  color: #3e2180;
+}
+
+.homeNavbar_btn {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.homeNavbar_login {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  border: 2px solid black;
+  text-decoration: none;
+  list-style: none;
+  padding: 12px 4rem;
+  color: #3e2180;
+  a {
+    text-decoration: none;
+    color: #3e2180;
+  }
+}
+
+.homeNavbar_signup {
+  background-color: #3e2180;
+  padding: 0px 30px;
+}
+
+.homeNavbar_signup a {
+  text-decoration: none;
+  color: #e8e6ed;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 56px;
+}
