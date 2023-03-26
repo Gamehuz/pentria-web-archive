@@ -5,8 +5,8 @@
 }
 
 .defaultBg {
-  background-color: var(--secondary-color);
-  color: var(--primary-color);
+  background-color: var(--secondary-color) !important;
+  color: var(--primary-color) !important;
 }
 
 .tertiary {
@@ -19,7 +19,6 @@
   height: 100%;
   border: none;
   text-align: center;
-  background: transparent;
   outline: none;
   cursor: pointer;
   font-family: "Poppins";
@@ -31,4 +30,9 @@
   list-style: none;
   text-transform: uppercase;
   color: white;
+}
+
+.defaultBg {
+  background-color: var(--secondary-color) !important;
+  color: var(--primary-color);
 }

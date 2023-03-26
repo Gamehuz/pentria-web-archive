@@ -1,3 +1,7 @@
+import { useEffect, useState } from 'react';
+import { useQuery, gql } from '@apollo/client'; 
+
+
 import styles from './explore.module.scss';
 import { ReactComponent as LeftArrow } from "../../assets/left-arrow.svg";
 import { ReactComponent as RightArrow } from "../../assets/right-arrow.svg";;

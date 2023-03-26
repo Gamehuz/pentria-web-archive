@@ -34,7 +34,7 @@ const HomeNavbar = ({ bg }) => {
             <Link to="/login">LOGIN</Link>
           </div>
           <div className={styles.homeNavbar_signup}>
-            <Link to="/signup">SIGN UP</Link>
+            <Link to="/prompt">SIGN UP</Link>
           </div>
         </div>
       </div>

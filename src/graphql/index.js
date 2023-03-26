@@ -1,8 +1,9 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 
-const client = new ApolloClient({
+const appolloClient = new ApolloClient({
   uri: "https://pentria-apiv1-4w2bw.ondigitalocean.app/graphql",
   cache: new InMemoryCache(),
+  connectToDevTools: true,
 });
 
-export default client;
+export default appolloClient;
