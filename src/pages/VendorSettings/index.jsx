@@ -12,6 +12,18 @@ const VendorSettings = () => {
         setToggleDashboardMenu(!toggleDashboardMenu);
     }
 
+    const [accountDetails, setAccountSettings] = useState({
+        firstName: "",
+        lastName: "",
+        sex: "",
+        dob: "",
+        address: "",
+        city: "",
+        state: "",
+        email: "",
+        phoneNumber: ""    
+    })
+
     return (
         <div>
             <Nav />

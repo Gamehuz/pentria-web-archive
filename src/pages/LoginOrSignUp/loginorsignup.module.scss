@@ -1,6 +1,7 @@
 .loginOrSignUp {
   background-color: var(--secondary-color);
   padding-top: 50px;
+  min-height: 100vh;
   padding-bottom: 70px;
   display: flex;
   justify-content: center;
@@ -12,7 +13,7 @@
     margin-right: auto;
     background-color: white;
     padding: 20px;
-    height: fit-content;
+
     h1 {
       color: var(--secondary-color);
       font-size: 36px;

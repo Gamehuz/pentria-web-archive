@@ -3,7 +3,7 @@ import utilReducer from "./utils/UtilSlice";
 
 const store = configureStore({
   reducer: {
-    util: utilReducer,
+    util: utilReducer
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(),
   devTools: true,

@@ -1,12 +1,8 @@
-import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
+import { ApolloClient, InMemoryCache } from "@apollo/client";
 
-const link = new HttpLink({
+const client = new ApolloClient({
   uri: "https://pentria-apiv1-4w2bw.ondigitalocean.app/graphql",
-});
-
-const appolloClient = new ApolloClient({
-  uri: link,
   cache: new InMemoryCache(),
 });
 
-export default appolloClient;
+export default client;

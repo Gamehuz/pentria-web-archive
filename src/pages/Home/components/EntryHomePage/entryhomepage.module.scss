@@ -97,6 +97,13 @@
         width: 58%;
         height: 50px;
         margin: 0;
+
+        div {
+            input {
+                font-size: 14px;
+
+            }
+        }
     }
 
     div:nth-child(3) {
@@ -163,18 +170,23 @@
             position: relative;
             left: 0;
             display: grid;
-            width: 85vw;
+            gap: 10px;
+            width: 90vw;
             max-width: 500px;
             margin-top: 30px;
             margin-left: auto;
             margin-right: auto;
+
+            div {
+                padding-left: 10px;
+            }
 
             :nth-child(1) {
                 width: 100%;
                 border-right: none;
 
                 svg {
-                    width: 20%;
+                    width: 25px;
                 }
             }
 
@@ -182,16 +194,25 @@
                 width: 100%;
 
                 svg {
-                    width: 20%;
+                    width: 25px;
                 }
 
                 div {
-                    width: 100%
+                    width: 100%;
+
+                    ::placeholder {
+                        font-size: 12px;
+                    }
+
                 }
             }
 
             :nth-child(3) {
-                margin-left: auto;
+                margin-left: 30px;
+
+                button {
+                    font-size: 16px;
+                }
             }
         }
 

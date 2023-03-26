@@ -5,8 +5,11 @@ import arrowImg from "../../assets/Arrow.png";
 import homepageImg from "../../assets/homepageImg.png";
 import { ReactComponent as Search } from "../../assets/search.svg";
 import styles from "./entryhomepage.module.scss";
+import { useState } from "react"
 
 const EntryHome = () => {
+  const [recreationName, setRecreationName] = useState("");
+
   return (
     <section className={styles.enterPlaySection}>
       <div className={styles.getTickets}>
@@ -36,8 +39,9 @@ const EntryHome = () => {
             <InputField
               placeholder={"Enter name of game or recreation space"}
               type={"text"}
-              value={""}
+              value={recreationName}
               name={"search"}
+              onChange={(e) => setRecreationName(e.target.value)}
             />
           </div>
           <Button type={"submit"} text="SEARCH" />

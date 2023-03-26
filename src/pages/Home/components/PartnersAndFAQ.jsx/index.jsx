@@ -5,7 +5,35 @@ import curledArrow from "../../assets/curledArrow.png"
 import partnersImg from "../../assets/partnersImg.png"
 
 const PartnersAndFAQ = () => {
-    const explorables = [{}, {}, {}, {}, {}]
+    const explorables = [{}, {}, {}, {}, {}];
+
+    const faqs = [
+        {
+            id: 1,
+            name: "How can I reserve playtime in one click?",
+            detail: "Give me attention or face the wrath of my claws give me attention or face the wrath of my claws and pretend not to be evil cats go for world domination allways wanting food"
+        },
+        {
+            id: 2,
+            name: "Why should I pay online?",
+            detail: "Give me attention or face the wrath of my claws give me attention or face the wrath of my claws and pretend not to be evil cats go for world domination allways wanting food"
+        },
+        {
+            id: 3,
+            name: "What payment methods can I use?",
+            detail: "Give me attention or face the wrath of my claws give me attention or face the wrath of my claws and pretend not to be evil cats go for world domination allways wanting food"
+        },
+        {
+            id: 4,
+            name: "Can I cancel my bookings?",
+            detail: "Give me attention or face the wrath of my claws give me attention or face the wrath of my claws and pretend not to be evil cats go for world domination allways wanting food"
+        },
+        {
+            id: 5,
+            name: "What else can I do on Pentria?",
+            detail: "Give me attention or face the wrath of my claws give me attention or face the wrath of my claws and pretend not to be evil cats go for world domination allways wanting food"
+        }
+    ];
     return (
         <section className={styles.partnersAndFAQ}>
             <div>
@@ -31,18 +59,16 @@ const PartnersAndFAQ = () => {
                 <div>
                     <div>
                     {
-                        explorables.map((faqs, index) => {
+                        faqs.map((faq) => {
                             return (
-                                <details key={index}>
+                                <details key={faq.id}>
                                     <summary>
-                                        <span>How can I reserve playtime in one click?</span>
+                                        <span>{faq.name}</span>
                                         <div className={styles.chevronright}>
                                             <RightArrow />
                                         </div>
                                     </summary>
-                                    <span>
-                                    Give me attention or face the wrath of my claws give me attention or face the wrath of my claws and pretend not to be evil cats go for world domination allways wanting food
-                                    </span>
+                                    <span>{faq.detail}</span>
                                     <div className={styles.chevronleft}>
                                         <LeftArrow />
                                     </div>

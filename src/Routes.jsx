@@ -23,7 +23,7 @@ import AdminTicket from "./pages/AdminTicket"
 
 // jsdoc
 /**
-  * @returns {JSX.Element}
+   * @returns {JSX.Element}
  all routes are defined here
   */
  
@@ -31,7 +31,7 @@ const Routes = () => {
   return (
     <Switch>
       <Route exact path="/" element={<Homepage />} />
-      <Route path="/about-us" element={<Aboutus />} />
+      <Route path="/about-us" element={<Aboutus />} />\\
       <Route path="/login" element={<LoginPage />} />
       <Route path="/loginorsignup" element={<LoginOrSignUp />} />
       <Route path="/payment" element={<Payment />} />

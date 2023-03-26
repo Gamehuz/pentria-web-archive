@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import Button from "../Button";
 import InputField from "../InputField";
 import { ReactComponent as LinkedIn } from "./assets/linkedin.svg";
@@ -9,6 +9,7 @@ import {
 } from "./assets/twitter.svg";
 import { ReactComponent as Youtube } from "./assets/youtube.svg";
 import styles from "./footer.module.scss";
+import { useState } from "react"
 
 // example bg for purple background = <Footer bg={styles.bg} purple={true}/>
 // bg {
@@ -23,6 +24,8 @@ import styles from "./footer.module.scss";
 // }
 
 const Footer = ({ bg, purple }) => {
+  const [subscribe, setSubscribe] = useState("");
+
   return (
     <footer className={bg ? bg : styles.footer}>
       <div className={styles.footercontainer}>
@@ -33,7 +36,8 @@ const Footer = ({ bg, purple }) => {
             <InputField
               type={"text"}
               placeholder={"Enter your email"}
-              value={""}
+              value={subscribe}
+              onChange={(e) => setSubscribe(e.target.value)}
             />
             <Button type={"button"} bg={styles.button} text={"SUBSCRIBE"} />
           </div>
