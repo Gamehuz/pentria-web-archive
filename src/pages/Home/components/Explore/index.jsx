@@ -1,11 +1,8 @@
 import { useEffect, useState } from 'react';
-import { useQuery, gql } from '@apollo/client'; 
-
-
+import { useQuery } from '@apollo/client'; 
 import styles from './explore.module.scss';
 import { ReactComponent as LeftArrow } from "../../assets/left-arrow.svg";
 import { ReactComponent as RightArrow } from "../../assets/right-arrow.svg";;
-import { useQuery } from "@apollo/client";
 import ALL_SPACES from '../../../../graphql/queries/spaces';
 import ExploreSpaces from './components/exploreSpaces';
 import UpcomingSpaces from './components/upcomingSpaces';

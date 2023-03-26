@@ -29,7 +29,7 @@ const LoginPage = () => {
         },
         onCompleted: (data) => {
             console.log(data);
-            localStorage.setItem('auth-token', data.token);
+            localStorage.setItem('auth-token', data.login.token);
             navigate('/')
         }
     });
