@@ -1,6 +1,6 @@
 import { toast } from "react-hot-toast";
 import appolloClient from "../../../graphql";
-import { SIGNUP_GUEST } from "../../../graphql/mutations/signup";
+import { SIGNUP_GUEST, SIGNUP_VENDOR } from "../../../graphql/mutations/signup";
 import { dispatch } from "../../store";
 import { setLoading } from "../../utils/UtilSlice";
 import { setError, setUser } from "./userSlice";
@@ -40,7 +40,7 @@ export const signupVendor = (values) => async () => {
   dispatch(setLoading(true));
   try {
     const result = await appolloClient.mutate({
-      mutation: SIGNUP_GUEST,
+      mutation: SIGNUP_VENDOR,
       variables: {
         email: values.email,
         password: values.password,
@@ -51,11 +51,10 @@ export const signupVendor = (values) => async () => {
         city: values.city,
         state: values.state,
         accountType: "VENDOR",
-        bName: values.businessName,
-        bank: values.bank,
-        bankName: values.bankName,
-        accountNumber: values.accountNumber,
-        accountName: values.accountName,
+        bName: values.businessname,
+        bank: values.bankName,
+        bankName: values.accountName,
+        acctNumber: values.accountNumber,
         occupation: values.occupation,
       },
     });

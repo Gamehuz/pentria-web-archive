@@ -51,8 +51,7 @@ export const SIGNUP_VENDOR = gql`
     $bName: String!
     $bank: String!
     $bankName: String!
-    $accountNumber: String!
-    $accountName: String!
+    $acctNumber: String!
     $occupation: String!
   ) {
     register(
@@ -68,9 +67,8 @@ export const SIGNUP_VENDOR = gql`
         accountType: $accountType
         bName: $bName
         bank: $bank
+        acctNumber: $acctNumber
         bankName: $bankName
-        accountNumber: $accountNumber
-        accountName: $accountName
         occupation: $occupation
       }
     ) {
@@ -84,9 +82,8 @@ export const SIGNUP_VENDOR = gql`
       state
       bName
       bank
+      acctNumber
       bankName
-      accountNumber
-      accountName
       occupation
     }
   }
