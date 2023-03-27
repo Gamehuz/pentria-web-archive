@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import styles from "./BookingPage.module.scss";
-import HomeNavbar from "../../components/HomeNavbar";
 import { Link } from "react-router-dom";
+import InputField from "../../components/InputField/index";
 import backArrow from "./assets/211686_back_arrow_icon 1.png";
+import styles from "./BookingPage.module.scss";
 import Item from "./Item";
 
 const BookingPage = () => {
@@ -12,7 +12,7 @@ const BookingPage = () => {
   return (
     <>
       <div className={styles.BookingPage}>
-        <HomeNavbar bg={"#FAFAFA"} />
+        {/* <HomeNavbar bg={"#FAFAFA"} /> */}
         <main>
           <header>
             <Link className={styles.Link} to="/results">
@@ -27,10 +27,20 @@ const BookingPage = () => {
                 <label htmlFor="name" className="">
                   Enter Your Full Name
                 </label>
-                <input
+                {/* <input
                   name="name"
                   id="name"
                   type="text"
+                  required
+                  onChange={(e) => setFullName(e.target.value)}
+                /> */}
+                <InputField
+                  name="name"
+                  id="name"
+                  type="text"
+                  width={"width-three-quarter"}
+                  radius={"border-radius-10"}
+                  bg="bg-light"
                   required
                   onChange={(e) => setFullName(e.target.value)}
                 />
@@ -39,10 +49,20 @@ const BookingPage = () => {
                 <label htmlFor="phoneNumber" className="">
                   Enter Your Phone Number
                 </label>
-                <input
+                {/* <input
                   name="phoneNumber"
                   id="phoneNumber"
                   type="text"
+                  required
+                  onChange={(e) => setPhoneNumber(e.target.value)}
+                /> */}
+                <InputField
+                  name="phoneNumber"
+                  width={"width-three-quarter"}
+                  id="phoneNumber"
+                  type="number"
+                  radius={"border-radius-10"}
+                  bg="bg-light"
                   required
                   onChange={(e) => setPhoneNumber(e.target.value)}
                 />

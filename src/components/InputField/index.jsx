@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import styles from "./inputfield.module.scss";
 const InputField = ({
@@ -24,7 +25,7 @@ const InputField = ({
           {type === "password" ? (
             <i className="fas fa-eye"></i>
           ) : (
-            <i class="fa fa-eye-slash"></i>
+            <i className="fa fa-eye-slash"></i>
           )}
         </span>
       )}
