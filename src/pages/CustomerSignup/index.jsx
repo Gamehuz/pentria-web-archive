@@ -1,11 +1,14 @@
-import { React, useRef, useState } from "react";
+import { React, useState } from "react";
 import styles from "./CustomerSignUp.module.scss";
 
-import upload from "./assets/upload.svg";
-
-import Button from "../../components/Button/index";
+import { useNavigate } from "react-router-dom";
+import Button from "../../components/Button";
+import Nav from "../../components/Nav";
+import { signupGuest } from "../../redux/features/user/service";
+import { dispatch } from "../../redux/store";
 
 const CustomerSignup = () => {
+  const navigate = useNavigate();
   // input states
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
@@ -13,41 +16,36 @@ const CustomerSignup = () => {
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState(null);
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
-  const [businessname, setBusinessname] = useState("");
-  const [bankDetails, setBankdetails] = useState(null);
-  const [occupation, setOccupation] = useState("");
-  const [uploadID, setUploadID] = useState({});
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [uploadID, setUploadID] = useState(null);
+  const [togglePassword, setTogglePassword] = useState(false);
 
   // error states
-  const [firstnameError, setFirstnameError] = useState(false);
-  const [lastnameError, setLastnameError] = useState(false);
-  const [addressError, setAddressError] = useState(false);
-  const [cityError, setCityError] = useState(false);
-  const [stateError, setStateError] = useState(false);
-  const [emailError, setEmailError] = useState(false);
-  const [phoneNumberError, setPhoneNumberError] = useState(false);
-  const [passwordError, setPasswordError] = useState(false);
-  const [businessnameError, setBusinessnameError] = useState(false);
-  const [bankDetailsError, setBankdetailsError] = useState(false);
-  const [occupationError, setOccupationError] = useState(false);
-  const [uploadIDError, setUploadIDError] = useState(false);
+  const [firstnameError, setFirstnameError] = useState("");
+  const [lastnameError, setLastnameError] = useState("");
+  const [addressError, setAddressError] = useState("");
+  const [cityError, setCityError] = useState("");
+  const [stateError, setStateError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [phoneNumberError, setPhoneNumberError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [confirmPasswordError, setConfirmPasswordError] = useState("");
+  const [uploadIDError, setUploadIDError] = useState("");
 
   // regex for input  validation
   const emailTest = new RegExp(/\S+@\S+\.\S+/);
   const passwordTest = new RegExp(
     /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,10}$/
   );
-  const nameTest = new RegExp(/^[A-Za-z][0-9]{5,20}$/);
-  const cityStateTest = new RegExp(/^[A-Za-z][0-9]{5,20}$/);
   const phoneNumberTest = new RegExp(
     /^[+]*[(]{0,3}[0-9]{1,4}[)]{0,1}[-\s./0-9]{8,15}$/
   );
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
+    console.log(name, value);
     switch (name) {
       case "firstname":
         setFirstname(value);
@@ -73,19 +71,11 @@ const CustomerSignup = () => {
       case "password":
         setPassword(value);
         break;
-      case "businessName":
-        setBusinessname(value);
-        break;
-      case "bankNumber":
-        setBankdetails(value);
-        break;
-      case "occupation":
-        setOccupation(value);
-        break;
       case "identification":
         setUploadID(value);
         break;
-
+      case "confirmPassword":
+        setConfirmPassword(value);
       default:
         break;
     }
@@ -98,36 +88,37 @@ const CustomerSignup = () => {
 
   const validateField = (name) => {
     let isValid = false;
-
+    console.log(name);
     switch (name) {
       case "firstname":
-        isValid = validateFirstname();
+        validateFirstname();
         break;
       case "lastname":
-        isValid = validateLastname();
+        validateLastname();
         break;
       case "address":
-        isValid = validateAddress();
+        validateAddress();
         break;
       case "city":
-        isValid = validateCity();
+        validateCity();
         break;
       case "state":
-        isValid = validateState();
+        validateState();
         break;
       case "email":
-        isValid = validateEmail();
+        validateEmail();
         break;
       case "phoneNumber":
-        isValid = validatePhonenumber();
+        validatePhonenumber();
         break;
       case "password":
-        isValid = validatepassword();
+        validatepassword();
         break;
       case "identification":
-        isValid = validateIdentification();
+        validateIdentification();
         break;
-
+      case "confirmPassword":
+        validateConfirmPassword();
       default:
         break;
     }
@@ -135,15 +126,16 @@ const CustomerSignup = () => {
 
   const clearError = () => {
     setTimeout(() => {
-      setFirstnameError(false);
-      setLastnameError(false);
-      setAddressError(false);
-      setCityError(false);
-      setStateError(false);
-      setEmailError(false);
-      setPhoneNumberError(false);
-      setPasswordError(false);
-      setUploadIDError(false);
+      setFirstnameError("");
+      setLastnameError("");
+      setAddressError("");
+      setCityError("");
+      setStateError("");
+      setEmailError("");
+      setPhoneNumberError("");
+      setPasswordError("");
+      setUploadIDError("");
+      setConfirmPasswordError("");
     }, 4000);
   };
 
@@ -151,8 +143,6 @@ const CustomerSignup = () => {
     let firstnameError = "";
     const value = firstname;
     if (value.trim() === "") firstnameError = "Firstname is required";
-    else if (!nameTest.test(value))
-      firstnameError = "firstname must be atleast 5 characters";
     setFirstnameError(firstnameError);
     clearError();
     return firstnameError === "";
@@ -162,8 +152,6 @@ const CustomerSignup = () => {
     let lastnameError = "";
     const value = lastname;
     if (value.trim() === "") lastnameError = "Lastname is required";
-    else if (!nameTest.test(value))
-      lastnameError = "Lastname must be atleast 5 characters";
     setLastnameError(lastnameError);
     clearError();
     return lastnameError === "";
@@ -183,7 +171,6 @@ const CustomerSignup = () => {
     let cityError = "";
     const value = city;
     if (value.trim() === "") cityError = "City is requred";
-    else if (!cityStateTest.test(value)) cityError = "Pls add a valid address";
     setCityError(cityError);
     clearError();
 
@@ -194,7 +181,6 @@ const CustomerSignup = () => {
     let stateError = "";
     const value = state;
     if (value.trim() === "") stateError = "State is requred";
-    else if (!cityStateTest.test(value)) stateError = "Pls add a valid address";
     setStateError(stateError);
     clearError();
 
@@ -237,167 +223,273 @@ const CustomerSignup = () => {
     return passwordError === "";
   };
 
+  const validateConfirmPassword = () => {
+    let confirmPasswordError = "";
+    const value = confirmPassword;
+
+    if (value.trim() === "")
+      confirmPasswordError = "Confirm Password is required";
+    else if (value !== password)
+      confirmPasswordError = "Password does not match";
+
+    setConfirmPasswordError(confirmPasswordError);
+    clearError();
+    return confirmPasswordError === "";
+  };
+
   const validateIdentification = () => {
     let uploadIDError = "";
 
     const value = uploadID;
-    if (value.length === undefined) uploadIDError = "A means of ID is required";
+    if (value === null) uploadIDError = "A means of ID is required";
     setUploadIDError(uploadIDError);
     clearError();
 
     return uploadIDError === "";
   };
 
-  const selectFile = useRef();
+  const validateAllFields = () => {
+    const isValidFirstname = validateFirstname();
+    const isValidLastname = validateLastname();
+    const isValidAddress = validateAddress();
+    const isValidCity = validateCity();
+    const isValidState = validateState();
+    const isValidEmail = validateEmail();
+    const isValidPhoneNumber = validatePhonenumber();
+    const isValidPassword = validatepassword();
+    const isValidUploadID = validateIdentification();
+    const isValidConfirmPassword = validateConfirmPassword();
 
-  const handleSelectFile = (e) => {
-    selectFile.current.click();
-    setUploadID(e.target?.files[0]);
+    return (
+      isValidFirstname &&
+      isValidLastname &&
+      isValidAddress &&
+      isValidCity &&
+      isValidState &&
+      isValidEmail &&
+      isValidPhoneNumber &&
+      isValidPassword &&
+      // isValidUploadID &&
+      isValidConfirmPassword
+    );
   };
 
-  const handleSubmit = (e) => {
+  const resetFields = () => {
+    setFirstname("");
+    setLastname("");
+    setAddress("");
+    setCity("");
+    setState("");
+    setEmail("");
+    setPassword("");
+    setPhoneNumber("");
+    setUploadID("");
+    setConfirmPassword("");
+  };
+
+  const handleSelectFile = (e) => {
+    const file = e.target?.files[0];
+    if (file) {
+      setUploadID(URL.createObjectURL(file));
+    } else {
+      setUploadID(null);
+    }
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const formFields = [
-      "firstname",
-      "lastname",
-      "address",
-      "city",
-      "state",
-      "email",
-      "password",
-      "phoneNumber",
-      "identification",
-    ];
+    const isValid = validateAllFields();
+    const values = {
+      firstname,
+      lastname,
+      address,
+      city,
+      state,
+      email,
+      password,
+      phoneNumber,
+    };
 
-    let isValid = true;
-    formFields.forEach((field) => {
-      isValid = validateField(field) && isValid;
-    });
+    if (isValid) {
+      const res = await dispatch(signupGuest(values));
+      if (res) {
+        navigate("/login");
+        resetFields();
+      } else return;
+    }
   };
 
   return (
-    <div className={styles.container}>
-      <h3>Sign Up</h3>
-      <form onSubmit={handleSubmit}>
-        <div className={styles.form_container}>
-          <div className={styles.left_form}>
-            <div className={styles.input_container}>
-              <div className={styles.inputs}>
-                <label htmlFor="firstname">First Name</label>
-                <input
-                  type="text"
-                  name="firstname"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
-                {firstnameError && <p>{firstnameError}</p>}
+    <>
+      <Nav />
+      <div className={styles.container}>
+        <h3>Sign Up</h3>
+        <form onSubmit={handleSubmit}>
+          <div className={styles.form_container}>
+            <div className={styles.left_form}>
+              <div className={styles.input_container}>
+                <div className={styles.inputs}>
+                  <label htmlFor="firstname">First Name</label>
+                  <input
+                    type="text"
+                    name="firstname"
+                    onChange={handleChange}
+                    // onBlur={handleBlur}
+                    value={firstname}
+                  />
+                  {firstnameError && <p>{firstnameError}</p>}
+                </div>
+
+                <div className={styles.inputs}>
+                  <label htmlFor="lastname">Last Name</label>
+                  <input
+                    type="text"
+                    name="lastname"
+                    onChange={handleChange}
+                    // onBlur={handleBlur}
+                    value={lastname}
+                  />
+                  {lastnameError && <p>{lastnameError}</p>}
+                </div>
               </div>
 
               <div className={styles.inputs}>
-                <label htmlFor="lastname">Last Name</label>
+                <label htmlFor="address">Address</label>
                 <input
                   type="text"
-                  name="lastname"
+                  name="address"
                   onChange={handleChange}
-                  onBlur={handleBlur}
+                  // onBlur={handleBlur}
+                  value={address}
                 />
-                {lastnameError && <p>{lastnameError}</p>}
+                {addressError && <p>{addressError}</p>}
               </div>
-            </div>
 
-            <div className={styles.inputs}>
-              <label htmlFor="lastname">Address</label>
-              <input
-                type="text"
-                name="address"
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              {addressError && <p>{addressError}</p>}
-            </div>
+              <div className={styles.input_container}>
+                <div className={styles.inputs}>
+                  <label htmlFor="city">City</label>
+                  <input
+                    type="text"
+                    name="city"
+                    onChange={handleChange}
+                    // onBlur={handleBlur}
+                    value={city}
+                  />
+                  {cityError && <p>{cityError}</p>}
+                </div>
+                <div className={styles.inputs}>
+                  <label htmlFor="state">State</label>
+                  <input
+                    type="text"
+                    name="state"
+                    onChange={handleChange}
+                    // onBlur={handleBlur}
+                    value={state}
+                  />
+                  {stateError && <p>{stateError}</p>}
+                </div>
+              </div>
 
-            <div className={styles.input_container}>
               <div className={styles.inputs}>
-                <label htmlFor="city">City</label>
+                <label htmlFor="email">Email</label>
                 <input
-                  type="text"
-                  name="city"
+                  type="email"
+                  name="email"
                   onChange={handleChange}
-                  onBlur={handleBlur}
+                  // onBlur={handleBlur}
+                  value={email}
                 />
-                {cityError && <p>{cityError}</p>}
+                {emailError && <p>{emailError}</p>}
+              </div>
+
+              <div className={styles.inputs}>
+                <label htmlFor="phoneNumber">Phone Number</label>
+                <input
+                  type="number"
+                  name="phoneNumber"
+                  onChange={handleChange}
+                  // onBlur={handleBlur}
+                  value={phoneNumber}
+                />
+                {phoneNumberError && <p>{phoneNumberError}</p>}
+              </div>
+
+              <div className={styles.inputs}>
+                <label htmlFor="password">Password</label>
+                <div className={styles.passwordInput}>
+                  <input
+                    type={togglePassword ? "text" : "password"}
+                    name="password"
+                    onChange={handleChange}
+                    // onBlur={handleBlur}
+                    value={password}
+                  />
+                  <span onClick={() => setTogglePassword(!togglePassword)}>
+                    {togglePassword ? (
+                      <i className="fas fa-eye"></i>
+                    ) : (
+                      <i class="fa fa-eye-slash"></i>
+                    )}
+                  </span>
+                </div>
+                {passwordError && <p>{passwordError}</p>}
               </div>
               <div className={styles.inputs}>
-                <label htmlFor="state">State</label>
+                <label htmlFor="password">Confirm Password</label>
                 <input
-                  type="text"
-                  name="state"
+                  type={togglePassword ? "text" : "password"}
+                  name="confirmPassword"
                   onChange={handleChange}
-                  onBlur={handleBlur}
+                  // onBlur={handleBlur}
+                  value={confirmPassword}
                 />
-                {stateError && <p>{stateError}</p>}
+
+                {confirmPasswordError && <p>{confirmPasswordError}</p>}
               </div>
             </div>
 
-            <div className={styles.inputs}>
-              <label htmlFor="email">Email</label>
-              <input
-                type="email"
-                name="email"
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              {emailError && <p>{emailError}</p>}
-            </div>
-
-            <div className={styles.inputs}>
-              <label htmlFor="phoneNumber">Phone Number</label>
-              <input
-                type="number"
-                name="phoneNumber"
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              {phoneNumberError && <p>{phoneNumberError}</p>}
-            </div>
-
-            <div className={styles.inputs}>
-              <label htmlFor="password">Password</label>
-              <input
-                type="password"
-                name="password"
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              {passwordError && <p>{passwordError}</p>}
-            </div>
+            {/* <div className={styles.right_form}>
+              <div className={styles.identification}>
+                <label htmlFor="identification">Identification</label>
+                <p>
+                  Upload a photo of your NIN or other government approved ID
+                </p>
+                <input
+                  onChange={handleSelectFile}
+                  onBlur={handleBlur}
+                  id="identification"
+                  type="file"
+                  name="identification"
+                  accept="image/*"
+                  hidden
+                />
+                <label className={styles.upload} htmlFor="identification">
+                  <img src={upload} alt="upload" />
+                  Upload your ID
+                </label>
+                {uploadIDError && <p>{uploadIDError}</p>}
+                {uploadID && (
+                  <div className={styles.uploaded}>
+                    <img width={300} src={uploadID} alt="uploaded" />
+                  </div>
+                )}
+              </div>
+            </div> */}
           </div>
-
-          <div className={styles.right_form}>
-            <div className={styles.identification}>
-              <label htmlFor="identification">Identification</label>
-              <p>Upload a photo of your NIN or other government approved ID</p>
-              <input
-                onChange={handleChange}
-                onBlur={handleBlur}
-                type="file"
-                name="identification"
-                accept="image/*"
-                ref={selectFile}
-                hidden
-              />
-              <div className={styles.upload} onClick={handleSelectFile}>
-                <img src={upload} alt="upload" />
-                Upload your ID
-              </div>
-              {uploadIDError && <p>{uploadIDError}</p>}
-            </div>
-          </div>
+          <Button type="submit" text="Sign Up" bg={styles.purple} />
+        </form>
+        <span>
+          <div></div>
+          <p>OR</p>
+          <div></div>
+        </span>
+        <div className={styles.othersignin}>
+          <Button bg={styles.button} text={"LOGIN WITH GOOGLE"} />
+          <Button bg={styles.button} text={"LOGIN WITH FACEBOOK"} />
         </div>
-        <Button type="submit" text="Sign Up" />
-      </form>
-    </div>
+      </div>
+    </>
   );
 };
 

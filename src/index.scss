@@ -2,8 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins',
-    sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 :root {
@@ -11,4 +10,12 @@
   --secondary-color: #3e2180;
   --dim-color: #7e7e7e;
   --tertiary-color: #bf4d01;
+}
+
+html {
+  font-family: "Poppins", sans-serif;
+}
+
+a {
+  text-decoration: none;
 }

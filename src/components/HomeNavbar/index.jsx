@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import mobileMenu from "./assets/menu-hamburger.svg";
 import styles from "./homenav.module.scss";
 
@@ -10,26 +11,30 @@ const HomeNavbar = ({ bg }) => {
         styles.homeNavbar
       } ${bg ? bg : styles.defaultBg}`}
     >
-      <h1 className={styles.homeNavbarLogo}>Pentria</h1>
+      <h1 className={styles.homeNavbarLogo}>
+        <Link to="/">Pentria</Link>
+      </h1>
       <div className={`${styles.HomeNavbar_container} }`}>
         <ul className={styles.homeNavbarLinks}>
           <li className={styles.homeNavbarLink}>
-            <a href="#">Partners</a>
+            <Link to="/partners">Partners</Link>
           </li>
           <li className={styles.homeNavbarLink}>
-            <a href="#">About</a>
+            <Link to="/about-us">About</Link>
           </li>
           <li className={styles.homeNavbarLink}>
-            <a href="#">Enquiries</a>
+            <Link to="/enquiries">Enquiries</Link>
           </li>
           <li className={styles.homeNavbarLink}>
-            <a href="#">Blog</a>
+            <Link to="/blog">Blog</Link>
           </li>
         </ul>
         <div className={styles.homeNavbar_btn}>
-          <div className={styles.homeNavbar_login}>LOGIN</div>
+          <div className={styles.homeNavbar_login}>
+            <Link to="/login">LOGIN</Link>
+          </div>
           <div className={styles.homeNavbar_signup}>
-            <a href="#">SIGN UP</a>
+            <Link to="/prompt">SIGN UP</Link>
           </div>
         </div>
       </div>

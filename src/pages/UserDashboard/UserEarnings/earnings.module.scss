@@ -1,0 +1,122 @@
+.userEarningsPage {
+  width: 100%;
+
+  .earningsHeader {
+    padding: 1.5rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    background: #eaeaea;
+    &__balance {
+      h1 {
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 34px;
+        line-height: 56px;
+      }
+      p {
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 33px;
+      }
+    }
+    &__withdraw {
+      &__btn {
+        background-color: var(--secondary-color);
+      }
+    }
+  }
+
+  .earningsBookings {
+    padding: 1.5rem 3rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+    h1 {
+      font-family: "Poppins";
+      font-style: normal;
+      font-weight: 500;
+      font-size: 28px;
+      line-height: 56px;
+      letter-spacing: -1px;
+    }
+    // &__button {
+    //   display: flex;
+    //   align-items: center;
+    //   width: max-content;
+    //   text-decoration: none;
+    //   letter-spacing: -0.660502px;
+
+    //   color: #3e2180;
+
+    //   opacity: 0.82;
+    //   img {
+    //     width: 20px;
+    //     height: 20px;
+    //     margin-right: 5px;
+    //   }
+    //   p {
+    //     font-family: "Poppins";
+    //     font-style: normal;
+    //     font-weight: 500;
+    //     font-size: 18px;
+    //     line-height: 33px;
+    //     letter-spacing: -1px;
+    //   }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .userEarningsPage {
+    .earningsHeader {
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem 1rem;
+      &__balance {
+        margin-bottom: 2rem;
+        h1 {
+          font-size: 28px;
+          line-height: 40px;
+        }
+        p {
+          font-size: 16px;
+          line-height: 24px;
+        }
+      }
+    }
+    .earningsBookings {
+      // flex-direction: column;
+      align-items: center;
+
+      // justify-content: center;
+      h1 {
+        font-size: 24px;
+        line-height: 40px;
+      }
+      &__button {
+        margin-top: 2rem;
+        p {
+          font-size: 16px;
+          line-height: 24px;
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .userEarningsPage {
+    .earningsHeader {
+      padding: 1.5rem 2rem;
+    }
+    .earningsBookings {
+      padding: 1.5rem 2rem;
+    }
+  }
+}
