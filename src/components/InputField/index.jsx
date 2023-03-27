@@ -1,6 +1,14 @@
 import React from "react";
 import styles from "./inputfield.module.scss";
-const InputField = ({ placeholder, type, value, name, onChange, disabled }) => {
+const InputField = ({
+  setTogglePassword,
+  placeholder,
+  type,
+  value,
+  name,
+  onChange,
+  disabled,
+}) => {
   return (
     <div className={styles.inputField}>
       <input
@@ -11,6 +19,15 @@ const InputField = ({ placeholder, type, value, name, onChange, disabled }) => {
         onChange={onChange}
         disabled={disabled}
       />
+      {name === "password" && (
+        <span onClick={setTogglePassword}>
+          {type === "password" ? (
+            <i className="fas fa-eye"></i>
+          ) : (
+            <i class="fa fa-eye-slash"></i>
+          )}
+        </span>
+      )}
     </div>
   );
 };
