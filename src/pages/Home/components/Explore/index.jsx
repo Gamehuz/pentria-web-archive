@@ -1,42 +1,18 @@
 import { useEffect, useState } from 'react';
-import { useQuery, gql } from '@apollo/client'; 
-
-
+import { useQuery } from '@apollo/client'; 
 import styles from './explore.module.scss';
 import { ReactComponent as LeftArrow } from "../../assets/left-arrow.svg";
-import { ReactComponent as RightArrow } from "../../assets/right-arrow.svg";
-import { ReactComponent as Star} from "../../assets/star.svg";
-import { ReactComponent as NoStar} from "../../assets/no-star.svg";
-import homepageImg from "../../assets/homepageImg.png";
-import Button from '../../../../components/Button';
-import { GET_SPACES } from '../../../../graphql/queries/space';
+import { ReactComponent as RightArrow } from "../../assets/right-arrow.svg";;
+import ALL_SPACES from '../../../../graphql/queries/spaces';
+import ExploreSpaces from './components/exploreSpaces';
+import UpcomingSpaces from './components/upcomingSpaces';
+// import {Swiper, SwiperSlide} from 'swiper/react';
+// import 'swiper/css';
+
 const Explore = () => {
-  const explorables = [{}, {}, {}];
+    const {data, loading, error} = useQuery(ALL_SPACES);
 
-
-  const [spaces, setSpaces] = useState()
-  const [exploreSpaces, setExploreSpaces] = useState()
-
-  const { loading, data, error } = useQuery(GET_SPACES);
-
-  useEffect(() => {
-    // const exploreSpace = spaces.map(item => {
-    //   return {
-    //     price: item.activities[0].price,
-    //     name: item.name,
-    //     location: item.location,
-    //     reviews: item.reviews
-    //   }
-    // })
-
-    // console.log(spaces)
-
-    // setExploreSpaces(exploreSpace)
-
-  }, [spaces])
-
-    
-
+    console.log(data)
     return (
         <section className={styles.explore}>
             <span>
@@ -53,35 +29,20 @@ const Explore = () => {
                 </div>
             <div className={styles.spaces}>
                 <LeftArrow className={styles.desktopLArrow}/>
-                  {loading ? <h1>No spaces</h1> : <>
-                  {
-                    data.spaces.map((space, index) => {
+                {
+                    loading ? <div className={styles.spinner}><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div> : ""
+                }
+                {/* <Swiper> */}
+                {
+                    data && data?.spaces.map((spaces) => {
                         return (
-                            <article key={space._id}>
-                                <img src={space.image} alt="spaces arena"/>
-                                <span><p>{space.currency} {space.price} </p>/30min</span>
-                                <h3>{space.name}</h3>
-                                <p>{ space.location }</p>
-                                <div>
-                                    <div>
-                                        <div>
-                                            <Star />
-                                            <Star />
-                                            <Star />
-                                            <Star />
-                                            <NoStar />
-                                        </div>
-                                        <p>4.0 Ratings</p>
-                                    </div>
-                                    <Button type={'button'} text={'GET TICKET'}/>
-                                </div>
-                            </article>
+                            // <SwiperSlide key={spaces._id}>
+                                <ExploreSpaces spaces={spaces} key={spaces._id}/>
+                            // </SwiperSlide>
                         )
                     })
                 }
-                  </>
-
-                  }
+                {/* </Swiper> */}
                 <RightArrow className={styles.desktopRArrow}/>
             </div>
             <div className={styles.upcoming}>
@@ -93,28 +54,12 @@ const Explore = () => {
                 <div>
                     <LeftArrow className={styles.desktopLArrow} />
                     {
-                        explorables.map((spaces, index) => {
+                        loading ? <div className={styles.spinner}><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div> : ""
+                    }
+                    {
+                        data && data?.spaces.map((spaces) => {
                             return (
-                                <article key={index}>
-                                    <img src={homepageImg} alt="spaces arena"/>
-                                    <span><p>$2000</p>/hr</span>
-                                    <h3>Frontend dev games</h3>
-                                    <p>Rumuol, Poort harcourt road inside brogdgr</p>
-                                    <div>
-                                        <div>
-                                            <Star />
-                                            <Star />
-                                            <Star />
-                                            <Star />
-                                            <NoStar />
-                                        </div>
-                                        <div className={styles.eventDate}>
-                                        <span>Jan 29, 2023</span>
-                                        <p>7:15pm</p>
-                                        </div>
-                                        <Button className={styles.button} type={'button'} text={'GET TICKET'}/>
-                                    </div>
-                                </article>
+                                <UpcomingSpaces spaces={spaces} key={spaces._id}/>
                             )
                         })
                     }
