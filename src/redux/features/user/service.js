@@ -1,12 +1,12 @@
 import { toast } from "react-hot-toast";
 import appolloClient from "../../../graphql";
+import LOGIN_USER from "../../../graphql/mutations/login";
 import { SIGNUP_GUEST, SIGNUP_VENDOR } from "../../../graphql/mutations/signup";
 import { dispatch } from "../../store";
 import { setLoading } from "../../utils/UtilSlice";
-import { setError, setUser } from "./userSlice";
+import { setError, setToken, setUser } from "./userSlice";
 
 export const signupGuest = (values) => async () => {
-  console.log(values);
   dispatch(setLoading(true));
   try {
     const result = await appolloClient.mutate({
@@ -36,7 +36,6 @@ export const signupGuest = (values) => async () => {
 };
 
 export const signupVendor = (values) => async () => {
-  console.log(values);
   dispatch(setLoading(true));
   try {
     const result = await appolloClient.mutate({
@@ -60,6 +59,29 @@ export const signupVendor = (values) => async () => {
     });
     dispatch(setUser(result.data?.register));
     toast.success("Signup successful");
+    dispatch(setLoading(false));
+    return result.data;
+  } catch (error) {
+    console.log(error);
+    dispatch(setError(error.message));
+    dispatch(setLoading(false));
+    toast.error(error.message);
+  }
+};
+
+export const loginUser = (values) => async () => {
+  dispatch(setLoading(true));
+  try {
+    const result = await appolloClient.mutate({
+      mutation: LOGIN_USER,
+      variables: {
+        email: values.email,
+        password: values.password,
+      },
+    });
+    dispatch(setToken(result.data?.login.token));
+    toast.success("Login successful");
+    localStorage.setItem("pentriaAccessToken", result.data?.login.token);
     dispatch(setLoading(false));
     return result.data;
   } catch (error) {
