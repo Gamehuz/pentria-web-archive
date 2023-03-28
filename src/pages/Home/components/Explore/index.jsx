@@ -34,10 +34,10 @@ const Explore = () => {
                 }
                 {/* <Swiper> */}
                 {
-                    data && data?.spaces.map((spaces) => {
+                    data && data?.spaces.map((space) => {
                         return (
                             // <SwiperSlide key={spaces._id}>
-                                <ExploreSpaces spaces={spaces} key={spaces._id}/>
+                                <ExploreSpaces space={space} key={space._id}/>
                             // </SwiperSlide>
                         )
                     })
@@ -57,9 +57,9 @@ const Explore = () => {
                         loading ? <div className={styles.spinner}><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div> : ""
                     }
                     {
-                        data && data?.spaces.map((spaces) => {
+                        data && data?.spaces.map((space) => {
                             return (
-                                <UpcomingSpaces spaces={spaces} key={spaces._id}/>
+                                <UpcomingSpaces space={space} key={space._id}/>
                             )
                         })
                     }

@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./inputfield.module.scss";
-const InputField = ({ placeholder, type, value, name, onChange, disabled }) => {
+const InputField = ({ placeholder, type, value, name, onChange, disabled, required }) => {
   return (
     <div className={styles.inputField}>
       <input
@@ -10,6 +10,7 @@ const InputField = ({ placeholder, type, value, name, onChange, disabled }) => {
         name={name}
         onChange={onChange}
         disabled={disabled}
+        required={required}
       />
     </div>
   );

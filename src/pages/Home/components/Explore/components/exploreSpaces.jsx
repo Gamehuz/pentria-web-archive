@@ -4,25 +4,34 @@ import { ReactComponent as NoStar } from "../../../assets/no-star.svg";
 import { ReactComponent as Star } from "../../../assets/star.svg";
 import Button from '../../../../../components/Button';
 import styles from "../explore.module.scss";
+import ADD_TO_FAVORITES from "../../../../../graphql/mutations/addToFavorites";
+import { useMutation } from "@apollo/client";
 
-const ExploreSpaces = ({ spaces }) => {
+const ExploreSpaces = ({ space }) => {
     const [favorite, setFavorite] = useState(false);
 
     const toggleFavorite = () => {
         setFavorite(!favorite)
     };
 
+    const [addToFavorites] = useMutation(ADD_TO_FAVORITES, {
+        variables: {
+            spaceId: space._id
+        }
+    });
+
     return (
-        <article key={spaces._id}>
-            <img src={spaces.image} alt="spaces arena" />
+        <article key={space._id}>
+            <img src={space.image} alt="spaces arena" />
             <div className={styles.price}>
-                <span><p>{spaces.currency}{spaces.price}</p>/hr</span>
-                <div className={favorite ? styles.favorite : styles.unfavorite} onClick={() => toggleFavorite()}>
+                <span><p>{space.currency}{space.price}</p>/hr</span>
+                <div className={favorite ? styles.favorite : styles.unfavorite} onClick={() => {toggleFavorite();
+                addToFavorites()}}>
                     <Heart />
                 </div>
             </div>
-            <h3>{spaces.name}</h3>
-            <p>{spaces.location}</p>
+            <h3>{space.name}</h3>
+            <p>{space.location}</p>
             <div>
                 <div>
                     <div>
@@ -32,7 +41,7 @@ const ExploreSpaces = ({ spaces }) => {
                         <Star />
                         <NoStar />
                     </div>
-                    <p>{spaces.reviews[0].rating} Ratings</p>
+                    <p>{space.reviews[0].rating} Ratings</p>
                 </div>
                 <Button type={'button'} text={'GET TICKET'} />
             </div>

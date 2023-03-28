@@ -5,29 +5,37 @@ import Button from '../../../../../components/Button';
 import styles from "../explore.module.scss"
 import { useState } from "react";
 import moment from "moment"
+import { useMutation } from "@apollo/client";
+import ADD_TO_FAVORITES from "../../../../../graphql/mutations/addToFavorites";
 
-const UpcomingSpaces = ({ spaces }) => {
+const UpcomingSpaces = ({ space }) => {
     const [favorite, setFavorite] = useState(false);
 
     const toggleFavorite = () => {
         setFavorite(!favorite)
     };
     
-    const spaceCreatedAt = new Date(Number(spaces.createdAt));
+    const spaceCreatedAt = new Date(Number(space.createdAt));
     const spaceDate = moment(spaceCreatedAt).format("MMM DD, YYYY");
     const spaceTime = moment(spaceCreatedAt).format("HH:mm");
 
+    const [addToFavorites] = useMutation(ADD_TO_FAVORITES, {
+        variables: {
+            spaceId: space._id
+        }
+    });
+
     return (
-        <article key={spaces._id}>
-        <img src={spaces.image} alt="spaces arena"/>
+        <article key={space._id}>
+        <img src={space.image} alt="spaces arena"/>
         <div className={styles.price}>
-            <span><p>{spaces.currency}{spaces.price}</p>/hr</span>
-            <div className={favorite ? styles.favorite : styles.unfavorite} onClick={() => toggleFavorite()}>
+            <span><p>{space.currency}{space.price}</p>/hr</span>
+            <div className={favorite ? styles.favorite : styles.unfavorite} onClick={() => {toggleFavorite(); addToFavorites()}}>
                 <Heart />
             </div>
         </div>
-        <h3>{spaces.name}</h3>
-        <p>{spaces.location}</p>
+        <h3>{space.name}</h3>
+        <p>{space.location}</p>
         <div>
             <div>
                 <Star />
