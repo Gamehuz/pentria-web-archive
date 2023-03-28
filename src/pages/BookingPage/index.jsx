@@ -1,13 +1,27 @@
 import React, { useState } from "react";
+import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
 import InputField from "../../components/InputField/index";
 import backArrow from "./assets/211686_back_arrow_icon 1.png";
 import styles from "./BookingPage.module.scss";
-import Item from "./Item";
+import Item from "./compo/Item";
 
 const BookingPage = () => {
   const [fullName, setFullName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+
+  const [dateSelected, setDateSelected] = useState();
+  const [timeSelected, setTimeSelected] = useState();
+  const [numOfTickets, setNumOfTickets] = useState(1);
+  const [duration, setDuration] = useState(1);
+
+  const handleItemData = (date, time, tickets, duration) => {
+    setDateSelected(date);
+    setTimeSelected(time);
+    setNumOfTickets(tickets);
+    setDuration(duration);
+    toast.success("Item data updated");
+  };
 
   return (
     <>
@@ -69,8 +83,9 @@ const BookingPage = () => {
               </div>
             </section>
             <section className={styles.items}>
-              <Item />
-              <Item />
+              {[1, 2, 3].map((item) => (
+                <Item onItemDataChange={handleItemData} key={item} />
+              ))}
             </section>
           </form>
         </main>
