@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import InputField from "../../components/InputField/index";
 import backArrow from "./assets/211686_back_arrow_icon 1.png";
 import styles from "./BookingPage.module.scss";
-import Item from "./Item";
+import Item from "./compo/Item";
 
 const BookingPage = () => {
   const [fullName, setFullName] = useState("");
