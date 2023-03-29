@@ -15,6 +15,7 @@ const BookingPage = () => {
   const [timeSelected, setTimeSelected] = useState();
   const [numOfTickets, setNumOfTickets] = useState(1);
   const [duration, setDuration] = useState(1);
+  const [specialReq, setSpecialReq] = useState("");
 
   const handleItemData = (date, time, tickets, duration) => {
     setDateSelected(date);
@@ -88,7 +89,11 @@ const BookingPage = () => {
             <section className={styles.booking_details}>
               <div className={styles.booking_details__specialReq}>
                 <label htmlFor="specialReq">Special Request</label>
-                <textarea name="specialReq" id="specialReq"></textarea>
+                <textarea
+                  name="specialReq"
+                  id="specialReq"
+                  onChange={(e) => setSpecialReq(e.target.value)}
+                ></textarea>
               </div>
               <div className={styles.booking_details__total}>
                 <div className={styles.booking_details__total__subtotal}>
