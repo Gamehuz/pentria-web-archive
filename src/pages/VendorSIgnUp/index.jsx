@@ -1,12 +1,14 @@
 import { React, useRef, useState } from "react";
 import styles from "./VendorSignup.module.scss";
 
+import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import Nav from "../../components/Nav";
-
-import upload from "./assets/upload.svg";
+import { signupVendor } from "../../redux/features/user/service";
+import { dispatch } from "../../redux/store";
 
 const VendorSignup = () => {
+  const navigate = useNavigate();
   // input states
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
@@ -15,9 +17,15 @@ const VendorSignup = () => {
   const [state, setState] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState(undefined);
+  const [togglePassword, setTogglePassword] = useState(false);
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [businessname, setBusinessname] = useState("");
-  const [bankDetails, setBankdetails] = useState(undefined);
+  const [bankDetails, setBankdetails] = useState({
+    bankName: "",
+    accountNumber: "",
+    accountName: "",
+  });
   const [occupation, setOccupation] = useState("");
   const [uploadID, setUploadID] = useState("");
 
@@ -30,8 +38,13 @@ const VendorSignup = () => {
   const [emailError, setEmailError] = useState(false);
   const [phoneNumberError, setPhoneNumberError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
+  const [confirmPasswordError, setConfirmPasswordError] = useState(false);
   const [businessnameError, setBusinessnameError] = useState(false);
-  const [bankDetailsError, setBankdetailsError] = useState(false);
+  const [bankDetailsError, setBankdetailsError] = useState({
+    bankName: false,
+    accountNumber: false,
+    accountName: false,
+  });
   const [occupationError, setOccupationError] = useState(false);
   const [uploadIDError, setUploadIDError] = useState(false);
 
@@ -40,8 +53,7 @@ const VendorSignup = () => {
   const passwordTest = new RegExp(
     /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,10}$/
   );
-  const nameTest = new RegExp(/^[A-Za-z][0-9]{5,20}$/);
-  const cityStateTest = new RegExp(/^[A-Za-z][0-9]{5,20}$/);
+  const nameTest = new RegExp(/^[A-Za-z]{3,}$/);
   const phoneNumberTest = new RegExp(
     /^[+]*[(]{0,3}[0-9]{1,4}[)]{0,1}[-\s./0-9]{8,15}$/
   );
@@ -76,11 +88,20 @@ const VendorSignup = () => {
       case "password":
         setPassword(value);
         break;
+      case "confirmPassword":
+        setConfirmPassword(value);
+        break;
       case "businessName":
         setBusinessname(value);
         break;
-      case "bankNumber":
-        setBankdetails(value);
+      case "bankName":
+        setBankdetails({ ...bankDetails, bankName: value });
+        break;
+      case "accountNumber":
+        setBankdetails({ ...bankDetails, accountNumber: value });
+        break;
+      case "accountName":
+        setBankdetails({ ...bankDetails, accountName: value });
         break;
       case "occupation":
         setOccupation(value);
@@ -127,10 +148,19 @@ const VendorSignup = () => {
       case "password":
         isValid = validatepassword();
         break;
+      case "confirmPassword":
+        isValid = validateConfirmPassword();
+        break;
       case "businessName":
         isValid = validateBusinessname();
         break;
-      case "bankNumber":
+      case "bankName":
+        isValid = validateBankDetails();
+        break;
+      case "accountNumber":
+        isValid = validateBankDetails();
+        break;
+      case "accountName":
         isValid = validateBankDetails();
         break;
       case "occupation":
@@ -143,6 +173,7 @@ const VendorSignup = () => {
       default:
         break;
     }
+    return isValid;
   };
 
   const clearError = () => {
@@ -155,8 +186,13 @@ const VendorSignup = () => {
       setEmailError(false);
       setPhoneNumberError(false);
       setPasswordError(false);
+      setConfirmPasswordError(false);
       setBusinessnameError(false);
-      setBankdetailsError(false);
+      setBankdetailsError({
+        bankName: false,
+        accountNumber: false,
+        accountName: false,
+      });
       setOccupationError(false);
       setUploadIDError(false);
     }, 4000);
@@ -167,7 +203,7 @@ const VendorSignup = () => {
     const value = firstname;
     if (value.trim() === "") firstnameError = "Firstname is required";
     else if (!nameTest.test(value))
-      firstnameError = "firstname must be atleast 5 characters";
+      firstnameError = "firstname must be atleast 3 characters";
     setFirstnameError(firstnameError);
     clearError();
     return firstnameError === "";
@@ -178,7 +214,7 @@ const VendorSignup = () => {
     const value = lastname;
     if (value.trim() === "") lastnameError = "Lastname is required";
     else if (!nameTest.test(value))
-      lastnameError = "Lastname must be atleast 5 characters";
+      lastnameError = "Lastname must be atleast 3 characters";
     setLastnameError(lastnameError);
     clearError();
     return lastnameError === "";
@@ -198,7 +234,6 @@ const VendorSignup = () => {
     let cityError = "";
     const value = city;
     if (value.trim() === "") cityError = "City is requred";
-    else if (!cityStateTest.test(value)) cityError = "Pls add a valid address";
     setCityError(cityError);
     clearError();
 
@@ -209,7 +244,6 @@ const VendorSignup = () => {
     let stateError = "";
     const value = state;
     if (value.trim() === "") stateError = "State is requred";
-    else if (!cityStateTest.test(value)) stateError = "Pls add a valid address";
     setStateError(stateError);
     clearError();
 
@@ -252,6 +286,18 @@ const VendorSignup = () => {
     return passwordError === "";
   };
 
+  const validateConfirmPassword = () => {
+    let confirmPasswordError = "";
+    const value = confirmPassword;
+    if (value.trim() === "")
+      confirmPasswordError = "Confirm password is required";
+    else if (value !== password)
+      confirmPasswordError = "Password does not match";
+    setConfirmPasswordError(confirmPasswordError);
+    clearError();
+    return confirmPasswordError === "";
+  };
+
   const validateBusinessname = () => {
     let businessnameError = "";
     const value = businessname;
@@ -266,8 +312,17 @@ const VendorSignup = () => {
     let bankDetailsError = "";
     const value = bankDetails;
 
-    if (value === null) bankDetailsError = "Pls add your bank details";
-    setBankdetailsError(bankDetailsError);
+    if (value === null) bankDetailsError = "Please add your bank details";
+    setBankdetailsError({
+      bankName:
+        bankDetails.bankName === "" ? "Please add your bank name" : false,
+      accountNumber:
+        bankDetails.accountNumber === ""
+          ? "Please add your account number"
+          : false,
+      accountName:
+        bankDetails.accountName === "" ? "Please add your account name" : false,
+    });
     return bankDetailsError === "";
   };
 
@@ -293,33 +348,78 @@ const VendorSignup = () => {
     return uploadIDError === "";
   };
 
-  const handleSelectFile = (e) => {
-    selectFile.current.click();
-    setUploadID(e.target?.files[0]);
+  // const handleSelectFile = (e) => {
+  //   selectFile.current.click();
+  //   setUploadID(e.target?.files[0]);
+  // };
+
+  // const handleBankChange = (e) => {
+  //   if (e.target.value === "Select Bank") return;
+  //   setActiveBankInfo(e.target.value);
+  // };
+
+  const allFieldsValid = () => {
+    const isValidFirstname = validateField("firstname");
+    const isValidLastname = validateField("lastname");
+    const isValidAddress = validateField("address");
+    const isValidCity = validateField("city");
+    const isValidState = validateField("state");
+    const isValidEmail = validateField("email");
+    const isValidPhoneNumber = validateField("phoneNumber");
+    const isValidPassword = validateField("password");
+    const isValidConfirmPassword = validateField("confirmPassword");
+    const isValidBusinessname = validateField("businessName");
+    const isValidBankDetails =
+      validateField("bankName") &&
+      validateField("accountNumber") &&
+      validateField("accountName");
+    const isValidOccupation = validateField("occupation");
+    const isValidUploadID = validateField("identification");
+
+    return (
+      isValidFirstname &&
+      isValidLastname &&
+      isValidAddress &&
+      isValidCity &&
+      isValidState &&
+      isValidEmail &&
+      isValidPhoneNumber &&
+      isValidPassword &&
+      isValidConfirmPassword &&
+      isValidBusinessname &&
+      isValidBankDetails &&
+      isValidOccupation &&
+      isValidUploadID
+    );
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const formFields = [
-      "firstname",
-      "lastname",
-      "address",
-      "city",
-      "state",
-      "email",
-      "password",
-      "phoneNumber",
-      "businessName",
-      "bankNumber",
-      "occupation",
-      "identification",
-    ];
+    const isValid = allFieldsValid();
 
-    let isValid = true;
-    formFields.forEach((field) => {
-      isValid = validateField(field) && isValid;
-    });
+    if (isValid) {
+      // submit the form
+      const values = {
+        firstname,
+        lastname,
+        address,
+        city,
+        state,
+        email,
+        password,
+        phoneNumber,
+        businessname,
+        bankName: bankDetails.bankName,
+        accountNumber: bankDetails.accountNumber,
+        accountName: bankDetails.accountName,
+        occupation,
+      };
+      const res = await dispatch(signupVendor(values));
+      if (res) {
+        navigate("/login");
+      }
+    }
   };
 
   return (
@@ -415,17 +515,44 @@ const VendorSignup = () => {
                 />
                 {phoneNumberError && <p>{phoneNumberError}</p>}
               </div>
-
-              <div className={styles.inputs}>
-                <label htmlFor="password">Password</label>
-                <input
-                  type="password"
-                  name="password"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={password}
-                />
-                {passwordError && <p>{passwordError}</p>}
+              <div className={styles.input_container}>
+                <div className={styles.inputs}>
+                  <label htmlFor="password">Password</label>
+                  <div className={styles.passwordInput}>
+                    <input
+                      type={
+                        togglePassword ? (
+                          <i className="fas fa-eye"></i>
+                        ) : (
+                          <i class="fa fa-eye-slash"></i>
+                        )
+                      }
+                      name="password"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={password}
+                    />
+                    <span onClick={() => setTogglePassword(!togglePassword)}>
+                      {togglePassword ? (
+                        <i className="fas fa-eye"></i>
+                      ) : (
+                        <i class="fa fa-eye-slash"></i>
+                      )}
+                    </span>
+                  </div>
+                  {passwordError && <p>{passwordError}</p>}
+                </div>
+                <div className={styles.inputs}>
+                  <label htmlFor="password">Confirm Password</label>
+                  <input
+                    type={togglePassword ? "text" : "password"}
+                    name="confirmPassword"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={confirmPassword}
+                  />
+                  {confirmPasswordError && <p>{confirmPasswordError}</p>}
+                </div>
               </div>
             </div>
 
@@ -443,22 +570,52 @@ const VendorSignup = () => {
               </div>
 
               <div className={styles.banking}>
-                <label htmlFor="bank">Banking Information</label>
-                <select name="bank" id="">
-                  <option value="select">Select</option>
-                  <option value="bank"></option>
-                </select>
+                <label htmlFor="">Banking Information</label>
                 <p>
                   Banking information should tally with the details on your ID
                 </p>
-
+                {/* <select
+                  name="bank"
+                  id="bank"
+                  onChange={(e) => handleBankChange(e)}
+                >
+                  {bankInfo.map((bank) => (
+                    <option key={bank.id} value={bank.code}>
+                      {bank.name}
+                    </option>
+                  ))}
+                </select> */}
+                <label htmlFor="bankName">Bank Name</label>
                 <input
-                  type="number"
-                  name="bankNumber"
+                  type="text"
+                  name="bankName"
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  value={bankDetails}
+                  value={bankDetails.bankName}
                 />
+                {bankDetailsError && <span>{bankDetailsError.bankName}</span>}
+                <label htmlFor="acountNumber">Account Number</label>
+                <input
+                  type="number"
+                  name="accountNumber"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={bankDetails.accountNumber}
+                />
+                {bankDetailsError && (
+                  <span>{bankDetailsError.accountNumber}</span>
+                )}
+                <label htmlFor="accountName">Account name</label>
+                <input
+                  type="text"
+                  name="accountName"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={bankDetails.accountName}
+                />
+                {bankDetailsError && (
+                  <span>{bankDetailsError.accountName}</span>
+                )}
               </div>
 
               <div className={styles.inputs}>
@@ -473,7 +630,7 @@ const VendorSignup = () => {
                 {occupationError && <p>{occupationError}</p>}
               </div>
 
-              <div className={styles.identification}>
+              {/* <div className={styles.identification}>
                 <label htmlFor="identification">Identification</label>
                 <p>
                   Upload a photo of your NIN or other government approved ID
@@ -493,10 +650,10 @@ const VendorSignup = () => {
                   Upload your ID
                 </div>
                 {uploadIDError && <p>{uploadIDError}</p>}
-              </div>
+              </div> */}
             </div>
           </div>
-          <Button type="submit" text="Sign Up" bg={styles.signin} />
+          <Button type="submit" text="Sign Up" />
         </form>
       </div>
     </>

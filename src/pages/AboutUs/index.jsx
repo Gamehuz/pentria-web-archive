@@ -2,7 +2,7 @@ import HomeNavbar from "../../components/HomeNavbar";
 import styles from "./aboutus.module.scss";
 import aboutusImg from "./assets/aboutusImg.png";
 import teamMember from "./assets/avatar.png";
-import Footer from "../../components/Footer"
+import Footer from "../../components/Footer";
 
 const Aboutus = () => {
     const explorables = [{}, {}, {}, {}, {}, {}, {}, {},];
@@ -34,7 +34,7 @@ const Aboutus = () => {
                     </div>
                     <div>
                         <h2>OUR PROMISE</h2>
-                        <p>Pentria is an easy-to-use digital marketplace to find and access the best quality, bespoke and pocket-friendly recreation and hospitality service providers in your locality. Enjoy:
+                        <span>Pentria is an easy-to-use digital marketplace to find and access the best quality, bespoke and pocket-friendly recreation and hospitality service providers in your locality. Enjoy:
                             <ul>
                                 <li>Custom search results</li>
                                 <li>Safe and comfy spaces</li>
@@ -42,7 +42,7 @@ const Aboutus = () => {
                                 <li>Simplified bookings</li>
                                 <li>Secure online transactions</li>
                             </ul>
-                        </p>
+                        </span>
                     </div>
                 </div>
                 </div>
@@ -50,9 +50,9 @@ const Aboutus = () => {
             <section className={styles.team}>
                 <h3>Meet the Team</h3>
                 <div>
-                    {explorables.map(() => {
+                    {explorables.map((items, index) => {
                         return (
-                            <div>
+                            <div key={index}>
                                 <img src={teamMember} alt="Team member image" />
                                 <h4>John Doe</h4>
                                 <p>Co-Founder & COO</p>
