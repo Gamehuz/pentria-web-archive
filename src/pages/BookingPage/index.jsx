@@ -1,7 +1,8 @@
+import Button from "@/components/Button";
+import InputField from "@/components/InputField";
 import React, { useState } from "react";
 import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
-import InputField from "../../components/InputField/index";
 import backArrow from "./assets/211686_back_arrow_icon 1.png";
 import styles from "./BookingPage.module.scss";
 import Item from "./compo/Item";
@@ -83,6 +84,35 @@ const BookingPage = () => {
                 <Item onItemDataChange={handleItemData} key={item} />
               ))}
             </section>
+
+            <section className={styles.booking_details}>
+              <div className={styles.booking_details__specialReq}>
+                <label htmlFor="specialReq">Special Request</label>
+                <textarea name="specialReq" id="specialReq"></textarea>
+              </div>
+              <div className={styles.booking_details__total}>
+                <div className={styles.booking_details__total__subtotal}>
+                  <p>Bill Summary</p>
+                  <div
+                    className={styles.booking_details__total__subtotal__price}
+                  >
+                    <p>900</p>
+                    <span>x</span>
+                    <p>1</p>
+                  </div>
+                </div>
+                <div className={styles.booking_details__total__item}>
+                  <h3>Total</h3>
+                  <div className={styles.booking_details__total__item__price}>
+                    <p>NGN</p>
+                    <p>0</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <div className={styles.btn}>
+              <Button type="submit" text="submit" />
+            </div>
           </form>
         </main>
       </div>

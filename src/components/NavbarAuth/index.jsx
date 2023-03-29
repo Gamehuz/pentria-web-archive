@@ -36,7 +36,6 @@ const NavbarAuth = ({ search, bg }) => {
     >
       <div className={styles.authNav_toggle}>
         <img src={toggleNavIcon} alt="" onClick={openSidebar} />
-        {/* <img src={logo} alt="" /> */}
         <Link to="/" className={`${styles.logoLink}`}>
           <h1>Pentria</h1>
         </Link>

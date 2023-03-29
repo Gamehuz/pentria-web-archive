@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import { NavLink } from "react-router-dom";
 
@@ -19,7 +20,7 @@ import Button from "../Button";
 function UserSidebar({ children }) {
   // const { user } = useSelector((state) => state.user);
   const { toggleSidebar } = useSelector((state) => state.util);
-
+  console.log(toggleSidebar);
   const handleCloseSidebar = () => {
     dispatch(setToggleSidebar(false));
   };
