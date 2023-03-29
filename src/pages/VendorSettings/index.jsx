@@ -4,21 +4,18 @@ import Nav from "../../components/Nav"
 import styles from "./vendorsettings.module.scss"
 import InputField from "../../components/InputField"
 import { ReactComponent as Menu } from "./assets/menu-hamburger.svg";
-import { useState } from "react";
-import { useMutation, useQuery } from "@apollo/client";
-import USER from "../../graphql/queries/userdetails";
-import EDIT_USER_ACCOUNT_INFO from "../../graphql/mutations/editUserAccountInfo";
-import UPDATE_PASSWORD from "../../graphql/mutations/updatePassword";
-import GET_BANKS from "../../graphql/queries/getBanks";
+import React, { useState, useEffect } from "react";
+import { handleUpdatePasword, userData } from "../../redux/features/user/service";
+import { handleEditInfo } from "../../redux/features/user/service";
 
 const VendorSettings = () => {
     const [toggleDashboardMenu, setToggleDashboardMenu] = useState(false);
     const toggle = () => {
         setToggleDashboardMenu(!toggleDashboardMenu);
     };
-    // const navigate = useNavigate();
 
-    const {data, loading} = useQuery(USER);
+    const [data, setData] = useState({})
+    console.log(data)
 
     const [accountDetails, setAccountDetails] = useState({
         firstName: "",
@@ -29,10 +26,11 @@ const VendorSettings = () => {
         city: "",
         state: "",
         email: "",
-        phoneNumber: ""   ,
+        phoneNumber: "",
         oldPassword: "",
         newPassword: ""
     });
+    console.log(accountDetails)
 
     const editaccountDetails = (e) => {
         const { name, value } = e.target;
@@ -42,27 +40,36 @@ const VendorSettings = () => {
         })
     };
 
-    const [editInfo] = useMutation(EDIT_USER_ACCOUNT_INFO, {
-        variables: {
-            firstName: accountDetails.firstName === "" ? data?.user.firstName : accountDetails.firstName,
-            lastName: accountDetails.lastName === "" ? data?.user.lastName : accountDetails.lastName,
-            address: accountDetails.address === "" ? data?.user.address : accountDetails.address,
-            city: accountDetails.city === "" ? data?.user.city : accountDetails.city,
-            state: accountDetails.state === "" ? data?.user.state :   accountDetails.state,
-            email: accountDetails.email === "" ? data?.user.email : accountDetails.email,
-            phone: accountDetails.phoneNumber === "" ? data?.user.phone : accountDetails.phoneNumber
-        }
-    });
+    const editInfo = () => {
+        handleEditInfo(accountDetails, data);
+        setAccountDetails({
+            ...accountDetails,
+            firstName: "",
+            lastName: "",
+            sex: "",
+            dob: "",
+            address: "",
+            city: "",
+            state: "",
+            email: "",
+            phoneNumber: "",
+        })
+    };
 
-    const [updatePassword, {data: updatedPasswordData, error: passwordError}] = useMutation(UPDATE_PASSWORD, {
-        variables: {
-            oldPassword: accountDetails.oldPassword,
-            newPassword: accountDetails.newPassword
-        }
-    });
+    const updatePassword = () => {
+        handleUpdatePasword(accountDetails);
+        setAccountDetails({
+            ...accountDetails,
+            oldPassword: "",
+            newPassword: ""
+        })
+    }
+    useEffect(() => {
+        userData().then((data) => setData(data))
+    }, []);
 
-    const { data: bankData, error: bankError} = useQuery(GET_BANKS);
-    console.log(bankData)
+    // const { data: bankData} = useQuery(GET_BANKS);
+    // console.log(bankData)
     return (
         <div>
             <Nav />
@@ -82,14 +89,14 @@ const VendorSettings = () => {
                 <p onClick={() => toggle()} className={styles.x}>X</p>
             </aside>
             <div className={styles.forms}>
-                { loading ? <h2>Loading...</h2> : <form>
+                <form>
                     <h2>Account Settings</h2>
                     <div className={styles.dual}>
                     <label>
                         First Name
                         <InputField 
                         type={"text"} 
-                        placeholder={data?.user.firstName || "First Name"}
+                        placeholder={data?.user?.firstName || "First Name"}
                         name={"firstName"}
                         value={accountDetails.firstName}
                         onChange={editaccountDetails}
@@ -99,7 +106,7 @@ const VendorSettings = () => {
                         Last Name
                         <InputField 
                         type={"text"}
-                        placeholder={data?.user.lastName || "Last Name"}
+                        placeholder={data?.user?.lastName || "Last Name"}
                         name={"lastName"}
                         value={accountDetails.lastName}
                         onChange={editaccountDetails}
@@ -132,7 +139,7 @@ const VendorSettings = () => {
                         Address
                         <InputField 
                         type={"text"}
-                        placeholder={data?.user.address || "Type your address"}
+                        placeholder={data?.user?.address || "Type your address"}
                         name={"address"}
                         value={accountDetails.address}
                         onChange={editaccountDetails}
@@ -143,7 +150,7 @@ const VendorSettings = () => {
                         City
                         <InputField 
                         type={"text"}
-                        placeholder={data?.user.city || "Enter your city"}
+                        placeholder={data?.user?.city || "Enter your city"}
                         name={"city"}
                         value={accountDetails.city}
                         onChange={editaccountDetails}
@@ -153,7 +160,7 @@ const VendorSettings = () => {
                         State
                         <InputField 
                         type={"text"}
-                        placeholder={data?.user.state || "Enter your state"}
+                        placeholder={data?.user?.state || "Enter your state"}
                         name={"state"}
                         value={accountDetails.state}
                         onChange={editaccountDetails}
@@ -164,7 +171,7 @@ const VendorSettings = () => {
                         Email Address
                         <InputField 
                         type={"email"}
-                        placeholder={data?.user.email || "Enter your Email"}
+                        placeholder={data?.user?.email || "Enter your Email"}
                         name={"email"}
                         value={accountDetails.email}
                         onChange={editaccountDetails}
@@ -175,14 +182,13 @@ const VendorSettings = () => {
                         Phone Number
                         <InputField 
                         type={"number"}
-                        placeholder={data?.user.phone || "Enter your Phone number"}
+                        placeholder={data?.user?.phone || "Enter your Phone number"}
                         name={"phoneNumber"}
                         value={accountDetails.phoneNumber}
                         onChange={editaccountDetails}
                         />
                     </label>
                     <div className={styles.password}>
-                        <p className={updatedPasswordData ? styles.success : passwordError ? styles.error : null}>{ updatedPasswordData ? `${updatedPasswordData.updatePassword}` : passwordError ? `${passwordError.message}` : null}</p>
                         <div className={styles.details}>
                             <p>Password</p>
                             <p onClick={() => updatePassword()}>Change</p>
@@ -218,7 +224,6 @@ const VendorSettings = () => {
                     onClick={() => editInfo()}
                     />
                 </form>
-                }
                 <form className={styles.walletsettings}>
                     <h3>Wallet Settings</h3>
                     <label>

@@ -1,3 +1,5 @@
+import React from 'react';
+import Proptypes from "prop-types";
 import { useState } from "react";
 import { ReactComponent as Heart } from "../assets/heart.svg"
 import { ReactComponent as NoStar } from "../../../assets/no-star.svg";
@@ -47,6 +49,10 @@ const ExploreSpaces = ({ space }) => {
             </div>
         </article>
     )
+}
+
+ExploreSpaces.propTypes = {
+    space: Proptypes.object.isRequired
 }
 
 export default ExploreSpaces;

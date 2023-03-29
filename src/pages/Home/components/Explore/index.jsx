@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import React from 'react';
 import { useQuery } from '@apollo/client'; 
 import styles from './explore.module.scss';
 import { ReactComponent as LeftArrow } from "../../assets/left-arrow.svg";
-import { ReactComponent as RightArrow } from "../../assets/right-arrow.svg";;
+import { ReactComponent as RightArrow } from "../../assets/right-arrow.svg";
 import ALL_SPACES from '../../../../graphql/queries/spaces';
 import ExploreSpaces from './components/exploreSpaces';
 import UpcomingSpaces from './components/upcomingSpaces';
@@ -10,7 +10,7 @@ import UpcomingSpaces from './components/upcomingSpaces';
 // import 'swiper/css';
 
 const Explore = () => {
-    const {data, loading, error} = useQuery(ALL_SPACES);
+    const {data, loading} = useQuery(ALL_SPACES);
 
     console.log(data)
     return (

@@ -1,3 +1,6 @@
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable no-irregular-whitespace */
+import React from "react"
 import HomeNavbar from "../../components/HomeNavbar";
 import styles from "./aboutus.module.scss";
 import aboutusImg from "./assets/aboutusImg.png";

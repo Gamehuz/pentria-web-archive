@@ -520,14 +520,24 @@ const VendorSignup = () => {
                   <label htmlFor="password">Password</label>
                   <div className={styles.passwordInput}>
                     <input
-                      type={togglePassword ? "text" : "password"}
+                      type={
+                        togglePassword ? (
+                          <i className="fas fa-eye"></i>
+                        ) : (
+                          <i className="fa fa-eye-slash"></i>
+                        )
+                      }
                       name="password"
                       onChange={handleChange}
                       onBlur={handleBlur}
                       value={password}
                     />
                     <span onClick={() => setTogglePassword(!togglePassword)}>
-                      {togglePassword ? "Hide" : "Show"}
+                      {togglePassword ? (
+                        <i className="fas fa-eye"></i>
+                      ) : (
+                        <i className="fa fa-eye-slash"></i>
+                      )}
                     </span>
                   </div>
                   {passwordError && <p>{passwordError}</p>}

@@ -6,4 +6,5 @@ mutation AddToFavourite($spaceId: String!) {
 }
 `;
 
+
 export default ADD_TO_FAVORITES;

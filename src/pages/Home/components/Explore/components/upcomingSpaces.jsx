@@ -3,10 +3,11 @@ import { ReactComponent as NoStar } from "../../../assets/no-star.svg";
 import { ReactComponent as Star } from "../../../assets/star.svg";
 import Button from '../../../../../components/Button';
 import styles from "../explore.module.scss"
-import { useState } from "react";
+import React, { useState } from "react";
 import moment from "moment"
 import { useMutation } from "@apollo/client";
 import ADD_TO_FAVORITES from "../../../../../graphql/mutations/addToFavorites";
+import PropTypes from "prop-types";
 
 const UpcomingSpaces = ({ space }) => {
     const [favorite, setFavorite] = useState(false);
@@ -53,5 +54,9 @@ const UpcomingSpaces = ({ space }) => {
     </article>
     )
 };
+
+UpcomingSpaces.propTypes = {
+    space: PropTypes.object.isRequired
+}
 
 export default UpcomingSpaces;

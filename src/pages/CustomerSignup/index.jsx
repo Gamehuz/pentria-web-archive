@@ -426,7 +426,11 @@ const CustomerSignup = () => {
                     value={password}
                   />
                   <span onClick={() => setTogglePassword(!togglePassword)}>
-                    {togglePassword ? "Hide" : "Show"}
+                    {togglePassword ? (
+                      <i className="fas fa-eye"></i>
+                    ) : (
+                      <i className="fa fa-eye-slash"></i>
+                    )}
                   </span>
                 </div>
                 {passwordError && <p>{passwordError}</p>}
