@@ -26,10 +26,9 @@
       .Link {
         display: flex;
         align-items: center;
-        column-gap: 3px;
         text-decoration: none;
         cursor: pointer;
-
+        margin: 0 0 0 -1rem;
         img {
           width: 24px;
           height: 24px;
@@ -49,7 +48,7 @@
         line-height: 26px;
         font-weight: 700;
         @include mediaQuery(760px) {
-          font-size: 30px;
+          font-size: 24px;
           line-height: 18px;
         }
       }
@@ -82,7 +81,7 @@
             font-size: 16px;
             line-height: 48px;
             @include mediaQuery(760px) {
-              font-size: 24px;
+              font-size: 18px;
               line-height: 20px;
             }
           }
@@ -106,6 +105,28 @@
         flex-direction: column;
         // row-gap: 148px;
         // margin: 120px 0 0 0;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .BookingPage {
+    main {
+      margin-top: 20px;
+      form {
+        .user_details {
+          .input_text {
+            h5 {
+              font-size: 18px;
+              line-height: 20px;
+            }
+            label {
+              font-size: 18px;
+              line-height: 20px;
+            }
+          }
+        }
       }
     }
   }

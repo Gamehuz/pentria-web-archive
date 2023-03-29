@@ -52,8 +52,6 @@ const BookingPage = () => {
                   name="name"
                   id="name"
                   type="text"
-                  width={"width-three-quarter"}
-                  radius={"border-radius-10"}
                   bg="bg-light"
                   required
                   onChange={(e) => setFullName(e.target.value)}
@@ -72,10 +70,8 @@ const BookingPage = () => {
                 /> */}
                 <InputField
                   name="phoneNumber"
-                  width={"width-three-quarter"}
                   id="phoneNumber"
                   type="number"
-                  radius={"border-radius-10"}
                   bg="bg-light"
                   required
                   onChange={(e) => setPhoneNumber(e.target.value)}
