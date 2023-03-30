@@ -1,3 +1,4 @@
+import React from "react";
 import Nav from "../../components/Nav";
 import styles from "./historyguest.module.scss";
 import History from "../../components/History";

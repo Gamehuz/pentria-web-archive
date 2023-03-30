@@ -31,7 +31,8 @@ const Routes = () => {
   return (
     <Switch>
       <Route exact path="/" element={<Homepage />} />
-      <Route path="/about-us" element={<Aboutus />} />\\
+      <Route path="/about-us" element={<Aboutus />} />
+      \\
       <Route path="/login" element={<LoginPage />} />
       <Route path="/loginorsignup" element={<LoginOrSignUp />} />
       <Route path="/payment" element={<Payment />} />
@@ -39,7 +40,15 @@ const Routes = () => {
       <Route exact path="/customer/signup" element={<CustomerSignup />} />
       <Route exact path="/vendor/signup" element={<VendorSignup />} />
       <Route exact path="/prompt" element={<PromptPage />} />
-      <Route exact path="/booking" element={<BookingPage />} />
+      <Route
+        exact
+        path="/booking"
+        element={
+          <UserLayout>
+            <BookingPage />
+          </UserLayout>
+        }
+      />
       <Route exact path="/blog" element={<BlogPage />} />
       <Route exact path="/enquiries" element={<Enquiries />} />
       <Route exact path="/partners" element={<Partners />} />
