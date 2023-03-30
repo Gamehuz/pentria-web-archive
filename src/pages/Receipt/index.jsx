@@ -12,10 +12,8 @@ import QRCode from "react-qr-code";
 // eslint-disable-next-line no-unused-vars
 import {GET_RECEIPT} from "../../graphql/queries/bookings";
 // eslint-disable-next-line no-unused-vars
-import ALL_SPACES from '../../graphql/queries/spaces';
 import Nav from "../../components/Nav";
 import styles from "./receipt.module.scss"
-import barcode from "./assets/barcode.png";
 
 function useQuery() {
 

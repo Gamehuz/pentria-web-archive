@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import { Link } from "react-router-dom";
 import mobileMenu from "./assets/menu-hamburger.svg";
@@ -34,7 +35,7 @@ const HomeNavbar = ({ bg }) => {
             <Link to="/login">LOGIN</Link>
           </div>
           <div className={styles.homeNavbar_signup}>
-            <Link to="/prompt">SIGN UP</Link>
+            <Link to="/prompt">SIGNUP</Link>
           </div>
         </div>
       </div>
