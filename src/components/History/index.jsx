@@ -1,8 +1,10 @@
+import React from "react"
 import {ReactComponent as Arrow} from "./assets/leftarrow.svg";
 import { Link } from "react-router-dom";
 import styles from "./history.module.scss";
+// import PropTypes from "prop-types"
 
-const History = ({ details }) => {
+const History = () => {
     return (
         <section className={styles.history}>
                 <Link>
@@ -89,5 +91,9 @@ const History = ({ details }) => {
             </section>
     )
 }
+
+// History.propTypes = {
+//     details: PropTypes.object.isRequired
+// }
 
 export default History;

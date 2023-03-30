@@ -1,3 +1,4 @@
+import React from "react";
 import Button from "../../components/Button";
 import Nav from "../../components/Nav";
 import styles from "./receipt.module.scss"

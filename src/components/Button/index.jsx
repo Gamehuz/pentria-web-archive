@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 import styles from "./button.module.scss";
+import PropTypes from"prop-types"
 
 const Button = ({ text, bg, onClick, type }) => {
   return (
@@ -11,5 +12,12 @@ const Button = ({ text, bg, onClick, type }) => {
     </div>
   );
 };
+
+Button.propTypes = {
+  text: PropTypes.string.isRequired,
+  bg: PropTypes.object.isRequired,
+  onClick: PropTypes.func.isRequired,
+  type: PropTypes.string.isRequired
+}
 
 export default Button;

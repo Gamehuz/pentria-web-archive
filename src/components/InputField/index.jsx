@@ -1,15 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 import styles from "./inputfield.module.scss";
-const InputField = ({
-  setTogglePassword,
-  placeholder,
-  type,
-  value,
-  name,
-  onChange,
-  disabled,
-}) => {
+const InputField = ({ setTogglePassword, placeholder, type, value, name, onChange, disabled, required }) => {
   return (
     <div className={styles.inputField}>
       <input
@@ -19,6 +11,7 @@ const InputField = ({
         name={name}
         onChange={onChange}
         disabled={disabled}
+        required={required}
       />
       {name === "password" && (
         <span onClick={setTogglePassword}>

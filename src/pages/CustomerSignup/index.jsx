@@ -429,7 +429,7 @@ const CustomerSignup = () => {
                     {togglePassword ? (
                       <i className="fas fa-eye"></i>
                     ) : (
-                      <i class="fa fa-eye-slash"></i>
+                      <i className="fa fa-eye-slash"></i>
                     )}
                   </span>
                 </div>
