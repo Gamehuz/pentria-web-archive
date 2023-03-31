@@ -1,5 +1,5 @@
 import InputField from "@/components/InputField";
-import React, { useState } from "react";
+import { useState } from "react";
 import styles from "./usersettings.module.scss";
 
 const UserSettings = () => {

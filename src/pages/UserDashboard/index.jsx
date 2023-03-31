@@ -1,4 +1,3 @@
-import React from "react";
 import { useLocation } from "react-router-dom";
 import UserSidebar from "../../components/UserSidebar";
 import History from "./History/History";
