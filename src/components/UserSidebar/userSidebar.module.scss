@@ -1,6 +1,5 @@
 .userSidebar {
   width: 100%;
-  height: 100%;
   display: flex;
   position: relative;
   .rightChild {
@@ -14,14 +13,14 @@
   }
 
   .userSidebar_header {
+    height: calc(100vh - 80px) !important;
     width: 280px !important;
-    height: 100vh;
     border-right: 0.5px solid #dfdede;
     background-color: #fff;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 1rem 0 5rem 0;
+    padding: 1rem 0 0rem 0;
     // the header log and close button
     .userSidebar_header_logo_vs_closeIcon {
       display: flex;
@@ -102,6 +101,9 @@
       // padding: 0 1rem;
       // display: none;
       width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
   .needSearchMobile {

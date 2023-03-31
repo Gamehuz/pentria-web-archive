@@ -1,7 +1,10 @@
 .button {
-  width: 250px;
-  height: 56px;
+  width: 200px;
+  height: 46px;
+  cursor: pointer;
   margin: 1rem 0;
+  background-color: var(--secondary-color) !important;
+  color: var(--primary-color);
 }
 
 .defaultBg {
@@ -20,19 +23,13 @@
   border: none;
   text-align: center;
   outline: none;
-  cursor: pointer;
+  background-color: transparent;
   font-family: "Poppins";
   font-style: normal;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 24px;
-  text-decoration: none;
   list-style: none;
   text-transform: uppercase;
   color: white;
-}
-
-.defaultBg {
-  background-color: var(--secondary-color) !important;
-  color: var(--primary-color);
 }
