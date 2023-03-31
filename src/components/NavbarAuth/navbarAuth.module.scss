@@ -142,15 +142,17 @@
 }
 
 .authNavbar_login {
-  font-family: "Poppins";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 24px;
-  text-decoration: none;
-  margin: 0 1rem;
-  list-style: none;
-  color: var(--primary-color);
+  a {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    text-decoration: none;
+    margin: 0 1rem;
+    list-style: none;
+    color: var(--primary-color);
+  }
 }
 
 .authNavbar_signup {

@@ -103,6 +103,22 @@
   display: none;
 }
 
+.homeNavbar_dashboard {
+  width: fit-content;
+  padding: 0 1rem;
+  background-color: var(--tertiary-color);
+  border-radius: 5px;
+  a {
+    text-decoration: none;
+    color: var(--primary-color);
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 56px;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .homeNavbar {
     padding: 0 1rem;
@@ -150,6 +166,11 @@
     display: block;
     font-size: 1.8rem;
     cursor: pointer;
+  }
+
+  .homeNavbar_dashboard {
+    width: 100%;
+    text-align: center;
   }
 }
 

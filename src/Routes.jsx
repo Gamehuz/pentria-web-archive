@@ -1,5 +1,5 @@
-import React from "react";
 import { Route, Routes as Switch } from "react-router-dom";
+import { Authenticated, RequireToken } from "./auth";
 import UserLayout from "./Layouts/User";
 import Aboutus from "./pages/AboutUs";
 import AdminSettings from "./pages/AdminSettings";
@@ -32,14 +32,15 @@ const Routes = () => {
     <Switch>
       <Route exact path="/" element={<Homepage />} />
       <Route path="/about-us" element={<Aboutus />} />
-      \\
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/loginorsignup" element={<LoginOrSignUp />} />
+      <Route element={<Authenticated />}>
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/loginorsignup" element={<LoginOrSignUp />} />
+        <Route exact path="/customer/signup" element={<CustomerSignup />} />
+        <Route exact path="/vendor/signup" element={<VendorSignup />} />
+        <Route exact path="/prompt" element={<PromptPage />} />
+      </Route>
       <Route path="/payment" element={<Payment />} />
       <Route path="/receipt" element={<Receipt />} />
-      <Route exact path="/customer/signup" element={<CustomerSignup />} />
-      <Route exact path="/vendor/signup" element={<VendorSignup />} />
-      <Route exact path="/prompt" element={<PromptPage />} />
       <Route
         exact
         path="/booking"
@@ -52,19 +53,21 @@ const Routes = () => {
       <Route exact path="/blog" element={<BlogPage />} />
       <Route exact path="/enquiries" element={<Enquiries />} />
       <Route exact path="/partners" element={<Partners />} />
-      <Route path="/history/guest" element={<HistoryGuest />} />
-      <Route path="vendor/settings" element={<VendorSettings />} />
-      <Route exact path="/user/createListing" element={<CreateListing />} />
-      <Route exact path="/admin/settings" element={<AdminSettings />} />
-      <Route exact path="/admin/ticket" element={<AdminTicket />} />
-      <Route
-        path="/user/dashboard"
-        element={
-          <UserLayout>
-            <UserDashboard />
-          </UserLayout>
-        }
-      />
+      <Route element={<RequireToken />}>
+        <Route path="/history/guest" element={<HistoryGuest />} />
+        <Route path="vendor/settings" element={<VendorSettings />} />
+        <Route exact path="/user/createListing" element={<CreateListing />} />
+        <Route exact path="/admin/settings" element={<AdminSettings />} />
+        <Route exact path="/admin/ticket" element={<AdminTicket />} />
+        <Route
+          path="/user/dashboard"
+          element={
+            <UserLayout>
+              <UserDashboard />
+            </UserLayout>
+          }
+        />
+      </Route>
     </Switch>
   );
 };

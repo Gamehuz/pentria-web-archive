@@ -99,16 +99,17 @@ export const userData = async () => {
   dispatch(setLoading(true));
   try {
     const result = await appolloClient.query({
-      query: USER
-    })
-    dispatch(setLoading(false))
-    return result.data
+      query: USER,
+    });
+    dispatch(setLoading(false));
+    dispatch(setUser(result.data?.user));
+    return result.data;
   } catch (error) {
     dispatch(setLoading(false));
-    dispatch(setError("Error fetching user's data"))
-    toast.error("Error fetching user's data")
+    dispatch(setError("Error fetching user's data"));
+    toast.error("Error fetching user's data");
   }
-}
+};
 
 export const handleEditInfo = (values, data) => async () => {
   dispatch(setLoading(true));
@@ -116,14 +117,17 @@ export const handleEditInfo = (values, data) => async () => {
     await appolloClient.mutate({
       mutation: EDIT_USER_ACCOUNT_INFO,
       variables: {
-        firstName: values.firstName === "" ? data?.user.firstName : values.firstName,
-        lastName: values.lastName === "" ? data?.user.lastName : values.lastName,
+        firstName:
+          values.firstName === "" ? data?.user.firstName : values.firstName,
+        lastName:
+          values.lastName === "" ? data?.user.lastName : values.lastName,
         address: values.address === "" ? data?.user.address : values.address,
         city: values.city === "" ? data?.user.city : values.city,
         state: values.state === "" ? data?.user.state : values.state,
         email: values.email === "" ? data?.user.email : values.email,
-        phone: values.phoneNumber === "" ? data?.user.phone : values.phoneNumber
-      }
+        phone:
+          values.phoneNumber === "" ? data?.user.phone : values.phoneNumber,
+      },
     });
     dispatch(setLoading(false));
     toast.success("Data updated successfully");
@@ -132,7 +136,7 @@ export const handleEditInfo = (values, data) => async () => {
     dispatch(setError(error.message));
     toast.error("Error updating user's data");
   }
-}
+};
 
 export const handleUpdatePasword = (values) => async () => {
   dispatch(setLoading(true));
@@ -141,14 +145,14 @@ export const handleUpdatePasword = (values) => async () => {
       mutation: UPDATE_PASSWORD,
       variables: {
         oldPassword: values.oldPassword,
-        newPassword: values.newPassword
-      }
+        newPassword: values.newPassword,
+      },
     });
-    dispatch(setLoading(false))
-    toast.success("Password updated successfully")
+    dispatch(setLoading(false));
+    toast.success("Password updated successfully");
   } catch (error) {
     dispatch(setLoading(false));
     dispatch(setError(error.message));
-    toast.error(error.message)
+    toast.error(error.message);
   }
-}
+};
