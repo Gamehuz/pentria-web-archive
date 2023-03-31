@@ -31,5 +31,14 @@
         margin-top: 1rem;
       }
     }
+    .actionBtns {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      .del {
+        background: #ff0000 !important;
+        color: #fff;
+      }
+    }
   }
 }

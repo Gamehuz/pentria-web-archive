@@ -25,7 +25,7 @@ const UserDashboard = () => {
       case "history":
         return <History />;
       default:
-        return <UserListings />;
+        return <UserFavorites />;
     }
   };
   return (

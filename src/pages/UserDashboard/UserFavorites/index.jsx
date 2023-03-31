@@ -16,7 +16,7 @@ const UserFavorites = () => {
         <div className={styles.favoritesHeader__withdraw}>
           <Button
             type="button"
-            bg={styles.favoritesHeader__withdraw__redeem}
+            classes={styles.favoritesHeader__withdraw__redeem}
             text="REDEEM"
           />
         </div>
@@ -56,12 +56,12 @@ const UserFavorites = () => {
                 <Button
                   type="button"
                   text="Visit"
-                  bg={styles.favorites__itemContainer__buttons__visit}
+                  classes={styles.favorites__itemContainer__buttons__visit}
                 />
                 <Button
                   type="button"
                   text="Remove"
-                  bg={styles.favorites__itemContainer__buttons__remove}
+                  classes={styles.favorites__itemContainer__buttons__remove}
                 />
               </div>
             </div>
