@@ -1,13 +1,11 @@
 /* eslint-disable react/prop-types */
 import PropTypes from "prop-types";
-import styles from "./button.module.scss";
+import "./button.scss";
 
-const Button = ({ text, bg, onClick, type }) => {
+const Button = ({ classes, text, onClick, type }) => {
   return (
-    <div className={styles.button} onClick={onClick}>
-      <button type={type} className={bg ? bg : styles.defaultBg}>
-        {text}
-      </button>
+    <div className={`button ${classes}`} onClick={onClick}>
+      <button type={type}>{text}</button>
     </div>
   );
 };

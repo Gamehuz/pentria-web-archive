@@ -1,3 +1,4 @@
+import Button from "@/components/Button";
 import InputField from "@/components/InputField";
 import { useState } from "react";
 import styles from "./usersettings.module.scss";
@@ -129,6 +130,10 @@ const UserSettings = () => {
               setTogglePassword={() => setTogglePassword(!togglePassword)}
               onChange={handleChange}
             />
+          </div>
+          <div className={styles.actionBtns}>
+            <Button type="submit" className={styles.save} text="Save Changes" />
+            <Button type="reset" classes={styles.del} text="Delete Account" />
           </div>
         </form>
       </div>
