@@ -50,8 +50,8 @@ const UserListings = () => {
                 </div>
               </div>
               <div className={styles.listings__itemContainer__buttons}>
-                <Button type="button" text="Edit" bg="tertiary" />
-                <Button type="button" text="Remove" bg="tertiary" />
+                <Button type="button" text="Edit" classes={styles.btn} />
+                <Button type="button" text="Remove" classes={styles.btn} />
               </div>
             </div>
             <div className={styles.listings__hr} />
