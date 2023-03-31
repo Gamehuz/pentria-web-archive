@@ -156,3 +156,18 @@ export const handleUpdatePasword = (values) => async () => {
     toast.error(error.message);
   }
 };
+
+export const handleLogout = () => async () => {
+  dispatch(setLoading(true));
+  try {
+    localStorage.removeItem("pentriaAccessToken");
+    dispatch(setToken(null));
+    dispatch(setUser(null));
+    dispatch(setLoading(false));
+    toast.success("Logout successful");
+  } catch (error) {
+    dispatch(setLoading(false));
+    dispatch(setError(error.message));
+    toast.error(error.message);
+  }
+};

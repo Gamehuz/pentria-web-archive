@@ -21,7 +21,7 @@ const Nav = () => {
           <div className={styles.loggedIn}>
             <img src={userIcon} alt="User Icon" />
             <p>
-              {user?.user?.firstName} {user?.user?.lastName}
+              {user?.firstName} {user?.lastName}
             </p>
             <ArrowDown />
           </div>
