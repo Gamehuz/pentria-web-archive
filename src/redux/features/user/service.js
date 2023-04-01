@@ -4,6 +4,9 @@ import EDIT_USER_ACCOUNT_INFO from "../../../graphql/mutations/editUserAccountIn
 import LOGIN_USER from "../../../graphql/mutations/login";
 import { SIGNUP_GUEST, SIGNUP_VENDOR } from "../../../graphql/mutations/signup";
 import UPDATE_PASSWORD from "../../../graphql/mutations/updatePassword";
+import VERIFY_BANKS from "../../../graphql/mutations/verifyBanks";
+import GET_BANKS from "../../../graphql/queries/getBanks";
+import ALL_SPACES from "../../../graphql/queries/spaces";
 import USER from "../../../graphql/queries/userdetails";
 import { dispatch } from "../../store";
 import { setLoading } from "../../utils/UtilSlice";
@@ -130,7 +133,7 @@ export const handleEditInfo = (values, data) => async () => {
   } catch (error) {
     dispatch(setLoading(false));
     dispatch(setError(error.message));
-    toast.error("Error updating user's data");
+    toast.error(error.message);
   }
 }
 
@@ -152,3 +155,47 @@ export const handleUpdatePasword = (values) => async () => {
     toast.error(error.message)
   }
 }
+
+export const spaces = async () => {
+  try {
+    const result = await appolloClient.query({
+      query: ALL_SPACES
+    });
+    return result.data
+  } catch (error) {
+    dispatch(setError(error.message))
+    toast.error(error.message)
+  }
+}
+
+export const getBanks = async () => {
+  try {
+    const result = await appolloClient.query({
+      query: GET_BANKS
+    })
+    return result.data
+  } catch (error) {
+    dispatch(setError(error.message))
+    toast.error(error.message)
+  }
+}
+
+export const verifyBanks = (values) => async () => {
+  dispatch(setLoading(true));
+  try {
+    const result = await appolloClient.mutate({
+      mutation: VERIFY_BANKS,
+      variables: {
+        accountNumber: values.accountNumber,
+        code: values.code
+      }
+    });
+    dispatch(setLoading(false));
+    toast.success("Banks verified");
+    return result.data;
+  } catch (error) {
+    dispatch(setLoading(false));
+    dispatch(setError(error.message));
+    toast.error(error.message)
+  }
+};

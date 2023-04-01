@@ -46,7 +46,7 @@ const Nav = () => {
         <div>
           <Link>LOGIN</Link>
           <Link>
-            <Button bg={styles.button} text={"SIGN UP"} />
+            <Button bg={`${styles.button}`} text={"SIGN UP"} />
           </Link>
         </div>
       </nav>

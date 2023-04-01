@@ -5,7 +5,7 @@ import styles from "./vendorsettings.module.scss"
 import InputField from "../../components/InputField"
 import { ReactComponent as Menu } from "./assets/menu-hamburger.svg";
 import React, { useState, useEffect } from "react";
-import { handleUpdatePasword, userData } from "../../redux/features/user/service";
+import { handleUpdatePasword, userData, getBanks} from "../../redux/features/user/service";
 import { handleEditInfo } from "../../redux/features/user/service";
 
 const VendorSettings = () => {
@@ -14,8 +14,8 @@ const VendorSettings = () => {
         setToggleDashboardMenu(!toggleDashboardMenu);
     };
 
-    const [data, setData] = useState({})
-    console.log(data)
+    const [data, setData] = useState({});
+    const [banks, setBanks] = useState([])
 
     const [accountDetails, setAccountDetails] = useState({
         firstName: "",
@@ -28,7 +28,11 @@ const VendorSettings = () => {
         email: "",
         phoneNumber: "",
         oldPassword: "",
-        newPassword: ""
+        newPassword: "",
+        code: "",
+        bank: "",
+        accountName: "",
+        accountNumber: ""
     });
     console.log(accountDetails)
 
@@ -63,13 +67,29 @@ const VendorSettings = () => {
             oldPassword: "",
             newPassword: ""
         })
-    }
-    useEffect(() => {
-        userData().then((data) => setData(data))
-    }, []);
+    };
 
-    // const { data: bankData} = useQuery(GET_BANKS);
-    // console.log(bankData)
+    // if(accountDetails.accountNumber.length >= 10) {
+    // //    verifyBanks(accountDetails)().then((data) => setAccountDetails({
+    // //     ...accountDetails,
+    // //     accountName: data.verifyBankAccount.account_name
+    // //    }));
+    // }
+
+    useEffect(() => {
+        userData().then((data) => setData(data));
+        getBanks().then((data) => setBanks(data.getBanks));
+
+        if(accountDetails.bank){
+            const userBank = banks.filter((bank) => bank.name === accountDetails.bank);
+            setAccountDetails({
+                ...accountDetails,
+                code: userBank[0].code
+            })
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [accountDetails.bank, banks]);
+
     return (
         <div>
             <Nav />
@@ -228,24 +248,42 @@ const VendorSettings = () => {
                     <h3>Wallet Settings</h3>
                     <label>
                         Bank Name
-                        <InputField />
+                        <select name="bank" value={accountDetails.bank} onChange={editaccountDetails}>
+                            <option hidden>Select bank</option>
+                            { banks?.map((bank) => {
+                                return (
+                                    <option key={bank.id}>{bank.name}</option>
+                                )
+                            })}
+                        </select>
                     </label>
                     <label>
                         Account Number
-                        <InputField />
+                        <InputField 
+                        type={'number'}
+                        placeholder={'Enter Account Number'}
+                        name={'accountNumber'}
+                        value={accountDetails.accountNumber}
+                        onChange={editaccountDetails}
+                        disabled={accountDetails.bank ? false : true}
+                        />
                     </label>
                     <label>
                         Account Name
-                        <InputField />
-                    </label>
-                    <label>
-                        BVN
-                        <InputField />
+                        <InputField
+                        type={'number'}
+                        placeholder={'Enter Account Name'}
+                        name={'accountName'}
+                        value={accountDetails.accountName}
+                        onChange={editaccountDetails}
+                        disabled={true}
+                        />
                     </label>
                     <div className={styles.buttoncontainer}>
                     <Button 
                     bg={styles.button} 
-                    text={'UPDATE'} 
+                    text={'UPDATE'}
+
                     />
                     </div>
                 </form>

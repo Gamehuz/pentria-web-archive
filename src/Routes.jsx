@@ -9,6 +9,7 @@ import BookingPage from "./pages/BookingPage";
 import CreateListing from "./pages/CreateListing/CreateListing";
 import CustomerSignup from "./pages/CustomerSignup";
 import Enquiries from "./pages/Enquiries";
+import Explore from "./pages/Explore";
 import HistoryGuest from "./pages/HistoryGuest";
 import Homepage from "./pages/Home";
 import LoginPage from "./pages/Login";
@@ -65,6 +66,7 @@ const Routes = () => {
           </UserLayout>
         }
       />
+      <Route path="/explore" element={<Explore />}/>
     </Switch>
   );
 };
