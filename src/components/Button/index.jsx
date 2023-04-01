@@ -1,14 +1,20 @@
-import React from "react";
-import styles from "./button.module.scss";
+/* eslint-disable react/prop-types */
+import PropTypes from "prop-types";
+import "./button.scss";
 
-const Button = ({ text, bg, onClick, type }) => {
+const Button = ({ classes, text, onClick, type }) => {
   return (
-    <div className={styles.button} onClick={onClick}>
-      <button type={type} className={bg ? bg : styles.defaultBg}>
-        {text}
-      </button>
+    <div className={`button ${classes}`} onClick={onClick}>
+      <button type={type}>{text}</button>
     </div>
   );
+};
+
+Button.propTypes = {
+  text: PropTypes.string.isRequired,
+  bg: PropTypes.object.isRequired,
+  onClick: PropTypes.func.isRequired,
+  type: PropTypes.string.isRequired,
 };
 
 export default Button;

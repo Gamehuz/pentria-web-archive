@@ -1,10 +1,13 @@
+/* eslint-disable react/prop-types */
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import mobileMenu from "./assets/menu-hamburger.svg";
 import styles from "./homenav.module.scss";
 
 const HomeNavbar = ({ bg }) => {
   const [toggleNav, setToggleNav] = React.useState(false);
+  const { token } = useSelector((state) => state.user);
   return (
     <div
       className={`${toggleNav ? styles.activeHomeNav : ""} ${
@@ -30,12 +33,20 @@ const HomeNavbar = ({ bg }) => {
           </li>
         </ul>
         <div className={styles.homeNavbar_btn}>
-          <div className={styles.homeNavbar_login}>
-            <Link to="/login">LOGIN</Link>
-          </div>
-          <div className={styles.homeNavbar_signup}>
-            <Link to="/prompt">SIGN UP</Link>
-          </div>
+          {token ? (
+            <div className={styles.homeNavbar_dashboard}>
+              <Link to="/user/dashboard">DASHBOARD</Link>
+            </div>
+          ) : (
+            <>
+              <div className={styles.homeNavbar_login}>
+                <Link to="/login">LOGIN</Link>
+              </div>
+              <div className={styles.homeNavbar_signup}>
+                <Link to="/prompt">SIGNUP</Link>
+              </div>
+            </>
+          )}
         </div>
       </div>
       <div

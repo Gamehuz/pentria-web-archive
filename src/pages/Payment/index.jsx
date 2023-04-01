@@ -1,3 +1,4 @@
+import React from "react"
 import Nav from "../../components/Nav";
 import styles from "./payment.module.scss";
 import { ReactComponent as MapPin } from "./assets/map-pin.svg"

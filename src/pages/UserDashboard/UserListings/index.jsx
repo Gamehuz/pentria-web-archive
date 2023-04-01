@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import Button from "../../../components/Button";
 import locationIcon from "./assets/locationIcon.svg";
@@ -10,7 +9,7 @@ import styles from "./listings.module.scss";
 const UserListings = () => {
   return (
     <div className={styles.userListingsPage}>
-      <div className={styles.listingHeader}>
+      {/* <div className={styles.listingHeader}>
         <div className={styles.listingHeader__balance}>
           <h1>NGN 30,000 </h1>
           <p>Available Balance</p>
@@ -18,7 +17,7 @@ const UserListings = () => {
         <div className={styles.listingHeader__withdraw}>
           <Button type="button" text="Withdraw" />
         </div>
-      </div>
+      </div> */}
       <div className={styles.createListing}>
         <h3>My Listings</h3>
         <Link to="/user/createListing" className={styles.createListing__button}>
@@ -51,8 +50,8 @@ const UserListings = () => {
                 </div>
               </div>
               <div className={styles.listings__itemContainer__buttons}>
-                <Button type="button" text="Edit" bg="tertiary" />
-                <Button type="button" text="Remove" bg="tertiary" />
+                <Button type="button" text="Edit" classes={styles.btn} />
+                <Button type="button" text="Remove" classes={styles.btn} />
               </div>
             </div>
             <div className={styles.listings__hr} />

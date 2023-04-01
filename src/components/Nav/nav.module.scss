@@ -17,7 +17,7 @@
             font-size: 30px;
         }
 
-        div {
+        .notLoggedIn {
             display: flex;
             align-items: center;
             gap: 30px;
@@ -34,6 +34,27 @@
             }
         }
 
+        .loggedIn {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+
+            img {
+                border-radius: 50%;
+                height: 35px;
+                width: 35px;
+            }
+
+            p {
+                color: white;
+            }
+
+            svg {
+                width: 15px;
+                cursor: pointer;
+            }
+        }
+
         .button {
             background-color: var(--tertiary-color);
             color: white;
@@ -41,9 +62,10 @@
             font-size: 14px;
         }
 
-        svg {
+        .hamburger {
             display: none;
         }
+
     }
 
     .mobileNav,
@@ -56,11 +78,11 @@
     .header {
         .nav {
             div {
-                display: none
+                display: none !important;
             }
 
             svg {
-                display: block;
+                display: block !important;
                 cursor: pointer;
             }
         }

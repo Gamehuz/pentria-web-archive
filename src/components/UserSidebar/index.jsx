@@ -1,9 +1,10 @@
-import React from "react";
+/* eslint-disable react/prop-types */
 import { NavLink } from "react-router-dom";
 
 import styles from "./userSidebar.module.scss";
 
 import { useSelector } from "react-redux";
+import { handleLogout } from "../../redux/features/user/service";
 import { dispatch } from "../../redux/store";
 import { setToggleSidebar } from "../../redux/utils/UtilSlice";
 import Button from "../Button";
@@ -19,9 +20,13 @@ import Button from "../Button";
 function UserSidebar({ children }) {
   // const { user } = useSelector((state) => state.user);
   const { toggleSidebar } = useSelector((state) => state.util);
-
+  console.log(toggleSidebar);
   const handleCloseSidebar = () => {
     dispatch(setToggleSidebar(false));
+  };
+
+  const logout = () => {
+    handleLogout()();
   };
 
   return (
@@ -36,7 +41,7 @@ function UserSidebar({ children }) {
           </div>
 
           <div className={styles.navLinks}>
-            <NavLink
+            {/* <NavLink
               to="/user/dashboard?checkpoint=listings"
               className={`${styles.navLink} ${
                 window.location.pathname === "/user/dashboard" &&
@@ -47,8 +52,8 @@ function UserSidebar({ children }) {
               onClick={handleCloseSidebar}
             >
               <p>Listing</p>
-            </NavLink>
-            <NavLink
+            </NavLink> */}
+            {/* <NavLink
               to="/user/dashboard?checkpoint=earnings"
               className={`${styles.navLink} ${
                 window.location.pathname === "/user/dashboard" &&
@@ -59,8 +64,8 @@ function UserSidebar({ children }) {
               onClick={handleCloseSidebar}
             >
               <p>Earnings</p>
-            </NavLink>
-            <NavLink
+            </NavLink> */}
+            {/* <NavLink
               to="/user/dashboard?checkpoint=withdrawals"
               className={`${styles.navLink} ${
                 window.location.pathname === "/user/dashboard" &&
@@ -71,7 +76,7 @@ function UserSidebar({ children }) {
               onClick={handleCloseSidebar}
             >
               <p>Withdrawals</p>
-            </NavLink>
+            </NavLink> */}
             <NavLink
               to="/user/dashboard?checkpoint=favorites"
               className={`${styles.navLink} ${
@@ -111,7 +116,7 @@ function UserSidebar({ children }) {
             </NavLink>
           </div>
         </div>
-        <div className={styles.userSidebar__bottom}>
+        <div className={styles.userSidebar__bottom} onClick={logout}>
           <Button text="LOGOUT" />
         </div>
       </div>

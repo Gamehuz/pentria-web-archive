@@ -1,6 +1,6 @@
-import React from "react";
 import { Route, Routes as Switch } from "react-router-dom";
 import UserLayout from "./Layouts/User";
+import { Authenticated, RequireToken } from "./auth";
 import Aboutus from "./pages/AboutUs";
 import AdminSettings from "./pages/AdminSettings";
 import AdminTicket from "./pages/AdminTicket";
@@ -17,7 +17,6 @@ import Partners from "./pages/Partners";
 import Payment from "./pages/Payment";
 import PromptPage from "./pages/PromptPage";
 import Receipt from "./pages/Receipt";
-import Sencilo from "./pages/Sencilo";
 import UserDashboard from "./pages/UserDashboard";
 import VendorSignup from "./pages/VendorSIgnUp";
 import VendorSettings from "./pages/VendorSettings";
@@ -32,32 +31,43 @@ const Routes = () => {
   return (
     <Switch>
       <Route exact path="/" element={<Homepage />} />
-      <Route path="/about-us" element={<Aboutus />} />\\
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/loginorsignup" element={<LoginOrSignUp />} />
+      <Route path="/about-us" element={<Aboutus />} />
+      <Route element={<Authenticated />}>
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/loginorsignup" element={<LoginOrSignUp />} />
+        <Route exact path="/customer/signup" element={<CustomerSignup />} />
+        <Route exact path="/vendor/signup" element={<VendorSignup />} />
+        <Route exact path="/prompt" element={<PromptPage />} />
+      </Route>
       <Route path="/payment" element={<Payment />} />
       <Route path="/receipt" element={<Receipt />} />
-      <Route exact path="/customer/signup" element={<CustomerSignup />} />
-      <Route exact path="/vendor/signup" element={<VendorSignup />} />
-      <Route exact path="/prompt" element={<PromptPage />} />
-      <Route exact path="/booking" element={<BookingPage />} />
-      <Route exact path="/blog" element={<BlogPage />} />
-      <Route exact path="/enquiries" element={<Enquiries />} />
-      <Route exact path="/partners" element={<Partners />} />
-      <Route exact path="/sencilo" element={<Sencilo />} />
-      <Route path="/history/guest" element={<HistoryGuest />} />
-      <Route path="vendor/settings" element={<VendorSettings />} />
-      <Route exact path="/user/createListing" element={<CreateListing />} />
-      <Route exact path="/admin/settings" element={<AdminSettings />} />
-      <Route exact path="/admin/ticket" element={<AdminTicket />} />
       <Route
-        path="/user/dashboard"
+        exact
+        path="/booking"
         element={
           <UserLayout>
-            <UserDashboard />
+            <BookingPage />
           </UserLayout>
         }
       />
+      <Route exact path="/blog" element={<BlogPage />} />
+      <Route exact path="/enquiries" element={<Enquiries />} />
+      <Route exact path="/partners" element={<Partners />} />
+      <Route element={<RequireToken />}>
+        <Route path="/history/guest" element={<HistoryGuest />} />
+        <Route path="vendor/settings" element={<VendorSettings />} />
+        <Route exact path="/user/createListing" element={<CreateListing />} />
+        <Route exact path="/admin/settings" element={<AdminSettings />} />
+        <Route exact path="/admin/ticket" element={<AdminTicket />} />
+        <Route
+          path="/user/dashboard"
+          element={
+            <UserLayout>
+              <UserDashboard />
+            </UserLayout>
+          }
+        />
+      </Route>
     </Switch>
   );
 };

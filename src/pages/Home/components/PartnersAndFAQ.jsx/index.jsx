@@ -1,3 +1,4 @@
+import React from "react"
 import styles from "./partnersandfaq.module.scss"
 import { ReactComponent as RightArrow } from "../../assets/right-arrow.svg"
 import { ReactComponent as LeftArrow } from "../../assets/left-arrow.svg"
@@ -5,8 +6,7 @@ import curledArrow from "../../assets/curledArrow.png"
 import partnersImg from "../../assets/partnersImg.png"
 
 const PartnersAndFAQ = () => {
-    const explorables = [{}, {}, {}, {}, {}];
-
+    // const explorables = [{}, {}, {}, {}, {}];
     const faqs = [
         {
             id: 1,

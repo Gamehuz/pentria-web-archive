@@ -1,4 +1,4 @@
-import { Link, useSearchParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Button from "../Button";
 import InputField from "../InputField";
 import { ReactComponent as LinkedIn } from "./assets/linkedin.svg";
@@ -9,7 +9,8 @@ import {
 } from "./assets/twitter.svg";
 import { ReactComponent as Youtube } from "./assets/youtube.svg";
 import styles from "./footer.module.scss";
-import { useState } from "react"
+import React, { useState } from "react";
+import PropTypes from "prop-types"
 
 // example bg for purple background = <Footer bg={styles.bg} purple={true}/>
 // bg {
@@ -75,5 +76,10 @@ const Footer = ({ bg, purple }) => {
     </footer>
   );
 };
+
+Footer.propTypes = {
+  bg: PropTypes.object.isRequired,
+  purple: PropTypes.bool.isRequired
+}
 
 export default Footer;

@@ -1,0 +1,45 @@
+.time_picker {
+  margin: 10px;
+  width: 100%;
+  p {
+    font-size: 16px;
+    font-weight: 800;
+    color: #5e616f;
+    text-align: center;
+  }
+  &__timeWrap {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 5px;
+    row-gap: 5px;
+    word-wrap: break-word;
+  }
+  &__time {
+    width: 60px;
+    height: 40px;
+    cursor: pointer;
+    // width: fit-content;
+    text-align: center;
+    padding: 4px 8px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    color: #c1c6d8;
+    user-select: none;
+    background: rgba(62, 33, 128, 0.5);
+  }
+  &__past {
+    color: gray;
+    cursor: not-allowed;
+  }
+  &__selected {
+    background-color: #3e2180;
+    color: white;
+    &:hover {
+      background-color: #3e2180;
+    }
+  }
+}

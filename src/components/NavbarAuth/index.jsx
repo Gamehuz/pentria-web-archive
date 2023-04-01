@@ -1,19 +1,17 @@
-import React, { useEffect, useState } from "react";
+/* eslint-disable react/prop-types */
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { dispatch } from "../../redux/store";
 import { setToggleSidebar } from "../../redux/utils/UtilSlice";
-// import { NavSkeleton } from "../LoadingSkeleton";
 import SearchInput from "../SearchInput";
 import toggleNavIcon from "./assets/menu-hamburger.svg";
 import styles from "./navbarAuth.module.scss";
 
-const NavbarAuth = ({ search }) => {
+const NavbarAuth = ({ search, bg }) => {
   const [show, setShow] = useState(false);
-  // const { user } = useSelector((state) => state.user);
+  const { user, token } = useSelector((state) => state.user);
 
-  const [user, setUser] = useState(null);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [response, setResponse] = useState({ type: "", message: "" });
   const [loading, setLoading] = useState(true);
   const [sidebar, setSidebar] = useState(false);
 
@@ -29,10 +27,13 @@ const NavbarAuth = ({ search }) => {
   };
 
   return (
-    <div className={`${styles.authNav} ${show ? styles.showDropup : ""} `}>
+    <div
+      className={`${styles.authNav} ${styles[bg]} ${
+        show ? styles.showDropup : ""
+      } `}
+    >
       <div className={styles.authNav_toggle}>
         <img src={toggleNavIcon} alt="" onClick={openSidebar} />
-        {/* <img src={logo} alt="" /> */}
         <Link to="/" className={`${styles.logoLink}`}>
           <h1>Pentria</h1>
         </Link>
@@ -41,7 +42,7 @@ const NavbarAuth = ({ search }) => {
         <SearchInput />
       </div>
       <div className={styles.authNav_user_btn}>
-        {!loading ? (
+        {user ? (
           <div className={styles.authNav_user}>
             <div className={styles.authNav_user_desktop}>
               <img
@@ -49,52 +50,46 @@ const NavbarAuth = ({ search }) => {
                 src={
                   user?.company_logo_url ? user?.company_logo_url : "/dummy.png"
                 }
-                alt={user?.first_name}
+                alt={user?.firstName}
               />
               <div className={styles.authNav_user_desktop_nameDetails}>
                 <div className={styles.authNav_user_desktop_name_arr}>
                   <p className={styles.name}>
-                    {user?.first_name} {user?.last_name}
+                    {user?.firstName} {user?.lastName}
                   </p>
-                  <img
+                  {/* <img
                     src={dropdown_arr}
                     alt="dropdown arrow"
-                    onClick={() => setShow((prev) => !prev)}
                     className={styles.arrow}
-                  />
+                  /> */}
                 </div>
-                <p className={styles.workspace_name}>{user?.company_name}</p>
+                {/* <p className={styles.workspace_name}>{user?.company_name}</p> */}
               </div>
             </div>
           </div>
         ) : (
           <>
-            <div className={styles.authNav_user}>
-              <div className={styles.authNav_user_desktop}>
-                <img
-                  className={styles.userimg}
-                  src="/dummy.png"
-                  alt="john doe"
-                />
-                <div className={styles.authNav_user_desktop_nameDetails}>
-                  <div className={styles.authNav_user_desktop_name_arr}>
-                    <p className={styles.name}>John Doe</p>
-                  </div>
-                </div>
+            <div className={`${styles.authNavbar_btn} ${styles[bg]}`}>
+              <div className={styles.authNavbar_login}>
+                <Link to="/login">LOGIN</Link>
+              </div>
+              <div className={styles.authNavbar_signup}>
+                <Link to="/prompt">SIGN UP</Link>
               </div>
             </div>
-            {/* // <NavSkeleton /> */}
-            {/* <p>loading...</p> */}
           </>
         )}
-
-        {/* <div className={styles.authNav_user_mobile}>
-          <img
-            className={styles.userimg}
-            src={user?.company_logo_url ? user?.company_logo_url : DummyImg}
-            alt={user?.first_name}
-          />
-        </div> */}
+        {user && (
+          <div className={styles.authNav_user_mobile}>
+            <img
+              className={styles.userimg}
+              src={
+                user?.company_logo_url ? user?.company_logo_url : "/dummy.png  "
+              }
+              alt={user?.firstName}
+            />
+          </div>
+        )}
       </div>
     </div>
   );

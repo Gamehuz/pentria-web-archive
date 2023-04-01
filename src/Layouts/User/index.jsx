@@ -1,4 +1,4 @@
-import React from "react";
+/* eslint-disable react/prop-types */
 import NavbarAuth from "../../components/NavbarAuth";
 import styles from "./userLayout.module.scss";
 
