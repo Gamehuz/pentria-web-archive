@@ -9,7 +9,7 @@ import React from "react";
 import { Button, Input } from "react-daisyui";
 import { Link } from "react-router-dom";
 import pics from "../../../public/pic.jpg";
-import Container from "../../components/Container/Container";
+import Container from "./Container";
 import styles from "./sencilo.module.scss";
 
 const Sencilo = () => {
@@ -80,7 +80,7 @@ const Sencilo = () => {
           <div className="grid grid-cols-10 gap-4 mt-6">
             <div className="col-span-7 flex justify-between pr-12 text-[#7E7E7E]">
               <div className="inline-block text-center">
-                <p>Facility Type</p>
+                <p className="text-[16px]">Facility Type</p>
                 <div className="flex items-center space-x-2">
                   <HomeIcon className="w-6 h-6" />
                   <p className="">Gaming Center</p>
@@ -117,13 +117,13 @@ const Sencilo = () => {
             </div>
             <div className="col-span-3 flex space-x-3 items-center">
               <div className="flex text-primaryColor items-center">
-                <StarIcon className="w-8 h-8" />
-                <StarIcon className="w-8 h-8" />
-                <StarIcon className="w-8 h-8" />
-                <StarIcon className="w-8 h-8" />
-                <StarIcon className="w-8 h-8" />
+                <StarIcon className="w-[20px]" />
+                <StarIcon className="w-[20px]" />
+                <StarIcon className="w-[20px]" />
+                <StarIcon className="w-[20px]" />
+                <StarIcon className="w-[20px] text-[#C4C4C4]" />
               </div>
-              <p className="text-2xl font-medium">4.0 Ratings </p>
+              <p className="text-[16px] font-medium">4.0 Ratings </p>
             </div>
           </div>
 
