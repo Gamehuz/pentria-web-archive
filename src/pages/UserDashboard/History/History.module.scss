@@ -1,96 +1,93 @@
 .history_container {
-    .coming_soon {
-        background: #EAEAEA;
-        padding: 20px 30px;
+  .coming_soon {
+    background: #eaeaea;
+    padding: 20px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    div {
+      //   flex-grow: 10;
+      // width: 60%;
+
+      h1 {
+        font-size: 20px;
+
+        @media (max-width: 413px) {
+          font-size: 15px;
+        }
+      }
+    }
+  }
+
+  .booking_history {
+    padding: 20px 30px;
+
+    p:nth-child(1) {
+      margin: 30px 0;
+      font-weight: 600;
+      font-size: 17px;
+    }
+
+    .history {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      @media (max-width: 903px) {
+        flex-direction: column;
+        gap: 3rem;
+        align-items: flex-start;
+      }
+
+      .booking_info {
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        gap: 20px;
+
+        @media (max-width: 506px) {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 3rem;
+        }
 
         div {
-            flex-grow: 10;
-            width: 60%;
+          .price {
+            margin: 0 0 10px 0;
+            color: #bf4d01;
+            font-weight: 700;
+          }
 
-            h1 {
-                @media (max-width:584px) {
-                    font-size: 20px;
-                }
+          .item,
+          .ticket,
+          .date {
+            margin: 0 0 10px 0;
+            font-weight: 500;
+          }
+        }
+      }
 
-                @media (max-width: 413px) {
-                    font-size: 15px;
-                }
-            }
+      .booking_details {
+        .status {
+          color: #3e2180;
+          font-weight: 500;
         }
 
+        div {
+          display: flex;
+          align-items: center;
+          gap: 15px;
+          margin-bottom: 15px;
+
+          img {
+            width: 17px;
+          }
+
+          p {
+            font-weight: 500;
+          }
+        }
+      }
     }
-
-    .booking_history {
-        padding: 20px 30px;
-
-        p:nth-child(1) {
-            margin: 30px 0;
-            font-weight: 600;
-            font-size: 17px;
-        }
-
-        .history {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            @media (max-width: 903px) {
-                flex-direction: column;
-                gap: 3rem;
-                align-items: flex-start;
-            }
-
-            .booking_info {
-                display: flex;
-                align-items: center;
-                gap: 20px;
-
-                @media (max-width: 506px) {
-                    flex-direction: column;
-                    align-items: flex-start;
-                    gap: 3rem;
-                }
-
-                div {
-                    .price {
-                        margin: 0 0 10px 0;
-                        color: #BF4D01;
-                        font-weight: 700;
-                    }
-
-                    .item,
-                    .ticket,
-                    .date {
-                        margin: 0 0 10px 0;
-                        font-weight: 500;
-                    }
-                }
-            }
-
-            .booking_details {
-                .status {
-                    color: #3E2180;
-                    font-weight: 500;
-                }
-
-                div {
-                    display: flex;
-                    align-items: center;
-                    gap: 15px;
-                    margin-bottom: 15px;
-
-                    img {
-                        width: 17px;
-                    }
-
-                    p {
-                        font-weight: 500;
-                    }
-                }
-            }
-        }
-    }
+  }
 }

@@ -1,0 +1,44 @@
+.userSettings {
+  margin-top: 2rem;
+  width: 100%;
+  padding: 0 1rem;
+  h1 {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 56px;
+    /* identical to box height, or 175% */
+    text-align: center;
+    letter-spacing: -1px;
+
+    color: #000000;
+  }
+
+  .formContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    form {
+      .two_cols {
+        display: flex;
+        justify-content: space-between;
+        .formGroup {
+          width: 48%;
+        }
+      }
+      .formGroup {
+        margin-top: 1rem;
+      }
+    }
+    .actionBtns {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      .del {
+        background: #ff0000 !important;
+        color: #fff;
+      }
+    }
+  }
+}

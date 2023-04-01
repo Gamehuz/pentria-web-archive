@@ -4,7 +4,7 @@ import Nav from "../../components/Nav"
 import styles from "./vendorsettings.module.scss"
 import InputField from "../../components/InputField"
 import { ReactComponent as Menu } from "./assets/menu-hamburger.svg";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { handleUpdatePasword, userData, getBanks} from "../../redux/features/user/service";
 import { handleEditInfo } from "../../redux/features/user/service";
 

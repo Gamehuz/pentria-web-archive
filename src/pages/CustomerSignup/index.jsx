@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { useState } from "react";
 import styles from "./CustomerSignUp.module.scss";
 
 import { useNavigate } from "react-router-dom";
@@ -32,7 +32,7 @@ const CustomerSignup = () => {
   const [phoneNumberError, setPhoneNumberError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
-  const [uploadIDError, setUploadIDError] = useState("");
+  // const [uploadIDError, setUploadIDError] = useState("");
 
   // regex for input  validation
   const emailTest = new RegExp(/\S+@\S+\.\S+/);
@@ -76,15 +76,16 @@ const CustomerSignup = () => {
         break;
       case "confirmPassword":
         setConfirmPassword(value);
+        break;
       default:
         break;
     }
   };
 
-  const handleBlur = (e) => {
-    const { name } = e.target;
-    validateField(name);
-  };
+  // const handleBlur = (e) => {
+  //   const { name } = e.target;
+  //   validateField(name);
+  // };
 
   const validateField = (name) => {
     let isValid = false;
@@ -119,9 +120,11 @@ const CustomerSignup = () => {
         break;
       case "confirmPassword":
         validateConfirmPassword();
+        break;
       default:
         break;
     }
+    return isValid;
   };
 
   const clearError = () => {
@@ -134,7 +137,7 @@ const CustomerSignup = () => {
       setEmailError("");
       setPhoneNumberError("");
       setPasswordError("");
-      setUploadIDError("");
+      // setUploadIDError("");
       setConfirmPasswordError("");
     }, 4000);
   };
@@ -242,7 +245,7 @@ const CustomerSignup = () => {
 
     const value = uploadID;
     if (value === null) uploadIDError = "A means of ID is required";
-    setUploadIDError(uploadIDError);
+    // setUploadIDError(uploadIDError);
     clearError();
 
     return uploadIDError === "";
@@ -257,7 +260,7 @@ const CustomerSignup = () => {
     const isValidEmail = validateEmail();
     const isValidPhoneNumber = validatePhonenumber();
     const isValidPassword = validatepassword();
-    const isValidUploadID = validateIdentification();
+    // const isValidUploadID = validateIdentification();
     const isValidConfirmPassword = validateConfirmPassword();
 
     return (
@@ -287,14 +290,14 @@ const CustomerSignup = () => {
     setConfirmPassword("");
   };
 
-  const handleSelectFile = (e) => {
-    const file = e.target?.files[0];
-    if (file) {
-      setUploadID(URL.createObjectURL(file));
-    } else {
-      setUploadID(null);
-    }
-  };
+  // const handleSelectFile = (e) => {
+  //   const file = e.target?.files[0];
+  //   if (file) {
+  //     setUploadID(URL.createObjectURL(file));
+  //   } else {
+  //     setUploadID(null);
+  //   }
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
