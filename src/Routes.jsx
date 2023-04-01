@@ -17,6 +17,7 @@ import Partners from "./pages/Partners";
 import Payment from "./pages/Payment";
 import PromptPage from "./pages/PromptPage";
 import Receipt from "./pages/Receipt";
+import Sencilo from "./pages/Sencilo";
 import UserDashboard from "./pages/UserDashboard";
 import VendorSignup from "./pages/VendorSIgnUp";
 import VendorSettings from "./pages/VendorSettings";
@@ -53,6 +54,7 @@ const Routes = () => {
       <Route exact path="/blog" element={<BlogPage />} />
       <Route exact path="/enquiries" element={<Enquiries />} />
       <Route exact path="/partners" element={<Partners />} />
+      <Route exact path="/sencilo" element={<Sencilo />} />
       <Route element={<RequireToken />}>
         <Route path="/history/guest" element={<HistoryGuest />} />
         <Route path="vendor/settings" element={<VendorSettings />} />
