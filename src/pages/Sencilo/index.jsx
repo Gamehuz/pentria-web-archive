@@ -248,6 +248,22 @@ const Sencilo = () => {
               </div>
             </div>
           </div>
+
+          {/* THE GOOGLE MAP AND THE REVIEWS SECTION */}
+          <div className="grid grid-cols-10 gap-12 mt-16">
+            <div className="col-span-7 h-full w-full">
+              <img
+                src={pics}
+                className="object-cover object-center w-full h-full"
+              />
+            </div>
+            <div className="col-span-3">
+              <div className="flex justify-between">
+                <p className="text-xl font-medium">REVIEWS</p>
+                <p className=""></p>
+              </div>
+            </div>
+          </div>
         </div>
       </Container>
     </div>
