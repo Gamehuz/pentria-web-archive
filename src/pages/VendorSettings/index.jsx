@@ -5,7 +5,7 @@ import styles from "./vendorsettings.module.scss"
 import InputField from "../../components/InputField"
 import { ReactComponent as Menu } from "./assets/menu-hamburger.svg";
 import { useState, useEffect } from "react";
-import { handleUpdatePasword, userData, getBanks} from "../../redux/features/user/service";
+import { handleUpdatePasword, userData, getBanks } from "../../redux/features/user/service";
 import { handleEditInfo } from "../../redux/features/user/service";
 
 const VendorSettings = () => {
@@ -15,7 +15,7 @@ const VendorSettings = () => {
     };
 
     const [data, setData] = useState({});
-    const [banks, setBanks] = useState([])
+    const [banks, setBanks] = useState([]);
 
     const [accountDetails, setAccountDetails] = useState({
         firstName: "",
@@ -34,7 +34,7 @@ const VendorSettings = () => {
         accountName: "",
         accountNumber: ""
     });
-    console.log(accountDetails)
+    console.log(accountDetails);
 
     const editaccountDetails = (e) => {
         const { name, value } = e.target;
@@ -45,7 +45,7 @@ const VendorSettings = () => {
     };
 
     const editInfo = () => {
-        handleEditInfo(accountDetails, data);
+        handleEditInfo(accountDetails, data)();
         setAccountDetails({
             ...accountDetails,
             firstName: "",
@@ -61,7 +61,7 @@ const VendorSettings = () => {
     };
 
     const updatePassword = () => {
-        handleUpdatePasword(accountDetails);
+        handleUpdatePasword(accountDetails)();
         setAccountDetails({
             ...accountDetails,
             oldPassword: "",
@@ -69,11 +69,15 @@ const VendorSettings = () => {
         })
     };
 
-    // if(accountDetails.accountNumber.length >= 10) {
-    // //    verifyBanks(accountDetails)().then((data) => setAccountDetails({
-    // //     ...accountDetails,
-    // //     accountName: data.verifyBankAccount.account_name
-    // //    }));
+    // const updateWallet = () => {
+    //     handleEditWalletInfo(accountDetails)();
+    //     setAccountDetails({
+    //         ...accountDetails,
+    //         code: "",
+    //         accountName: "",
+    //         accountNumber: "",
+    //         bank: ""
+    //     })
     // }
 
     useEffect(() => {
@@ -87,8 +91,17 @@ const VendorSettings = () => {
                 code: userBank[0].code
             })
         }
+    
+        // if(accountNumberLength >= 10) {
+        //     verifyBanks(accountDetails)().then((data) => setAccountDetails({
+        //         ...accountDetails,
+        //         accountName: data?.verifyBankAccount?.account_name
+        //         }));
+        // } else {
+        //     return;
+        // }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [accountDetails.bank, banks]);
+    }, [banks, accountDetails]);
 
     return (
         <div>
@@ -269,21 +282,16 @@ const VendorSettings = () => {
                         />
                     </label>
                     <label>
-                        Account Name
-                        <InputField
-                        type={'number'}
-                        placeholder={'Enter Account Name'}
-                        name={'accountName'}
-                        value={accountDetails.accountName}
-                        onChange={editaccountDetails}
-                        disabled={true}
-                        />
+                        <div>
+                            Click update to update wallet info with this account name {accountDetails.accountName}
+                        </div>
                     </label>
                     <div className={styles.buttoncontainer}>
                     <Button 
+                    type={'submit'}
                     bg={styles.button} 
                     text={'UPDATE'}
-
+                    // onClick={() => updateWallet()}
                     />
                     </div>
                 </form>
