@@ -39,6 +39,9 @@
 .homeNavbar_signup {
   background-color: #3e2180;
   padding: 0px 30px;
+  @media (max-width: 780px) {
+    padding: 0px 10px;
+  }
 }
 
 .homeNavbar_signup a {
@@ -167,9 +170,20 @@
   color: #7e7e7e;
 }
 
-.sencilo__image-container,
 .sencilo__desc_menu-container {
-  margin-top: 5rem;
+  margin-top: 2rem;
+  display: flex;
+  // grid-template-columns: repeat(2, 1fr) !important;
+  gap: 16px;
+  justify-content: space-between;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    height: 100% !important;
+  }
+}
+
+.sencilo__image-container {
+  margin-top: 2rem;
   display: flex;
   // grid-template-columns: repeat(2, 1fr) !important;
   gap: 16px;
