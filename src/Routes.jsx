@@ -1,6 +1,6 @@
 import { Route, Routes as Switch } from "react-router-dom";
-import { Authenticated, RequireToken } from "./auth";
 import UserLayout from "./Layouts/User";
+import { Authenticated, RequireToken } from "./auth";
 import Aboutus from "./pages/AboutUs";
 import AdminSettings from "./pages/AdminSettings";
 import AdminTicket from "./pages/AdminTicket";
@@ -17,9 +17,10 @@ import Partners from "./pages/Partners";
 import Payment from "./pages/Payment";
 import PromptPage from "./pages/PromptPage";
 import Receipt from "./pages/Receipt";
+import Sencilo from "./pages/Sencilo";
 import UserDashboard from "./pages/UserDashboard";
-import VendorSettings from "./pages/VendorSettings";
 import VendorSignup from "./pages/VendorSIgnUp";
+import VendorSettings from "./pages/VendorSettings";
 
 // jsdoc
 /**
@@ -53,6 +54,7 @@ const Routes = () => {
       <Route exact path="/blog" element={<BlogPage />} />
       <Route exact path="/enquiries" element={<Enquiries />} />
       <Route exact path="/partners" element={<Partners />} />
+      <Route exact path="/sencilo" element={<Sencilo />} />
       <Route element={<RequireToken />}>
         <Route path="/history/guest" element={<HistoryGuest />} />
         <Route path="vendor/settings" element={<VendorSettings />} />
