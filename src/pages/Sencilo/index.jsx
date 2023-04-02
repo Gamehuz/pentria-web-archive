@@ -14,7 +14,7 @@ import styles from "./sencilo.module.scss";
 
 const Sencilo = () => {
   return (
-    <div className="bg-[#FAFAFA]">
+    <div className="bg-[#FAFAFA] font-poppins text-[#7E7E7E]">
       {/* The nav */}
       <Container>
         <div className={styles.nav}>
@@ -48,7 +48,7 @@ const Sencilo = () => {
 
           <div className="mt-10 flex justify-between">
             <div className="space-y-3">
-              <h3 className="text-2xl font-bold">Gamehauz Cafe</h3>
+              <h3 className="text-2xl font-bold text-black">Gamehauz Cafe</h3>
               <div className="flex space-x-2 text-gray-500">
                 <MapPinIcon className="w-6 h-6 text-secondaryColor" />
                 <p className="">93 Ken Saro-Wiwa Rd, GRA Port Harcourt, RI</p>
@@ -56,29 +56,32 @@ const Sencilo = () => {
             </div>
             <Button
               startIcon={<HeartIcon className="w-6 h-6" />}
-              className="border-secondaryColor border text-secondaryColor bg-inherit hover:bg-secondaryColor/30"
+              className="border-secondaryColor border text-secondaryColor  bg-inherit hover:bg-secondaryColor/30"
             >
-              Favourite
+              <p className="hidden md:block">Favourite</p>
             </Button>
           </div>
 
-          <div className="grid grid-cols-10 mt-12 gap-4 h-[30rem] overflow-hidden">
-            <div className="col-span-7 h-full ">
-              <img
-                src={pics}
-                className="w-full h-full object-cover object-center"
-              />
+          <div className="flex mt-12 flex-col md:flex-row gap-4 overflow-hidden">
+            <div
+              className={`col-span-7 w-[70%] h-[510px] object-cover ${styles.widthFull}`}
+            >
+              <img src={pics} className="w-full h-full object-center" />
             </div>
-            <div className="col-span-3 h-full">
-              <div className="grid gap-4 h-full">
-                <img src={pics} className="w-full h-full" />
-                <img src={pics} className="w-full h-full" />
+            <div className={`"col-span-3 h-full w-[30%] ${styles.widthFull}`}>
+              <div className="gap-2 h-full w-full flex md:flex-col w-full justify-between ">
+                <div className={`h-[250px] object-contain ${styles.widthFull}`}>
+                  <img src={pics} className="h-full w-full" />
+                </div>
+                <div className={`h-[250px] object-contain ${styles.widthFull}`}>
+                  <img src={pics} className="h-full w-full" />
+                </div>
               </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-10 gap-4 mt-6">
-            <div className="col-span-7 flex justify-between pr-12 text-[#7E7E7E]">
+          <div className="grid grid-cols-10 gap-4 mt-6 mb-12">
+            <div className="col-span-7 grid-cols-10 flex justify-between pr-12 text-[#7E7E7E]">
               <div className="inline-block text-center">
                 <p className="text-[16px]">Facility Type</p>
                 <div className="flex items-center space-x-2">
@@ -128,10 +131,10 @@ const Sencilo = () => {
           </div>
 
           {/* THE DESCRIPTION AND MENU */}
-          <div className="grid grid-cols-10 gap-12 mt-16">
+          <div className={styles["sencilo__desc_menu-container"]}>
             <div className="col-span-7">
-              <p className="text-xl font-medium">Description</p>
-              <p className="mt-4">
+              <p className="text-xl font-medium text-black">Description</p>
+              <p className="mt-4 text-[16px]">
                 Located at one of the hottest spots in the Garden City, the
                 Gamehauz Cafe is everything you can dream of when it comes to
                 indoor gaming and recreation. <br></br>
@@ -155,7 +158,7 @@ const Sencilo = () => {
               </p>
 
               <p className="text-xl font-medium">Guidelines/Policy</p>
-              <ul className="mt-4 space-y-5">
+              <ul className="mt-4 space-y-5 text-[16px]">
                 <li className="">No pets allowed</li>
                 <li className="">
                   Please confirm your payment with the cashier upon arrival
@@ -188,8 +191,8 @@ const Sencilo = () => {
               </ul>
             </div>
             <div className="col-span-3  ">
-              <p className="text-xl font-medium">MENU</p>
-              <div className="mt-4 bg-white rounded-xl py-6 px-6 space-y-8">
+              <p className="text-xl font-medium text-black">MENU</p>
+              <div className="mt-4 bg-white rounded-xl py-6 px-[0px] space-y-8 md:px-[1.5rem]">
                 <div className="grid grid-cols-2 gap-6 shadow-xl">
                   <img src={pics} className="h-full object-cover" />
                   <div className="w-full space-y-3 pb-2">
@@ -250,7 +253,7 @@ const Sencilo = () => {
           </div>
 
           {/* THE GOOGLE MAP AND THE REVIEWS SECTION */}
-          <div className="grid grid-cols-10 gap-12 mt-16">
+          <div className={styles["sencilo__desc_menu-container"]}>
             <div className="col-span-7 h-full w-full">
               <img
                 src={pics}
