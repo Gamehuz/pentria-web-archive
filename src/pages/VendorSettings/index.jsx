@@ -5,7 +5,7 @@ import styles from "./vendorsettings.module.scss"
 import InputField from "../../components/InputField"
 import { ReactComponent as Menu } from "./assets/menu-hamburger.svg";
 import { useState, useEffect } from "react";
-import { handleUpdatePasword, userData, getBanks } from "../../redux/features/user/service";
+import { handleUpdatePasword, userData, getBanks, verifyBanks, handleEditWalletInfo } from "../../redux/features/user/service";
 import { handleEditInfo } from "../../redux/features/user/service";
 
 const VendorSettings = () => {
@@ -34,7 +34,6 @@ const VendorSettings = () => {
         accountName: "",
         accountNumber: ""
     });
-    console.log(accountDetails);
 
     const editaccountDetails = (e) => {
         const { name, value } = e.target;
@@ -69,16 +68,18 @@ const VendorSettings = () => {
         })
     };
 
-    // const updateWallet = () => {
-    //     handleEditWalletInfo(accountDetails)();
-    //     setAccountDetails({
-    //         ...accountDetails,
-    //         code: "",
-    //         accountName: "",
-    //         accountNumber: "",
-    //         bank: ""
-    //     })
-    // }
+    const updateWallet = () => {
+        handleEditWalletInfo(accountDetails)();
+        setAccountDetails({
+            ...accountDetails,
+            code: "",
+            accountName: "",
+            accountNumber: "",
+            bank: ""
+        })
+    }
+
+
 
     useEffect(() => {
         userData().then((data) => setData(data));
@@ -91,17 +92,16 @@ const VendorSettings = () => {
                 code: userBank[0].code
             })
         }
+
     
-        // if(accountNumberLength >= 10) {
-        //     verifyBanks(accountDetails)().then((data) => setAccountDetails({
-        //         ...accountDetails,
-        //         accountName: data?.verifyBankAccount?.account_name
-        //         }));
-        // } else {
-        //     return;
-        // }
+        if(accountDetails.accountNumber.length === 10) {
+            verifyBanks(accountDetails)().then((data) => setAccountDetails({
+                ...accountDetails,
+                accountName: data?.verifyBankAccount?.account_name
+            }));
+        }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [banks, accountDetails]);
+    }, [accountDetails.bank, accountDetails.accountNumber.length === 10]);
 
     return (
         <div>
@@ -291,7 +291,7 @@ const VendorSettings = () => {
                     type={'submit'}
                     bg={styles.button} 
                     text={'UPDATE'}
-                    // onClick={() => updateWallet()}
+                    onClick={() => updateWallet()}
                     />
                     </div>
                 </form>
