@@ -80,37 +80,37 @@ const Sencilo = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-10 gap-4 mt-6 mb-12">
-            <div className="col-span-7 grid-cols-10 flex justify-between pr-12 text-[#7E7E7E]">
-              <div className="inline-block text-center">
+          <div className={`flex flex-col md:flex-row gap-4 mt-6 mb-12`}>
+            <div className={` ${styles.sencilo_equip} text-[#7E7E7E]`}>
+              <div className="mr-4 mb-4 w-fit text-center">
                 <p className="text-[16px]">Facility Type</p>
                 <div className="flex items-center space-x-2">
                   <HomeIcon className="w-6 h-6" />
                   <p className="">Gaming Center</p>
                 </div>
               </div>
-              <div className="inline-block text-center">
+              <div className="w-fit mr-4 text-center">
                 <p>Facility Type</p>
                 <div className="flex items-center space-x-2">
                   <HomeIcon className="w-6 h-6" />
                   <p className="">Gaming Center</p>
                 </div>
               </div>
-              <div className="inline-block text-center">
+              <div className="w-fit mr-4 text-center">
                 <p>Facility Type</p>
                 <div className="flex items-center space-x-2">
                   <HomeIcon className="w-6 h-6" />
                   <p className="">Gaming Center</p>
                 </div>
               </div>
-              <div className="inline-block text-center">
+              <div className="w-fit mr-4 text-center">
                 <p>Facility Type</p>
                 <div className="flex items-center space-x-2">
                   <HomeIcon className="w-6 h-6" />
                   <p className="">Gaming Center</p>
                 </div>
               </div>
-              <div className="inline-block text-center">
+              <div className="w-fit text-center">
                 <p>Facility Type</p>
                 <div className="flex items-center space-x-2">
                   <HomeIcon className="w-6 h-6" />
@@ -118,7 +118,7 @@ const Sencilo = () => {
                 </div>
               </div>
             </div>
-            <div className="col-span-3 flex space-x-3 items-center">
+            <div className="col-span-3 flex space-x-3 items-center justify-center">
               <div className="flex text-primaryColor items-center">
                 <StarIcon className="w-[20px]" />
                 <StarIcon className="w-[20px]" />
