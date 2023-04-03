@@ -46,7 +46,7 @@ const Routes = () => {
       <Route exact path="/blog" element={<BlogPage />} />
       <Route exact path="/enquiries" element={<Enquiries />} />
       <Route exact path="/partners" element={<Partners />} />
-      <Route exact path="/sencilo" element={<Sencilo />} />
+      <Route exact path="/sencilo/:id" element={<Sencilo />} />
       {/* for Authenticated users */}
       <Route element={<RequireToken />}>
         <Route path="/history/guest" element={<HistoryGuest />} />

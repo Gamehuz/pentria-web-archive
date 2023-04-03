@@ -1,6 +1,9 @@
 import pics from "@/../public/pic.jpg";
 import Footer from "@/components/Footer";
 import InputField from "@/components/InputField";
+import IsLoadingSkeleton from "@/components/LoadingSkeleton";
+import { GetSpace } from "@/redux/features/space/service";
+import { dispatch } from "@/redux/store";
 import {
   ChevronLeftIcon,
   HeartIcon,
@@ -8,14 +11,24 @@ import {
   MapPinIcon,
 } from "@heroicons/react/24/outline";
 import { StarIcon } from "@heroicons/react/24/solid";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Input } from "react-daisyui";
-import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Link, useParams } from "react-router-dom";
 import Container from "./Container";
 import styles from "./sencilo.module.scss";
 
 const Sencilo = () => {
+  const { id } = useParams();
   const [startReview, setStartReview] = useState(false);
+  const { space } = useSelector((state) => state.space);
+  const { isLoading } = useSelector((state) => state.util);
+
+  console.log(space);
+  useEffect(() => {
+    dispatch(GetSpace(id));
+  }, [id]);
+  if (isLoading) return <IsLoadingSkeleton />;
   return (
     <>
       <div className="bg-[#FAFAFA] font-poppins text-[#7E7E7E] mb-6">
@@ -289,6 +302,8 @@ const Sencilo = () => {
                       <a href="https://embedgooglemap.2yu.co/">html embed google map</a>
                       <style>.gmap_canvas {overflow:hidden;background:none!important;height:100%;width:100%;}</style> */}
                   </div>
+                  import {dispatch} from "@/redux/store"; import {useSelector}{" "}
+                  from "react-redux";
                 </div>
               </div>
               <div className="col-span-3 w-full md:w-[30%]  overflow-y-scroll h-[300px] md:h-[600px]">
