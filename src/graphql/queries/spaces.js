@@ -7,6 +7,7 @@ query Spaces {
     currency
     price
     image
+    facilityType
     name
     location
     reviews {

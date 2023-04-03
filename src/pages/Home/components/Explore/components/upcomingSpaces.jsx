@@ -35,7 +35,7 @@ const UpcomingSpaces = ({ space }) => {
                 <Heart />
             </div>
         </div>
-        <h3>{space.name}</h3>
+        <h3>{space.facilityType}</h3>
         <p>{space.location}</p>
         <div>
             <div>

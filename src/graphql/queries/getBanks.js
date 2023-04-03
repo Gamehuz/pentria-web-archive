@@ -5,6 +5,7 @@ query GetBanks {
   getBanks {
     code
     name
+    id
   }
 }
 `;
