@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "../Button";
 import InputField from "../InputField";
@@ -9,8 +11,6 @@ import {
 } from "./assets/twitter.svg";
 import { ReactComponent as Youtube } from "./assets/youtube.svg";
 import styles from "./footer.module.scss";
-import React, { useState } from "react";
-import PropTypes from "prop-types"
 
 // example bg for purple background = <Footer bg={styles.bg} purple={true}/>
 // bg {
@@ -35,6 +35,7 @@ const Footer = ({ bg, purple }) => {
           <span className={styles.subscribe}>Subscribe to our Newsletter</span>
           <div className={styles.inputGroup}>
             <InputField
+              name="subscribe"
               type={"text"}
               placeholder={"Enter your email"}
               value={subscribe}
@@ -45,14 +46,14 @@ const Footer = ({ bg, purple }) => {
           <div className={styles.pageLinks}>
             <div>
               <span>About</span>
-              <Link to="aboutUs">About us</Link>
-              <Link to="blog">Blog</Link>
-              <Link to="enquiries">Contact us</Link>
+              <Link to="/aboutUs">About us</Link>
+              <Link to="/blog">Blog</Link>
+              <Link to="/enquiries">Contact us</Link>
             </div>
             <div>
               <span>Legal</span>
-              <Link to="privacy-policy">Privacy Policy</Link>
-              <Link to="termsofuse">Terms of use</Link>
+              <Link to="/privacy-policy">Privacy Policy</Link>
+              <Link to="/termsofuse">Terms of use</Link>
             </div>
             <div>
               <span>Social</span>
@@ -70,7 +71,9 @@ const Footer = ({ bg, purple }) => {
               </a>
             </div>
           </div>
-          <span>© Copyright 2023 by Gamehauz, Inc. All rights reserved.</span>
+          <p className={styles.copy}>
+            © Copyright 2023 by Gamehauz, Inc. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>
@@ -79,7 +82,7 @@ const Footer = ({ bg, purple }) => {
 
 Footer.propTypes = {
   bg: PropTypes.object.isRequired,
-  purple: PropTypes.bool.isRequired
-}
+  purple: PropTypes.bool.isRequired,
+};
 
 export default Footer;
