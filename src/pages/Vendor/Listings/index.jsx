@@ -6,10 +6,10 @@ import star from "./assets/star.svg";
 import starGray from "./assets/starGray.svg";
 import styles from "./listings.module.scss";
 
-const UserListings = () => {
+const VendorListings = () => {
   return (
     <div className={styles.userListingsPage}>
-      {/* <div className={styles.listingHeader}>
+      <div className={styles.listingHeader}>
         <div className={styles.listingHeader__balance}>
           <h1>NGN 30,000 </h1>
           <p>Available Balance</p>
@@ -17,10 +17,13 @@ const UserListings = () => {
         <div className={styles.listingHeader__withdraw}>
           <Button type="button" text="Withdraw" />
         </div>
-      </div> */}
+      </div>
       <div className={styles.createListing}>
         <h3>My Listings</h3>
-        <Link to="/user/createListing" className={styles.createListing__button}>
+        <Link
+          to="/vendor/create-listing"
+          className={styles.createListing__button}
+        >
           <img src={plusBtn} alt="" />
           <p>Create new listing</p>
         </Link>
@@ -62,4 +65,4 @@ const UserListings = () => {
   );
 };
 
-export default UserListings;
+export default VendorListings;

@@ -1,8 +1,8 @@
-import { React, useRef } from "react";
+import { useRef } from "react";
 import styles from "./Menu.module.scss";
 
-import InputField from "../../../components/InputField";
 import Button from "../../../components/Button";
+import InputField from "../../../components/InputField";
 
 import upload from "../assets/upload.svg";
 
@@ -51,7 +51,7 @@ const Menu = () => {
             Upload your ID
           </div>
         </div>
-        <Button text="save"/>
+        <Button text="save" classes="bg-[#BF4D01]" />
       </form>
     </div>
   );
