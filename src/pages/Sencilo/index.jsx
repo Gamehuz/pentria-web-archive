@@ -296,14 +296,7 @@ const Sencilo = () => {
                       marginHeight="0"
                       marginWidth="0"
                     ></iframe>
-                    {/* <a href="https://2yu.co">2yu</a>
-                    <br>
-                      <style>.mapouter{position:relative;text-align:right;height:100%;width:100%;}</style>
-                      <a href="https://embedgooglemap.2yu.co/">html embed google map</a>
-                      <style>.gmap_canvas {overflow:hidden;background:none!important;height:100%;width:100%;}</style> */}
                   </div>
-                  import {dispatch} from "@/redux/store"; import {useSelector}{" "}
-                  from "react-redux";
                 </div>
               </div>
               <div className="col-span-3 w-full md:w-[30%]  overflow-y-scroll h-[300px] md:h-[600px]">
