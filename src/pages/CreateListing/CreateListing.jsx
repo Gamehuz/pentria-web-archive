@@ -1,20 +1,20 @@
-import {React, useRef} from "react";
+import { React, useRef } from "react";
 import styles from "./CreateListing.module.scss";
 
-import InputField from "../../components/InputField";
 import Button from "../../components/Button";
+import InputField from "../../components/InputField";
 import NavbarAuth from "../../components/NavbarAuth";
 import Menu from "./Menu/Menu";
 
-import upload from "./assets/upload.svg"
+import upload from "./assets/upload.svg";
 
 const CreateListing = () => {
-    const selectFile = useRef();
+  const selectFile = useRef();
 
-    const handleSelectFile = (e) => {
-      selectFile.current.click();
-      setUploadID(e.target?.files[0]);
-    };
+  const handleSelectFile = (e) => {
+    selectFile.current.click();
+    setUploadID(e.target?.files[0]);
+  };
   return (
     <>
       <NavbarAuth />
@@ -50,8 +50,8 @@ const CreateListing = () => {
           <div className={styles.input_content_img}>
             <label htmlFor="name">Add up to 6 images</label>
             <input
-            //   onChange={handleChange}
-            //   onBlur={handleBlur}
+              //   onChange={handleChange}
+              //   onBlur={handleBlur}
               type="file"
               name="identification"
               accept="image/*"
@@ -102,8 +102,7 @@ const CreateListing = () => {
               <div className={styles.features_content}>
                 <input
                   type="checkbox"
-                  n
-                  ame="cleaningSupplies"
+                  name="cleaningSupplies"
                   id="cleaningSupplies"
                 />
                 <p>Cleaning Supplies</p>
@@ -128,8 +127,8 @@ const CreateListing = () => {
           </div>
 
           <Button text="create listing" />
-              </form>
-              <Menu />
+        </form>
+        <Menu />
       </div>
     </>
   );

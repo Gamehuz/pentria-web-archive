@@ -1,6 +1,9 @@
-import pics from "@/../public/pic.jpg";
 import Footer from "@/components/Footer";
 import InputField from "@/components/InputField";
+import IsLoadingSkeleton from "@/components/LoadingSkeleton";
+import NavbarAuth from "@/components/NavbarAuth";
+import { GetSpace } from "@/redux/features/space/service";
+import { dispatch } from "@/redux/store";
 import {
   ChevronLeftIcon,
   HeartIcon,
@@ -8,19 +11,91 @@ import {
   MapPinIcon,
 } from "@heroicons/react/24/outline";
 import { StarIcon } from "@heroicons/react/24/solid";
-import { useState } from "react";
-import { Button, Input } from "react-daisyui";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Button } from "react-daisyui";
+import { toast } from "react-hot-toast";
+import { AiOutlineCheckCircle, AiOutlineWifi } from "react-icons/ai";
+import { FaBed } from "react-icons/fa";
+import { GiShower } from "react-icons/gi";
+import { useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { addToFavorites } from "../../redux/features/space/service";
 import Container from "./Container";
 import styles from "./sencilo.module.scss";
 
 const Sencilo = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
   const [startReview, setStartReview] = useState(false);
+  const [existingActivities, setExistingActivities] = useState([]);
+
+  const { space } = useSelector((state) => state.space);
+  const { isLoading } = useSelector((state) => state.util);
+  const stripedLcn = space?.location?.replace(/\s/g, "");
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    dispatch(GetSpace(id));
+  }, [id]);
+  const addToFav = () => {
+    dispatch(addToFavorites(id));
+  };
+
+  useEffect(() => {
+    const existing = JSON.parse(localStorage.getItem("activities"));
+    if (existing) {
+      setExistingActivities(existing);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("activities", JSON.stringify(existingActivities));
+  }, [existingActivities]);
+
+  // const addActivity = (activity) => {
+  //   const existingActivity = existingActivities.find(
+  //     (act) => act.id === activity.id
+  //   );
+  //   if (existingActivity) {
+  //     setActivityExist(true);
+  //     return toast.error("Activity already added to your list");
+  //   }
+  //   const updatedActivities = [...existingActivities, activity];
+  //   localStorage.setItem("activities", JSON.stringify(updatedActivities));
+  // };
+
+  const addActivity = (activity) => {
+    const newActivities = [...existingActivities, activity];
+    setExistingActivities(newActivities);
+    toast.success("Activity added to your list");
+  };
+
+  // const removeActivity = (activity) => {
+  //   const updatedActivities = existingActivities.filter(
+  //     (act) => act.id !== activity.id
+  //   );
+  //   localStorage.setItem("activities", JSON.stringify(updatedActivities));
+  // };
+
+  const removeActivity = (activity) => {
+    const newActivities = existingActivities.filter(
+      (act) => act._id !== activity._id
+    );
+    setExistingActivities(newActivities);
+    toast.success("Activity removed from your list");
+  };
+
+  const goTobooking = () => {
+    if (!existingActivities.length)
+      return toast.error("Please add an activity to your list");
+    navigate("/booking");
+  };
+
+  if (isLoading) return <IsLoadingSkeleton />;
   return (
     <>
       <div className="bg-[#FAFAFA] font-poppins text-[#7E7E7E] mb-6">
         {/* The nav */}
-        <Container>
+        {/* <Container>
           <div className={styles.nav}>
             <Link to={"/"} className={"text-4xl text-primaryColor font-black"}>
               Pentria
@@ -40,11 +115,12 @@ const Sencilo = () => {
               </div>
             </div>
           </div>
-        </Container>
+        </Container> */}
+        <NavbarAuth />
 
         {/* the sencilo pictures */}
         <Container>
-          <div className="">
+          <div className="mt-4">
             <div className="flex items-center space-x-2 font-semibold cursor-pointer">
               <ChevronLeftIcon className="w-6 h-6" />
               <span className="">Back</span>
@@ -52,13 +128,18 @@ const Sencilo = () => {
 
             <div className="mt-10 flex justify-between">
               <div className="space-y-3">
-                <h3 className="text-2xl font-bold text-black">Gamehauz Cafe</h3>
+                <h3 className="text-2xl font-bold text-black">
+                  {space?.name !== null && space?.name !== "null"
+                    ? space?.name
+                    : "Gamehauz Cafe"}
+                </h3>
                 <div className="flex space-x-2 text-gray-500">
                   <MapPinIcon className="w-6 h-6 text-secondaryColor" />
-                  <p className="">93 Ken Saro-Wiwa Rd, GRA Port Harcourt, RI</p>
+                  <p className="">{space?.location}</p>
                 </div>
               </div>
               <Button
+                onClick={addToFav}
                 startIcon={<HeartIcon className="w-6 h-6" />}
                 className="border-secondaryColor border text-secondaryColor  bg-inherit hover:bg-secondaryColor/30"
               >
@@ -66,26 +147,12 @@ const Sencilo = () => {
               </Button>
             </div>
 
-            <div className="flex mt-12 flex-col md:flex-row gap-4 overflow-hidden">
-              <div
-                className={`col-span-7 w-[70%] h-[510px] object-cover ${styles.widthFull}`}
-              >
-                <img src={pics} className="w-full h-full object-center" />
-              </div>
-              <div className={`"col-span-3 h-full w-[30%] ${styles.widthFull}`}>
-                <div className="gap-2 h-full w-full flex md:flex-col w-full justify-between ">
-                  <div
-                    className={`h-[250px] object-contain ${styles.widthFull}`}
-                  >
-                    <img src={pics} className="h-full w-full" />
-                  </div>
-                  <div
-                    className={`h-[250px] object-contain ${styles.widthFull}`}
-                  >
-                    <img src={pics} className="h-full w-full" />
-                  </div>
+            <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-3">
+              {space?.image?.map((pic, index) => (
+                <div key={index} className="aspect-w-1 aspect-h-1 w-full">
+                  <img src={pic} className="w-full h-full object-cover" />
                 </div>
-              </div>
+              ))}
             </div>
 
             <div className={`flex flex-col md:flex-row gap-4 mt-6 mb-12`}>
@@ -94,35 +161,35 @@ const Sencilo = () => {
                   <p className="text-[16px]">Facility Type</p>
                   <div className="flex items-center space-x-2">
                     <HomeIcon className="w-6 h-6" />
-                    <p className="">Gaming Center</p>
+                    <p className="">{space?.facilityType}</p>
                   </div>
                 </div>
                 <div className="w-fit mr-4 text-center">
-                  <p>Facility Type</p>
+                  <p>Beds</p>
                   <div className="flex items-center space-x-2">
-                    <HomeIcon className="w-6 h-6" />
-                    <p className="">Gaming Center</p>
+                    <FaBed className="w-6 h-6" />
+                    <p className="">{space?.beds}</p>
                   </div>
                 </div>
                 <div className="w-fit mr-4 text-center">
-                  <p>Facility Type</p>
+                  <p>Restroom</p>
                   <div className="flex items-center space-x-2">
-                    <HomeIcon className="w-6 h-6" />
-                    <p className="">Gaming Center</p>
+                    <GiShower className="w-6 h-6" />
+                    <p className="">{space?.restroom}</p>
                   </div>
                 </div>
                 <div className="w-fit mr-4 text-center">
-                  <p>Facility Type</p>
+                  <p>Wifi</p>
                   <div className="flex items-center space-x-2">
-                    <HomeIcon className="w-6 h-6" />
-                    <p className="">Gaming Center</p>
+                    <AiOutlineWifi className="w-6 h-6" />
+                    <p className="">{`${space?.wifi}`}</p>
                   </div>
                 </div>
                 <div className="w-fit text-center">
-                  <p>Facility Type</p>
+                  <p>Packing</p>
                   <div className="flex items-center space-x-2">
-                    <HomeIcon className="w-6 h-6" />
-                    <p className="">Gaming Center</p>
+                    <AiOutlineCheckCircle className="w-6 h-6" />
+                    <p className="">{`${space?.parking}`}</p>
                   </div>
                 </div>
               </div>
@@ -142,126 +209,69 @@ const Sencilo = () => {
             <div className={styles["sencilo__desc_menu-container"]}>
               <div className="col-span-7">
                 <p className="text-xl font-medium text-black">Description</p>
-                <p className="mt-4 text-[16px]">
-                  Located at one of the hottest spots in the Garden City, the
-                  Gamehauz Cafe is everything you can dream of when it comes to
-                  indoor gaming and recreation. <br></br>
-                  <br />
-                  With direct access to the center of the city, Gamehauz Cafe is
-                  home to fun lovers of all ages and sizes, looking for a
-                  beautiful escape into the land of Fantasia. <br></br>
-                  <br />
-                  Ranging from video games to board games such as chess,
-                  monopoly, and sccrabble, our cafe provides a perfect hangout
-                  spot with friends and loved ones. Take a virtual escape into
-                  LALA Land with our VR gaming apparatus. This space was created
-                  to enable retreats, romantic getaways, family gatherings, work
-                  breaks and other individual and group activities n mind.{" "}
-                  <br></br>
-                  <br />
-                  With its minimalist all-white design, lush lawns, tall palms
-                  and a private lounge overlooking the beautiful crystal-clear
-                  pool, Gaamehauz Cafe is undoubtedly one of the foremost luxury
-                  gaming and recreation centers in Rivers State, Nigeria.{" "}
-                  <br></br>
-                  <br />
-                </p>
+                <p className="mt-4 text-[16px]">{space?.description}</p>
 
                 <p className="text-xl font-medium">Guidelines/Policy</p>
                 <ul className="mt-4 space-y-5 text-[16px]">
-                  <li className="">No pets allowed</li>
-                  <li className="">
-                    Please confirm your payment with the cashier upon arrival
-                  </li>
-                  <li className="">
-                    No wrong parking. Kindly follow the instructions of the
-                    parking lot attendant
-                  </li>
-                  <li className="">
-                    No dumping of refuse indiscriminately. Please use the
-                    nearest trash can, thanks.
-                  </li>
-                  <li className="">
-                    If you must buy food and drinks from outside, please
-                    endeavor to ensure its quality before consumption.
-                  </li>
-                  <li className="">
-                    After playing a game or using a facility, kindly leave as it
-                    were.
-                  </li>
-                  <li className="">
-                    We also have a workspace. If you need to use our conference
-                    room, kindly select from the Pentria menu and book online.
-                  </li>
-                  <li className="">No noisy /farting lol</li>
-                  <li className="">What else, just behave yourself abeg.</li>
-                  <li className="">
-                    Thanks for your patronage. See you next time.
-                  </li>
+                  <li className="">{space?.policies}</li>
                 </ul>
               </div>
-              <div className="col-span-3  ">
+              <div className="col-span-3">
                 <p className="text-xl font-medium text-black">MENU</p>
                 <div className="mt-4 bg-white rounded-xl py-6 px-[0px] space-y-8 md:px-[1.5rem]">
-                  <div className="grid grid-cols-2 gap-6 shadow-xl">
-                    <img src={pics} className="h-full object-cover" />
-                    <div className="w-full space-y-3 pb-2">
-                      <h2 className="text-2xl font-black text-secondaryColor">
-                        ₦480
-                        <p className="text-base inline text-grayColor">/hr</p>
-                      </h2>
-                      <p className="text-lg font-bold">CHESS </p>
-                      <Button className="px-8 bg-primaryColor hover:bg-primaryColor/90 text-white font-bold rounded-none">
-                        Add
+                  {space?.activities?.length > 0 ? (
+                    <>
+                      {space?.activities?.map((act, index) => (
+                        <div
+                          className="grid grid-cols-2 gap-6 shadow-xl"
+                          key={index}
+                        >
+                          <div className="col-span-1 w-[150px] h-[200px]">
+                            <img
+                              src={act?.image}
+                              className="h-full w-full object-cover"
+                            />
+                          </div>
+                          <div className="w-full space-y-3 pb-2">
+                            <h2 className="text-2xl font-black text-secondaryColor">
+                              {act?.currency} {act?.price}
+                              <p className="text-base inline text-grayColor">
+                                /{act?.duration}
+                              </p>
+                            </h2>
+                            <p className="text-lg font-bold">{act?.name} </p>
+                            {existingActivities.find(
+                              (a) => a._id === act._id
+                            ) ? (
+                              <Button
+                                onClick={() => removeActivity(act)}
+                                className="px-8 bg-[#BF4D01] hover:bg-primaryColor/90 text-white font-bold rounded-none"
+                              >
+                                Remove
+                              </Button>
+                            ) : (
+                              <Button
+                                onClick={() => addActivity(act)}
+                                className="px-8 bg-primaryColor hover:bg-primaryColor/90 text-white font-bold rounded-none"
+                              >
+                                Add
+                              </Button>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                      <Button
+                        onClick={goTobooking}
+                        className="w-full bg-primaryColor text-white font-semibold !mt-12 hover:bg-primaryColor/80"
+                      >
+                        Proceed
                       </Button>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-6 shadow-xl">
-                    <img src={pics} className="h-full object-cover" />
-                    <div className="w-full space-y-3 pb-2">
-                      <h2 className="text-2xl font-black text-secondaryColor">
-                        ₦480
-                        <p className="text-base inline text-grayColor">/hr</p>
-                      </h2>
-                      <p className="text-lg font-bold">CHESS </p>
-                      <Button className="px-8 bg-primaryColor hover:bg-primaryColor/90 text-white font-bold rounded-none">
-                        Add
-                      </Button>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-6 shadow-xl">
-                    <img src={pics} className="h-full object-cover" />
-                    <div className="w-full space-y-3 pb-2">
-                      <h2 className="text-2xl font-black text-secondaryColor">
-                        ₦480
-                        <p className="text-base inline text-grayColor">/hr</p>
-                      </h2>
-                      <p className="text-lg font-bold">CHESS </p>
-                      <Button className="px-8 bg-primaryColor hover:bg-primaryColor/90 text-white font-bold rounded-none">
-                        Add
-                      </Button>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-6 shadow-xl">
-                    <img src={pics} className="h-full object-cover" />
-                    <div className="w-full space-y-3 pb-2">
-                      <h2 className="text-2xl font-black text-secondaryColor">
-                        ₦480
-                        <p className="text-base inline text-grayColor">/hr</p>
-                      </h2>
-                      <p className="text-lg font-bold">CHESS </p>
-                      <Button className="px-8 bg-primaryColor hover:bg-primaryColor/90 text-white font-bold rounded-none">
-                        Add
-                      </Button>
-                    </div>
-                  </div>
-
-                  <Button className="w-full bg-primaryColor text-white font-semibold !mt-12 hover:bg-primaryColor/80">
-                    Proceed
-                  </Button>
+                    </>
+                  ) : (
+                    <p className="text-xl font-medium">
+                      No Menu for this space
+                    </p>
+                  )}
                 </div>
               </div>
             </div>
@@ -277,17 +287,12 @@ const Sencilo = () => {
                       width="100%"
                       height="100%"
                       id="gmap_canvas"
-                      src="https://maps.google.com/maps?q=porthacourt&t=k&z=10&ie=UTF8&iwloc=&output=embed"
+                      src={`https://maps.google.com/maps?q=${stripedLcn}&t=k&z=10&ie=UTF8&iwloc=&output=embed`}
                       frameBorder="0"
                       scrolling="no"
                       marginHeight="0"
                       marginWidth="0"
                     ></iframe>
-                    {/* <a href="https://2yu.co">2yu</a>
-                    <br>
-                      <style>.mapouter{position:relative;text-align:right;height:100%;width:100%;}</style>
-                      <a href="https://embedgooglemap.2yu.co/">html embed google map</a>
-                      <style>.gmap_canvas {overflow:hidden;background:none!important;height:100%;width:100%;}</style> */}
                   </div>
                 </div>
               </div>
@@ -315,26 +320,33 @@ const Sencilo = () => {
                   </form>
                 )}
                 <div className="flex flex-wrap">
-                  <div className="flex flex-col">
-                    <p className="text-[#3E2180] mt-4">
-                      Amazing place, my first experience was great!
-                    </p>
-                    <div className="flex mt-4">
-                      <div className="flex text-primaryColor items-center">
-                        <StarIcon className="w-[20px]" />
-                        <StarIcon className="w-[20px]" />
-                        <StarIcon className="w-[20px]" />
-                        <StarIcon className="w-[20px]" />
-                        <StarIcon className="w-[20px] text-[#C4C4C4]" />
+                  {space?.reviews?.map((review, index) => (
+                    <div className="flex flex-col" key={index}>
+                      <p className="text-[#3E2180] mt-4">{review?.comment}</p>
+                      <div className="flex mt-4">
+                        <div className="flex text-primaryColor items-center">
+                          {review?.rating &&
+                            [...Array(review?.rating)].map((_, i) => (
+                              <StarIcon className="w-[20px]" key={i} />
+                            ))}
+                          {review?.rating &&
+                            [...Array(5 - review.rating)].map((_, i) => (
+                              <StarIcon
+                                className="w-[20px] text-[#C4C4C4]"
+                                key={i}
+                              />
+                            ))}
+                        </div>
+                        <p className="text-[16px] ml-2 font-medium">
+                          {review?.rating} Ratings
+                        </p>
                       </div>
-                      <p className="text-[16px] ml-2 font-medium">
-                        4.0 Ratings{" "}
-                      </p>
+
+                      <h1 className="text-[16px] mt-4  text-[#BF4D01] font-medium">
+                        {review?.user?.name}
+                      </h1>
                     </div>
-                    <h1 className="text-[16px] mt-4  text-[#BF4D01] font-medium">
-                      John Doe
-                    </h1>
-                  </div>
+                  ))}
                 </div>
               </div>
             </div>

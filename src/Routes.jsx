@@ -1,6 +1,6 @@
 import { Route, Routes as Switch } from "react-router-dom";
-import UserLayout from "./Layouts/User";
 import { Authenticated, RequireToken } from "./auth";
+import UserLayout from "./Layouts/User";
 import Aboutus from "./pages/AboutUs";
 import AdminSettings from "./pages/AdminSettings";
 import AdminTicket from "./pages/AdminTicket";
@@ -20,8 +20,8 @@ import PromptPage from "./pages/PromptPage";
 import Receipt from "./pages/Receipt";
 import Sencilo from "./pages/Sencilo";
 import UserDashboard from "./pages/UserDashboard";
+import VendorDashboard from "./pages/Vendor";
 import VendorSignup from "./pages/VendorSIgnUp";
-import VendorSettings from "./pages/VendorSettings";
 
 // jsdoc
 /**
@@ -43,23 +43,35 @@ const Routes = () => {
       </Route>
       <Route path="/payment" element={<Payment />} />
       <Route path="/receipt" element={<Receipt />} />
-      <Route
-        exact
-        path="/booking"
-        element={
-          <UserLayout>
-            <BookingPage />
-          </UserLayout>
-        }
-      />
       <Route exact path="/blog" element={<BlogPage />} />
       <Route exact path="/enquiries" element={<Enquiries />} />
       <Route exact path="/partners" element={<Partners />} />
-      <Route exact path="/sencilo" element={<Sencilo />} />
+      <Route exact path="/sencilo/:id" element={<Sencilo />} />
+      {/* for Authenticated users */}
       <Route element={<RequireToken />}>
         <Route path="/history/guest" element={<HistoryGuest />} />
-        <Route path="vendor/settings" element={<VendorSettings />} />
-        <Route exact path="/user/createListing" element={<CreateListing />} />
+        <Route
+          exact
+          path="/booking"
+          element={
+            <UserLayout>
+              <BookingPage />
+            </UserLayout>
+          }
+        />
+        <Route
+          path="/vendor/dashboard"
+          element={
+            <UserLayout>
+              <VendorDashboard />
+            </UserLayout>
+          }
+        />
+        <Route
+          exact
+          path="/vendor/create-listing"
+          element={<CreateListing />}
+        />
         <Route exact path="/admin/settings" element={<AdminSettings />} />
         <Route exact path="/admin/ticket" element={<AdminTicket />} />
         <Route

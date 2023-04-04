@@ -1,0 +1,180 @@
+.userSidebar {
+  width: 100%;
+  display: flex;
+  position: relative;
+  .rightChild {
+    overflow-y: scroll;
+    height: 100vh;
+    width: 100%;
+    background: #f5f5f5;
+  }
+  .rightChild::-webkit-scrollbar {
+    width: 0px;
+  }
+
+  .userSidebar_header {
+    height: calc(100vh - 80px) !important;
+    width: 280px !important;
+    border-right: 0.5px solid #dfdede;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem 0 0rem 0;
+    // the header log and close button
+    .userSidebar_header_logo_vs_closeIcon {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      padding: 0 1rem;
+      .logo {
+        width: 150px;
+      }
+      .SidebarcloseIcon {
+        cursor: pointer;
+        display: none;
+        width: 20px;
+      }
+      h1 {
+        letter-spacing: -1px;
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 30px;
+        line-height: 33px;
+      }
+    }
+
+    .logoLink {
+      display: flex;
+      text-decoration: none;
+      cursor: pointer;
+      p {
+        font-size: 38px;
+        font-weight: 600;
+        line-height: 26px;
+        color: #6a6a6a;
+        margin-left: 1rem;
+      }
+    }
+
+    .navLinks {
+      margin-top: 2rem;
+      width: 100%;
+      .navLink {
+        display: flex;
+        text-decoration: none;
+        padding: 10px 40px;
+        align-items: center;
+        margin-bottom: 1rem;
+        img {
+          width: 20px;
+          margin-right: 1rem;
+        }
+        cursor: pointer;
+        p {
+          font-weight: 600;
+          font-size: 16px;
+          line-height: 26px;
+          color: #222222;
+        }
+      }
+      .active {
+        // background: #f5f5f5;
+        // border-right: 4px solid #f5f5f5;
+        // color: var(--tertiary-color);
+        p {
+          color: var(--tertiary-color);
+        }
+      }
+      .inActive {
+        // background: #f5f5f5;
+        // border-right: 4px solid #f5f5f5;
+        // color: var(--tertiary-color);
+        p {
+          color: #222222;
+        }
+      }
+    }
+    .userSidebar__bottom {
+      // padding: 0 1rem;
+      // display: none;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  .needSearchMobile {
+    display: none;
+  }
+  .needSearchDesktop {
+    display: block !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .userSidebar_header {
+    position: absolute;
+    top: 0;
+    left: -18em;
+    z-index: 5;
+    transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    //header side
+    .userSidebar_header_logo_vs_closeIcon {
+      .logo {
+        width: 100px;
+      }
+      .SidebarcloseIcon {
+        display: block !important;
+      }
+    }
+  }
+  .showSidebar .userSidebar_header {
+    left: 0 !important;
+  }
+  .needSearchMobile {
+    display: block !important;
+  }
+  .userSidebar__bottom {
+    display: block !important;
+  }
+}
+
+// @media screen and (min-width: 768px) and (max-width: 960px) {
+//   .userSidebar_header {
+//     position: absolute;
+//     top: 0;
+//     left: -18em;
+//     z-index: 5;
+//     transition: all 0.3s ease-in-out;
+//     -webkit-transition: all 0.3s ease-in-out;
+//     -moz-transition: all 0.3s ease-in-out;
+//     -ms-transition: all 0.3s ease-in-out;
+//     -o-transition: all 0.3s ease-in-out;
+//     .userSidebar_header_userInput {
+//       display: block !important;
+//     }
+//     //header side
+//     .userSidebar_header_logo_vs_closeIcon {
+//       .logo {
+//         width: 100px;
+//       }
+//       .SidebarcloseIcon {
+//         display: block !important;
+//       }
+//     }
+//   }
+//   .showSidebar .userSidebar_header {
+//     left: 0;
+//   }
+
+//   .userSidebar__bottom {
+//     display: block !important;
+//   }
+// }

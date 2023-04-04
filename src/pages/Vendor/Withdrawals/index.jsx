@@ -1,7 +1,7 @@
 import Button from "@/components/Button";
 import HistoryTable from "../../../components/HistoryTable";
 import styles from "./withdraw.module.scss";
-const UserWithdrawals = () => {
+const VendorWithdrawals = () => {
   const firstTitle = ["Bank", "Acct Name", "Acct No"];
   const secondTitle = ["Amount", "Date", "Status"];
   const firstData = [
@@ -67,4 +67,4 @@ const UserWithdrawals = () => {
   );
 };
 
-export default UserWithdrawals;
+export default VendorWithdrawals;

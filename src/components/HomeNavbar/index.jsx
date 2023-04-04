@@ -7,7 +7,8 @@ import styles from "./homenav.module.scss";
 
 const HomeNavbar = ({ bg }) => {
   const [toggleNav, setToggleNav] = React.useState(false);
-  const { token } = useSelector((state) => state.user);
+  const { token, user } = useSelector((state) => state.user);
+  const userType = user?.accountType;
   return (
     <div
       className={`${toggleNav ? styles.activeHomeNav : ""} ${
@@ -34,9 +35,25 @@ const HomeNavbar = ({ bg }) => {
         </ul>
         <div className={styles.homeNavbar_btn}>
           {token ? (
-            <div className={styles.homeNavbar_dashboard}>
-              <Link to="/user/dashboard">DASHBOARD</Link>
-            </div>
+            <>
+              {userType === "GUEST" ? (
+                <div className={styles.homeNavbar_dashboard}>
+                  <Link to="/user/dashboard">DASHBOARD</Link>
+                </div>
+              ) : (
+                <>
+                  {userType === "VENDOR" ? (
+                    <div className={styles.homeNavbar_dashboard}>
+                      <Link to="/vendor/dashboard">DASHBOARD</Link>
+                    </div>
+                  ) : (
+                    <div className={styles.homeNavbar_dashboard}>
+                      <Link to="/admin/dashboard">DASHBOARD</Link>
+                    </div>
+                  )}
+                </>
+              )}
+            </>
           ) : (
             <>
               <div className={styles.homeNavbar_login}>

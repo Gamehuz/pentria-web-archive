@@ -1,11 +1,12 @@
 /* eslint-disable react/prop-types */
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import "./button.scss";
 
-const Button = ({ classes, text, onClick, type }) => {
+const Button = ({ classes, text, to, onClick, type }) => {
   return (
     <div className={`button ${classes}`} onClick={onClick}>
-      <button type={type}>{text}</button>
+      {type ? <button type={type}>{text}</button> : <Link to={to}>{text}</Link>}
     </div>
   );
 };
@@ -14,7 +15,7 @@ Button.propTypes = {
   text: PropTypes.string.isRequired,
   bg: PropTypes.string,
   onClick: PropTypes.func,
-  type: PropTypes.string
-}
+  type: PropTypes.string,
+};
 
 export default Button;

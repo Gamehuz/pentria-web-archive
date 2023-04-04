@@ -1,13 +1,11 @@
 import { gql } from "@apollo/client";
 
-export const GET_SPACES = gql`
-  query {
-    spaces {
-      _id
-      image
+// export const GET_SPACE = gql`
+
+export const GET_SPACE = gql`
+  query getSpace($spaceId: ID!) {
+    space(spaceId: $spaceId) {
       ac
-      price
-      currency
       activities {
         _id
         currency
@@ -16,38 +14,34 @@ export const GET_SPACES = gql`
         name
         price
       }
-      approved
-      author {
-        _id
-        accountType
-        acctNumber
-      }
+      location
       beds
       category
       cleaningSupplies
-      createdAt
+      currency
       description
       facilityType
+      image
       kidFriendly
       kitchen
-      location
       name
       outdoorSpace
       parking
       petFriendly
       policies
       pool
+      price
       reviews {
         _id
         comment
-        rating
         createdAt
+        rating
         user
       }
-      updatedAt
       videoGames
       wifi
       workspace
+      _id
     }
   }
 `;
