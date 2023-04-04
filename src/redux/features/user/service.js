@@ -6,6 +6,7 @@ import LOGIN_USER from "../../../graphql/mutations/login";
 import { SIGNUP_GUEST, SIGNUP_VENDOR } from "../../../graphql/mutations/signup";
 import UPDATE_PASSWORD from "../../../graphql/mutations/updatePassword";
 import VERIFY_BANKS from "../../../graphql/mutations/verifyBanks";
+import CUSTOMER_BOOKINGS from "../../../graphql/queries/customerbookings";
 import GET_BANKS from "../../../graphql/queries/getBanks";
 import ALL_SPACES from "../../../graphql/queries/spaces";
 import USER from "../../../graphql/queries/userdetails";
@@ -238,5 +239,19 @@ export const handleEditWalletInfo = (values) => async () => {
     dispatch(setLoading(false));
     dispatch(setError(error.message));
     toast.error(error.message);
+  }
+}
+
+export const customerBookings = async (customerID) => {
+  try {
+    const result = await appolloClient.query({
+      query: CUSTOMER_BOOKINGS,
+      variables: {
+        customerId: customerID
+      }
+    })
+    return result.data
+  } catch (error) {
+    dispatch(setError(error.message))
   }
 }

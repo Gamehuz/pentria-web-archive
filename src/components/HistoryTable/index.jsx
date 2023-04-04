@@ -25,8 +25,8 @@ const HistoryTable = ({
               return (
                 <div key={index} className={styles.item}>
                   {includeSn && <p>{index + 1}</p>}
-                  <p>{data.name1}</p>
-                  <p>{data.name2}</p>
+                  <p>Date booked</p>
+                  <p>{data.total}</p>
                   {data.name3 && <p>{data.name3}</p>}
                 </div>
               );
@@ -43,9 +43,9 @@ const HistoryTable = ({
             {secondTableData.map((data, index) => {
               return (
                 <div key={index} className={styles.item}>
-                  <p>{data.name1}</p>
-                  <p>{data.name2}</p>
-                  {data.name3 && <p>{data.name3}</p>}
+                  <p>Pleasure Park</p>
+                  <p>{data.tx_ref}</p>
+                  {data.payment && <p>{data.payment}</p>}
                 </div>
               );
             })}
