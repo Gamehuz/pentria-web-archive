@@ -1,6 +1,7 @@
 import { dispatch } from "@/redux/store";
 import { toast } from "react-hot-toast";
 import appolloClient from "../../../graphql";
+import ADD_TO_FAVORITES from "../../../graphql/mutations/addToFavorites";
 import { GET_SPACE } from "../../../graphql/queries/space";
 import { setLoading } from "../../utils/UtilSlice";
 import { setSpace } from "./spaceSlice";
@@ -25,4 +26,24 @@ const GetSpace = (id) => async () => {
   }
 };
 
-export { GetSpace };
+const addToFavorites = (id) => async () => {
+  dispatch(setLoading(true));
+  try {
+    const result = await appolloClient.mutate({
+      mutation: ADD_TO_FAVORITES,
+      variables: {
+        spaceId: id,
+      },
+    });
+    dispatch(setLoading(false));
+    toast.success(`${result.data?.addToFavorites?.message} added to favorites`);
+    return result.data;
+  } catch (error) {
+    console.log(error.message);
+    dispatch(setLoading(false));
+    // dispatch(setError(error.response?.data));
+    toast.error(error.message);
+  }
+};
+
+export { GetSpace, addToFavorites };
