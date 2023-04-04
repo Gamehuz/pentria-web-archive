@@ -36,12 +36,11 @@ const addToFavorites = (id) => async () => {
       },
     });
     dispatch(setLoading(false));
-    toast.success(`${result.data?.addToFavorites?.message} added to favorites`);
+    toast.success(`space added to favorites`);
     return result.data;
   } catch (error) {
     console.log(error.message);
     dispatch(setLoading(false));
-    // dispatch(setError(error.response?.data));
     toast.error(error.message);
   }
 };
