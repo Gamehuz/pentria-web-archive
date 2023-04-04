@@ -13,23 +13,83 @@ import {
 import { StarIcon } from "@heroicons/react/24/solid";
 import { useEffect, useState } from "react";
 import { Button } from "react-daisyui";
+import { toast } from "react-hot-toast";
 import { AiOutlineCheckCircle, AiOutlineWifi } from "react-icons/ai";
 import { FaBed } from "react-icons/fa";
 import { GiShower } from "react-icons/gi";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { addToFavorites } from "../../redux/features/space/service";
 import Container from "./Container";
 import styles from "./sencilo.module.scss";
 
 const Sencilo = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [startReview, setStartReview] = useState(false);
+  const [existingActivities, setExistingActivities] = useState([]);
+
   const { space } = useSelector((state) => state.space);
   const { isLoading } = useSelector((state) => state.util);
   const stripedLcn = space?.location?.replace(/\s/g, "");
   useEffect(() => {
+    window.scrollTo(0, 0);
     dispatch(GetSpace(id));
   }, [id]);
+  const addToFav = () => {
+    dispatch(addToFavorites(id));
+  };
+
+  useEffect(() => {
+    const existing = JSON.parse(localStorage.getItem("activities"));
+    if (existing) {
+      setExistingActivities(existing);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("activities", JSON.stringify(existingActivities));
+  }, [existingActivities]);
+
+  // const addActivity = (activity) => {
+  //   const existingActivity = existingActivities.find(
+  //     (act) => act.id === activity.id
+  //   );
+  //   if (existingActivity) {
+  //     setActivityExist(true);
+  //     return toast.error("Activity already added to your list");
+  //   }
+  //   const updatedActivities = [...existingActivities, activity];
+  //   localStorage.setItem("activities", JSON.stringify(updatedActivities));
+  // };
+
+  const addActivity = (activity) => {
+    const newActivities = [...existingActivities, activity];
+    setExistingActivities(newActivities);
+    toast.success("Activity added to your list");
+  };
+
+  // const removeActivity = (activity) => {
+  //   const updatedActivities = existingActivities.filter(
+  //     (act) => act.id !== activity.id
+  //   );
+  //   localStorage.setItem("activities", JSON.stringify(updatedActivities));
+  // };
+
+  const removeActivity = (activity) => {
+    const newActivities = existingActivities.filter(
+      (act) => act._id !== activity._id
+    );
+    setExistingActivities(newActivities);
+    toast.success("Activity removed from your list");
+  };
+
+  const goTobooking = () => {
+    if (!existingActivities.length)
+      return toast.error("Please add an activity to your list");
+    navigate("/booking");
+  };
+
   if (isLoading) return <IsLoadingSkeleton />;
   return (
     <>
@@ -79,6 +139,7 @@ const Sencilo = () => {
                 </div>
               </div>
               <Button
+                onClick={addToFav}
                 startIcon={<HeartIcon className="w-6 h-6" />}
                 className="border-secondaryColor border text-secondaryColor  bg-inherit hover:bg-secondaryColor/30"
               >
@@ -158,7 +219,7 @@ const Sencilo = () => {
               <div className="col-span-3">
                 <p className="text-xl font-medium text-black">MENU</p>
                 <div className="mt-4 bg-white rounded-xl py-6 px-[0px] space-y-8 md:px-[1.5rem]">
-                  {space?.menu?.length > 0 ? (
+                  {space?.activities?.length > 0 ? (
                     <>
                       {space?.activities?.map((act, index) => (
                         <div
@@ -179,13 +240,30 @@ const Sencilo = () => {
                               </p>
                             </h2>
                             <p className="text-lg font-bold">{act?.name} </p>
-                            <Button className="px-8 bg-primaryColor hover:bg-primaryColor/90 text-white font-bold rounded-none">
-                              Add
-                            </Button>
+                            {existingActivities.find(
+                              (a) => a._id === act._id
+                            ) ? (
+                              <Button
+                                onClick={() => removeActivity(act)}
+                                className="px-8 bg-[#BF4D01] hover:bg-primaryColor/90 text-white font-bold rounded-none"
+                              >
+                                Remove
+                              </Button>
+                            ) : (
+                              <Button
+                                onClick={() => addActivity(act)}
+                                className="px-8 bg-primaryColor hover:bg-primaryColor/90 text-white font-bold rounded-none"
+                              >
+                                Add
+                              </Button>
+                            )}
                           </div>
                         </div>
                       ))}
-                      <Button className="w-full bg-primaryColor text-white font-semibold !mt-12 hover:bg-primaryColor/80">
+                      <Button
+                        onClick={goTobooking}
+                        className="w-full bg-primaryColor text-white font-semibold !mt-12 hover:bg-primaryColor/80"
+                      >
                         Proceed
                       </Button>
                     </>
