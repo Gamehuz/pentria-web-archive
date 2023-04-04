@@ -1,10 +1,11 @@
+import { dispatch } from "@/redux/store";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import InputField from "../../components/InputField";
 import Nav from "../../components/Nav";
-import { loginUser } from "../../redux/features/user/service";
+import { loginUser, userData } from "../../redux/features/user/service";
 import styles from "./login.module.scss";
 
 const LoginPage = () => {
@@ -35,6 +36,7 @@ const LoginPage = () => {
     };
     const res = await loginUser(values)();
     if (res) {
+      dispatch(userData());
       navigate("/");
     }
   };
