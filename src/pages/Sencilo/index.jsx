@@ -158,34 +158,42 @@ const Sencilo = () => {
               <div className="col-span-3">
                 <p className="text-xl font-medium text-black">MENU</p>
                 <div className="mt-4 bg-white rounded-xl py-6 px-[0px] space-y-8 md:px-[1.5rem]">
-                  {space?.activities?.map((act, index) => (
-                    <div
-                      className="grid grid-cols-2 gap-6 shadow-xl"
-                      key={index}
-                    >
-                      <div className="col-span-1 w-[150px] h-[200px]">
-                        <img
-                          src={act?.image}
-                          className="h-full w-full object-cover"
-                        />
-                      </div>
-                      <div className="w-full space-y-3 pb-2">
-                        <h2 className="text-2xl font-black text-secondaryColor">
-                          {act?.currency} {act?.price}
-                          <p className="text-base inline text-grayColor">
-                            /{act?.duration}
-                          </p>
-                        </h2>
-                        <p className="text-lg font-bold">{act?.name} </p>
-                        <Button className="px-8 bg-primaryColor hover:bg-primaryColor/90 text-white font-bold rounded-none">
-                          Add
-                        </Button>
-                      </div>
-                    </div>
-                  ))}
-                  <Button className="w-full bg-primaryColor text-white font-semibold !mt-12 hover:bg-primaryColor/80">
-                    Proceed
-                  </Button>
+                  {space?.menu?.length > 0 ? (
+                    <>
+                      {space?.activities?.map((act, index) => (
+                        <div
+                          className="grid grid-cols-2 gap-6 shadow-xl"
+                          key={index}
+                        >
+                          <div className="col-span-1 w-[150px] h-[200px]">
+                            <img
+                              src={act?.image}
+                              className="h-full w-full object-cover"
+                            />
+                          </div>
+                          <div className="w-full space-y-3 pb-2">
+                            <h2 className="text-2xl font-black text-secondaryColor">
+                              {act?.currency} {act?.price}
+                              <p className="text-base inline text-grayColor">
+                                /{act?.duration}
+                              </p>
+                            </h2>
+                            <p className="text-lg font-bold">{act?.name} </p>
+                            <Button className="px-8 bg-primaryColor hover:bg-primaryColor/90 text-white font-bold rounded-none">
+                              Add
+                            </Button>
+                          </div>
+                        </div>
+                      ))}
+                      <Button className="w-full bg-primaryColor text-white font-semibold !mt-12 hover:bg-primaryColor/80">
+                        Proceed
+                      </Button>
+                    </>
+                  ) : (
+                    <p className="text-xl font-medium">
+                      No Menu for this space
+                    </p>
+                  )}
                 </div>
               </div>
             </div>
