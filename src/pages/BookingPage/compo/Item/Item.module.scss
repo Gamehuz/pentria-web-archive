@@ -3,6 +3,7 @@
 
 .Item {
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
   justify-content: space-between;
   margin: 1em 0;

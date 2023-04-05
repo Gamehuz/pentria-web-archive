@@ -1,11 +1,10 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from "react";
-import Rectangle from "../../assets/Rectangle 69.png";
 import DatePicker from "../DatePicker";
 import TimePicker from "../TimePicker";
 import styles from "./Item.module.scss";
 
-const Item = ({ onItemDataChange }) => {
+const Item = ({ onItemDataChange, item }) => {
   const [dateSelected, setDateSelected] = useState();
   const [timeSelected, setTimeSelected] = useState();
   const [numOfTickets, setNumOfTickets] = useState(1);
@@ -40,13 +39,18 @@ const Item = ({ onItemDataChange }) => {
         <h3>Item</h3>
         <div className={styles.item_text}>
           <div className={styles.item_imgWrap}>
-            <img src={Rectangle} alt="" />
+            <img src={item?.image} alt="" />
           </div>
           <div className={styles.item_text_properties}>
             <h5>
-              ₦980<span>/hr</span>
+              {item?.currency === "NGN"
+                ? "₦"
+                : item?.currency === "USD"
+                ? "$"
+                : "£"}
+              {item?.price}/<span>{item?.duration}</span>
             </h5>
-            <p>PS5 (FIFA 23)</p>
+            <p>{item?.name}</p>
             <p>Number of Tickets</p>
             <input
               type="number"
