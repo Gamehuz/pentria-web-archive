@@ -91,8 +91,8 @@ const Sencilo = () => {
     const res = await dispatch(
       AddReview(id, reviewComment, Number(reviewRating))
     );
-    if (res) {
-      dispatch(GetSpace(id));
+    if (res.data) {
+      window.location.reload();
       setReviewComment("");
       setReviewRating(0);
       setStartReview(false);
@@ -110,7 +110,12 @@ const Sencilo = () => {
         {/* the sencilo pictures */}
         <Container>
           <div className="mt-4">
-            <div className="flex items-center space-x-2 font-semibold cursor-pointer">
+            <div
+              className="flex items-center space-x-2 font-semibold cursor-pointer"
+              onClick={() => {
+                navigate(-1);
+              }}
+            >
               <ChevronLeftIcon className="w-6 h-6" />
               <span className="">Back</span>
             </div>
@@ -325,7 +330,7 @@ const Sencilo = () => {
                     </Button>
                   </form>
                 )}
-                <div className="flex flex-wrap">
+                <div className="flex flex-col flex-wrap">
                   {space?.reviews?.map((review, index) => (
                     <div className="flex flex-col" key={index}>
                       <p className="text-[#3E2180] mt-4">{review?.comment}</p>
