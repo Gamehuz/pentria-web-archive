@@ -1,28 +1,106 @@
 import Button from "@/components/Button";
-import InputField from "@/components/InputField";
-import React, { useState } from "react";
+import { dispatch } from "@/redux/store";
+import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import {
+  CalculateDiscount,
+  CreateBooking,
+} from "../../redux/features/booking/services";
 import backArrow from "./assets/211686_back_arrow_icon 1.png";
 import styles from "./BookingPage.module.scss";
 import Item from "./compo/Item";
 
 const BookingPage = () => {
-  const [fullName, setFullName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-
-  const [dateSelected, setDateSelected] = useState();
-  const [timeSelected, setTimeSelected] = useState();
-  const [numOfTickets, setNumOfTickets] = useState(1);
-  const [duration, setDuration] = useState(1);
+  const navigate = useNavigate();
+  const activities = JSON.parse(localStorage.getItem("activities"));
   const [specialReq, setSpecialReq] = useState("");
+  const [itemsSelected, setItemsSelected] = useState([]);
+  const [total, setTotal] = useState(0);
 
-  const handleItemData = (date, time, tickets, duration) => {
-    setDateSelected(date);
-    setTimeSelected(time);
-    setNumOfTickets(tickets);
-    setDuration(duration);
-    toast.success("Item data updated");
+  const calcTotal = itemsSelected.reduce((acc, item) => {
+    return acc + item.price * item.count;
+  }, 0);
+
+  const getTotalItemLength = itemsSelected.reduce((acc, item) => {
+    return acc + item.count;
+  }, 0);
+
+  useEffect(() => {
+    setTotal(calcTotal);
+  }, [calcTotal, itemsSelected]);
+
+  const handleItemData = (date, time, numOfTickets, duration, item) => {
+    const newItem = {
+      name: item.name,
+      price: item.price,
+      currency: item.currency,
+      duration: String(duration),
+      count: Number(numOfTickets),
+      image: item.image,
+      date: date,
+      time: time,
+      spaceId: item.spaceId,
+      activityId: item._id,
+    };
+    const itemIndex = itemsSelected.findIndex(
+      (ticket) => ticket.activityId === item._id
+    );
+
+    if (itemIndex !== -1) {
+      const updatedItems = [...itemsSelected];
+      updatedItems.splice(itemIndex, 1);
+      setItemsSelected(updatedItems);
+      toast.error(`Item ${item.name} already added, now removed`);
+    } else {
+      const updatedItems = [...itemsSelected, newItem];
+      setItemsSelected(updatedItems);
+      toast.success("Ticket added");
+    }
+  };
+
+  const handleCreateBooking = async (e) => {
+    e.preventDefault();
+    if (itemsSelected.length === 0) {
+      toast.error("Please select at least one item");
+      return;
+    }
+    const calculateData = itemsSelected.map((item) => {
+      return {
+        name: item.name,
+        spaceId: item.spaceId,
+        activityId: item.activityId,
+        date: item.date,
+        time: item.time,
+        duration: item.duration,
+        price: item.price,
+        count: item.count,
+      };
+    });
+
+    const calculateDiscountRes = await dispatch(
+      CalculateDiscount(calculateData)
+    );
+    if (calculateDiscountRes.calculateDiscount) {
+      const { discountAmount, discountPercentage, initalAmount, total } =
+        calculateDiscountRes.calculateDiscount;
+      setTotal(total);
+      const bookingData = {
+        tickets: calculateData,
+        spaceId: calculateData[0].spaceId,
+        discountAmount,
+        discountPercentage,
+        initalAmount,
+        status: "Active",
+        total,
+        specialReq,
+      };
+      console.log(bookingData);
+      const bookingRes = await dispatch(CreateBooking(bookingData));
+      if (bookingRes.createBooking) {
+        window.location.href = bookingRes.createBooking.link;
+      }
+    }
   };
 
   return (
@@ -31,25 +109,24 @@ const BookingPage = () => {
         {/* <HomeNavbar bg={"#FAFAFA"} /> */}
         <main>
           <header>
-            <Link className={styles.Link} to="/results">
+            <div
+              className={styles.Link}
+              onClick={() => {
+                navigate(-1);
+              }}
+            >
               <img src={backArrow} alt="" />
               <p>Back to results</p>
-            </Link>
+            </div>
             <h2>Booking</h2>
           </header>
-          <form action=".">
-            <section className={styles.user_details}>
+          <form onSubmit={handleCreateBooking}>
+            {/* <section className={styles.user_details}>
               <div className={styles.input_text}>
                 <label htmlFor="name" className="">
                   Enter Your Full Name
                 </label>
-                {/* <input
-                  name="name"
-                  id="name"
-                  type="text"
-                  required
-                  onChange={(e) => setFullName(e.target.value)}
-                /> */}
+                
                 <InputField
                   name="name"
                   id="name"
@@ -63,13 +140,7 @@ const BookingPage = () => {
                 <label htmlFor="phoneNumber" className="">
                   Enter Your Phone Number
                 </label>
-                {/* <input
-                  name="phoneNumber"
-                  id="phoneNumber"
-                  type="text"
-                  required
-                  onChange={(e) => setPhoneNumber(e.target.value)}
-                /> */}
+                
                 <InputField
                   name="phoneNumber"
                   id="phoneNumber"
@@ -79,10 +150,14 @@ const BookingPage = () => {
                   onChange={(e) => setPhoneNumber(e.target.value)}
                 />
               </div>
-            </section>
+            </section> */}
             <section className={styles.items}>
-              {[1, 2, 3].map((item) => (
-                <Item onItemDataChange={handleItemData} key={item} />
+              {activities?.map((item) => (
+                <Item
+                  onItemDataChange={handleItemData}
+                  key={item._id}
+                  item={item}
+                />
               ))}
             </section>
 
@@ -101,16 +176,16 @@ const BookingPage = () => {
                   <div
                     className={styles.booking_details__total__subtotal__price}
                   >
-                    <p>900</p>
-                    <span>x</span>
-                    <p>1</p>
+                    <p>Tickets</p>
+                    <span>=</span>
+                    <p>{getTotalItemLength}</p>
                   </div>
                 </div>
                 <div className={styles.booking_details__total__item}>
                   <h3>Total</h3>
                   <div className={styles.booking_details__total__item__price}>
-                    <p>NGN</p>
-                    <p>0</p>
+                    <p>NGN</p> <span> </span>
+                    <p>{total}</p>
                   </div>
                 </div>
               </div>
