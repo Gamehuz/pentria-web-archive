@@ -1,12 +1,11 @@
-import React from "react"
 import styles from "./partnersandfaq.module.scss"
 import { ReactComponent as RightArrow } from "../../assets/right-arrow.svg"
 import { ReactComponent as LeftArrow } from "../../assets/left-arrow.svg"
 import curledArrow from "../../assets/curledArrow.png"
 import partnersImg from "../../assets/partnersImg.png"
+import { useNavigate } from "react-router-dom"
 
 const PartnersAndFAQ = () => {
-    // const explorables = [{}, {}, {}, {}, {}];
     const faqs = [
         {
             id: 1,
@@ -34,6 +33,12 @@ const PartnersAndFAQ = () => {
             detail: "Give me attention or face the wrath of my claws give me attention or face the wrath of my claws and pretend not to be evil cats go for world domination allways wanting food"
         }
     ];
+
+    const navigate = useNavigate()
+
+    const aboutUs = () => {
+        navigate("/about-us")
+    }
     return (
         <section className={styles.partnersAndFAQ}>
             <div>
@@ -49,7 +54,7 @@ const PartnersAndFAQ = () => {
                     <img src={curledArrow}  alt="curled arrow design"/>
                     <div className={styles.learnMore}>
                         <span></span>
-                        <p>Learn more</p>
+                        <p onClick={() => aboutUs()}>Learn more</p>
                     </div>
                 </div>
             </div>

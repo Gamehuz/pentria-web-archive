@@ -16,6 +16,3 @@ query User {
 `;
 
 export default USER;
-
-
-

@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "../Button";
 import InputField from "../InputField";
@@ -46,7 +46,7 @@ const Footer = ({ bg, purple }) => {
           <div className={styles.pageLinks}>
             <div>
               <span>About</span>
-              <Link to="/aboutUs">About us</Link>
+              <Link to="/about-us">About us</Link>
               <Link to="/blog">Blog</Link>
               <Link to="/enquiries">Contact us</Link>
             </div>

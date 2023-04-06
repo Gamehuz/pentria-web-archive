@@ -14,7 +14,7 @@ const VendorGuest = () => {
   const secondTitle = ["Vendor", "Trx ID", "Status"];
 
   useEffect(() => {
-    userData().then((data) => setUserId(data.user._id));
+    userData()().then((data) => setUserId(data.user._id));
     customerBookings(userId).then((data) => setBookings(data.customerBookings))
 
   }, [userId])

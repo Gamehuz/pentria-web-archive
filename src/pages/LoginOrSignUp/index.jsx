@@ -1,4 +1,3 @@
-import React from "react"
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import styles from "./loginorsignup.module.scss";
@@ -22,7 +21,7 @@ const LoginOrSignUp = () => {
         <Button bg={styles.login} text={"LOGIN"} onClick={() => login()}/>
         <Button bg={styles.signup} text={"SIGNUP"} onClick={() => signup()} />
         <p>Don’t wanna sign up now? You can do it later.</p>
-        <Button bg={styles.continue} text={"CONTINUE"} />
+        {/* <Button bg={styles.continue} text={"CONTINUE"} /> */}
       </article>
     </div>
   );

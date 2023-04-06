@@ -100,7 +100,7 @@ export const loginUser = (values) => async () => {
   }
 };
 
-export const userData = async () => {
+export const userData = () => async () => {
   dispatch(setLoading(true));
   try {
     const result = await appolloClient.query({
@@ -175,31 +175,31 @@ export const handleLogout = () => async () => {
     dispatch(setError(error.message));
     toast.error(error.message);
   }
-}
+};
 
 export const spaces = async () => {
   try {
     const result = await appolloClient.query({
-      query: ALL_SPACES
+      query: ALL_SPACES,
     });
-    return result.data
+    return result.data;
   } catch (error) {
-    dispatch(setError(error.message))
-    toast.error(error.message)
+    dispatch(setError(error.message));
+    toast.error(error.message);
   }
-}
+};
 
 export const getBanks = async () => {
   try {
     const result = await appolloClient.query({
-      query: GET_BANKS
-    })
-    return result.data
+      query: GET_BANKS,
+    });
+    return result.data;
   } catch (error) {
-    dispatch(setError(error.message))
-    toast.error(error.message)
+    dispatch(setError(error.message));
+    toast.error(error.message);
   }
-}
+};
 
 export const verifyBanks = (values) => async () => {
   dispatch(setLoading(true));
@@ -208,8 +208,8 @@ export const verifyBanks = (values) => async () => {
       mutation: VERIFY_BANKS,
       variables: {
         accountNumber: values.accountNumber,
-        code: values.code
-      }
+        code: values.code,
+      },
     });
     dispatch(setLoading(false));
     toast.success("Banks verified");
@@ -217,7 +217,7 @@ export const verifyBanks = (values) => async () => {
   } catch (error) {
     dispatch(setLoading(false));
     dispatch(setError(error.message));
-    toast.error(error.message)
+    toast.error(error.message);
   }
 };
 
@@ -230,7 +230,7 @@ export const handleEditWalletInfo = (values) => async () => {
         bank: values.bank,
         bName: values.accountName,
         bankCode: values.code,
-        acctNumber: values.accountNumber
+        acctNumber: values.accountNumber,
       },
     });
     dispatch(setLoading(false));

@@ -1,7 +1,7 @@
 import Button from "../../../components/Button";
 import styles from "./earnings.module.scss";
 
-const UserEarnings = () => {
+const VendorEarnings = () => {
   return (
     <div className={styles.userEarningsPage}>
       <div className={styles.earningsHeader}>
@@ -26,4 +26,4 @@ const UserEarnings = () => {
   );
 };
 
-export default UserEarnings;
+export default VendorEarnings;

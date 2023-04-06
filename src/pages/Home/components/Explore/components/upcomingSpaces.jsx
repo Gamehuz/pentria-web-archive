@@ -1,16 +1,18 @@
-import { ReactComponent as Heart } from "../assets/heart.svg"
+import { ReactComponent as Heart } from "../assets/heart.svg";
 import { ReactComponent as NoStar } from "../../../assets/no-star.svg";
 import { ReactComponent as Star } from "../../../assets/star.svg";
 import Button from '../../../../../components/Button';
-import styles from "../explore.module.scss"
-import React, { useState } from "react";
+import styles from "../explore.module.scss";
+import { useState } from "react";
 import moment from "moment"
 import { useMutation } from "@apollo/client";
 import ADD_TO_FAVORITES from "../../../../../graphql/mutations/addToFavorites";
 import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
 
 const UpcomingSpaces = ({ space }) => {
     const [favorite, setFavorite] = useState(false);
+    const navigate = useNavigate()
 
     const toggleFavorite = () => {
         setFavorite(!favorite)
@@ -25,6 +27,10 @@ const UpcomingSpaces = ({ space }) => {
             spaceId: space._id
         }
     });
+
+    const spaceSencilo = (id) => {
+        navigate(`/sencilo/${id}`)
+    }
 
     return (
         <article key={space._id}>
@@ -49,7 +55,7 @@ const UpcomingSpaces = ({ space }) => {
             <span>{spaceDate}</span>
             <p>{spaceTime}</p>
             </div>
-            <Button className={styles.button} type={'button'} text={'GET TICKET'}/>
+            <Button className={styles.button} type={'button'} text={'GET TICKET'} onClick={() => spaceSencilo(space._id)}/>
         </div>
     </article>
     )

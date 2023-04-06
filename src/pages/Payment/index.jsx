@@ -13,7 +13,7 @@ const Payment = () => {
     return (
         <div className={styles.payment}>
             <Nav />
-            <section className={styles.paymentDetails}>
++            <section className={styles.paymentDetails}>
                 <h1>Booking Details</h1>
                 <h2>PLEASURE PARK</h2>
                 <span className={styles.address}>
