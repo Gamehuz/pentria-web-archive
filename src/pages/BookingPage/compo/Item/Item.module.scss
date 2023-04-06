@@ -6,6 +6,7 @@
   flex-wrap: wrap;
   width: 100%;
   justify-content: space-between;
+  flex-direction: column;
   margin: 1em 0;
   .item_details {
     display: flex;

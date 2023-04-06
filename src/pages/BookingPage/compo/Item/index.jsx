@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from "react";
+import Button from "@/components/Button";
+import { useState } from "react";
+import { toast } from "react-hot-toast";
 import DatePicker from "../DatePicker";
 import TimePicker from "../TimePicker";
 import styles from "./Item.module.scss";
@@ -18,19 +20,34 @@ const Item = ({ onItemDataChange, item }) => {
       setDuration(value);
     }
     // Call the onItemDataChange function with the updated data
-    onItemDataChange(dateSelected, timeSelected, numOfTickets, duration);
+    // onItemDataChange(dateSelected, timeSelected, numOfTickets, duration);
   };
 
   const dayPicked = (day) => {
     setDateSelected(day);
     // Call the onItemDataChange function with the updated data
-    onItemDataChange(day, timeSelected, numOfTickets, duration);
+    // onItemDataChange(day, timeSelected, numOfTickets, duration);
   };
 
   const timePicked = (time) => {
     setTimeSelected(time);
     // Call the onItemDataChange function with the updated data
-    onItemDataChange(dateSelected, time, numOfTickets, duration);
+    // onItemDataChange(dateSelected, time, numOfTickets, duration, item);
+  };
+
+  const handleAddTicket = () => {
+    // Call the onItemDataChange function with the updated data
+    if (dateSelected && timeSelected && numOfTickets && duration) {
+      onItemDataChange(
+        dateSelected,
+        timeSelected,
+        numOfTickets,
+        duration,
+        item
+      );
+    } else {
+      toast.error("Please select appropriate date and time");
+    }
   };
 
   return (
@@ -81,6 +98,7 @@ const Item = ({ onItemDataChange, item }) => {
           </div>
         </div>
       </section>
+      <Button type="button" text="Add Ticket" onClick={handleAddTicket} />
     </div>
   );
 };

@@ -55,7 +55,7 @@ const Sencilo = () => {
   }, [existingActivities]);
 
   const addActivity = (activity) => {
-    const newActivities = [...existingActivities, activity];
+    const newActivities = [...existingActivities, { spaceId: id, ...activity }];
     setExistingActivities(newActivities);
     toast.success("Activity added to your list");
   };

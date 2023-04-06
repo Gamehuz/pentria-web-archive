@@ -1,5 +1,5 @@
 import Button from "@/components/Button";
-import React, { useState } from "react";
+import { useState } from "react";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import backArrow from "./assets/211686_back_arrow_icon 1.png";
@@ -8,22 +8,50 @@ import Item from "./compo/Item";
 
 const BookingPage = () => {
   const navigate = useNavigate();
-  const [fullName, setFullName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
   const activities = JSON.parse(localStorage.getItem("activities"));
 
   const [dateSelected, setDateSelected] = useState();
   const [timeSelected, setTimeSelected] = useState();
   const [numOfTickets, setNumOfTickets] = useState(1);
-  const [duration, setDuration] = useState(1);
+  const [durationInMin, setDurationInMin] = useState(1);
   const [specialReq, setSpecialReq] = useState("");
+  const [itemsSelected, setItemsSelected] = useState([]);
 
-  const handleItemData = (date, time, tickets, duration) => {
+  const handleItemData = (date, time, numOfTickets, duration, item) => {
     setDateSelected(date);
     setTimeSelected(time);
-    setNumOfTickets(tickets);
-    setDuration(duration);
-    toast.success("Item data updated");
+    setDurationInMin(duration);
+    const newItem = {
+      name: item.name,
+      price: item.price,
+      currency: item.currency,
+      duration: duration,
+      numOfTickets: numOfTickets,
+      image: item.image,
+      dateSelected: date,
+      timeSelected: time,
+      spaceId: item.spaceId,
+      id: item._id,
+    };
+    const itemIndex = itemsSelected.findIndex(
+      (ticket) => ticket.id === item._id
+    );
+
+    if (itemIndex !== -1) {
+      const updatedItems = [...itemsSelected];
+      updatedItems.splice(itemIndex, 1);
+      setItemsSelected(updatedItems);
+      toast.error(`Item ${item.name} already added, now removed`);
+    } else {
+      const updatedItems = [...itemsSelected, newItem];
+      setItemsSelected(updatedItems);
+      toast.success("Item data updated");
+    }
+  };
+  console.log(itemsSelected);
+
+  const handleCreateBooking = (e) => {
+    e.preventDefault();
   };
 
   return (
@@ -43,7 +71,7 @@ const BookingPage = () => {
             </div>
             <h2>Booking</h2>
           </header>
-          <form action=".">
+          <form onSubmit={handleCreateBooking}>
             {/* <section className={styles.user_details}>
               <div className={styles.input_text}>
                 <label htmlFor="name" className="">
@@ -78,7 +106,7 @@ const BookingPage = () => {
               {activities?.map((item) => (
                 <Item
                   onItemDataChange={handleItemData}
-                  key={item}
+                  key={item._id}
                   item={item}
                 />
               ))}
