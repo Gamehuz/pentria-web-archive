@@ -52,52 +52,54 @@ const Item = ({ onItemDataChange, item }) => {
 
   return (
     <div className={styles.Item}>
-      <section className={styles.item_details}>
-        <h3>Item</h3>
-        <div className={styles.item_text}>
-          <div className={styles.item_imgWrap}>
-            <img src={item?.image} alt="" />
-          </div>
-          <div className={styles.item_text_properties}>
-            <h5>
-              {item?.currency === "NGN"
-                ? "₦"
-                : item?.currency === "USD"
-                ? "$"
-                : "£"}
-              {item?.price}/<span>{item?.duration}</span>
-            </h5>
-            <p>{item?.name}</p>
-            <p>Number of Tickets</p>
-            <input
-              type="number"
-              placeholder="enter tickets number"
-              name="numberOfTickets"
-              value={numOfTickets}
-              onChange={(e) => handleChange(e)}
-            />
-          </div>
-        </div>
-      </section>
-      <section className={styles.dateWrap}>
-        <DatePicker onDayClick={(e) => dayPicked(e)} />
-        <div className={styles.dateWrap__time}>
-          <TimePicker onTimeClick={(e) => timePicked(e)} />
-          <div className={styles.dateWrap__time__duration}>
-            <h3>Duration</h3>
-            <div className={styles.dateWrap__time__duration__input}>
+      <div className={styles.item_wrap}>
+        <section className={styles.item_details}>
+          <h3>Item</h3>
+          <div className={styles.item_text}>
+            <div className={styles.item_imgWrap}>
+              <img src={item?.image} alt="" />
+            </div>
+            <div className={styles.item_text_properties}>
+              <h5>
+                {item?.currency === "NGN"
+                  ? "₦"
+                  : item?.currency === "USD"
+                  ? "$"
+                  : "£"}
+                {item?.price}/<span>{item?.duration}</span>
+              </h5>
+              <p>{item?.name}</p>
+              <p>Number of Tickets</p>
               <input
                 type="number"
-                placeholder="enter duration"
-                name="duration"
-                value={duration}
+                placeholder="enter tickets number"
+                name="numberOfTickets"
+                value={numOfTickets}
                 onChange={(e) => handleChange(e)}
               />
-              <p>mins</p>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+        <section className={styles.dateWrap}>
+          <DatePicker onDayClick={(e) => dayPicked(e)} />
+          <div className={styles.dateWrap__time}>
+            <TimePicker onTimeClick={(e) => timePicked(e)} />
+            <div className={styles.dateWrap__time__duration}>
+              <h3>Duration</h3>
+              <div className={styles.dateWrap__time__duration__input}>
+                <input
+                  type="number"
+                  placeholder="enter duration"
+                  name="duration"
+                  value={duration}
+                  onChange={(e) => handleChange(e)}
+                />
+                <p>mins</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
       <Button type="button" text="Add Ticket" onClick={handleAddTicket} />
     </div>
   );

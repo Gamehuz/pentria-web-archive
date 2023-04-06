@@ -1,7 +1,12 @@
 import Button from "@/components/Button";
-import { useState } from "react";
+import { dispatch } from "@/redux/store";
+import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import {
+  CalculateDiscount,
+  CreateBooking,
+} from "../../redux/features/booking/services";
 import backArrow from "./assets/211686_back_arrow_icon 1.png";
 import styles from "./BookingPage.module.scss";
 import Item from "./compo/Item";
@@ -9,32 +14,37 @@ import Item from "./compo/Item";
 const BookingPage = () => {
   const navigate = useNavigate();
   const activities = JSON.parse(localStorage.getItem("activities"));
-
-  const [dateSelected, setDateSelected] = useState();
-  const [timeSelected, setTimeSelected] = useState();
-  const [numOfTickets, setNumOfTickets] = useState(1);
-  const [durationInMin, setDurationInMin] = useState(1);
   const [specialReq, setSpecialReq] = useState("");
   const [itemsSelected, setItemsSelected] = useState([]);
+  const [total, setTotal] = useState(0);
+
+  const calcTotal = itemsSelected.reduce((acc, item) => {
+    return acc + item.price * item.count;
+  }, 0);
+
+  const getTotalItemLength = itemsSelected.reduce((acc, item) => {
+    return acc + item.count;
+  }, 0);
+
+  useEffect(() => {
+    setTotal(calcTotal);
+  }, [calcTotal, itemsSelected]);
 
   const handleItemData = (date, time, numOfTickets, duration, item) => {
-    setDateSelected(date);
-    setTimeSelected(time);
-    setDurationInMin(duration);
     const newItem = {
       name: item.name,
       price: item.price,
       currency: item.currency,
-      duration: duration,
-      numOfTickets: numOfTickets,
+      duration: String(duration),
+      count: Number(numOfTickets),
       image: item.image,
-      dateSelected: date,
-      timeSelected: time,
+      date: date,
+      time: time,
       spaceId: item.spaceId,
-      id: item._id,
+      activityId: item._id,
     };
     const itemIndex = itemsSelected.findIndex(
-      (ticket) => ticket.id === item._id
+      (ticket) => ticket.activityId === item._id
     );
 
     if (itemIndex !== -1) {
@@ -45,13 +55,52 @@ const BookingPage = () => {
     } else {
       const updatedItems = [...itemsSelected, newItem];
       setItemsSelected(updatedItems);
-      toast.success("Item data updated");
+      toast.success("Ticket added");
     }
   };
-  console.log(itemsSelected);
 
-  const handleCreateBooking = (e) => {
+  const handleCreateBooking = async (e) => {
     e.preventDefault();
+    if (itemsSelected.length === 0) {
+      toast.error("Please select at least one item");
+      return;
+    }
+    const calculateData = itemsSelected.map((item) => {
+      return {
+        name: item.name,
+        spaceId: item.spaceId,
+        activityId: item.activityId,
+        date: item.date,
+        time: item.time,
+        duration: item.duration,
+        price: item.price,
+        count: item.count,
+      };
+    });
+
+    const calculateDiscountRes = await dispatch(
+      CalculateDiscount(calculateData)
+    );
+    if (calculateDiscountRes.calculateDiscount) {
+      const { discountAmount, discountPercentage, initalAmount, total } =
+        calculateDiscountRes.calculateDiscount;
+      setTotal(total);
+      const bookingData = {
+        tickets: calculateData,
+        spaceId: calculateData[0].spaceId,
+        discountAmount,
+        discountPercentage,
+        initalAmount,
+        status: "Active",
+        total,
+        specialReq,
+      };
+      console.log(bookingData);
+      const bookingRes = await dispatch(CreateBooking(bookingData));
+      if (bookingRes.createBooking) {
+        window.location.href = bookingRes.createBooking.link;
+      }
+    }
   };
 
   return (
@@ -127,16 +176,16 @@ const BookingPage = () => {
                   <div
                     className={styles.booking_details__total__subtotal__price}
                   >
-                    <p>900</p>
-                    <span>x</span>
-                    <p>1</p>
+                    <p>Tickets</p>
+                    <span>=</span>
+                    <p>{getTotalItemLength}</p>
                   </div>
                 </div>
                 <div className={styles.booking_details__total__item}>
                   <h3>Total</h3>
                   <div className={styles.booking_details__total__item__price}>
-                    <p>NGN</p>
-                    <p>0</p>
+                    <p>NGN</p> <span> </span>
+                    <p>{total}</p>
                   </div>
                 </div>
               </div>
