@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Button from "../Button";
-import { ReactComponent as ArrowDown } from "./assets/arrow-down.svg";
 import { ReactComponent as Hamburger } from "./assets/menu-hamburger.svg";
 import userIcon from "./assets/user-icon.jpg";
 import styles from "./nav.module.scss";
@@ -18,19 +17,17 @@ const Nav = () => {
           <span>Pentria</span>
         </Link>
         {token ? (
-          <div className={styles.loggedIn}>
+          <Link to="/user/dashboard" className={styles.loggedIn}>
             <img src={userIcon} alt="User Icon" />
             <p>
               {user?.firstName} {user?.lastName}
             </p>
-            <ArrowDown />
-          </div>
+            {/* <ArrowDown /> */}
+          </Link>
         ) : (
           <div className={styles.notLoggedIn}>
             <Link to="/login">LOGIN</Link>
-            <Link to="/prompt">
-              <Button bg={styles.button} text={"SIGN UP"} />
-            </Link>
+            <Button to="/prompt" classes={styles.button} text={"SIGN UP"} />
           </div>
         )}
         <Hamburger
@@ -40,10 +37,8 @@ const Nav = () => {
       </nav>
       <nav className={`${toggleNav ? styles.mobileNav : styles.activeMenu}`}>
         <div>
-          <Link>LOGIN</Link>
-          <Link>
-            <Button bg={`${styles.button}`} text={"SIGN UP"} />
-          </Link>
+          <Link to="/login">LOGIN</Link>
+          <Button to="/prompt" classes={styles.button} text={"SIGN UP"} />
         </div>
       </nav>
     </header>
