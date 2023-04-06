@@ -19,7 +19,7 @@ import { FaBed } from "react-icons/fa";
 import { GiShower } from "react-icons/gi";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { addToFavorites } from "../../redux/features/space/service";
+import { AddReview, addToFavorites } from "../../redux/features/space/service";
 import Container from "./Container";
 import styles from "./sencilo.module.scss";
 
@@ -28,8 +28,11 @@ const Sencilo = () => {
   const navigate = useNavigate();
   const [startReview, setStartReview] = useState(false);
   const [existingActivities, setExistingActivities] = useState([]);
+  const [reviewComment, setReviewComment] = useState("");
+  const [reviewRating, setReviewRating] = useState(0);
 
   const { space } = useSelector((state) => state.space);
+  const { user } = useSelector((state) => state.user);
   const { isLoading } = useSelector((state) => state.util);
   const stripedLcn = space?.location?.replace(/\s/g, "");
   useEffect(() => {
@@ -51,30 +54,11 @@ const Sencilo = () => {
     localStorage.setItem("activities", JSON.stringify(existingActivities));
   }, [existingActivities]);
 
-  // const addActivity = (activity) => {
-  //   const existingActivity = existingActivities.find(
-  //     (act) => act.id === activity.id
-  //   );
-  //   if (existingActivity) {
-  //     setActivityExist(true);
-  //     return toast.error("Activity already added to your list");
-  //   }
-  //   const updatedActivities = [...existingActivities, activity];
-  //   localStorage.setItem("activities", JSON.stringify(updatedActivities));
-  // };
-
   const addActivity = (activity) => {
-    const newActivities = [...existingActivities, activity];
+    const newActivities = [...existingActivities, { spaceId: id, ...activity }];
     setExistingActivities(newActivities);
     toast.success("Activity added to your list");
   };
-
-  // const removeActivity = (activity) => {
-  //   const updatedActivities = existingActivities.filter(
-  //     (act) => act.id !== activity.id
-  //   );
-  //   localStorage.setItem("activities", JSON.stringify(updatedActivities));
-  // };
 
   const removeActivity = (activity) => {
     const newActivities = existingActivities.filter(
@@ -89,39 +73,49 @@ const Sencilo = () => {
       return toast.error("Please add an activity to your list");
     navigate("/booking");
   };
+  const handleSelectRating = (e) => {
+    setReviewRating(e.target.value);
+  };
+
+  const handleSubmitReview = async (e) => {
+    e.preventDefault();
+    if (!user.firstName) return toast.error("Please login to submit a review");
+    if (reviewComment === "") {
+      toast.error("Please write a review");
+      return;
+    }
+    if (reviewRating === 0) {
+      toast.error("Please select a rating");
+      return;
+    }
+    const res = await dispatch(
+      AddReview(id, reviewComment, Number(reviewRating))
+    );
+    if (res.data) {
+      window.location.reload();
+      setReviewComment("");
+      setReviewRating(0);
+      setStartReview(false);
+    }
+  };
 
   if (isLoading) return <IsLoadingSkeleton />;
   return (
     <>
       <div className="bg-[#FAFAFA] font-poppins text-[#7E7E7E] mb-6">
         {/* The nav */}
-        {/* <Container>
-          <div className={styles.nav}>
-            <Link to={"/"} className={"text-4xl text-primaryColor font-black"}>
-              Pentria
-            </Link>
-            <Input
-              id="email1"
-              type="search"
-              placeholder="name@flowbite.com"
-              className="max-w-xl rounded-full hidden lg:block"
-            />
-            <div className={styles.homeNavbar_btn}>
-              <div className={"px-6 text-xl font-bold"}>
-                <Link to="/login">LOGIN</Link>
-              </div>
-              <div className={styles.homeNavbar_signup}>
-                <Link to="/prompt">SIGNUP</Link>
-              </div>
-            </div>
-          </div>
-        </Container> */}
+
         <NavbarAuth />
 
         {/* the sencilo pictures */}
         <Container>
           <div className="mt-4">
-            <div className="flex items-center space-x-2 font-semibold cursor-pointer">
+            <div
+              className="flex items-center space-x-2 font-semibold cursor-pointer"
+              onClick={() => {
+                navigate(-1);
+              }}
+            >
               <ChevronLeftIcon className="w-6 h-6" />
               <span className="">Back</span>
             </div>
@@ -309,17 +303,34 @@ const Sencilo = () => {
                   </div>
                 </div>
                 {startReview && (
-                  <form className="flex">
-                    <InputField />
+                  <form className="pr-2" onSubmit={handleSubmitReview}>
+                    <div className="flex h-fit">
+                      <InputField
+                        type="text"
+                        name="review"
+                        placeholder="Your review"
+                        onChange={(e) => setReviewComment(e.target.value)}
+                      />
+                      <select
+                        className="py-[5px] px-[10px] ml-2 border border-gray-300 rounded-md"
+                        onChange={(e) => handleSelectRating(e)}
+                      >
+                        <option value="1.0">1.0</option>
+                        <option value="2.0">2.0</option>
+                        <option value="3.0">3.0</option>
+                        <option value="4.0">4.0</option>
+                        <option value="5.0">5.0</option>
+                      </select>
+                    </div>
                     <Button
                       type="submit"
-                      className="ml-2 bg-primaryColor text-white font-semibold mt-2 hover:bg-primaryColor/80"
+                      className="ml-2 w-full bg-primaryColor text-white font-semibold mt-2 hover:bg-primaryColor/80"
                     >
                       Submit
                     </Button>
                   </form>
                 )}
-                <div className="flex flex-wrap">
+                <div className="flex flex-col flex-wrap">
                   {space?.reviews?.map((review, index) => (
                     <div className="flex flex-col" key={index}>
                       <p className="text-[#3E2180] mt-4">{review?.comment}</p>
