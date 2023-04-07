@@ -9,6 +9,7 @@ const EDIT_USER_ACCOUNT_INFO = gql`
     $address: String!
     $city: String!
     $state: String!
+    $dob: String!
   ) {
     editUserInfo(
       firstName: $firstName
@@ -18,6 +19,7 @@ const EDIT_USER_ACCOUNT_INFO = gql`
       address: $address
       city: $city
       state: $state
+      dob: $dob
     ) {
       _id
     }

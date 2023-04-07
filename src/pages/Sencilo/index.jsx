@@ -102,7 +102,7 @@ const Sencilo = () => {
   if (isLoading) return <IsLoadingSkeleton />;
   return (
     <>
-      <div className="bg-[#FAFAFA] font-poppins text-[#7E7E7E] mb-6">
+      <div className="bg-[#FAFAFA] mt-[6rem] font-poppins text-[#7E7E7E] mb-6">
         {/* The nav */}
 
         <NavbarAuth />

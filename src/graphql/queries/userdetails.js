@@ -10,11 +10,11 @@ const USER = gql`
       city
       state
       email
+      dob
       accountType
       phone
     }
   }
-}
 `;
 
 export default USER;
