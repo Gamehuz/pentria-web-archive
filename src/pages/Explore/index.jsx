@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import styles from "./explore.module.scss";
 import Nav from "../../components/Nav";
 import { ReactComponent as MapPin } from "./assets/map-pin.svg";
@@ -67,7 +67,7 @@ const Explore = () => {
 
         return matchRatingFilter;
     }
-
+console.log(allSpaces)
     useEffect(() => {
         spaces().then((data) => setAllSpaces(data.spaces))
     });

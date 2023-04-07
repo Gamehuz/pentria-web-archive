@@ -14,6 +14,7 @@ const USER = gql`
       phone
     }
   }
+}
 `;
 
 export default USER;
