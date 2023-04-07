@@ -31,7 +31,9 @@ const NavbarAuth = ({ search, bg }) => {
       ? "/user/dashboard"
       : user?.accountType === "VENDOR"
       ? "/vendor/dashboard"
-      : "/admin/dashboard";
+      : user?.accountType === "ADMIN"
+      ? "/admin/dashboard"
+      : "/login";
 
   return (
     <div
@@ -49,7 +51,7 @@ const NavbarAuth = ({ search, bg }) => {
         <SearchInput />
       </div>
       <div className={styles.authNav_user_btn}>
-        {user ? (
+        {user?.firstName ? (
           <div className={styles.authNav_user}>
             <Link to={`${userLink}`} className={styles.authNav_user_desktop}>
               <img

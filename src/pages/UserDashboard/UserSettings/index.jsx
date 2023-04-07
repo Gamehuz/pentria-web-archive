@@ -31,6 +31,7 @@ const UserSettings = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    console.log(name, value);
     setUserDetails({ ...userDetails, [name]: value });
   };
 
@@ -82,23 +83,23 @@ const UserSettings = () => {
           <form onSubmit={handleSave}>
             <div className={styles.two_cols}>
               <div className={styles.formGroup}>
-                <label htmlFor="name">First Name</label>
+                <label htmlFor="firstname">First Name</label>
                 <InputField
                   type="text"
                   name="firstname"
                   id="firstname"
-                  value={userDetails.firstName}
+                  value={startEdit ? userDetails.firstName : user?.firstName}
                   placeholder="Enter your first name"
                   onChange={handleChange}
                 />
               </div>
               <div className={styles.formGroup}>
-                <label htmlFor="name">Last Name</label>
+                <label htmlFor="lastname">Last Name</label>
                 <InputField
                   type="text"
                   name="lastname"
                   id="lastname"
-                  value={userDetails.lastName}
+                  value={startEdit ? userDetails.lastName : user?.lastName}
                   placeholder="Enter your last name"
                   onChange={handleChange}
                 />
@@ -110,7 +111,7 @@ const UserSettings = () => {
                 type="text"
                 name="sex"
                 id="sex"
-                value={userDetails.sex}
+                value={startEdit ? userDetails.sex : user?.sex}
                 placeholder="Female"
                 onChange={handleChange}
               />
@@ -121,7 +122,7 @@ const UserSettings = () => {
                 type="text"
                 name="dob"
                 id="dob"
-                value={userDetails.dob}
+                value={startEdit ? userDetails.dob : user?.dob}
                 placeholder="05/26/1995"
                 onChange={handleChange}
               />
@@ -132,7 +133,7 @@ const UserSettings = () => {
                 type="text"
                 name="address"
                 id="address"
-                value={userDetails.address}
+                value={startEdit ? userDetails.address : user?.address}
                 placeholder="1738 Adeniyi Jones, Ikeja, Lagos"
                 onChange={handleChange}
               />
@@ -144,7 +145,7 @@ const UserSettings = () => {
                   type="text"
                   name="city"
                   id="city"
-                  value={userDetails.city}
+                  value={startEdit ? userDetails.city : user?.city}
                   placeholder="Calabar"
                   onChange={handleChange}
                 />
@@ -155,7 +156,7 @@ const UserSettings = () => {
                   type="text"
                   name="state"
                   id="state"
-                  value={userDetails.state}
+                  value={startEdit ? userDetails.state : user?.state}
                   placeholder="Cross River"
                   onChange={handleChange}
                 />
@@ -167,7 +168,7 @@ const UserSettings = () => {
                 type="text"
                 name="email"
                 id="email"
-                value={userDetails.email}
+                value={startEdit ? userDetails.email : user?.email}
                 placeholder="cynthiiaugwu@gmail.com"
                 onChange={handleChange}
               />
@@ -178,7 +179,7 @@ const UserSettings = () => {
                 type="number"
                 name="phone"
                 id="phone"
-                value={userDetails.phone}
+                value={startEdit ? userDetails.phone : user?.phone}
                 placeholder="+234 818 1738 69"
                 onChange={handleChange}
               />
@@ -190,7 +191,7 @@ const UserSettings = () => {
                 name="password"
                 id="password"
                 placeholder="+234 818 1738 69"
-                value={userDetails.password}
+                value={startEdit ? userDetails.password : user?.password}
                 setTogglePassword={() => setTogglePassword(!togglePassword)}
                 onChange={handleChange}
               />
