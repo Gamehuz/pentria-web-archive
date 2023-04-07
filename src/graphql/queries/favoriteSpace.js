@@ -4,17 +4,13 @@ export const GET_FAVORITE_SPACES = gql`
     user {
       favouriteSpace {
         _id
-        author {
-          _id
-          firstName
-          lastName
-          createdAt
-        }
-        createdAt
-        description
         image
         name
         location
+        reviews {
+          _id
+          rating
+        }
       }
     }
   }
