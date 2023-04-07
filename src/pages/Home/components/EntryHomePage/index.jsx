@@ -1,4 +1,3 @@
-import React from 'react';
 import Button from "../../../../components/Button";
 import InputField from "../../../../components/InputField";
 import { ReactComponent as MapPin } from "../.././assets/map-pin.svg";
@@ -7,24 +6,31 @@ import homepageImg from "../../assets/homepageImg.png";
 import { ReactComponent as Search } from "../../assets/search.svg";
 import styles from "./entryhomepage.module.scss";
 import { useState } from "react"
+import { useNavigate } from "react-router-dom";
 
 const EntryHome = () => {
   const [recreationName, setRecreationName] = useState("");
+  const navigate = useNavigate();
 
+  const explore = () => {
+    navigate("/explore")
+  }
+
+  
   return (
     <section className={styles.enterPlaySection}>
       <div className={styles.getTickets}>
         <div>
           <div className={styles.enterPlay}>
             <h1>Enter the </h1>
-            <span>PLAY</span>
+            <span>PLAY!</span>
           </div>
           <p className={styles.enterPlayp}>
             Beat the queue with one-click ticket reservation. Enjoy seamless
             playtime at a recreation space near you.
           </p>
           <div className={styles.tickets}>
-            <Button type={"button"} text={"GET TICKETS"} />
+            <Button type={"button"} text={"GET TICKETS"} onClick={() => explore()} />
             <p>BECOME A PARTNER</p>
           </div>
         </div>

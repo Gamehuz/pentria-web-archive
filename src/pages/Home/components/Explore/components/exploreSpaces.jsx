@@ -1,6 +1,7 @@
 import { useMutation } from "@apollo/client";
 import Proptypes from "prop-types";
-import React, { useState } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "../../../../../components/Button";
 import ADD_TO_FAVORITES from "../../../../../graphql/mutations/addToFavorites";
 import { ReactComponent as NoStar } from "../../../assets/no-star.svg";
@@ -10,6 +11,7 @@ import styles from "../explore.module.scss";
 
 const ExploreSpaces = ({ space }) => {
   const [favorite, setFavorite] = useState(false);
+  const navigate = useNavigate()
 
   const toggleFavorite = () => {
     setFavorite(!favorite);
@@ -20,6 +22,10 @@ const ExploreSpaces = ({ space }) => {
       spaceId: space._id,
     },
   });
+
+  const senciloPage = (id) => {
+    navigate(`/sencilo/${id}`)
+  }
 
   return (
     <article key={space._id}>
@@ -55,7 +61,7 @@ const ExploreSpaces = ({ space }) => {
           </div>
           <p>{space.reviews[0].rating} Ratings</p>
         </div>
-        <Button to={`/sencilo/${space._id}`} text={"GET TICKET"} />
+        <Button to={`/sencilo/${space._id}`} text={"GET TICKET"} onClick={() => senciloPage(space._id)}/>
       </div>
     </article>
   );

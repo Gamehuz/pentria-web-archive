@@ -1,43 +1,23 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import HistoryTable from "../../components/HistoryTable";
 import Nav from "../../components/Nav";
+import { customerBookings, userData } from "../../redux/features/user/service";
 import { ReactComponent as Arrow } from "./assets/leftarrow.svg";
 import styles from "./historyguest.module.scss";
 
 const VendorGuest = () => {
+  const [userId, setUserId] = useState("");
+  const [bookings, setBookings] = useState([]);
+  
   const firstTitle = ["Date", "Amount"];
   const secondTitle = ["Vendor", "Trx ID", "Status"];
-  const firstData = [
-    {
-      name1: "JUN 21,2022",
-      name2: "30,000",
-    },
-    {
-      name1: "MAY 22,2022",
-      nam2: "60,000",
-    },
-    {
-      name1: "AUG 4,2022",
-      name2: "30,000",
-    },
-  ];
-  const secondData = [
-    {
-      name1: "Pleasure Park",
-      name2: "PBE 00/23D7",
-      name3: "Pending",
-    },
-    {
-      name1: "Machala hub",
-      name2: "PBE 00/23D7",
-      name3: "Confirmed",
-    },
-    {
-      name1: "Sencillo inn",
-      name2: "PBE 00/23D7",
-      name3: "Pending",
-    },
-  ];
+
+  useEffect(() => {
+    userData()().then((data) => setUserId(data.user._id));
+    customerBookings(userId).then((data) => setBookings(data.customerBookings))
+
+  }, [userId])
   return (
     <div className={styles.historyguest}>
       <Nav />
@@ -51,8 +31,8 @@ const VendorGuest = () => {
       <HistoryTable
         firstTableTitle={firstTitle}
         secondTableTitle={secondTitle}
-        firstTableData={firstData}
-        secondTableData={secondData}
+        firstTableData={bookings}
+        secondTableData={bookings}
       />
     </div>
   );

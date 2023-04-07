@@ -133,10 +133,20 @@
     align-items: center;
     gap: 30px;
 
-    // .swiper {
-    //     display: flex;
-    // }
+    div {
+        div {
+            color: var(--tertiary-color);
 
+            div {
+                max-width: 350px !important;
+            }
+        }
+    }
+
+    // .swiper-slide {
+    //     width: 318px !important;
+    //     // max-width: 350px;
+    // }
 
     article {
         height: max-content;
@@ -204,7 +214,7 @@
             font-weight: 700;
             font-size: 20px;
             padding-left: 15px;
-
+            color: black;
         }
 
         p {
@@ -244,10 +254,6 @@
     border-bottom: 1px solid white;
     padding-bottom: 150px;
 
-    .arrows {
-        display: none;
-    }
-
     span {
         font-weight: 700;
         font-size: 24px;
@@ -259,6 +265,16 @@
         display: flex;
         align-items: center;
         gap: 20px;
+
+        div {
+            div {
+                color: var(--tertiary-color);
+
+                div {
+                    max-width: 350px !important;
+                }
+            }
+        }
 
         article {
             height: max-content;
@@ -304,6 +320,10 @@
                         margin-left: 10px;
                     }
                 }
+            }
+
+            h3 {
+                color: black;
             }
 
             span {
@@ -379,7 +399,6 @@
 @media (max-width: 1325px) {
     .spaces {
         display: flex;
-        flex-wrap: wrap;
 
         .desktopRArrow,
         .desktopLArrow {
@@ -397,13 +416,9 @@
     }
 
     .upcoming {
-        .arrows {
-            display: block;
-        }
 
         div {
             display: flex;
-            flex-wrap: wrap;
 
             .desktopLArrow,
             .desktopRArrow {
@@ -415,7 +430,6 @@
                     margin-right: 10px;
 
                     div {
-
                         width: 40px !important;
                         height: 40px;
                     }
@@ -430,7 +444,6 @@
                     margin-top: 15px;
 
                     div:first-child {
-                        display: block;
                         padding-left: 0;
                         width: 100px;
                     }
