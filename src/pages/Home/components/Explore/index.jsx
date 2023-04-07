@@ -1,13 +1,14 @@
 import { useQuery } from "@apollo/client";
-import React from "react";
 import ALL_SPACES from "../../../../graphql/queries/spaces";
-import { ReactComponent as LeftArrow } from "../../assets/left-arrow.svg";
-import { ReactComponent as RightArrow } from "../../assets/right-arrow.svg";
+// import { ReactComponent as LeftArrow } from "../../assets/left-arrow.svg";
+// import { ReactComponent as RightArrow } from "../../assets/right-arrow.svg";
 import ExploreSpaces from "./components/exploreSpaces";
 import UpcomingSpaces from "./components/upcomingSpaces";
 import styles from "./explore.module.scss";
-// import {Swiper, SwiperSlide} from 'swiper/react';
-// import 'swiper/css';
+import {Swiper, SwiperSlide} from 'swiper/react';
+import { Navigation } from "swiper";
+import 'swiper/css';
+import "swiper/css/navigation";
 
 const Explore = () => {
   const { data, loading } = useQuery(ALL_SPACES);
@@ -23,12 +24,12 @@ const Explore = () => {
         <h2>Spaces to Go</h2>
         <span>Explore All</span>
       </div>
-      <div className={styles.arrows}>
+      {/* <div className={styles.arrows}>
         <LeftArrow />
         <RightArrow />
-      </div>
+      </div> */}
       <div className={styles.spaces}>
-        <LeftArrow className={styles.desktopLArrow} />
+        {/* <LeftArrow className={styles.desktopLArrow} /> */}
         {loading ? (
           <div className={styles.spinner}>
             <div></div>
@@ -47,26 +48,29 @@ const Explore = () => {
         ) : (
           ""
         )}
-        {/* <Swiper> */}
+        <Swiper
+        navigation={true}
+        modules={[Navigation]}
+        >
         {data &&
           data?.spaces.map((space) => {
             return (
-              // <SwiperSlide key={spaces._id}>
+              <SwiperSlide key={space._id}>
               <ExploreSpaces space={space} key={space._id} />
-              // </SwiperSlide>
+              </SwiperSlide>
             );
           })}
-        {/* </Swiper> */}
-        <RightArrow className={styles.desktopRArrow} />
+        </Swiper>
+        {/* <RightArrow className={styles.desktopRArrow} /> */}
       </div>
       <div className={styles.upcoming}>
         <span>Upcoming Events</span>
-        <div className={styles.arrows}>
+        {/* <div className={styles.arrows}>
           <LeftArrow />
           <RightArrow />
-        </div>
+        </div> */}
         <div>
-          <LeftArrow className={styles.desktopLArrow} />
+          {/* <LeftArrow className={styles.desktopLArrow} /> */}
           {loading ? (
             <div className={styles.spinner}>
               <div></div>
@@ -85,11 +89,21 @@ const Explore = () => {
           ) : (
             ""
           )}
+          <Swiper
+          navigation={true}
+          modules={[Navigation]}
+          >
           {data &&
             data?.spaces.map((space) => {
-              return <UpcomingSpaces space={space} key={space._id} />;
+              return (
+                <SwiperSlide key={space._id}>
+                  <UpcomingSpaces space={space} key={space._id} />
+                </SwiperSlide>
+              )
             })}
-          <RightArrow className={styles.desktopRArrow} />
+          </Swiper>
+
+          {/* <RightArrow className={styles.desktopRArrow} /> */}
         </div>
       </div>
     </section>

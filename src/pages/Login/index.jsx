@@ -37,7 +37,7 @@ const LoginPage = () => {
     const res = await loginUser(values)();
     if (res) {
       dispatch(userData());
-      navigate("/");
+      navigate("/user/dashboard");
     }
   };
 

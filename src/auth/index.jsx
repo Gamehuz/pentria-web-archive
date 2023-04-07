@@ -4,7 +4,7 @@ import { setToken } from "../redux/features/user/userSlice";
 import { dispatch } from "../redux/store";
 
 export function RequireToken() {
-  const auth = useSelector((state) => state.user?.token);
+  const auth = useSelector((state) => state.user);
   let currentPath = window.location.pathname;
   let queryString = window.location.search;
   let pathname = currentPath + queryString;
@@ -31,7 +31,7 @@ export function RequireToken() {
 }
 
 export function Authenticated() {
-  const auth = useSelector((state) => state.user?.token);
+  const auth = useSelector((state) => state.user);
 
   if (auth) {
     let redirect = localStorage.getItem("redirect");

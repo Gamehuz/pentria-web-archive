@@ -26,6 +26,15 @@ const NavbarAuth = ({ search, bg }) => {
     dispatch(setToggleSidebar(sidebar));
   };
 
+  const userLink =
+    user?.accountType === "GUEST"
+      ? "/user/dashboard"
+      : user?.accountType === "VENDOR"
+      ? "/vendor/dashboard"
+      : user?.accountType === "ADMIN"
+      ? "/admin/dashboard"
+      : "/login";
+
   return (
     <div
       className={`${styles.authNav} ${styles[bg]} ${
@@ -42,9 +51,9 @@ const NavbarAuth = ({ search, bg }) => {
         <SearchInput />
       </div>
       <div className={styles.authNav_user_btn}>
-        {user ? (
+        {user?.firstName ? (
           <div className={styles.authNav_user}>
-            <div className={styles.authNav_user_desktop}>
+            <Link to={`${userLink}`} className={styles.authNav_user_desktop}>
               <img
                 className={styles.userimg}
                 src={
@@ -65,7 +74,7 @@ const NavbarAuth = ({ search, bg }) => {
                 </div>
                 {/* <p className={styles.workspace_name}>{user?.company_name}</p> */}
               </div>
-            </div>
+            </Link>
           </div>
         ) : (
           <>
