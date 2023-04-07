@@ -2,15 +2,13 @@ import { useEffect } from "react";
 import styles from "./History.module.scss";
 
 import Button from "../../../components/Button";
+import fav from "./assets/fav.svg";
 
 import IsLoadingSkeleton from "@/components/LoadingSkeleton";
 import { useLazyQuery } from "@apollo/client";
 import { toast } from "react-hot-toast";
 import { useSelector } from "react-redux";
 import CUSTOMER_BOOKINGS from "../../../graphql/queries/customerbookings";
-import fav from "./assets/fav.svg";
-import img from "./assets/img.svg";
-import location from "./assets/location.svg";
 
 const History = () => {
   const [customerBookings, { data, loading, error }] =
@@ -30,6 +28,9 @@ const History = () => {
   }, [customerBookings, userId]);
 
   console.log(data?.customerBookings);
+  const handleCancelBooking = (id) => {
+    toast.error(`Booking with id ${id} has been cancelled`);
+  };
   if (error) return toast.error(error.message);
 
   if (loading) return <IsLoadingSkeleton />;
@@ -45,29 +46,52 @@ const History = () => {
 
       <div className={styles.booking_history}>
         <p>Booking History</p>
-
-        <div className={styles.history}>
-          <div className={styles.booking_info}>
-            <img src={img} alt="" />
-            <div>
-              <p className={styles.price}>#1400</p>
-              <p className={styles.item}>PS5 (FIFA 23)</p>
-              <p className={styles.ticket}>4 Ticket</p>
-              <p className={styles.date}>22-06-2022</p>
-            </div>
+        {data?.customerBookings?.length > 0 ? (
+          <div className="flex flex-col">
+            {data?.customerBookings?.map((booking) => (
+              <div className={styles.history} key={booking?._id}>
+                <div className={styles.booking_info}>
+                  <img src={booking?.image} alt="" />
+                  <div>
+                    <p className={styles.price}>
+                      {booking?.currency === "NGN"
+                        ? "₦"
+                        : booking?.currency === "USD"
+                        ? "$"
+                        : "£"}
+                      {booking?.price}
+                    </p>
+                    <p className={styles.item}>{booking?.name}</p>
+                    <p className={styles.booking?.tickets?.length}> Ticket</p>
+                    <p className={styles.date}>{booking?.date}</p>
+                  </div>
+                </div>
+                <div className={styles.booking_details}>
+                  <div>
+                    <img src={fav} alt="" />
+                    <p>{booking?.location}</p>
+                  </div>
+                  <div>
+                    {/* <img src={location} alt="" />
+              <p>23 Abacha Rd phc </p> */}
+                  </div>
+                  {booking?.status === "cancelled" ? (
+                    <p
+                      onClick={() => handleCancelBooking(booking._id)}
+                      className={styles.status}
+                    >
+                      Status: {booking?.status}
+                    </p>
+                  ) : (
+                    <p className={styles.status}>Status: {booking?.status}</p>
+                  )}
+                </div>
+              </div>
+            ))}
           </div>
-          <div className={styles.booking_details}>
-            <div>
-              <img src={fav} alt="" />
-              <p>PH Pleasure Park </p>
-            </div>
-            <div>
-              <img src={location} alt="" />
-              <p>23 Abacha Rd phc </p>
-            </div>
-            <p className={styles.status}>Status: Pending</p>
-          </div>
-        </div>
+        ) : (
+          <p className={styles.no_history}>No Booking History</p>
+        )}
       </div>
     </div>
   );
