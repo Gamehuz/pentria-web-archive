@@ -204,7 +204,7 @@ const UserSettings = () => {
                   text="Save Changes"
                 />
               )}
-              <Button type="reset" classes={styles.del} text="Delete Account" />
+              {/* <Button type="reset" classes={styles.del} text="Delete Account" /> */}
             </div>
           </form>
         </div>
