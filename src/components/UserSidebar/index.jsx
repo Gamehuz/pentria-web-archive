@@ -26,7 +26,7 @@ function UserSidebar({ children }) {
   };
 
   const logout = () => {
-    handleLogout()();
+    dispatch(handleLogout());
   };
 
   return (

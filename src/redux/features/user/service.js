@@ -165,7 +165,7 @@ export const handleUpdatePasword = (values) => async () => {
 export const handleLogout = () => async () => {
   dispatch(setLoading(true));
   try {
-    localStorage.removeItem("pentriaAccessToken");
+    localStorage.clear();
     dispatch(setToken(null));
     dispatch(setUser(null));
     dispatch(setLoading(false));
@@ -240,18 +240,18 @@ export const handleEditWalletInfo = (values) => async () => {
     dispatch(setError(error.message));
     toast.error(error.message);
   }
-}
+};
 
 export const customerBookings = async (customerID) => {
   try {
     const result = await appolloClient.query({
       query: CUSTOMER_BOOKINGS,
       variables: {
-        customerId: customerID
-      }
-    })
-    return result.data
+        customerId: customerID,
+      },
+    });
+    return result.data;
   } catch (error) {
-    dispatch(setError(error.message))
+    dispatch(setError(error.message));
   }
-}
+};

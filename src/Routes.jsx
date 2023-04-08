@@ -20,7 +20,7 @@ import PromptPage from "./pages/PromptPage";
 import Receipt from "./pages/Receipt";
 import Sencilo from "./pages/Sencilo";
 import UserDashboard from "./pages/UserDashboard";
-import VendorDashboard from "./pages/Vendor";
+import VendorDashboard from "./pages/VendorDashboard";
 import VendorSignup from "./pages/VendorSIgnUp";
 
 // jsdoc
