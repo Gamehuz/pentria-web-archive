@@ -54,7 +54,7 @@ const VendorWithdrawals = () => {
         </div>
       </div>
       <div className={styles.withdrawBooking}>
-        <h3>Withdrawal History</h3>
+        <h3 className="text-2xl text-[#7E7E7E] py-2">Withdrawal History</h3>
         <HistoryTable
           includeSn={false}
           firstTableTitle={firstTitle}

@@ -57,7 +57,7 @@ const NavbarAuth = ({ search, bg }) => {
               <img
                 className={styles.userimg}
                 src={
-                  user?.company_logo_url ? user?.company_logo_url : "/dummy.png"
+                  user?.company_logo_url ? user?.company_logo_url : "/dummy.svg"
                 }
                 alt={user?.firstName}
               />
@@ -93,7 +93,7 @@ const NavbarAuth = ({ search, bg }) => {
             <img
               className={styles.userimg}
               src={
-                user?.company_logo_url ? user?.company_logo_url : "/dummy.png  "
+                user?.company_logo_url ? user?.company_logo_url : "/dummy.svg  "
               }
               alt={user?.firstName}
             />

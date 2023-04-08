@@ -42,7 +42,7 @@ function VendorSidebar({ children }) {
 
           <div className={styles.navLinks}>
             <NavLink
-              to="/user/dashboard?checkpoint=listings"
+              to="/vendor/dashboard?checkpoint=listings"
               className={`${styles.navLink} ${
                 window.location.pathname === "/vendor/dashboard" &&
                 window.location.search === "?checkpoint=listings"
@@ -54,7 +54,7 @@ function VendorSidebar({ children }) {
               <p>Listing</p>
             </NavLink>
             <NavLink
-              to="/user/dashboard?checkpoint=earnings"
+              to="/vendor/dashboard?checkpoint=earnings"
               className={`${styles.navLink} ${
                 window.location.pathname === "/vendor/dashboard" &&
                 window.location.search === "?checkpoint=earnings"
@@ -66,10 +66,10 @@ function VendorSidebar({ children }) {
               <p>Earnings</p>
             </NavLink>
             <NavLink
-              to="/user/dashboard?checkpoint=history"
+              to="/vendor/dashboard?checkpoint=withdrawals"
               className={`${styles.navLink} ${
                 window.location.pathname === "/vendor/dashboard" &&
-                window.location.search === "?checkpoint=history"
+                window.location.search === "?checkpoint=withdrawals"
                   ? styles.active
                   : ""
               }`}
@@ -79,7 +79,7 @@ function VendorSidebar({ children }) {
             </NavLink>
 
             <NavLink
-              to="/user/dashboard?checkpoint=settings"
+              to="/vendor/dashboard?checkpoint=settings"
               className={`${styles.navLink} ${
                 window.location.pathname === "/vendor/dashboard" &&
                 window.location.search === "?checkpoint=settings"
