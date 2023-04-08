@@ -1,9 +1,11 @@
+import appolloClient from "@/graphql";
+import { ADD_ACTIVITY } from "@/graphql/mutations/addActivity";
+import { ADD_REVIEW } from "@/graphql/mutations/addReview";
+import ADD_TO_FAVORITES from "@/graphql/mutations/addToFavorites";
+import { CREATE_SPACE } from "@/graphql/mutations/createSpace";
+import { GET_SPACE } from "@/graphql/queries/space";
 import { dispatch } from "@/redux/store";
 import { toast } from "react-hot-toast";
-import appolloClient from "../../../graphql";
-import { ADD_REVIEW } from "../../../graphql/mutations/addReview";
-import ADD_TO_FAVORITES from "../../../graphql/mutations/addToFavorites";
-import { GET_SPACE } from "../../../graphql/queries/space";
 import { setLoading } from "../../utils/UtilSlice";
 import { setSpace } from "./spaceSlice";
 
@@ -66,4 +68,43 @@ const AddReview = (spaceId, comment, rating) => async () => {
   }
 };
 
-export { GetSpace, addToFavorites, AddReview };
+const CreateSpace = (data) => async () => {
+  dispatch(setLoading(true));
+  try {
+    const result = await appolloClient.mutate({
+      mutation: CREATE_SPACE,
+      variables: {
+        ...data,
+      },
+    });
+    dispatch(setLoading(false));
+    toast.success(`space created`);
+    return result.data;
+  } catch (error) {
+    console.log(error.message);
+    dispatch(setLoading(false));
+    toast.error(error.message);
+  }
+};
+
+const AddActivityToSpace = (spaceId, menu) => async () => {
+  dispatch(setLoading(true));
+  try {
+    const result = await appolloClient.mutate({
+      mutation: ADD_ACTIVITY,
+      variables: {
+        spaceId,
+        ...menu,
+      },
+    });
+    dispatch(setLoading(false));
+    toast.success(`menu added`);
+    return result.data;
+  } catch (error) {
+    console.log(error.message);
+    dispatch(setLoading(false));
+    toast.error(error.message);
+  }
+};
+
+export { GetSpace, addToFavorites, AddReview, CreateSpace, AddActivityToSpace };

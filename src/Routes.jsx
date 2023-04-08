@@ -6,7 +6,6 @@ import AdminSettings from "./pages/AdminSettings";
 import AdminTicket from "./pages/AdminTicket";
 import BlogPage from "./pages/BlogPage";
 import BookingPage from "./pages/BookingPage";
-import CreateListing from "./pages/CreateListing/CreateListing";
 import CustomerSignup from "./pages/CustomerSignup";
 import Enquiries from "./pages/Enquiries";
 import Explore from "./pages/Explore";
@@ -66,11 +65,6 @@ const Routes = () => {
               <VendorDashboard />
             </UserLayout>
           }
-        />
-        <Route
-          exact
-          path="/vendor/create-listing"
-          element={<CreateListing />}
         />
         <Route exact path="/admin/settings" element={<AdminSettings />} />
         <Route exact path="/admin/ticket" element={<AdminTicket />} />

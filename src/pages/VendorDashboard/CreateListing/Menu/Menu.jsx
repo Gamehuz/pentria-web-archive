@@ -1,8 +1,8 @@
 import { useRef } from "react";
 import styles from "./Menu.module.scss";
 
-import Button from "../../../components/Button";
-import InputField from "../../../components/InputField";
+import Button from "../../../../components/Button";
+import InputField from "../../../../components/InputField";
 
 import upload from "../assets/upload.svg";
 

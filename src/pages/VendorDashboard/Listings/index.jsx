@@ -21,7 +21,7 @@ const VendorListings = () => {
       <div className={styles.createListing}>
         <h3>My Listings</h3>
         <Link
-          to="/vendor/create-listing"
+          to="/vendor/dashboard?checkpoint=create-listing"
           className={styles.createListing__button}
         >
           <img src={plusBtn} alt="" />
