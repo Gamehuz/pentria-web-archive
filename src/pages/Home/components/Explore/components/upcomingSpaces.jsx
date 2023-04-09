@@ -32,6 +32,70 @@ const UpcomingSpaces = ({ space }) => {
     navigate(`/sencilo/${id}`);
   };
 
+  const ratings = () => {
+    const arrayOfRatings = [];
+    space.reviews.map((review) => arrayOfRatings.push(review.rating))
+
+    const noOfRatings = arrayOfRatings.reduce((acc, currentValue) => acc += currentValue, 0)
+
+    return Math.floor(noOfRatings / space.reviews.length);
+  }
+
+  const star = (reviewamount) => {
+    if(reviewamount === 1) {
+      return (
+        <div>
+          <Star />
+          <NoStar />
+          <NoStar />
+          <NoStar />
+          <NoStar />
+        </div>
+      )
+    } else if(reviewamount === 2) {
+      return (
+        <div>
+          <Star />
+          <Star />
+          <NoStar />
+          <NoStar />
+          <NoStar />
+        </div> 
+      )
+
+    } else if(reviewamount === 3) {
+      return (
+        <div>
+          <Star />
+          <Star />
+          <Star />
+          <NoStar />
+          <NoStar />
+        </div> 
+      )
+    } else if(reviewamount === 4) {
+      return (
+        <div>
+          <Star />
+          <Star />
+          <Star />
+          <Star />
+          <NoStar />
+        </div> 
+      )
+    } else if(reviewamount === 5) {
+      return (
+        <div>
+          <Star />
+          <Star />
+          <Star />
+          <Star />
+          <Star />
+        </div> 
+      )
+    }
+  }
+
   return (
     <article key={space._id}>
       <div className="flex w-full m-0 p-0">
@@ -58,13 +122,7 @@ const UpcomingSpaces = ({ space }) => {
       <h3>{space.facilityType}</h3>
       <p>{space.location}</p>
       <div>
-        <div>
-          <Star />
-          <Star />
-          <Star />
-          <Star />
-          <NoStar />
-        </div>
+        {ratings() ? star(ratings()) : <p>No ratings yet</p>}
         <div className={styles.eventDate}>
           <span>{spaceDate}</span>
           <p>{spaceTime}</p>
