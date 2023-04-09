@@ -69,7 +69,6 @@ const AddReview = (spaceId, comment, rating) => async () => {
 };
 
 const CreateSpace = (data) => async () => {
-  console.log(data);
   dispatch(setLoading(true));
   try {
     const result = await appolloClient.mutate({
@@ -88,14 +87,18 @@ const CreateSpace = (data) => async () => {
   }
 };
 
-const AddActivityToSpace = (spaceId, menu) => async () => {
+const AddActivityToSpace = (data) => async () => {
+  console.log(data);
   dispatch(setLoading(true));
   try {
     const result = await appolloClient.mutate({
       mutation: ADD_ACTIVITY,
       variables: {
-        spaceId,
-        ...menu,
+        spaceId: data.tempId,
+        name: data.name,
+        price: data.price,
+        duration: data.duration,
+        image: data.image,
       },
     });
     dispatch(setLoading(false));

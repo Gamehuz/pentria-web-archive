@@ -173,7 +173,7 @@ const CreateListing = () => {
             ></textarea>
           </div>
           <div className={styles.input_content_img}>
-            <label htmlFor="name">Add up to 6 images</label>
+            <label htmlFor="name">Add up to 4 images</label>
             <input
               onChange={handleSelectFile}
               //   onBlur={handleBlur}
@@ -184,7 +184,7 @@ const CreateListing = () => {
               hidden
               multiple={true}
             />
-            {previewImages?.length <= 6 && (
+            {previewImages?.length <= 4 && (
               <div
                 className={styles.upload}
                 onClick={() => selectFile.current.click()}
