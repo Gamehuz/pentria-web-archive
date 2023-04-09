@@ -13,7 +13,6 @@
         div {
             border-top: 1px solid var(--dim-color);
             width: 61px;
-
         }
     }
 
@@ -137,10 +136,6 @@
         div {
             color: var(--tertiary-color);
 
-            .swiper-button-next {
-                padding-left: 10px;
-            }
-
             div {
                 max-width: 350px !important;
             }
@@ -177,11 +172,11 @@
             }
 
             .unfavorite {
-                background-color: #F5F5F5;
+                background-color: #f5f5f5;
             }
 
             .favorite {
-                background-color: var(--secondary-color)
+                background-color: var(--secondary-color);
             }
 
             div {
@@ -226,13 +221,12 @@
             margin-top: 15px;
             padding-left: 15px;
             font-size: 10px;
-
         }
 
         div {
             display: flex;
             align-items: center;
-            padding-left: 15px;
+            // padding-left: 15px;
             justify-content: space-around;
 
             div {
@@ -246,7 +240,6 @@
                     margin: 0;
                     font-size: 14px;
                     background-color: var(--secondary-color);
-
                 }
             }
         }
@@ -305,11 +298,11 @@
                 }
 
                 .unfavorite {
-                    background-color: #F5F5F5;
+                    background-color: #f5f5f5;
                 }
 
                 .favorite {
-                    background-color: var(--secondary-color)
+                    background-color: var(--secondary-color);
                 }
 
                 div {
@@ -348,7 +341,7 @@
             }
 
             div {
-                padding-left: 15px;
+                // padding-left: 15px;
 
                 div:nth-child(1) {
                     width: 90px;
@@ -366,7 +359,6 @@
                     button {
                         font-size: 14px;
                         background-color: var(--secondary-color);
-
                     }
                 }
 
@@ -393,10 +385,8 @@
                 margin-top: 15px;
                 padding-left: 15px;
                 font-size: 10px;
-
             }
         }
-
     }
 }
 
@@ -420,7 +410,6 @@
     }
 
     .upcoming {
-
         div {
             display: flex;
 
@@ -437,15 +426,14 @@
                         width: 40px !important;
                         height: 40px;
                     }
-
                 }
 
                 div {
                     display: flex;
                     align-items: center;
                     gap: 20px;
-                    padding-left: 15px;
-                    margin-top: 15px;
+                    // padding-left: 15px;
+                    // margin-top: 15px;
 
                     div:first-child {
                         padding-left: 0;

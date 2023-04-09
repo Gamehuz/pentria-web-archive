@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 import UserSidebar from "../../components/UserSidebar";
-import History from "./History/History";
+import History from "./History";
 import UserFavorites from "./UserFavorites";
 import UserSettings from "./UserSettings";
 const UserDashboard = () => {

@@ -4,7 +4,7 @@
   position: relative;
   .rightChild {
     overflow-y: scroll;
-    height: 100vh;
+    height: calc(100vh - 80px);
     width: 100%;
     background: #f5f5f5;
   }

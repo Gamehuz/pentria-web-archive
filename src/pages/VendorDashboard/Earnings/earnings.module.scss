@@ -1,12 +1,13 @@
-.userEarningsPage {
+.EarningsPage {
   width: 100%;
-
+  // padding: 0 3rem;
   .earningsHeader {
     padding: 1.5rem 3rem;
     display: flex;
     justify-content: space-between;
     width: 100%;
     background: #eaeaea;
+    margin-bottom: 2rem;
     &__balance {
       h1 {
         font-family: "Poppins";
@@ -30,44 +31,22 @@
     }
   }
 
-  .earningsBookings {
-    padding: 1.5rem 3rem;
+  .earningsBooking {
+    padding: 1rem 0 0 0;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 2rem;
-    h1 {
+    h3 {
       font-family: "Poppins";
       font-style: normal;
       font-weight: 500;
-      font-size: 28px;
+      font-size: 20px;
       line-height: 56px;
       letter-spacing: -1px;
+      color: #7e7e7e;
     }
-    // &__button {
-    //   display: flex;
-    //   align-items: center;
-    //   width: max-content;
-    //   text-decoration: none;
-    //   letter-spacing: -0.660502px;
-
-    //   color: #3e2180;
-
-    //   opacity: 0.82;
-    //   img {
-    //     width: 20px;
-    //     height: 20px;
-    //     margin-right: 5px;
-    //   }
-    //   p {
-    //     font-family: "Poppins";
-    //     font-style: normal;
-    //     font-weight: 500;
-    //     font-size: 18px;
-    //     line-height: 33px;
-    //     letter-spacing: -1px;
-    //   }
   }
 }
 

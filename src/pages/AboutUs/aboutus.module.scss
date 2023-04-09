@@ -84,11 +84,13 @@
 
                 p,
                 span {
+                    display: grid;
                     font-weight: 500;
                     font-size: 16px;
 
                     ul {
                         padding-left: 35px;
+                        list-style: disc;
                     }
                 }
             }

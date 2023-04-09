@@ -47,9 +47,22 @@ const HomeNavbar = ({ bg }) => {
                       <Link to="/vendor/dashboard">DASHBOARD</Link>
                     </div>
                   ) : (
-                    <div className={styles.homeNavbar_dashboard}>
-                      <Link to="/admin/dashboard">DASHBOARD</Link>
-                    </div>
+                    <>
+                      {user?.accountType === "ADMIN" ? (
+                        <div className={styles.homeNavbar_dashboard}>
+                          <Link to="/admin/dashboard">DASHBOARD</Link>
+                        </div>
+                      ) : (
+                        <>
+                          <div className={styles.homeNavbar_login}>
+                            <Link to="/login">LOGIN</Link>
+                          </div>
+                          <div className={styles.homeNavbar_signup}>
+                            <Link to="/prompt">SIGNUP</Link>
+                          </div>
+                        </>
+                      )}
+                    </>
                   )}
                 </>
               )}

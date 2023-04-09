@@ -1,13 +1,10 @@
 import { useEffect, useState } from "react";
 import Button from "../../../components/Button";
 import InputField from "../../../components/InputField";
-import Nav from "../../../components/Nav";
 import {
-  getBanks,
   handleEditInfo,
   handleEditWalletInfo,
   handleUpdatePasword,
-  userData,
   verifyBanks,
 } from "../../../redux/features/user/service";
 import { ReactComponent as Menu } from "./assets/menu-hamburger.svg";
@@ -85,8 +82,8 @@ const VendorSettings = () => {
   };
 
   useEffect(() => {
-    userData().then((data) => setData(data));
-    getBanks().then((data) => setBanks(data.getBanks));
+    // userData().then((data) => setData(data));
+    // getBanks().then((data) => setBanks(data.getBanks));
 
     if (accountDetails.bank) {
       const userBank = banks.filter(
@@ -110,8 +107,7 @@ const VendorSettings = () => {
   }, [accountDetails.bank, accountDetails.accountNumber.length === 10]);
 
   return (
-    <div>
-      <Nav />
+    <div className="px-4">
       <section className={styles.vendorsettings}>
         <div className={styles.hamburger} onClick={() => toggle()}>
           <Menu />

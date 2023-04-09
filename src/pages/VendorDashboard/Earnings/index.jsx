@@ -1,7 +1,8 @@
-import Button from "@/components/Button";
-import HistoryTable from "../../../components/HistoryTable";
-import styles from "./withdraw.module.scss";
-const VendorWithdrawals = () => {
+import Button from "../../../components/Button";
+import HistoryTable from "../../../components/HistoryTable/index";
+import styles from "./earnings.module.scss";
+
+const VendorEarnings = () => {
   const firstTitle = ["Bank", "Acct Name", "Acct No"];
   const secondTitle = ["Amount", "Date", "Status"];
   const firstData = [
@@ -39,32 +40,37 @@ const VendorWithdrawals = () => {
     },
   ];
   return (
-    <div className={styles.userWithdrawal}>
-      <div className={styles.withdrawHeader}>
-        <div className={styles.withdrawHeader__balance}>
+    <div className={styles.EarningsPage}>
+      <div className={styles.earningsHeader}>
+        <div className={styles.earningsHeader__balance}>
           <h1>NGN 30,000 </h1>
           <p>Available Balance</p>
         </div>
-        <div className={styles.withdrawHeader__withdraw}>
+        <div className={styles.earningsHeader__withdraw}>
           <Button
             type="button"
-            bg={styles.withdrawHeader__withdraw__btn}
+            bg={styles.earningsHeader__withdraw__btn}
             text="Withdraw"
           />
         </div>
       </div>
-      <div className={styles.withdrawBooking}>
-        <h3>Withdrawal History</h3>
-        <HistoryTable
-          includeSn={false}
-          firstTableTitle={firstTitle}
-          secondTableTitle={secondTitle}
-          firstTableData={firstData}
-          secondTableData={secondData}
-        />
+      <div className="px-[3rem]">
+        <div className={styles.earningsBooking}>
+          <h3>Bookings</h3>
+        </div>
+        <div className={styles.earnings}>
+          <HistoryTable
+            includeSn={false}
+            firstTableTitle={firstTitle}
+            secondTableTitle={secondTitle}
+            firstTableData={firstData}
+            secondTableData={secondData}
+          />
+        </div>
+        <div className={styles.earningsGraph}></div>
       </div>
     </div>
   );
 };
 
-export default VendorWithdrawals;
+export default VendorEarnings;

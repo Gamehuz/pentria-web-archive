@@ -2,23 +2,89 @@ import Nav from "../../components/Nav";
 import styles from "./payment.module.scss";
 import { ReactComponent as MapPin } from "./assets/map-pin.svg"
 import Button from "../../components/Button";
-import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { dispatch } from "@/redux/store";
+import { CalculateDiscount, CreateBooking } from "../../redux/features/booking/services";
+import { useCallback, useEffect, useState } from "react"
 
 const Payment = () => {
-    const navigate = useNavigate();
+    const paymentSpaceDetails = JSON.parse(localStorage.getItem("spaceDetails"));
+    const { user } = useSelector((state) => state.user);
+    const tickets = JSON.parse(localStorage.getItem("paymentactivities"));
+    const [discountData, setDiscountData] = useState({});
 
-    const getReceipt = () => {
-        navigate("/receipt")
-    };
+    const discountDetails = useCallback( async () => {
+        const ticketsData = tickets.map((item) => {
+            return {
+                name: item.name,
+                spaceId: item.spaceId,
+                activityId: item.activityId,
+                date: item.date,
+                time: item.time,
+                duration: item.duration,
+                price: item.price,
+                count: item.count,
+            };
+        });
+        const calculateDiscountRes = await dispatch(
+            CalculateDiscount(ticketsData)
+        );
+        
+        return calculateDiscountRes;
+        
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    const handleBooking = useCallback(async () => {
+        const ticketsData = tickets.map((item) => {
+            return {
+                name: item.name,
+                spaceId: item.spaceId,
+                activityId: item.activityId,
+                date: item.date,
+                time: item.time,
+                duration: item.duration,
+                price: item.price,
+                count: item.count,
+            };
+        });
+
+        const bookingData = {
+            tickets: ticketsData,
+            spaceId: tickets[0].spaceId,
+            discountAmount: discountData.discountAmount,
+            discountPercentage: discountData.discountPercentage,
+            initalAmount: discountData.initalAmount,
+            status: "Active",
+            total: discountData.total,
+            specialReq: paymentSpaceDetails.specialRequest,
+        }
+        console.log(bookingData)
+
+        const bookingRes = await dispatch(CreateBooking(bookingData));
+
+        if (bookingRes.createBooking) {
+            window.location.href = bookingRes.createBooking.link;
+        }
+        
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [discountData])
+
+    useEffect(() => {
+        discountDetails().then((data) => setDiscountData(data.calculateDiscount));
+        
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+    
     return (
         <div className={styles.payment}>
             <Nav />
-+            <section className={styles.paymentDetails}>
+            <section className={styles.paymentDetails}>
                 <h1>Booking Details</h1>
-                <h2>PLEASURE PARK</h2>
+                <h2>{paymentSpaceDetails?.facilityType.toUpperCase()}</h2>
                 <span className={styles.address}>
                     <MapPin />
-                    <p>44 Adeleke Adekeye Cr, Powerline, Rumuokoro, PH</p>
+                    <p>{paymentSpaceDetails?.location}</p>
                 </span>
                     <span className={styles.detailsheader}>
                         <div></div>
@@ -28,16 +94,16 @@ const Payment = () => {
                         <div className={styles.nameandPhone}>
                             <div>
                                 <p>NAME</p>
-                                <span>John Doe</span>
+                                <span>{user?.firstName} {user?.lastName}</span>
                             </div>
                             <div>
                                 <p>PHONE</p>
-                                <span>081*****4567</span>
+                                <span>{user?.phone}</span>
                             </div>
                         </div>
                         <div className={styles.specialrequest}>
                             <p>Special Request:</p>
-                            <span>We are plenty o, please provide enough space. Thanks</span>
+                            <span>{paymentSpaceDetails.specialRequest ? paymentSpaceDetails.specialRequest : null}</span>
                         </div>
                     </div>
                     <div className={styles.eventDetails}>
@@ -49,32 +115,30 @@ const Payment = () => {
                             <p>TIME</p>
                             <p>DURATION</p>
                         </div>
-                        <div>
-                            <p>1</p>
-                            <p>ARCADE</p>
-                            <p>2 REGULAR</p>
-                            <p>13TH AUG</p>
-                            <p>1PM</p>
-                            <p>2 HRs</p>
-                        </div>
-                        <div>
-                            <p>2</p>
-                            <p>BOAT RIDE</p>
-                            <p>4 REGULAR</p>
-                            <p>13TH AUG</p>
-                            <p>3PM</p>
-                            <p>15 MINs</p>
-                        </div>                       
+                        {
+                            tickets.map((ticket, index) => {
+                                return (
+                                    <div key={ticket.activityId}>
+                                        <p>{index + 1}</p>
+                                        <p>{ticket.name}</p>
+                                        <p>{ticket.count} REGULAR</p>
+                                        <p>{ticket.date}</p>
+                                        <p>{ticket.time}</p>
+                                        <p>{ticket.duration}mins</p>
+                                    </div>
+                                )
+                            })
+                        }                       
                     </div>
                     <div className={styles.totalanddiscount}>
-                        <span className={styles.subtotal}>SUB-TOTAL - 6000</span>
-                        <span className={styles.discount}>DISCOUNT - 2%</span>    
+                        <span className={styles.subtotal}>SUB-TOTAL - {discountData?.initalAmount}</span>
+                        <span className={styles.discount}>DISCOUNT - {discountData?.discountPercentage}%</span> 
                     </div>
                     <div className={styles.total}>
                         <p>TOTAL</p>
-                        <p>5940</p>
+                        <p>{discountData?.total}</p>
                     </div>
-                    <Button bg={styles.button} text={"CONFIRM"} onClick={() => getReceipt()}/>
+                    <Button bg={styles.button} text={"CONFIRM"} onClick={() => handleBooking()}/>
             </section>
         </div>
     )
