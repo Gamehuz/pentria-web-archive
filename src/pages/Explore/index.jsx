@@ -67,7 +67,7 @@ const Explore = () => {
 
         return matchRatingFilter;
     }
-    
+
     useEffect(() => {
         spaces().then((data) => setAllSpaces(data.spaces))
     });
