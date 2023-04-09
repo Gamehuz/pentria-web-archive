@@ -69,6 +69,7 @@ const AddReview = (spaceId, comment, rating) => async () => {
 };
 
 const CreateSpace = (data) => async () => {
+  console.log(data);
   dispatch(setLoading(true));
   try {
     const result = await appolloClient.mutate({

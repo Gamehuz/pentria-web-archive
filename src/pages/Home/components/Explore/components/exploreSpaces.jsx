@@ -11,7 +11,7 @@ import styles from "../explore.module.scss";
 
 const ExploreSpaces = ({ space }) => {
   const [favorite, setFavorite] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const toggleFavorite = () => {
     setFavorite(!favorite);
@@ -24,12 +24,16 @@ const ExploreSpaces = ({ space }) => {
   });
 
   const senciloPage = (id) => {
-    navigate(`/sencilo/${id}`)
-  }
+    navigate(`/sencilo/${id}`);
+  };
 
   return (
-    <article key={space._id}>
-      <img src={space.image} alt="spaces arena" />
+    <article key={space._id} className="relative overflow-hidden">
+      <div className="flex">
+        {space.image?.map((img) => (
+          <img src={img} alt="spaces arena" className="" key={img} />
+        ))}
+      </div>
       <div className={styles.price}>
         <span>
           <p>
@@ -59,9 +63,13 @@ const ExploreSpaces = ({ space }) => {
             <Star />
             <NoStar />
           </div>
-          <p>{space.reviews[0].rating} Ratings</p>
+          <p>{space.reviews[0]?.rating} Ratings</p>
         </div>
-        <Button to={`/sencilo/${space._id}`} text={"GET TICKET"} onClick={() => senciloPage(space._id)}/>
+        <Button
+          to={`/sencilo/${space._id}`}
+          text={"GET TICKET"}
+          onClick={() => senciloPage(space._id)}
+        />
       </div>
     </article>
   );

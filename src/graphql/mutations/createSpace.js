@@ -64,8 +64,6 @@ export const CREATE_SPACE = gql`
       approved
       author {
         _id
-        firstName
-        lastName
       }
       beds
       category
@@ -85,7 +83,6 @@ export const CREATE_SPACE = gql`
       policies
       pool
       price
-      restRoome
       reviews {
         _id
         comment

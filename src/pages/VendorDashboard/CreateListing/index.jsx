@@ -5,23 +5,34 @@ import Button from "../../../components/Button";
 import InputField from "../../../components/InputField";
 import Menu from "./Menu/Menu";
 
+import { dispatch } from "@/redux/store";
 import { toast } from "react-hot-toast";
+import { useSelector } from "react-redux";
+import ButtonSpinner from "../../../components/ButtonSpiner";
+import { CreateSpace } from "../../../redux/features/space/service";
 import upload from "./assets/upload.svg";
 
 const CreateListing = () => {
   const selectFile = useRef();
+  const { isLoading } = useSelector((state) => state.util);
+  const [createdSpaceId, setCreatedSpaceId] = useState(null);
   const [inputFields, setInputFields] = useState({
     name: "",
-    address: "",
+    location: "",
+    facilityType: "",
     category: "",
     description: "",
-    policy: "",
-    identification: "",
+    beds: 0,
+    policies: "",
+    image: "",
     pool: false,
+    currency: "",
+    price: 0.0,
     wifi: false,
-    parkingSpace: false,
+    parking: false,
     outdoorSpace: false,
     kitchen: false,
+    restRoome: false,
     ac: false,
     videoGames: false,
     petFriendly: false,
@@ -31,7 +42,6 @@ const CreateListing = () => {
     workspace: false,
   });
   const [previewImages, setPreviewImages] = useState([]);
-  const [uploadID, setUploadID] = useState([]);
 
   const onChecked = (e) => {
     setInputFields({
@@ -49,7 +59,7 @@ const CreateListing = () => {
     const files = e.target?.files;
     if (files && files.length <= 6) {
       const fileArray = Array.from(files);
-      setUploadID((prev) => [...prev, fileArray.map((file) => file.name)]);
+
       fileArray.forEach((file) => {
         const reader = new FileReader();
         reader.readAsDataURL(file);
@@ -66,11 +76,6 @@ const CreateListing = () => {
   console.log(inputFields);
 
   const handleDelSelected = (index) => {
-    setUploadID((prev) => {
-      const newUploadID = [...prev];
-      newUploadID.splice(index, 1);
-      return newUploadID;
-    });
     setPreviewImages((prev) => {
       const newPreviewImages = [...prev];
       newPreviewImages.splice(index, 1);
@@ -78,9 +83,35 @@ const CreateListing = () => {
     });
   };
 
-  const handleCreateSpace = (e) => {
+  const handleCreateSpace = async (e) => {
     e.preventDefault();
-    console.log(inputFields);
+    if (
+      !inputFields.name ||
+      !inputFields.location ||
+      !inputFields.category ||
+      !inputFields.facilityType ||
+      !inputFields.description ||
+      !inputFields.policies ||
+      !inputFields.currency ||
+      !inputFields.price ||
+      !inputFields.beds
+    ) {
+      return toast.error("Please fill all the fields");
+    }
+    if (previewImages.length === 0) {
+      return toast.error("Please select at least one image");
+    }
+    const res = await dispatch(
+      CreateSpace({
+        ...inputFields,
+        image: previewImages,
+        beds: Number(inputFields.beds),
+        price: parseFloat(inputFields.price),
+      })
+    );
+    if (res?.createdSpace?._id) {
+      setCreatedSpaceId(res.createdSpace?._id);
+    }
   };
   return (
     <div className="flex flex-col md:flex-row justify-between">
@@ -94,12 +125,32 @@ const CreateListing = () => {
             <InputField name="name" type="text" onChange={handleChange} />
           </div>
           <div className={styles.input_content}>
-            <label htmlFor="name">Address</label>
-            <InputField name="address" type="text" onChange={handleChange} />
+            <label htmlFor="name">location</label>
+            <InputField name="location" type="text" onChange={handleChange} />
           </div>
           <div className={styles.input_content}>
             <label htmlFor="name">Category</label>
             <InputField name="category" type="text" onChange={handleChange} />
+          </div>
+          <div className={styles.input_content}>
+            <label htmlFor="name">Facilty Type</label>
+            <InputField
+              name="facilityType"
+              type="text"
+              onChange={handleChange}
+            />
+          </div>
+          <div className={styles.input_content}>
+            <label htmlFor="name">Beds</label>
+            <InputField name="beds" type="number" onChange={handleChange} />
+          </div>
+          <div className={styles.input_content}>
+            <label htmlFor="name">Currency</label>
+            <InputField name="currency" type="text" onChange={handleChange} />
+          </div>
+          <div className={styles.input_content}>
+            <label htmlFor="name">Price</label>
+            <InputField name="price" type="number" onChange={handleChange} />
           </div>
           <div className={styles.input_content_text}>
             <label htmlFor="name">Description</label>
@@ -112,10 +163,10 @@ const CreateListing = () => {
             ></textarea>
           </div>
           <div className={styles.input_content_text}>
-            <label htmlFor="name">Policy</label>
+            <label htmlFor="name">Policies</label>
             <textarea
-              name="policy"
-              id="policy"
+              name="policies"
+              id="policies"
               cols="30"
               onChange={handleChange}
               rows="10"
@@ -139,7 +190,7 @@ const CreateListing = () => {
                 onClick={() => selectFile.current.click()}
               >
                 <img src={upload} alt="upload" />
-                Upload your ID
+                Upload space image(s)
               </div>
             )}
             <div className="flex flex-wrap mt-2 w-full">
@@ -187,8 +238,8 @@ const CreateListing = () => {
               <div className={styles.features_content}>
                 <input
                   type="checkbox"
-                  name="parkingSpace"
-                  id="parkingSpace"
+                  name="parking"
+                  id="parking"
                   onChange={onChecked}
                   checked={inputFields.parkingSpace}
                 />
@@ -223,6 +274,16 @@ const CreateListing = () => {
                   checked={inputFields.ac}
                 />
                 <p>A.c</p>
+              </div>
+              <div className={styles.features_content}>
+                <input
+                  type="checkbox"
+                  name="restRoome"
+                  id="restRoome"
+                  onChange={onChecked}
+                  checked={inputFields.restRoome}
+                />
+                <p>Rest Room</p>
               </div>
               <div className={styles.features_content}>
                 <input
@@ -286,10 +347,13 @@ const CreateListing = () => {
               </div>
             </div>
           </div>
-
-          <Button text="create listing" type="submit" />
+          {isLoading ? (
+            <ButtonSpinner />
+          ) : (
+            <Button text="create listing" type="submit" />
+          )}
         </form>
-        <Menu />
+        <Menu spaceId={createdSpaceId} />
       </div>
       <div className="w-full md:w-1/4" />
     </div>
