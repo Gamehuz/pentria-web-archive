@@ -16,7 +16,7 @@ const UserFavorites = () => {
     favoriteSpace();
   }, [favoriteSpace]);
 
-  console.log(data?.user?.favoriteSpace);
+  console.log(data?.user?.favouriteSpace);
 
   if (error) return toast.error(error.message);
   if (loading) return <IsLoadingSkeleton />;
@@ -40,68 +40,66 @@ const UserFavorites = () => {
       </div>
       <div className={styles.favorites}>
         <div className={styles.favorites__hr} />
-        {data?.user?.favoriteSpace?.length > 0 ? (
+        {data?.user?.favouriteSpace?.length > 0 ? (
           <>
-            {data?.user?.favoriteSpace?.map((favSpace) => (
-              <>
-                <div className={styles.favorites__itemContainer}>
-                  <div className={styles.favorites__item}>
-                    <div className={styles.favorites__item__img}>
+            {data?.user?.favouriteSpace?.map((favSpace, index) => (
+              <div className={styles.favorites__itemContainer} key={index}>
+                <div className={styles.favorites__item}>
+                  <div className={styles.favorites__item__img}>
+                    {favSpace?.image?.length > 1 ? (
+                      <>
+                        {favSpace?.image?.map((img) => (
+                          <img src={img} alt="" key={img} />
+                        ))}
+                      </>
+                    ) : (
                       <img src={favSpace?.image} alt="" />
+                    )}
+                  </div>
+                  <div className={styles.favorites__item__details}>
+                    <h3>{favSpace?.name}</h3>
+                    <div className={styles.favorites__item__details__location}>
+                      <img src={locationIcon} alt="location pin" />
+                      <p>{favSpace?.location}</p>
                     </div>
-                    <div className={styles.favorites__item__details}>
-                      <h3>{favSpace?.name}</h3>
-                      <div
-                        className={styles.favorites__item__details__location}
-                      >
-                        <img src={locationIcon} alt="location pin" />
-                        <p>{favSpace?.location}</p>
-                      </div>
-                      <div className={styles.favorites__item__details__rating}>
-                        <div className="flex mt-4">
-                          <div className="flex text-primaryColor items-center">
-                            {favSpace?.review?.rating &&
-                              [...Array(favSpace?.review?.rating)].map(
-                                (_, i) => (
-                                  <StarIcon className="w-[20px]" key={i} />
-                                )
-                              )}
-                            {favSpace?.review?.rating &&
-                              [...Array(5 - favSpace?.review.rating)].map(
-                                (_, i) => (
-                                  <StarIcon
-                                    className="w-[20px] text-[#C4C4C4]"
-                                    key={i}
-                                  />
-                                )
-                              )}
-                          </div>
-                          <p className="text-[16px] ml-2 font-medium">
-                            {favSpace?.review?.rating} Ratings
-                          </p>
+                    <div className={styles.favorites__item__details__rating}>
+                      <div className="flex mt-4">
+                        <div className="flex text-primaryColor items-center">
+                          {favSpace?.review?.rating &&
+                            [...Array(favSpace?.review?.rating)].map((_, i) => (
+                              <StarIcon className="w-[20px]" key={i} />
+                            ))}
+                          {favSpace?.review?.rating &&
+                            [...Array(5 - favSpace?.review.rating)].map(
+                              (_, i) => (
+                                <StarIcon
+                                  className="w-[20px] text-[#C4C4C4]"
+                                  key={i}
+                                />
+                              )
+                            )}
                         </div>
+                        <p className="text-[16px] ml-2 font-medium">
+                          {favSpace?.review?.rating} Ratings
+                        </p>
                       </div>
-                    </div>
-                    <div className={styles.favorites__itemContainer__buttons}>
-                      <Button
-                        type="button"
-                        text="Visit"
-                        classes={
-                          styles.favorites__itemContainer__buttons__visit
-                        }
-                      />
-                      <Button
-                        type="button"
-                        text="Remove"
-                        classes={
-                          styles.favorites__itemContainer__buttons__remove
-                        }
-                      />
                     </div>
                   </div>
-                  <div className={styles.favorites__hr} />
+                  <div className={styles.favorites__itemContainer__buttons}>
+                    <Button
+                      to={`/sencilo/${favSpace?._id}`}
+                      text="Visit"
+                      classes={styles.favorites__itemContainer__buttons__visit}
+                    />
+                    <Button
+                      type="button"
+                      text="Remove"
+                      classes={styles.favorites__itemContainer__buttons__remove}
+                    />
+                  </div>
                 </div>
-              </>
+                <div className={styles.favorites__hr} />
+              </div>
             ))}
           </>
         ) : (

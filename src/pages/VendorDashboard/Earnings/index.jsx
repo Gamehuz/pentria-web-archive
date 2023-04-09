@@ -1,5 +1,6 @@
 import Button from "../../../components/Button";
-import HistoryTable from "../../../components/HistoryTable/index";
+import HistoryTable from "../../../components/HistoryTable";
+import ChartGraph from "./compo/chart";
 import styles from "./earnings.module.scss";
 
 const VendorEarnings = () => {
@@ -39,6 +40,18 @@ const VendorEarnings = () => {
       name3: "Pending",
     },
   ];
+
+  const data = [65, 59, 80, 81, 56, 55, 40];
+  const labels = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+  ];
+
   return (
     <div className={styles.EarningsPage}>
       <div className={styles.earningsHeader}>
@@ -67,7 +80,9 @@ const VendorEarnings = () => {
             secondTableData={secondData}
           />
         </div>
-        <div className={styles.earningsGraph}></div>
+        <div className={styles.earningsGraph}>
+          <ChartGraph title="My Chart" data={data} labels={labels} />
+        </div>
       </div>
     </div>
   );
