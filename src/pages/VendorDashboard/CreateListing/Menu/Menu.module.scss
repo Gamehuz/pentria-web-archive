@@ -79,3 +79,12 @@
     }
   }
 }
+
+.activeDur {
+  background-color: #bf4d01 !important;
+  transition: all 0.5ms ease-in-out;
+  -webkit-transition: all 0.5ms ease-in-out;
+  -moz-transition: all 0.5ms ease-in-out;
+  -ms-transition: all 0.5ms ease-in-out;
+  -o-transition: all 0.5ms ease-in-out;
+}
