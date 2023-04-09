@@ -28,11 +28,9 @@ const ExploreSpaces = ({ space }) => {
   };
 
   return (
-    <article key={space._id} className="relative overflow-hidden">
-      <div className="flex">
-        {space.image?.map((img) => (
-          <img src={img} alt="spaces arena" className="" key={img} />
-        ))}
+    <article key={space._id} className="relative">
+      <div className="flex w-full m-0 p-0">
+        <img src={space.image?.[0]} alt="spaces arena" className="w-full" />
       </div>
       <div className={styles.price}>
         <span>
