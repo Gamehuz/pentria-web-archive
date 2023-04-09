@@ -5,6 +5,7 @@ import ALL_SPACES from "../../../../graphql/queries/spaces";
 import ExploreSpaces from "./components/exploreSpaces";
 import UpcomingSpaces from "./components/upcomingSpaces";
 import styles from "./explore.module.scss";
+import "./explore.css"
 import {Swiper, SwiperSlide} from 'swiper/react';
 import { Navigation } from "swiper";
 import 'swiper/css';

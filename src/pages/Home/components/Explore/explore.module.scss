@@ -137,6 +137,10 @@
         div {
             color: var(--tertiary-color);
 
+            .swiper-button-next {
+                padding-left: 10px;
+            }
+
             div {
                 max-width: 350px !important;
             }

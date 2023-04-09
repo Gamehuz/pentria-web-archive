@@ -59,7 +59,7 @@ const ExploreSpaces = ({ space }) => {
             <Star />
             <NoStar />
           </div>
-          <p>{space.reviews[0].rating} Ratings</p>
+          <p>{space?.reviews[0]?.rating} Ratings</p>
         </div>
         <Button to={`/sencilo/${space._id}`} text={"GET TICKET"} onClick={() => senciloPage(space._id)}/>
       </div>
