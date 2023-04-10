@@ -131,11 +131,12 @@ const AddActivityToSpace = (data) => async () => {
     const result = await appolloClient.mutate({
       mutation: ADD_ACTIVITY,
       variables: {
-        spaceId: data.tempId,
+        spaceId: data.spaceId,
         name: data.name,
         price: data.price,
         duration: data.duration,
         image: data.image,
+        currency: data.currency,
       },
     });
     dispatch(setLoading(false));

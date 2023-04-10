@@ -12,6 +12,7 @@ import { AddActivityToSpace } from "../../../../redux/features/space/service";
 import upload from "../assets/upload.svg";
 
 const Menu = ({ spaceId }) => {
+  const createdSpaceId = spaceId || localStorage.getItem("createdSpaceId");
   const selectFile = useRef();
   const { isLoading } = useSelector((state) => state.util);
   const [previewImage, setPreviewImage] = useState();
@@ -41,31 +42,39 @@ const Menu = ({ spaceId }) => {
 
     selectFile.current.value = null;
   };
-  // const handleDelSelected = (index) => {
-  //   setPreviewImages((prev) => {
-  //     const newPreviewImages = [...prev];
-  //     newPreviewImages.splice(index, 1);
-  //     return newPreviewImages;
-  //   });
-  // };
 
   const handleAddMenu = async (e) => {
     e.preventDefault();
-    // if (!spaceId) return toast.error("Please create space first");
-    if (!inputfields.name || !inputfields.price || !inputfields.duration)
+    if (!createdSpaceId) return toast.error("Please create space first");
+    if (
+      !inputfields.name ||
+      !inputfields.price ||
+      !inputfields.duration ||
+      !inputfields.currency
+    )
       return toast.error("Please fill all fields");
-    const tempId = "6431bd7851afc0666d16c3e1";
     const res = await dispatch(
       AddActivityToSpace({
-        tempId,
+        spaceId: createdSpaceId,
         ...inputfields,
         image: previewImage,
         price: Number(inputfields.price),
       })
     );
-    console.log(res);
+    if (res?.addActivity) {
+      setInputfields({
+        name: "",
+        price: "",
+        image: "",
+        duration: "",
+        currency: "",
+      });
+      setPreviewImage("");
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
+    }
   };
-  console.log(inputfields);
   return (
     <div className={styles.menu_container}>
       <h2>Menu</h2>
@@ -107,10 +116,9 @@ const Menu = ({ spaceId }) => {
         </div>
 
         <div className={styles.input_content_img}>
-          <label htmlFor="name">Add up to 3 images</label>
+          <label htmlFor="name">Add image</label>
           <input
             onChange={handleSelectFile}
-            //   onBlur={handleBlur}
             type="file"
             name="identification"
             accept="image/*"

@@ -2,12 +2,14 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import ButtonSpinner from "../ButtonSpiner/index";
 import mobileMenu from "./assets/menu-hamburger.svg";
 import styles from "./homenav.module.scss";
 
 const HomeNavbar = ({ bg }) => {
   const [toggleNav, setToggleNav] = React.useState(false);
   const { token, user } = useSelector((state) => state.user);
+  const { isLoading } = useSelector((state) => state.util);
   const userType = user?.accountType;
   return (
     <div
@@ -34,47 +36,53 @@ const HomeNavbar = ({ bg }) => {
           </li>
         </ul>
         <div className={styles.homeNavbar_btn}>
-          {token ? (
+          {isLoading ? (
+            <ButtonSpinner />
+          ) : (
             <>
-              {userType === "GUEST" ? (
-                <div className={styles.homeNavbar_dashboard}>
-                  <Link to="/user/dashboard">DASHBOARD</Link>
-                </div>
-              ) : (
+              {token ? (
                 <>
-                  {userType === "VENDOR" ? (
+                  {userType === "GUEST" ? (
                     <div className={styles.homeNavbar_dashboard}>
-                      <Link to="/vendor/dashboard">DASHBOARD</Link>
+                      <Link to="/user/dashboard">DASHBOARD</Link>
                     </div>
                   ) : (
                     <>
-                      {user?.accountType === "ADMIN" ? (
+                      {userType === "VENDOR" ? (
                         <div className={styles.homeNavbar_dashboard}>
-                          <Link to="/admin/dashboard">DASHBOARD</Link>
+                          <Link to="/vendor/dashboard">DASHBOARD</Link>
                         </div>
                       ) : (
                         <>
-                          <div className={styles.homeNavbar_login}>
-                            <Link to="/login">LOGIN</Link>
-                          </div>
-                          <div className={styles.homeNavbar_signup}>
-                            <Link to="/prompt">SIGNUP</Link>
-                          </div>
+                          {user?.accountType === "ADMIN" ? (
+                            <div className={styles.homeNavbar_dashboard}>
+                              <Link to="/admin/dashboard">DASHBOARD</Link>
+                            </div>
+                          ) : (
+                            <>
+                              <div className={styles.homeNavbar_login}>
+                                <Link to="/login">LOGIN</Link>
+                              </div>
+                              <div className={styles.homeNavbar_signup}>
+                                <Link to="/prompt">SIGNUP</Link>
+                              </div>
+                            </>
+                          )}
                         </>
                       )}
                     </>
                   )}
                 </>
+              ) : (
+                <>
+                  <div className={styles.homeNavbar_login}>
+                    <Link to="/login">LOGIN</Link>
+                  </div>
+                  <div className={styles.homeNavbar_signup}>
+                    <Link to="/prompt">SIGNUP</Link>
+                  </div>
+                </>
               )}
-            </>
-          ) : (
-            <>
-              <div className={styles.homeNavbar_login}>
-                <Link to="/login">LOGIN</Link>
-              </div>
-              <div className={styles.homeNavbar_signup}>
-                <Link to="/prompt">SIGNUP</Link>
-              </div>
             </>
           )}
         </div>
