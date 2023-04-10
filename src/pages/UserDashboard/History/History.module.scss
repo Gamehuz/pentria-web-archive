@@ -31,7 +31,7 @@
 
     .history {
       display: flex;
-      align-items: center;
+      // align-items: center;
       justify-content: space-between;
 
       @media (max-width: 903px) {
@@ -42,7 +42,7 @@
 
       .booking_info {
         display: flex;
-        align-items: center;
+        // align-items: center;
         gap: 20px;
 
         @media (max-width: 506px) {
@@ -53,7 +53,7 @@
 
         div {
           .price {
-            margin: 0 0 10px 0;
+            margin: 1rem 0;
             color: #bf4d01;
             font-weight: 700;
           }
@@ -61,7 +61,7 @@
           .item,
           .ticket,
           .date {
-            margin: 0 0 10px 0;
+            margin: 01rem 0;
             font-weight: 500;
           }
         }

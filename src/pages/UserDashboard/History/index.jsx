@@ -6,9 +6,14 @@ import fav from "./assets/fav.svg";
 
 import IsLoadingSkeleton from "@/components/LoadingSkeleton";
 import { useLazyQuery } from "@apollo/client";
+import moment from "moment";
 import { toast } from "react-hot-toast";
 import { useSelector } from "react-redux";
 import CUSTOMER_BOOKINGS from "../../../graphql/queries/customerbookings";
+
+function formatDate(timestamp) {
+  return moment(Number(timestamp)).format("DD-MM-YYYY");
+}
 
 const History = () => {
   const [customerBookings, { data, loading, error }] =
@@ -29,7 +34,7 @@ const History = () => {
 
   console.log(data?.customerBookings);
   const handleCancelBooking = (id) => {
-    toast.error(`Booking with id ${id} has been cancelled`);
+    toast.success(`Booking with id ${id} has been cancelled`);
   };
   if (error) return toast.error(error.message);
 
@@ -51,7 +56,11 @@ const History = () => {
             {data?.customerBookings?.map((booking) => (
               <div className={styles.history} key={booking?._id}>
                 <div className={styles.booking_info}>
-                  <img src={booking?.image} alt="" />
+                  <img
+                    src={booking?.spaceId?.image?.[0]}
+                    alt=""
+                    className="md:w-[400px] w-full"
+                  />
                   <div>
                     <p className={styles.price}>
                       {booking?.currency === "NGN"
@@ -59,31 +68,43 @@ const History = () => {
                         : booking?.currency === "USD"
                         ? "$"
                         : "£"}
-                      {booking?.price}
+                      {booking?.spaceId?.price}
                     </p>
-                    <p className={styles.item}>{booking?.name}</p>
-                    <p className={styles.booking?.tickets?.length}> Ticket</p>
-                    <p className={styles.date}>{booking?.date}</p>
+                    <p className={styles.item}>{booking?.spaceId?.name}</p>
+                    <p className="p-2">{booking?.tickets?.length} Ticket</p>
+                    <p className={styles.date}>
+                      {formatDate(booking?.spaceId?.createdAt)}
+                    </p>
                   </div>
                 </div>
                 <div className={styles.booking_details}>
                   <div>
                     <img src={fav} alt="" />
-                    <p>{booking?.location}</p>
+                    <p>{booking?.spaceId?.location}</p>
                   </div>
-                  <div>
-                    {/* <img src={location} alt="" />
-              <p>23 Abacha Rd phc </p> */}
-                  </div>
+                  <div></div>
                   {booking?.status === "cancelled" ? (
-                    <p
-                      onClick={() => handleCancelBooking(booking._id)}
-                      className={styles.status}
-                    >
-                      Status: {booking?.status}
-                    </p>
-                  ) : (
                     <p className={styles.status}>Status: {booking?.status}</p>
+                  ) : (
+                    <>
+                      {booking?.status === "Active" ? (
+                        <>
+                          <p className={styles.status}>
+                            Status: {booking?.status}
+                          </p>
+                          <p
+                            className="cursor-pointer text-red-500 hover:transform hover:scale-110 transition duration-500"
+                            onClick={() => handleCancelBooking(booking._id)}
+                          >
+                            Click to cancel
+                          </p>
+                        </>
+                      ) : (
+                        <p className={styles.status}>
+                          Status: {booking?.status}
+                        </p>
+                      )}
+                    </>
                   )}
                 </div>
               </div>
