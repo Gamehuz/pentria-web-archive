@@ -73,8 +73,6 @@ const CreateListing = () => {
     selectFile.current.value = null;
   };
 
-  console.log(inputFields);
-
   const handleDelSelected = (index) => {
     setPreviewImages((prev) => {
       const newPreviewImages = [...prev];
@@ -109,8 +107,12 @@ const CreateListing = () => {
         price: parseFloat(inputFields.price),
       })
     );
-    if (res?.createdSpace?._id) {
-      setCreatedSpaceId(res.createdSpace?._id);
+    if (res?.createSpace?._id) {
+      localStorage.setItem("createdSpaceId", res.createSpace?._id);
+      setCreatedSpaceId(res.createSpace?._id);
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
     }
   };
   return (
@@ -173,7 +175,7 @@ const CreateListing = () => {
             ></textarea>
           </div>
           <div className={styles.input_content_img}>
-            <label htmlFor="name">Add up to 6 images</label>
+            <label htmlFor="name">Add up to 4 images</label>
             <input
               onChange={handleSelectFile}
               //   onBlur={handleBlur}
@@ -184,7 +186,7 @@ const CreateListing = () => {
               hidden
               multiple={true}
             />
-            {previewImages?.length <= 6 && (
+            {previewImages?.length <= 4 && (
               <div
                 className={styles.upload}
                 onClick={() => selectFile.current.click()}

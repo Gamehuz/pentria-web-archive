@@ -1,5 +1,6 @@
 import Button from "@/components/Button";
 import InputField from "@/components/InputField";
+import IsLoadingSkeleton from "@/components/LoadingSkeleton";
 import { useMutation } from "@apollo/client";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
@@ -23,8 +24,7 @@ const UserSettings = () => {
   });
 
   const [togglePassword, setTogglePassword] = useState(false);
-  const [toggleConfirmPassword, setToggleConfirmPassword] = useState(false);
-  const [editUserInfo, { data, loading, error }] = useMutation(
+  const [editUserInfo, { loading, error }] = useMutation(
     EDIT_USER_ACCOUNT_INFO
   );
   const [startEdit, setStartEdit] = useState(false);
@@ -52,13 +52,16 @@ const UserSettings = () => {
       },
     }).then((res) => {
       console.log(res);
+      setStartEdit(!startEdit);
       toast.success("User details updated successfully");
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
     });
   };
 
-  if (loading) return toast.success("Loading...");
+  if (loading) return <IsLoadingSkeleton />;
   if (error) return toast.error(error.message);
-  console.log(startEdit);
   return (
     <div className={styles.userSettings}>
       <div className="mb-4">
@@ -83,22 +86,22 @@ const UserSettings = () => {
           <form onSubmit={handleSave}>
             <div className={styles.two_cols}>
               <div className={styles.formGroup}>
-                <label htmlFor="firstname">First Name</label>
+                <label htmlFor="firstName">First Name</label>
                 <InputField
                   type="text"
-                  name="firstname"
-                  id="firstname"
+                  name="firstName"
+                  id="firstName"
                   value={startEdit ? userDetails.firstName : user?.firstName}
                   placeholder="Enter your first name"
                   onChange={handleChange}
                 />
               </div>
               <div className={styles.formGroup}>
-                <label htmlFor="lastname">Last Name</label>
+                <label htmlFor="lastName">Last Name</label>
                 <InputField
                   type="text"
-                  name="lastname"
-                  id="lastname"
+                  name="lastName"
+                  id="lastName"
                   value={startEdit ? userDetails.lastName : user?.lastName}
                   placeholder="Enter your last name"
                   onChange={handleChange}
@@ -128,7 +131,7 @@ const UserSettings = () => {
               />
             </div>
             <div className={styles.formGroup}>
-              <label htmlFor="email">Address</label>
+              <label htmlFor="address">Address</label>
               <InputField
                 type="text"
                 name="address"
@@ -140,7 +143,7 @@ const UserSettings = () => {
             </div>
             <div className={styles.two_cols}>
               <div className={styles.formGroup}>
-                <label htmlFor="email">City</label>
+                <label htmlFor="city">City</label>
                 <InputField
                   type="text"
                   name="city"
@@ -151,7 +154,7 @@ const UserSettings = () => {
                 />
               </div>
               <div className={styles.formGroup}>
-                <label htmlFor="email">State</label>
+                <label htmlFor="state">State</label>
                 <InputField
                   type="text"
                   name="state"
@@ -174,7 +177,7 @@ const UserSettings = () => {
               />
             </div>
             <div className={styles.formGroup}>
-              <label htmlFor="email">Phone</label>
+              <label htmlFor="phone">Phone</label>
               <InputField
                 type="number"
                 name="phone"
@@ -185,7 +188,7 @@ const UserSettings = () => {
               />
             </div>
             <div className={styles.formGroup}>
-              <label htmlFor="email">Password</label>
+              <label htmlFor="password">Password</label>
               <InputField
                 type={togglePassword ? "text" : "password"}
                 name="password"

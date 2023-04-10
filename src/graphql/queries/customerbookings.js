@@ -6,21 +6,18 @@ const CUSTOMER_BOOKINGS = gql`
       _id
       spaceId {
         _id
+        image
+        name
+        location
+        price
+        createdAt
+
+        reviews {
+          rating
+        }
       }
       tickets {
         _id
-        spaceId {
-          _id
-        }
-        activityId {
-          _id
-        }
-        name
-        date
-        time
-        duration
-        count
-        price
       }
       tx_ref
       status

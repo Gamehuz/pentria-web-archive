@@ -1,12 +1,13 @@
 import Button from "@/components/Button";
-import { dispatch } from "@/redux/store";
-import { useEffect, useState } from "react";
+// import { dispatch } from "@/redux/store";
+import {  useState } from "react";
 import { toast } from "react-hot-toast";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import {
-  CalculateDiscount,
-  CreateBooking,
-} from "../../redux/features/booking/services";
+// import {
+//   CalculateDiscount,
+//   CreateBooking,
+// } from "../../redux/features/booking/services";
 import backArrow from "./assets/211686_back_arrow_icon 1.png";
 import styles from "./BookingPage.module.scss";
 import Item from "./compo/Item";
@@ -16,19 +17,22 @@ const BookingPage = () => {
   const activities = JSON.parse(localStorage.getItem("activities"));
   const [specialReq, setSpecialReq] = useState("");
   const [itemsSelected, setItemsSelected] = useState([]);
-  const [total, setTotal] = useState(0);
+  const { space } = useSelector((state) => state.space);
 
-  const calcTotal = itemsSelected.reduce((acc, item) => {
-    return acc + item.price * item.count;
-  }, 0);
+  // const [total, setTotal] = useState(0);
+
+  // const calcTotal = itemsSelected.reduce((acc, item) => {
+  //   return acc + item.price * item.count;
+  // }, 0);
 
   const getTotalItemLength = itemsSelected.reduce((acc, item) => {
     return acc + item.count;
   }, 0);
 
-  useEffect(() => {
-    setTotal(calcTotal);
-  }, [calcTotal, itemsSelected]);
+  // useEffect(() => {
+  //   setTotal(calcTotal);
+  // }, [calcTotal, itemsSelected]);
+  console.log(itemsSelected)
 
   const handleItemData = (date, time, numOfTickets, duration, item) => {
     const newItem = {
@@ -65,42 +69,56 @@ const BookingPage = () => {
       toast.error("Please select at least one item");
       return;
     }
-    const calculateData = itemsSelected.map((item) => {
-      return {
-        name: item.name,
-        spaceId: item.spaceId,
-        activityId: item.activityId,
-        date: item.date,
-        time: item.time,
-        duration: item.duration,
-        price: item.price,
-        count: item.count,
-      };
-    });
 
-    const calculateDiscountRes = await dispatch(
-      CalculateDiscount(calculateData)
-    );
-    if (calculateDiscountRes.calculateDiscount) {
-      const { discountAmount, discountPercentage, initalAmount, total } =
-        calculateDiscountRes.calculateDiscount;
-      setTotal(total);
-      const bookingData = {
-        tickets: calculateData,
-        spaceId: calculateData[0].spaceId,
-        discountAmount,
-        discountPercentage,
-        initalAmount,
-        status: "Active",
-        total,
-        specialReq,
-      };
-      console.log(bookingData);
-      const bookingRes = await dispatch(CreateBooking(bookingData));
-      if (bookingRes.createBooking) {
-        window.location.href = bookingRes.createBooking.link;
-      }
+    if(specialReq === "") {
+      setSpecialReq("No special request")
     }
+
+    const spaceDetails = {
+      facilityType: space.facilityType,
+      location: space.location,
+      specialRequest: specialReq
+    }
+
+    navigate("/payment")
+    // const calculateData = itemsSelected.map((item) => {
+    //   return {
+    //     name: item.name,
+    //     spaceId: item.spaceId,
+    //     activityId: item.activityId,
+    //     date: item.date,
+    //     time: item.time,
+    //     duration: item.duration,
+    //     price: item.price,
+    //     count: item.count,
+    //   };
+    // });
+
+    // const calculateDiscountRes = await dispatch(
+    //   CalculateDiscount(calculateData)
+    // );
+    // if (calculateDiscountRes.calculateDiscount) {
+    //   const { discountAmount, discountPercentage, initalAmount, total } =
+    //     calculateDiscountRes.calculateDiscount;
+    //   setTotal(total);
+      // const bookingData = {
+      //   tickets: calculateData,
+      //   spaceId: calculateData[0].spaceId,
+      //   discountAmount,
+      //   discountPercentage,
+      //   initalAmount,
+      //   status: "Active",
+      //   total,
+      //   specialReq,
+      // };
+    //   console.log(bookingData);
+    //   const bookingRes = await dispatch(CreateBooking(bookingData));
+    //   if (bookingRes.createBooking) {
+    //     window.location.href = bookingRes.createBooking.link;
+    //   }
+    // }
+    localStorage.setItem("paymentactivities", JSON.stringify(itemsSelected));
+    localStorage.setItem("spaceDetails", JSON.stringify(spaceDetails))
   };
 
   return (
@@ -182,11 +200,11 @@ const BookingPage = () => {
                   </div>
                 </div>
                 <div className={styles.booking_details__total__item}>
-                  <h3>Total</h3>
+                  {/* <h3>Total</h3>
                   <div className={styles.booking_details__total__item__price}>
-                    <p>NGN</p> <span> </span>
-                    <p>{total}</p>
-                  </div>
+                    <p>NGN</p> <span> </span> */}
+                    {/* <p>{total}</p> */}
+                  {/* </div> */}
                 </div>
               </div>
             </section>

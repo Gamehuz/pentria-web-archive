@@ -22,7 +22,11 @@ import { useNavigate, useParams } from "react-router-dom";
 import { AddReview, addToFavorites } from "../../redux/features/space/service";
 import Container from "./Container";
 import styles from "./sencilo.module.scss";
-
+const calcAvgRating = (reviews) => {
+  if (!reviews.length) return 0;
+  const total = reviews.reduce((acc, curr) => acc + curr.rating, 0);
+  return total / reviews.length;
+};
 const Sencilo = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -55,7 +59,15 @@ const Sencilo = () => {
   }, [existingActivities]);
 
   const addActivity = (activity) => {
-    const newActivities = [...existingActivities, { spaceId: id, ...activity }];
+    const newActivities = [
+      ...existingActivities,
+      {
+        spaceId: id,
+        facilityType: space?.facilityType,
+        location: space?.location,
+        ...activity,
+      },
+    ];
     setExistingActivities(newActivities);
     toast.success("Activity added to your list");
   };
@@ -189,26 +201,53 @@ const Sencilo = () => {
               </div>
               <div className="col-span-3 flex space-x-3 items-center justify-center">
                 <div className="flex text-primaryColor items-center">
-                  <StarIcon className="w-[20px]" />
-                  <StarIcon className="w-[20px]" />
-                  <StarIcon className="w-[20px]" />
-                  <StarIcon className="w-[20px]" />
-                  <StarIcon className="w-[20px] text-[#C4C4C4]" />
+                  <div className="flex mt-4">
+                    <div className="flex text-primaryColor items-center">
+                      {space?.reviews.length > 0 &&
+                        [
+                          ...Array(Math.round(calcAvgRating(space?.reviews))),
+                        ].map((_, i) => (
+                          <StarIcon className="w-[20px]" key={i} />
+                        ))}
+                      {space?.reviews.length > 0 &&
+                        [
+                          ...Array(
+                            5 - Math.round(calcAvgRating(space?.reviews))
+                          ),
+                        ].map((_, i) => (
+                          <StarIcon
+                            className="w-[20px] text-[#C4C4C4]"
+                            key={i}
+                          />
+                        ))}
+                    </div>
+                    <p className="text-[16px] ml-2 font-medium">
+                      {space?.reviews.length > 0 ? (
+                        <>{calcAvgRating(space?.reviews)} Ratings</>
+                      ) : (
+                        "No Ratings"
+                      )}
+                    </p>
+                  </div>
                 </div>
-                <p className="text-[16px] font-medium">4.0 Ratings </p>
               </div>
             </div>
 
             {/* THE DESCRIPTION AND MENU */}
             <div className={styles["sencilo__desc_menu-container"]}>
-              <div className="col-span-7">
-                <p className="text-xl font-medium text-black">Description</p>
-                <p className="mt-4 text-[16px]">{space?.description}</p>
-
-                <p className="text-xl font-medium">Guidelines/Policy</p>
-                <ul className="mt-4 space-y-5 text-[16px]">
-                  <li className="">{space?.policies}</li>
-                </ul>
+              <div className="col-span-7 md:w-[800px] w-full">
+                <div className="text-justify">
+                  <p className="text-xl text-black font-medium">Description</p>
+                  <p className="mt-4 text-[16px]">{space?.description}</p>
+                </div>
+                <div className="mt-4">
+                  <p className="text-xl text-black font-medium">
+                    Guidelines/Policy
+                  </p>
+                  <p className="mt-2 space-y-5 text-justify text-[16px]">
+                    {space?.policies}
+                  </p>
+                </div>
               </div>
               <div className="col-span-3">
                 <p className="text-xl font-medium text-black">MENU</p>
