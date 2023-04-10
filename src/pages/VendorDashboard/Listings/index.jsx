@@ -6,7 +6,10 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Button from "../../../components/Button";
 import { calcAvgRating } from "../../../helpers";
-import { GetVendorSpaces } from "../../../redux/features/space/service";
+import {
+  DeleteSpace,
+  GetVendorSpaces,
+} from "../../../redux/features/space/service";
 import locationIcon from "./assets/locationIcon.svg";
 import plusBtn from "./assets/plus.svg";
 import styles from "./listings.module.scss";
@@ -22,7 +25,12 @@ const VendorListings = () => {
     };
     fetchListings();
   }, []);
-  console.log(listings);
+  const handleDeleteSpace = async (id) => {
+    await dispatch(DeleteSpace(id));
+    setTimeout(() => {
+      window.location.reload();
+    }, 2000);
+  };
   if (isLoading) return <IsLoadingSkeleton />;
   return (
     <div className={styles.userListingsPage}>
@@ -55,7 +63,10 @@ const VendorListings = () => {
                   <img src={itm.image?.[0]} alt="" />
                 </div>
                 <div className={styles.listings__item__details}>
-                  <h3>{itm?.name}</h3>
+                  <Link to={`/sencilo/${itm?._id}`}>
+                    <h3>{itm?.name}</h3>
+                  </Link>
+
                   <div className={styles.listings__item__details__location}>
                     <img src={locationIcon} alt="location pin" />
                     <p>{itm?.location}</p>
@@ -88,7 +99,12 @@ const VendorListings = () => {
               </div>
               <div className={styles.listings__itemContainer__buttons}>
                 <Button type="button" text="Edit" classes={styles.btn} />
-                <Button type="button" text="Remove" classes={styles.btn} />
+                <Button
+                  type="button"
+                  onClick={() => handleDeleteSpace(itm?._id)}
+                  text="Remove"
+                  classes={styles.btn}
+                />
               </div>
             </div>
             <div className={styles.listings__hr} />

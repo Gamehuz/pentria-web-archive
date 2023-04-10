@@ -7,6 +7,7 @@ import { GET_SPACE } from "@/graphql/queries/space";
 import { dispatch } from "@/redux/store";
 import { toast } from "react-hot-toast";
 import { REMOVE_FROM_FAVORITES } from "../../../graphql/mutations/removeFromFavorites";
+import { DELETE_SPACE } from "../../../graphql/queries/deleteSpace";
 import { GET_FAVORITE_SPACES } from "../../../graphql/queries/favoriteSpace";
 import { VENDOR_SPACES } from "../../../graphql/queries/vendorListings";
 import { setLoading } from "../../utils/UtilSlice";
@@ -164,6 +165,25 @@ const GetVendorSpaces = () => async () => {
   }
 };
 
+const DeleteSpace = (id) => async () => {
+  dispatch(setLoading(true));
+  try {
+    const result = await appolloClient.query({
+      query: DELETE_SPACE,
+      variables: {
+        spaceId: id,
+      },
+    });
+    dispatch(setLoading(false));
+    toast.success("Space Deleted Successfully");
+    return result.data;
+  } catch (error) {
+    console.log(error.message);
+    dispatch(setLoading(false));
+    toast.error(error.message);
+  }
+};
+
 export {
   GetSpace,
   addToFavorites,
@@ -173,4 +193,5 @@ export {
   RemoveFromFavorites,
   GetFavoriteSpaces,
   GetVendorSpaces,
+  DeleteSpace,
 };
