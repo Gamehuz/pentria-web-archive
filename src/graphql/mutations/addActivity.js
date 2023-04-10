@@ -5,7 +5,7 @@ export const ADD_ACTIVITY = gql`
     $spaceId: ID!
     $image: String!
     $name: String!
-    $currency: Currency!
+    $currency: String!
     $price: Float!
     $duration: String!
   ) {

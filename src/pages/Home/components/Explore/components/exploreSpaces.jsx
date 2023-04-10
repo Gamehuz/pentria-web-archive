@@ -1,6 +1,7 @@
 import { useMutation } from "@apollo/client";
 import Proptypes from "prop-types";
 import { useState } from "react";
+import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import Button from "../../../../../components/Button";
 import ADD_TO_FAVORITES from "../../../../../graphql/mutations/addToFavorites";
@@ -27,17 +28,25 @@ const ExploreSpaces = ({ space }) => {
     navigate(`/sencilo/${id}`);
   };
 
+  const handleAddtoFavorites = async () => {
+    await addToFavorites();
+    toast.success("Added to favorites");
+  };
+
   const ratings = () => {
     const arrayOfRatings = [];
-    space.reviews.map((review) => arrayOfRatings.push(review.rating))
+    space.reviews.map((review) => arrayOfRatings.push(review.rating));
 
-    const noOfRatings = arrayOfRatings.reduce((acc, currentValue) => acc += currentValue, 0)
+    const noOfRatings = arrayOfRatings.reduce(
+      (acc, currentValue) => (acc += currentValue),
+      0
+    );
 
     return Math.floor(noOfRatings / space.reviews.length);
-  }
+  };
 
   const star = (reviewamount) => {
-    if(reviewamount === 1) {
+    if (reviewamount === 1) {
       return (
         <div>
           <Star />
@@ -46,8 +55,8 @@ const ExploreSpaces = ({ space }) => {
           <NoStar />
           <NoStar />
         </div>
-      )
-    } else if(reviewamount === 2) {
+      );
+    } else if (reviewamount === 2) {
       return (
         <div>
           <Star />
@@ -55,10 +64,9 @@ const ExploreSpaces = ({ space }) => {
           <NoStar />
           <NoStar />
           <NoStar />
-        </div> 
-      )
-
-    } else if(reviewamount === 3) {
+        </div>
+      );
+    } else if (reviewamount === 3) {
       return (
         <div>
           <Star />
@@ -66,9 +74,9 @@ const ExploreSpaces = ({ space }) => {
           <Star />
           <NoStar />
           <NoStar />
-        </div> 
-      )
-    } else if(reviewamount === 4) {
+        </div>
+      );
+    } else if (reviewamount === 4) {
       return (
         <div>
           <Star />
@@ -76,9 +84,9 @@ const ExploreSpaces = ({ space }) => {
           <Star />
           <Star />
           <NoStar />
-        </div> 
-      )
-    } else if(reviewamount === 5) {
+        </div>
+      );
+    } else if (reviewamount === 5) {
       return (
         <div>
           <Star />
@@ -86,10 +94,10 @@ const ExploreSpaces = ({ space }) => {
           <Star />
           <Star />
           <Star />
-        </div> 
-      )
+        </div>
+      );
     }
-  }
+  };
 
   return (
     <article key={space._id} className="relative">
@@ -108,7 +116,7 @@ const ExploreSpaces = ({ space }) => {
           className={favorite ? styles.favorite : styles.unfavorite}
           onClick={() => {
             toggleFavorite();
-            addToFavorites();
+            handleAddtoFavorites();
             ratings();
           }}
         >
@@ -120,7 +128,7 @@ const ExploreSpaces = ({ space }) => {
       <div>
         <div>
           {star(ratings())}
-          <p>{ratings() ? `${ratings()}.0 Ratings` : 'No ratings yet'}</p>
+          <p>{ratings() ? `${ratings()}.0 Ratings` : "No ratings yet"}</p>
         </div>
         <Button
           to={`/sencilo/${space._id}`}
