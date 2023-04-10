@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "../../../components/Button";
 import HistoryTable from "../../../components/HistoryTable";
 import ChartGraph from "./compo/chart";
 import styles from "./earnings.module.scss";
+import { useSelector } from "react-redux";
+import { dispatch } from "@/redux/store";
+import { GetSoldBookings } from "@/redux/features/booking/services";
+import IsLoadingSkeleton from "@/components/LoadingSkeleton";
 
-const VendorEarnings = () => {
+const VendorSales = () => {
   const firstTitle = ["Bank", "Acct Name", "Acct No"];
   const secondTitle = ["Amount", "Date", "Status"];
   const firstData = [
@@ -41,18 +45,7 @@ const VendorEarnings = () => {
       name3: "Pending",
     },
   ];
-
-  const data = [65, 59, 80, 81, 56, 55, 40];
-  const labels = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-  ];
- const UserData = [
+  const UserData = [
     {
       id: 1,
       year: 2016,
@@ -83,26 +76,39 @@ const VendorEarnings = () => {
       userGain: 4300,
       userLost: 234,
     },
- ];
-   const [userData, setUserData] = useState({
-     labels: UserData.map((data) => data.year),
-     datasets: [
-       {
-         label: "Audience Reach",
-         data: UserData.map((data) => data.userGain),
-         backgroundColor: [
-           "rgba(75,192,192,1)",
-           "#ecf0f1",
-           "#50AF95",
-           "#f3ba2f",
-           "#2a71d0",
-         ],
-         borderColor: "black",
-         borderWidth: 2,
-       },
-     ],
-   });
+  ];
+  const [userData, setUserData] = useState({
+    labels: UserData.map((data) => data.year),
+    datasets: [
+      {
+        label: "Audience Reach",
+        data: UserData.map((data) => data.userGain),
+        backgroundColor: [
+          "rgba(75,192,192,1)",
+          "#ecf0f1",
+          "#50AF95",
+          "#f3ba2f",
+          "#2a71d0",
+        ],
+        borderColor: "black",
+        borderWidth: 2,
+      },
+    ],
+  });
+  const { isLoading } = useSelector((state) => state.util);
+  const [sales, setSales] = useState([]);
+  const { user } = useSelector((state) => state.user);
+  console.log(sales);
+  const fetchSales = async () => {
+    const res = await dispatch(GetSoldBookings(user?._id));
+    setSales(res.bookingSold);
+  };
 
+  useEffect(() => {
+    fetchSales();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  if (isLoading) return <IsLoadingSkeleton />;
   return (
     <div className={styles.EarningsPage}>
       <div className={styles.earningsHeader}>
@@ -120,7 +126,7 @@ const VendorEarnings = () => {
       </div>
       <div className="px-[3rem]">
         <div className={styles.earningsBooking}>
-          <h3>Bookings</h3>
+          <h3>Sales</h3>
         </div>
         <div className={styles.earnings}>
           <HistoryTable
@@ -139,4 +145,4 @@ const VendorEarnings = () => {
   );
 };
 
-export default VendorEarnings;
+export default VendorSales;
