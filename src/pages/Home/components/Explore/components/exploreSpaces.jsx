@@ -1,6 +1,7 @@
 import { useMutation } from "@apollo/client";
 import Proptypes from "prop-types";
 import { useState } from "react";
+import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import Button from "../../../../../components/Button";
 import ADD_TO_FAVORITES from "../../../../../graphql/mutations/addToFavorites";
@@ -26,7 +27,10 @@ const ExploreSpaces = ({ space }) => {
   const senciloPage = (id) => {
     navigate(`/sencilo/${id}`);
   };
-
+  const handleAddtoFavorites = async () => {
+    await addToFavorites();
+    toast.success("Added to favorites");
+  };
   return (
     <article key={space._id} className="relative">
       <div className="flex w-full m-0 p-0">
@@ -44,7 +48,7 @@ const ExploreSpaces = ({ space }) => {
           className={favorite ? styles.favorite : styles.unfavorite}
           onClick={() => {
             toggleFavorite();
-            addToFavorites();
+            handleAddtoFavorites();
           }}
         >
           <Heart />

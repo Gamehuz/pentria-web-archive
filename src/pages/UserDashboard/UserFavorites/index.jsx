@@ -1,24 +1,48 @@
 import IsLoadingSkeleton from "@/components/LoadingSkeleton";
-import { useLazyQuery } from "@apollo/client";
 import { StarIcon } from "@heroicons/react/24/solid";
-import { useEffect } from "react";
-import { toast } from "react-hot-toast";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import Button from "../../../components/Button";
-import { GET_FAVORITE_SPACES } from "../../../graphql/queries/favoriteSpace";
+import ButtonSpinner from "../../../components/ButtonSpiner";
+import {
+  GetFavoriteSpaces,
+  RemoveFromFavorites,
+} from "../../../redux/features/space/service";
+import { dispatch } from "../../../redux/store";
 import locationIcon from "./assets/locationIcon.svg";
 import styles from "./favorites.module.scss";
 
 const UserFavorites = () => {
-  const [favoriteSpace, { data, error, loading }] =
-    useLazyQuery(GET_FAVORITE_SPACES);
+  const { isLoading } = useSelector((state) => state.util);
+  const [favSpaces, setFavSpaces] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const fetchFavSpaces = async () => {
+    setLoading(true);
+    const res = await dispatch(GetFavoriteSpaces());
+    console.log(res);
+    if (res?.favouriteSpace) {
+      setFavSpaces(res.favouriteSpace);
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    favoriteSpace();
-  }, [favoriteSpace]);
+    fetchFavSpaces();
+  }, []);
 
-  console.log(data?.user?.favouriteSpace);
+  console.log(favSpaces);
+  const handleDelete = async (id) => {
+    const res = await dispatch(RemoveFromFavorites(id));
+    if (res?.removeFromFavourite) {
+      setFavSpaces((prevFavSpaces) =>
+        prevFavSpaces.filter((space) => space._id !== id)
+      );
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
+    }
+  };
 
-  if (error) return toast.error(error.message);
   if (loading) return <IsLoadingSkeleton />;
   return (
     <div className={styles.userfavoritesPage}>
@@ -40,16 +64,17 @@ const UserFavorites = () => {
       </div>
       <div className={styles.favorites}>
         <div className={styles.favorites__hr} />
-        {data?.user?.favouriteSpace?.length > 0 ? (
+        {isLoading && <ButtonSpinner />}
+        {favSpaces?.length > 0 ? (
           <>
-            {data?.user?.favouriteSpace?.map((favSpace, index) => (
+            {favSpaces?.map((favSpace, index) => (
               <div className={styles.favorites__itemContainer} key={index}>
                 <div className={styles.favorites__item}>
                   <div className={styles.favorites__item__img}>
                     {favSpace?.image?.length > 1 ? (
                       <>
                         {favSpace?.image?.map((img) => (
-                          <img src={img} alt="" key={img} />
+                          <img src={img} alt="" key={img} className="m-2" />
                         ))}
                       </>
                     ) : (
@@ -93,6 +118,7 @@ const UserFavorites = () => {
                     />
                     <Button
                       type="button"
+                      onClick={() => handleDelete(favSpace?._id)}
                       text="Remove"
                       classes={styles.favorites__itemContainer__buttons__remove}
                     />
