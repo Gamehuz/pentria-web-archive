@@ -38,7 +38,8 @@ const EntryHome = () => {
           <div>
             <MapPin />
             <select title="Location">
-              <option>Location</option>
+              <option hidden>Location</option>
+              <option>Port Harcourt</option>
             </select>
           </div>
           <div>
@@ -51,7 +52,7 @@ const EntryHome = () => {
               onChange={(e) => setRecreationName(e.target.value)}
             />
           </div>
-          <Button type={"submit"} text="SEARCH" />
+          <Button type={"submit"} text="SEARCH" onClick={() => explore()} />
         </div>
       </div>
       <div className={styles.homepageImg}>
