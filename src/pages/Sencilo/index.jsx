@@ -19,14 +19,11 @@ import { FaBed } from "react-icons/fa";
 import { GiShower } from "react-icons/gi";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import { calcAvgRating } from "../../helpers";
 import { AddReview, addToFavorites } from "../../redux/features/space/service";
 import Container from "./Container";
 import styles from "./sencilo.module.scss";
-const calcAvgRating = (reviews) => {
-  if (!reviews.length) return 0;
-  const total = reviews.reduce((acc, curr) => acc + curr.rating, 0);
-  return total / reviews.length;
-};
+
 const Sencilo = () => {
   const { id } = useParams();
   const navigate = useNavigate();

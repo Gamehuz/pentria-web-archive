@@ -8,6 +8,7 @@ import { dispatch } from "@/redux/store";
 import { toast } from "react-hot-toast";
 import { REMOVE_FROM_FAVORITES } from "../../../graphql/mutations/removeFromFavorites";
 import { GET_FAVORITE_SPACES } from "../../../graphql/queries/favoriteSpace";
+import { VENDOR_SPACES } from "../../../graphql/queries/vendorListings";
 import { setLoading } from "../../utils/UtilSlice";
 import { setSpace } from "./spaceSlice";
 
@@ -148,6 +149,20 @@ const AddActivityToSpace = (data) => async () => {
     toast.error(error.message);
   }
 };
+const GetVendorSpaces = () => async () => {
+  dispatch(setLoading(true));
+  try {
+    const result = await appolloClient.query({
+      query: VENDOR_SPACES,
+    });
+    dispatch(setLoading(false));
+    return result.data;
+  } catch (error) {
+    console.log(error.message);
+    dispatch(setLoading(false));
+    toast.error(error.message);
+  }
+};
 
 export {
   GetSpace,
@@ -157,4 +172,5 @@ export {
   AddActivityToSpace,
   RemoveFromFavorites,
   GetFavoriteSpaces,
+  GetVendorSpaces,
 };

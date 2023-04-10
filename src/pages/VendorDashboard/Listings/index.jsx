@@ -1,12 +1,29 @@
+import IsLoadingSkeleton from "@/components/LoadingSkeleton";
+import { dispatch } from "@/redux/store";
+import { StarIcon } from "@heroicons/react/24/solid";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Button from "../../../components/Button";
+import { calcAvgRating } from "../../../helpers";
+import { GetVendorSpaces } from "../../../redux/features/space/service";
 import locationIcon from "./assets/locationIcon.svg";
 import plusBtn from "./assets/plus.svg";
-import star from "./assets/star.svg";
-import starGray from "./assets/starGray.svg";
 import styles from "./listings.module.scss";
 
 const VendorListings = () => {
+  const [listings, setListings] = useState([]);
+  const { isLoading } = useSelector((state) => state.util);
+
+  useEffect(() => {
+    const fetchListings = async () => {
+      const res = await dispatch(GetVendorSpaces());
+      setListings(res?.vendorListings);
+    };
+    fetchListings();
+  }, []);
+  console.log(listings);
+  if (isLoading) return <IsLoadingSkeleton />;
   return (
     <div className={styles.userListingsPage}>
       <div className={styles.listingHeader}>
@@ -30,25 +47,42 @@ const VendorListings = () => {
       </div>
       <div className={styles.listings}>
         <div className={styles.listings__hr} />
-        {[1, 2, 3, 4].map((itm) => (
+        {listings.map((itm) => (
           <>
             <div className={styles.listings__itemContainer}>
               <div className={styles.listings__item}>
                 <div className={styles.listings__item__img}>
-                  <img src="https://picsum.photos/200" alt="" />
+                  <img src={itm.image?.[0]} alt="" />
                 </div>
                 <div className={styles.listings__item__details}>
-                  <h3>Pleasure Pack</h3>
+                  <h3>{itm?.name}</h3>
                   <div className={styles.listings__item__details__location}>
                     <img src={locationIcon} alt="location pin" />
-                    <p>2933 Lekki Phase One, Lagos</p>
+                    <p>{itm?.location}</p>
                   </div>
-                  <div className={styles.listings__item__details__rating}>
-                    {[1, 2, 3, 4].map((itm) => (
-                      <img src={star} key={itm} alt="" />
-                    ))}
-                    <img src={starGray} alt="" />
-                    <p>4.0 Ratings </p>
+                  <div className="flex mt-4">
+                    <div className="flex text-primaryColor items-center">
+                      {itm?.reviews.length > 0 &&
+                        [...Array(Math.round(calcAvgRating(itm?.reviews)))].map(
+                          (_, i) => <StarIcon className="w-[20px]" key={i} />
+                        )}
+                      {itm?.reviews.length > 0 &&
+                        [
+                          ...Array(5 - Math.round(calcAvgRating(itm?.reviews))),
+                        ].map((_, i) => (
+                          <StarIcon
+                            className="w-[20px] text-[#C4C4C4]"
+                            key={i}
+                          />
+                        ))}
+                    </div>
+                    <p className="text-[16px] ml-2 font-medium">
+                      {itm?.reviews.length > 0 ? (
+                        <>{calcAvgRating(itm?.reviews)} Ratings</>
+                      ) : (
+                        "No Ratings"
+                      )}
+                    </p>
                   </div>
                 </div>
               </div>
