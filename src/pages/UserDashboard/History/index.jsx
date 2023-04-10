@@ -5,10 +5,11 @@ import Button from "../../../components/Button";
 import fav from "./assets/fav.svg";
 
 import IsLoadingSkeleton from "@/components/LoadingSkeleton";
-import { useLazyQuery } from "@apollo/client";
+import { useLazyQuery, useMutation } from "@apollo/client";
 import moment from "moment";
 import { toast } from "react-hot-toast";
 import { useSelector } from "react-redux";
+import { CANCEL_BOOKING } from "../../../graphql/mutations/cancelBooking";
 import CUSTOMER_BOOKINGS from "../../../graphql/queries/customerbookings";
 
 function formatDate(timestamp) {
@@ -18,6 +19,8 @@ function formatDate(timestamp) {
 const History = () => {
   const [customerBookings, { data, loading, error }] =
     useLazyQuery(CUSTOMER_BOOKINGS);
+  const [CancleBooking, { data: cancelData, loading: cancelLoading }] =
+    useMutation(CANCEL_BOOKING);
   const { user } = useSelector((state) => state.user);
   const userId = user?._id;
   const perpage = 10;
@@ -34,7 +37,17 @@ const History = () => {
 
   console.log(data?.customerBookings);
   const handleCancelBooking = (id) => {
-    toast.success(`Booking with id ${id} has been cancelled`);
+    CancleBooking({
+      variables: {
+        cancleBookingId: id,
+      },
+    });
+    if (cancelData?.cancleBooking) {
+      toast.success(`Booking with id ${id} has been cancelled`);
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
+    }
   };
   if (error) return toast.error(error.message);
 
@@ -83,28 +96,19 @@ const History = () => {
                     <p>{booking?.spaceId?.location}</p>
                   </div>
                   <div></div>
-                  {booking?.status === "cancelled" ? (
-                    <p className={styles.status}>Status: {booking?.status}</p>
-                  ) : (
+
+                  {booking?.status === "Active" ? (
                     <>
-                      {booking?.status === "Active" ? (
-                        <>
-                          <p className={styles.status}>
-                            Status: {booking?.status}
-                          </p>
-                          <p
-                            className="cursor-pointer text-red-500 hover:transform hover:scale-110 transition duration-500"
-                            onClick={() => handleCancelBooking(booking._id)}
-                          >
-                            Click to cancel
-                          </p>
-                        </>
-                      ) : (
-                        <p className={styles.status}>
-                          Status: {booking?.status}
-                        </p>
-                      )}
+                      <p className={styles.status}>Status: {booking?.status}</p>
+                      <p
+                        className="cursor-pointer text-red-500 hover:transform hover:scale-110 transition duration-500"
+                        onClick={() => handleCancelBooking(booking._id)}
+                      >
+                        Click to cancel
+                      </p>
                     </>
+                  ) : (
+                    <p className={styles.status}>Status: {booking?.status}</p>
                   )}
                 </div>
               </div>
