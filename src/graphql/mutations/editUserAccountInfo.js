@@ -7,6 +7,7 @@ const EDIT_USER_ACCOUNT_INFO = gql`
     $email: String!
     $phone: String!
     $address: String!
+    $sex: String!
     $city: String!
     $state: String!
     $dob: String!
@@ -15,6 +16,7 @@ const EDIT_USER_ACCOUNT_INFO = gql`
       firstName: $firstName
       lastName: $lastName
       email: $email
+      sex: $sex
       phone: $phone
       address: $address
       city: $city
