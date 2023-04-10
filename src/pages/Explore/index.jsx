@@ -62,8 +62,17 @@ const Explore = () => {
         if(filterValues.rating === "") {
             return facilityTypeFilter()
         }
+        // spaces.reviews[0].rating === Number(filterValues.rating)
+        const matchRatingFilter = facilityTypeFilter().filter((spaces) => {
+            const arrayOfRatings = [];
+            spaces.reviews.map((review) => arrayOfRatings.push(review.rating));
 
-        const matchRatingFilter = facilityTypeFilter().filter((spaces) => spaces.reviews[0].rating === Number(filterValues.rating));
+            const noOfRatings = arrayOfRatings.reduce((acc, currentValue) => acc += currentValue, 0);
+
+            const finalRatings = Math.floor(noOfRatings / spaces.reviews.length);
+
+            return finalRatings === Number(filterValues.rating)
+        });
 
         return matchRatingFilter;
     }
