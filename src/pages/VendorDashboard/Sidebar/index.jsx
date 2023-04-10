@@ -20,7 +20,6 @@ import { useSelector } from "react-redux";
 function VendorSidebar({ children }) {
   // const { user } = useSelector((state) => state.user);
   const { toggleSidebar } = useSelector((state) => state.util);
-  console.log(toggleSidebar);
   const handleCloseSidebar = () => {
     dispatch(setToggleSidebar(false));
   };
@@ -54,16 +53,16 @@ function VendorSidebar({ children }) {
               <p>Listing</p>
             </NavLink>
             <NavLink
-              to="/vendor/dashboard?checkpoint=earnings"
+              to="/vendor/dashboard?checkpoint=sales"
               className={`${styles.navLink} ${
                 window.location.pathname === "/vendor/dashboard" &&
-                window.location.search === "?checkpoint=earnings"
+                window.location.search === "?checkpoint=sales"
                   ? styles.active
                   : ""
               }`}
               onClick={handleCloseSidebar}
             >
-              <p>Earnings</p>
+              <p>Sales</p>
             </NavLink>
             <NavLink
               to="/vendor/dashboard?checkpoint=withdrawals"

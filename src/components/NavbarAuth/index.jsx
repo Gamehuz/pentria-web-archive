@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { dispatch } from "../../redux/store";
@@ -9,17 +9,8 @@ import toggleNavIcon from "./assets/menu-hamburger.svg";
 import styles from "./navbarAuth.module.scss";
 
 const NavbarAuth = ({ search, bg }) => {
-  const [show, setShow] = useState(false);
-  const { user, token } = useSelector((state) => state.user);
-
-  const [loading, setLoading] = useState(true);
+  const { user } = useSelector((state) => state.user);
   const [sidebar, setSidebar] = useState(false);
-
-  useEffect(() => {
-    if (user) {
-      setLoading(false);
-    }
-  }, [user]);
 
   const openSidebar = () => {
     setSidebar(!sidebar);
@@ -36,11 +27,7 @@ const NavbarAuth = ({ search, bg }) => {
       : "/login";
 
   return (
-    <div
-      className={`${styles.authNav} ${styles[bg]} ${
-        show ? styles.showDropup : ""
-      } `}
-    >
+    <div className={`${styles.authNav} ${styles[bg]} `}>
       <div className={styles.authNav_toggle}>
         <img src={toggleNavIcon} alt="" onClick={openSidebar} />
         <Link to="/" className={`${styles.logoLink}`}>

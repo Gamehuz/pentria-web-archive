@@ -67,51 +67,56 @@ const History = () => {
         {data?.customerBookings?.length > 0 ? (
           <div className="flex flex-col">
             {data?.customerBookings?.map((booking) => (
-              <div className={styles.history} key={booking?._id}>
-                <div className={styles.booking_info}>
-                  <img
-                    src={booking?.spaceId?.image?.[0]}
-                    alt=""
-                    className="md:w-[400px] w-full"
-                  />
-                  <div>
-                    <p className={styles.price}>
-                      {booking?.currency === "NGN"
-                        ? "₦"
-                        : booking?.currency === "USD"
-                        ? "$"
-                        : "£"}
-                      {booking?.spaceId?.price}
-                    </p>
-                    <p className={styles.item}>{booking?.spaceId?.name}</p>
-                    <p className="p-2">{booking?.tickets?.length} Ticket</p>
-                    <p className={styles.date}>
-                      {formatDate(booking?.spaceId?.createdAt)}
-                    </p>
-                  </div>
-                </div>
-                <div className={styles.booking_details}>
-                  <div>
-                    <img src={fav} alt="" />
-                    <p>{booking?.spaceId?.location}</p>
-                  </div>
-                  <div></div>
-
-                  {booking?.status === "Active" ? (
-                    <>
-                      <p className={styles.status}>Status: {booking?.status}</p>
-                      <p
-                        className="cursor-pointer text-red-500 hover:transform hover:scale-110 transition duration-500"
-                        onClick={() => handleCancelBooking(booking._id)}
-                      >
-                        Click to cancel
+              <>
+                <div className={styles.history} key={booking?._id}>
+                  <div className={styles.booking_info}>
+                    <img
+                      src={booking?.spaceId?.image?.[0]}
+                      alt=""
+                      className="md:w-[400px] w-full"
+                    />
+                    <div>
+                      <p className={styles.price}>
+                        {booking?.currency === "NGN"
+                          ? "₦"
+                          : booking?.currency === "USD"
+                          ? "$"
+                          : "£"}
+                        {booking?.spaceId?.price}
                       </p>
-                    </>
-                  ) : (
-                    <p className={styles.status}>Status: {booking?.status}</p>
-                  )}
+                      <p className={styles.item}>{booking?.spaceId?.name}</p>
+                      <p className="p-2">{booking?.tickets?.length} Ticket</p>
+                      <p className={styles.date}>
+                        {formatDate(booking?.spaceId?.createdAt)}
+                      </p>
+                    </div>
+                  </div>
+                  <div className={styles.booking_details}>
+                    <div>
+                      <img src={fav} alt="" />
+                      <p>{booking?.spaceId?.location}</p>
+                    </div>
+                    <div></div>
+
+                    {booking?.status === "Active" ? (
+                      <>
+                        <p className={styles.status}>
+                          Status: {booking?.status}
+                        </p>
+                        <p
+                          className="cursor-pointer text-red-500 hover:transform hover:scale-110 transition duration-500"
+                          onClick={() => handleCancelBooking(booking._id)}
+                        >
+                          Click to cancel
+                        </p>
+                      </>
+                    ) : (
+                      <p className={styles.status}>Status: {booking?.status}</p>
+                    )}
+                  </div>
                 </div>
-              </div>
+                <hr />
+              </>
             ))}
           </div>
         ) : (
