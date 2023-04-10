@@ -57,13 +57,14 @@ const Sencilo = () => {
 
   const addActivity = (activity) => {
     const newActivities = [
-      ...existingActivities, 
-      { 
+      ...existingActivities,
+      {
         spaceId: id,
         facilityType: space?.facilityType,
         location: space?.location,
-       ...activity 
-      }];
+        ...activity,
+      },
+    ];
     setExistingActivities(newActivities);
     toast.success("Activity added to your list");
   };
@@ -209,14 +210,19 @@ const Sencilo = () => {
 
             {/* THE DESCRIPTION AND MENU */}
             <div className={styles["sencilo__desc_menu-container"]}>
-              <div className="col-span-7">
-                <p className="text-xl font-medium text-black">Description</p>
-                <p className="mt-4 text-[16px]">{space?.description}</p>
-
-                <p className="text-xl font-medium">Guidelines/Policy</p>
-                <ul className="mt-4 space-y-5 text-[16px]">
-                  <li className="">{space?.policies}</li>
-                </ul>
+              <div className="col-span-7 md:w-[800px] w-full">
+                <div className="text-justify">
+                  <p className="text-xl text-black font-medium">Description</p>
+                  <p className="mt-4 text-[16px]">{space?.description}</p>
+                </div>
+                <div className="mt-4">
+                  <p className="text-xl text-black font-medium">
+                    Guidelines/Policy
+                  </p>
+                  <p className="mt-2 space-y-5 text-justify text-[16px]">
+                    {space?.policies}
+                  </p>
+                </div>
               </div>
               <div className="col-span-3">
                 <p className="text-xl font-medium text-black">MENU</p>
