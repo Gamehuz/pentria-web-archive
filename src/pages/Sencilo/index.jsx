@@ -203,13 +203,13 @@ const Sencilo = () => {
                 <div className="flex text-primaryColor items-center">
                   <div className="flex mt-4">
                     <div className="flex text-primaryColor items-center">
-                      {calcAvgRating(space?.reviews) &&
+                      {space?.reviews.length > 0 &&
                         [
                           ...Array(Math.round(calcAvgRating(space?.reviews))),
                         ].map((_, i) => (
                           <StarIcon className="w-[20px]" key={i} />
                         ))}
-                      {calcAvgRating(space?.reviews) &&
+                      {space?.reviews.length > 0 &&
                         [
                           ...Array(
                             5 - Math.round(calcAvgRating(space?.reviews))
@@ -222,7 +222,11 @@ const Sencilo = () => {
                         ))}
                     </div>
                     <p className="text-[16px] ml-2 font-medium">
-                      {calcAvgRating(space?.reviews)} Ratings
+                      {space?.reviews.length > 0 ? (
+                        <>{calcAvgRating(space?.reviews)} Ratings</>
+                      ) : (
+                        "No Ratings"
+                      )}
                     </p>
                   </div>
                 </div>
