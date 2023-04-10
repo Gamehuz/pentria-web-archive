@@ -3,7 +3,7 @@ import { GetSoldBookings } from "@/redux/features/booking/services";
 import { dispatch } from "@/redux/store";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import Button from "../../../components/Button";
+import WalletBal from "../WalletBal";
 import ChartGraph from "./compo/chart";
 import HistoryTable from "./compo/HistoryTable";
 import styles from "./earnings.module.scss";
@@ -28,19 +28,7 @@ const VendorSales = () => {
   if (isLoading) return <IsLoadingSkeleton />;
   return (
     <div className={styles.EarningsPage}>
-      <div className={styles.earningsHeader}>
-        <div className={styles.earningsHeader__balance}>
-          <h1>NGN 30,000 </h1>
-          <p>Available Balance</p>
-        </div>
-        <div className={styles.earningsHeader__withdraw}>
-          <Button
-            type="button"
-            bg={styles.earningsHeader__withdraw__btn}
-            text="Withdraw"
-          />
-        </div>
-      </div>
+      <WalletBal />
       <div className="px-[3rem]">
         <div className={styles.earningsBooking}>
           <h3>Sales</h3>

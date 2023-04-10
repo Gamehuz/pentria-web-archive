@@ -1,15 +1,13 @@
+import Button from "@/components/Button";
 import IsLoadingSkeleton from "@/components/LoadingSkeleton";
+import { calcAvgRating } from "@/helpers";
+import { DeleteSpace, GetVendorSpaces } from "@/redux/features/space/service";
 import { dispatch } from "@/redux/store";
 import { StarIcon } from "@heroicons/react/24/solid";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import Button from "../../../components/Button";
-import { calcAvgRating } from "../../../helpers";
-import {
-  DeleteSpace,
-  GetVendorSpaces,
-} from "../../../redux/features/space/service";
+import WalletBal from "../WalletBal";
 import locationIcon from "./assets/locationIcon.svg";
 import plusBtn from "./assets/plus.svg";
 import styles from "./listings.module.scss";
@@ -34,15 +32,7 @@ const VendorListings = () => {
   if (isLoading) return <IsLoadingSkeleton />;
   return (
     <div className={styles.userListingsPage}>
-      <div className={styles.listingHeader}>
-        <div className={styles.listingHeader__balance}>
-          <h1>NGN 30,000 </h1>
-          <p>Available Balance</p>
-        </div>
-        <div className={styles.listingHeader__withdraw}>
-          <Button type="button" text="Withdraw" />
-        </div>
-      </div>
+      <WalletBal />
       <div className={styles.createListing}>
         <h3>My Listings</h3>
         <Link
