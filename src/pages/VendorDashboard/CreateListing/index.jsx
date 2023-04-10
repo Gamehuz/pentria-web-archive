@@ -73,8 +73,6 @@ const CreateListing = () => {
     selectFile.current.value = null;
   };
 
-  console.log(inputFields);
-
   const handleDelSelected = (index) => {
     setPreviewImages((prev) => {
       const newPreviewImages = [...prev];
@@ -109,8 +107,12 @@ const CreateListing = () => {
         price: parseFloat(inputFields.price),
       })
     );
-    if (res?.createdSpace?._id) {
-      setCreatedSpaceId(res.createdSpace?._id);
+    if (res?.createSpace?._id) {
+      localStorage.setItem("createdSpaceId", res.createSpace?._id);
+      setCreatedSpaceId(res.createSpace?._id);
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
     }
   };
   return (
