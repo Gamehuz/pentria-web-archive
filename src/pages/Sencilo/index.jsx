@@ -22,7 +22,11 @@ import { useNavigate, useParams } from "react-router-dom";
 import { AddReview, addToFavorites } from "../../redux/features/space/service";
 import Container from "./Container";
 import styles from "./sencilo.module.scss";
-
+const calcAvgRating = (reviews) => {
+  if (!reviews.length) return 0;
+  const total = reviews.reduce((acc, curr) => acc + curr.rating, 0);
+  return total / reviews.length;
+};
 const Sencilo = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -35,7 +39,6 @@ const Sencilo = () => {
   const { user } = useSelector((state) => state.user);
   const { isLoading } = useSelector((state) => state.util);
   const stripedLcn = space?.location?.replace(/\s/g, "");
-
   useEffect(() => {
     window.scrollTo(0, 0);
     dispatch(GetSpace(id));
@@ -198,13 +201,31 @@ const Sencilo = () => {
               </div>
               <div className="col-span-3 flex space-x-3 items-center justify-center">
                 <div className="flex text-primaryColor items-center">
-                  <StarIcon className="w-[20px]" />
-                  <StarIcon className="w-[20px]" />
-                  <StarIcon className="w-[20px]" />
-                  <StarIcon className="w-[20px]" />
-                  <StarIcon className="w-[20px] text-[#C4C4C4]" />
+                  <div className="flex mt-4">
+                    <div className="flex text-primaryColor items-center">
+                      {calcAvgRating(space?.reviews) &&
+                        [
+                          ...Array(Math.round(calcAvgRating(space?.reviews))),
+                        ].map((_, i) => (
+                          <StarIcon className="w-[20px]" key={i} />
+                        ))}
+                      {calcAvgRating(space?.reviews) &&
+                        [
+                          ...Array(
+                            5 - Math.round(calcAvgRating(space?.reviews))
+                          ),
+                        ].map((_, i) => (
+                          <StarIcon
+                            className="w-[20px] text-[#C4C4C4]"
+                            key={i}
+                          />
+                        ))}
+                    </div>
+                    <p className="text-[16px] ml-2 font-medium">
+                      {calcAvgRating(space?.reviews)} Ratings
+                    </p>
+                  </div>
                 </div>
-                <p className="text-[16px] font-medium">4.0 Ratings </p>
               </div>
             </div>
 
