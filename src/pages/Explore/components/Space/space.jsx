@@ -27,6 +27,70 @@ const Space = ({ space }) => {
         navigate(`/sencilo/${id}`)
     };
 
+    const ratings = () => {
+        const arrayOfRatings = [];
+        space.reviews.map((review) => arrayOfRatings.push(review.rating))
+    
+        const noOfRatings = arrayOfRatings.reduce((acc, currentValue) => acc += currentValue, 0)
+    
+        return Math.floor(noOfRatings / space.reviews.length);
+      }
+    
+      const star = (reviewamount) => {
+        if(reviewamount === 1) {
+          return (
+            <div>
+              <Star />
+              <NoStar />
+              <NoStar />
+              <NoStar />
+              <NoStar />
+            </div>
+          )
+        } else if(reviewamount === 2) {
+          return (
+            <div>
+              <Star />
+              <Star />
+              <NoStar />
+              <NoStar />
+              <NoStar />
+            </div> 
+          )
+    
+        } else if(reviewamount === 3) {
+          return (
+            <div>
+              <Star />
+              <Star />
+              <Star />
+              <NoStar />
+              <NoStar />
+            </div> 
+          )
+        } else if(reviewamount === 4) {
+          return (
+            <div>
+              <Star />
+              <Star />
+              <Star />
+              <Star />
+              <NoStar />
+            </div> 
+          )
+        } else if(reviewamount === 5) {
+          return (
+            <div>
+              <Star />
+              <Star />
+              <Star />
+              <Star />
+              <Star />
+            </div> 
+          )
+        }
+      }
+
     return (
         <article key={space._id} className={styles.cards}>
             <img src={space.image} alt="spaces arena" />
@@ -43,14 +107,8 @@ const Space = ({ space }) => {
             <p className={styles.location}>{space.location}</p>
             <div className={styles.reviews}>
                 <div className={styles.ratings}>
-                    <div>
-                        <Star />
-                        <Star />
-                        <Star />
-                        <Star />
-                        <NoStar />
-                    </div>
-                    <p>{space.reviews[0].rating} Ratings</p>
+                    {star(ratings())}
+                    <p>{ratings() ? `${ratings()}.0 Ratings` : 'No ratings yet'}</p>
                 </div>
                 <Button type={'button'} text={'GET TICKET'} onClick={() => spaceSencilo(space._id)} />
             </div>

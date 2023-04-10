@@ -35,6 +35,7 @@ const Sencilo = () => {
   const { user } = useSelector((state) => state.user);
   const { isLoading } = useSelector((state) => state.util);
   const stripedLcn = space?.location?.replace(/\s/g, "");
+
   useEffect(() => {
     window.scrollTo(0, 0);
     dispatch(GetSpace(id));
@@ -55,7 +56,14 @@ const Sencilo = () => {
   }, [existingActivities]);
 
   const addActivity = (activity) => {
-    const newActivities = [...existingActivities, { spaceId: id, ...activity }];
+    const newActivities = [
+      ...existingActivities, 
+      { 
+        spaceId: id,
+        facilityType: space?.facilityType,
+        location: space?.location,
+       ...activity 
+      }];
     setExistingActivities(newActivities);
     toast.success("Activity added to your list");
   };

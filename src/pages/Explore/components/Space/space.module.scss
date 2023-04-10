@@ -4,6 +4,7 @@
 
     img {
         width: 100%;
+        height: 213px;
     }
 
     .price {
@@ -47,6 +48,7 @@
     h3 {
         margin-left: 10px;
         font-size: 16px;
+        font-weight: 600;
     }
 
     .location {
@@ -65,6 +67,10 @@
         .ratings {
             display: flex;
             gap: 15px;
+
+            div {
+                display: flex;
+            }
 
             svg {
                 width: 15px;
