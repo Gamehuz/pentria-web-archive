@@ -1,19 +1,8 @@
 /* eslint-disable react/prop-types */
 import { Line } from "react-chartjs-2";
+import {Chart as ChartJS} from 'chart.js/auto';
 
-const ChartGraph = (props) => {
-  const chartData = {
-    labels: props.labels,
-    datasets: [
-      {
-        label: props.title,
-        data: props.data,
-        borderColor: "rgba(75,192,192,1)",
-        backgroundColor: "rgba(75,192,192,0.4)",
-        fill: true,
-      },
-    ],
-  };
+const ChartGraph = ({ chartData}) => {
 
   const chartOptions = {
     scales: {
@@ -27,7 +16,7 @@ const ChartGraph = (props) => {
     },
   };
 
-  return <Line data={chartData} options={chartOptions} />;
+  return <Line data={chartData} />;
 };
 
 export default ChartGraph;

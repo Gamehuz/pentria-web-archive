@@ -24,7 +24,6 @@ const UserSettings = () => {
   });
 
   const [togglePassword, setTogglePassword] = useState(false);
-  const [toggleConfirmPassword, setToggleConfirmPassword] = useState(false);
   const [editUserInfo, { loading, error }] = useMutation(
     EDIT_USER_ACCOUNT_INFO
   );
