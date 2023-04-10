@@ -1,50 +1,16 @@
-import { useState, useEffect } from "react";
-import Button from "../../../components/Button";
-import HistoryTable from "../../../components/HistoryTable";
-import ChartGraph from "./compo/chart";
-import styles from "./earnings.module.scss";
-import { useSelector } from "react-redux";
-import { dispatch } from "@/redux/store";
-import { GetSoldBookings } from "@/redux/features/booking/services";
 import IsLoadingSkeleton from "@/components/LoadingSkeleton";
+import { GetSoldBookings } from "@/redux/features/booking/services";
+import { dispatch } from "@/redux/store";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import Button from "../../../components/Button";
+import ChartGraph from "./compo/chart";
+import HistoryTable from "./compo/HistoryTable";
+import styles from "./earnings.module.scss";
 
 const VendorSales = () => {
-  const firstTitle = ["Bank", "Acct Name", "Acct No"];
-  const secondTitle = ["Amount", "Date", "Status"];
-  const firstData = [
-    {
-      name1: "Access Bank",
-      name2: "Oluwaseun Oluwaseun",
-      name3: "0000000000",
-    },
-    {
-      name1: "Access Bank",
-      name2: "Oluwaseun Oluwaseun",
-      name3: "0000000000",
-    },
-    {
-      name1: "Access Bank",
-      name2: "Oluwaseun Oluwaseun",
-      name3: "0000000000",
-    },
-  ];
-  const secondData = [
-    {
-      name1: "Pleasure Park",
-      name2: "PBE 00/23D7",
-      name3: "Pending",
-    },
-    {
-      name1: "Machala hub",
-      name2: "PBE 00/23D7",
-      name3: "Confirmed",
-    },
-    {
-      name1: "Sencillo inn",
-      name2: "PBE 00/23D7",
-      name3: "Pending",
-    },
-  ];
+  const firstTitle = ["Listings", "Date", "Amount"];
+  const secondTitle = ["Customer", "Trx ID", "Status"];
   const UserData = [
     {
       id: 1,
@@ -133,8 +99,7 @@ const VendorSales = () => {
             includeSn={false}
             firstTableTitle={firstTitle}
             secondTableTitle={secondTitle}
-            firstTableData={firstData}
-            secondTableData={secondData}
+            data={sales}
           />
         </div>
         <div className={styles.earningsGraph}>

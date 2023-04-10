@@ -56,7 +56,7 @@ function VendorSidebar({ children }) {
               to="/vendor/dashboard?checkpoint=sales"
               className={`${styles.navLink} ${
                 window.location.pathname === "/vendor/dashboard" &&
-                window.location.search === "?checkpoint=earnings"
+                window.location.search === "?checkpoint=sales"
                   ? styles.active
                   : ""
               }`}
