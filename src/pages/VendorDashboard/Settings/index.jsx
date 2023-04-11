@@ -40,6 +40,9 @@ const VendorSettings = () => {
     accountNumber: "",
   });
 
+  console.log(data)
+  console.log(accountDetails)
+
   const editaccountDetails = (e) => {
     const { name, value } = e.target;
     setAccountDetails({
@@ -54,18 +57,18 @@ const VendorSettings = () => {
       return;
     }
     handleEditInfo(accountDetails, data)();
-    // setAccountDetails({
-    //   ...accountDetails,
-    //   firstName: "",
-    //   lastName: "",
-    //   sex: "",
-    //   dob: "",
-    //   address: "",
-    //   city: "",
-    //   state: "",
-    //   email: "",
-    //   phoneNumber: "",
-    // });
+    setAccountDetails({
+      ...accountDetails,
+      firstName: "",
+      lastName: "",
+      sex: "",
+      dob: "",
+      address: "",
+      city: "",
+      state: "",
+      email: "",
+      phoneNumber: "",
+    });
   };
 
   const updatePassword = () => {
@@ -153,7 +156,7 @@ const VendorSettings = () => {
           </p>
         </aside> */}
         <div className={styles.forms}>
-          <form onSubmit={(e) => e.preventDefault()}>
+          <form>
             <h2>Account Settings</h2>
             <div className={styles.dual}>
               <label>

@@ -132,10 +132,10 @@ export const handleEditInfo = (values, data) => async () => {
         email: values.email === "" ? data?.user.email : values.email,
         phone:
           values.phoneNumber === "" ? data?.user.phone : values.phoneNumber,
-      },
+      }
     });
     dispatch(setLoading(false));
-    toast.success("Data updated successfully");
+    toast.success("Data updated successfully, Refresh page");
   } catch (error) {
     dispatch(setLoading(false));
     dispatch(setError(error.message));
