@@ -25,7 +25,11 @@ const WalletBal = () => {
         <p>Available Balance</p>
       </div>
       <div className={styles.bal__withdraw}>
-        <Button type="button" bg={styles.bal__withdraw__btn} text="Withdraw" />
+        <Button
+          to={"/vendor/dashboard?checkpoint=vendor-withdraw"}
+          bg={styles.bal__withdraw__btn}
+          text="Withdraw"
+        />
       </div>
     </div>
   );
