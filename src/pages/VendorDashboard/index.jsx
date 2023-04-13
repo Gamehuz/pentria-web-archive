@@ -4,6 +4,7 @@ import VendorListings from "./Listings";
 import VendorSales from "./Sales";
 import VendorSettings from "./Settings";
 import VendorSidebar from "./Sidebar";
+import Withdraw from "./Withdraw";
 import VendorWithdrawals from "./Withdrawals";
 const VendorDashboard = () => {
   const location = useLocation();
@@ -21,6 +22,8 @@ const VendorDashboard = () => {
         return <VendorSettings />;
       case "create-listing":
         return <CreateListing />;
+      case "vendor-withdraw":
+        return <Withdraw />;
       default:
         return <VendorListings />;
     }
