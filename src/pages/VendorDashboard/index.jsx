@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import CreateListing from "./CreateListing";
-import VendorEarnings from "./Earnings";
 import VendorListings from "./Listings";
+import VendorSales from "./Sales";
 import VendorSettings from "./Settings";
 import VendorSidebar from "./Sidebar";
 import VendorWithdrawals from "./Withdrawals";
@@ -13,8 +13,8 @@ const VendorDashboard = () => {
     switch (checkpoint) {
       case "listings":
         return <VendorListings />;
-      case "earnings":
-        return <VendorEarnings />;
+      case "sales":
+        return <VendorSales />;
       case "withdrawals":
         return <VendorWithdrawals />;
       case "settings":

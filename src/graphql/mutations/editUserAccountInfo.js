@@ -2,15 +2,15 @@ import { gql } from "@apollo/client";
 
 const EDIT_USER_ACCOUNT_INFO = gql`
   mutation Mutation(
-    $firstName: String!
-    $lastName: String!
-    $email: String!
-    $phone: String!
-    $address: String!
-    $sex: String!
-    $city: String!
-    $state: String!
-    $dob: String!
+    $firstName: String
+    $lastName: String
+    $email: String
+    $phone: String
+    $address: String
+    $sex: String
+    $city: String
+    $state: String
+    $dob: String
   ) {
     editUserInfo(
       firstName: $firstName

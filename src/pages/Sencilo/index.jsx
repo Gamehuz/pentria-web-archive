@@ -19,14 +19,11 @@ import { FaBed } from "react-icons/fa";
 import { GiShower } from "react-icons/gi";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import { calcAvgRating } from "../../helpers";
 import { AddReview, addToFavorites } from "../../redux/features/space/service";
 import Container from "./Container";
 import styles from "./sencilo.module.scss";
-const calcAvgRating = (reviews) => {
-  if (!reviews.length) return 0;
-  const total = reviews.reduce((acc, curr) => acc + curr.rating, 0);
-  return total / reviews.length;
-};
+
 const Sencilo = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -203,13 +200,13 @@ const Sencilo = () => {
                 <div className="flex text-primaryColor items-center">
                   <div className="flex mt-4">
                     <div className="flex text-primaryColor items-center">
-                      {space?.reviews.length > 0 &&
+                      {space?.reviews?.length > 0 &&
                         [
                           ...Array(Math.round(calcAvgRating(space?.reviews))),
                         ].map((_, i) => (
                           <StarIcon className="w-[20px]" key={i} />
                         ))}
-                      {space?.reviews.length > 0 &&
+                      {space?.reviews?.length > 0 &&
                         [
                           ...Array(
                             5 - Math.round(calcAvgRating(space?.reviews))
@@ -222,7 +219,7 @@ const Sencilo = () => {
                         ))}
                     </div>
                     <p className="text-[16px] ml-2 font-medium">
-                      {space?.reviews.length > 0 ? (
+                      {space?.reviews?.length > 0 ? (
                         <>{calcAvgRating(space?.reviews)} Ratings</>
                       ) : (
                         "No Ratings"

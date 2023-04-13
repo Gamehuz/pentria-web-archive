@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
 import Button from "../../../components/Button";
 import InputField from "../../../components/InputField";
 import {
@@ -6,6 +7,8 @@ import {
   handleEditWalletInfo,
   handleUpdatePasword,
   verifyBanks,
+  getBanks,
+  userData
 } from "../../../redux/features/user/service";
 import { ReactComponent as Menu } from "./assets/menu-hamburger.svg";
 import styles from "./vendorsettings.module.scss";
@@ -37,6 +40,9 @@ const VendorSettings = () => {
     accountNumber: "",
   });
 
+  console.log(data)
+  console.log(accountDetails)
+
   const editaccountDetails = (e) => {
     const { name, value } = e.target;
     setAccountDetails({
@@ -46,6 +52,10 @@ const VendorSettings = () => {
   };
 
   const editInfo = () => {
+    if(accountDetails.email === "") {
+      toast.error("Please input email address");
+      return;
+    }
     handleEditInfo(accountDetails, data)();
     setAccountDetails({
       ...accountDetails,
@@ -62,6 +72,16 @@ const VendorSettings = () => {
   };
 
   const updatePassword = () => {
+    if(accountDetails.oldPassword === "") {
+      toast.error("Please input previous password")
+      return;
+    }
+
+    if(accountDetails.newPassword === "") {
+      toast.error("Please input new passoword")
+      return;
+    }
+
     handleUpdatePasword(accountDetails)();
     setAccountDetails({
       ...accountDetails,
@@ -71,6 +91,16 @@ const VendorSettings = () => {
   };
 
   const updateWallet = () => {
+    if(accountDetails.code === "") {
+      toast.error("Please select bank");
+      return;
+    }
+
+    if(accountDetails.accountNumber) {
+      toast.error("please input Account Number");
+      return;
+    }
+
     handleEditWalletInfo(accountDetails)();
     setAccountDetails({
       ...accountDetails,
@@ -82,8 +112,8 @@ const VendorSettings = () => {
   };
 
   useEffect(() => {
-    // userData().then((data) => setData(data));
-    // getBanks().then((data) => setBanks(data.getBanks));
+    userData()().then((data) => setData(data));
+    getBanks().then((data) => setBanks(data.getBanks));
 
     if (accountDetails.bank) {
       const userBank = banks.filter(
@@ -261,7 +291,7 @@ const VendorSettings = () => {
               onClick={() => editInfo()}
             />
           </form>
-          <form className={styles.walletsettings}>
+          <form className={styles.walletsettings} onSubmit={(e) => e.preventDefault()}>
             <h3>Wallet Settings</h3>
             <label>
               Bank Name

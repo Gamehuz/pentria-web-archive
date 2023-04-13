@@ -28,11 +28,14 @@
       font-weight: 600;
       font-size: 17px;
     }
-
+    hr {
+      margin: 10px 0;
+    }
     .history {
       display: flex;
       // align-items: center;
       justify-content: space-between;
+      // margin-bottom: 1rem;
 
       @media (max-width: 903px) {
         flex-direction: column;

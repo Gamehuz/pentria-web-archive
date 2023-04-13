@@ -17,7 +17,6 @@
     }
 
     .spinner {
-        // color: ;
         display: inline-block;
         position: relative;
         width: 80px;
@@ -136,16 +135,12 @@
         div {
             color: var(--tertiary-color);
 
+
             div {
                 max-width: 350px !important;
             }
         }
     }
-
-    // .swiper-slide {
-    //     width: 318px !important;
-    //     // max-width: 350px;
-    // }
 
     article {
         height: max-content;

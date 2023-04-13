@@ -1,5 +1,5 @@
-import Button from "@/components/Button";
-import HistoryTable from "../../../components/HistoryTable";
+import HistoryTable from "@/components/HistoryTable";
+import WalletBal from "../WalletBal";
 import styles from "./withdraw.module.scss";
 const VendorWithdrawals = () => {
   const firstTitle = ["Bank", "Acct Name", "Acct No"];
@@ -39,20 +39,8 @@ const VendorWithdrawals = () => {
     },
   ];
   return (
-    <div className={styles.userWithdrawal}>
-      <div className={styles.withdrawHeader}>
-        <div className={styles.withdrawHeader__balance}>
-          <h1>NGN 30,000 </h1>
-          <p>Available Balance</p>
-        </div>
-        <div className={styles.withdrawHeader__withdraw}>
-          <Button
-            type="button"
-            bg={styles.withdrawHeader__withdraw__btn}
-            text="Withdraw"
-          />
-        </div>
-      </div>
+    <div className={styles.Withdrawal}>
+      <WalletBal />
       <div className={styles.withdrawBooking}>
         <h3 className="text-2xl text-[#7E7E7E] py-2">Withdrawal History</h3>
         <HistoryTable
