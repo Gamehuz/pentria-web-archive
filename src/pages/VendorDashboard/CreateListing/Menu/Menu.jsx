@@ -70,6 +70,7 @@ const Menu = ({ spaceId }) => {
         currency: "",
       });
       setPreviewImage("");
+      localStorage.removeItem("createdSpaceId");
       setTimeout(() => {
         window.location.reload();
       }, 2000);
