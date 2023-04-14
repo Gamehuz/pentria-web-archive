@@ -16,6 +16,14 @@ html {
   font-family: "Poppins", sans-serif;
 }
 
+body {
+  background-color: #fff;
+}
+
 a {
   text-decoration: none;
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
