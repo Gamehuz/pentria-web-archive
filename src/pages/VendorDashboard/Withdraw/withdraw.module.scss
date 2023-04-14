@@ -1,0 +1,50 @@
+.withdraw {
+  margin: 20px 0;
+  padding: 0 20px;
+  font-family: "Poppins", sans-serif;
+}
+
+.balBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  padding: 20px;
+  background: #2a2a2a;
+  color: white;
+  border-radius: 5px;
+  width: 100%;
+  margin-right: 20px;
+  border: 1px solid black;
+  p {
+    font-size: 28px;
+    font-weight: 500;
+  }
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    padding: 10px;
+    p {
+      font-size: 18px;
+    }
+  }
+}
+
+.flexBig {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1 0 60%;
+  @media screen and (max-width: 768px) {
+    flex: 1 0 50%;
+  }
+}
+
+.flexSmall {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1 0 30%;
+  margin-left: 20px;
+  @media screen and (max-width: 768px) {
+    flex: 1 0 40%;
+    margin-left: 0;
+  }
+}
