@@ -5,13 +5,14 @@
     margin-left: auto;
     margin-right: auto;
     justify-content: space-between;
+background: white;
 
     div {
         width: 520px;
 
         h1 {
             font-weight: 700;
-            color: var(--secondary-color);
+            color: var(--secondary-color) !important;
             font-size: 36px;
             line-height: 55px;
         }
