@@ -1,14 +1,17 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Button from "../Button";
-import InputField from "../InputField";
 import { ReactComponent as LinkedIn } from "./assets/linkedin.svg";
 import {
   ReactComponent as Twitter,
-  ReactComponent as WhiteLinkedin,
-  ReactComponent as WhiteTwitter,
 } from "./assets/twitter.svg";
+import {
+  ReactComponent as WhiteTwitter,
+} from "./assets/whiteTwitter.svg";
+import {
+  ReactComponent as WhiteLinkedin,
+} from "./assets/whiteLinkedin.svg";
+
 import { ReactComponent as Youtube } from "./assets/youtube.svg";
 import styles from "./footer.module.scss";
 
@@ -27,55 +30,70 @@ import styles from "./footer.module.scss";
 const Footer = ({ bg, purple }) => {
   const [subscribe, setSubscribe] = useState("");
 
+  // console.log(bg)
+
   return (
-    <footer className={bg ? bg : styles.footer}>
-      <div className={styles.footercontainer}>
-        <h2>Pentria</h2>
+    <footer className='py-16 px-4'>
+      <div className='lg:flex justify-around'>
+        <h2 className={purple ? "text-white font-bold text-[38px]" : "text-primaryColor font-bold text-[38px]"}>Pentria</h2>
         <div className={styles.info}>
-          <span className={styles.subscribe}>Subscribe to our Newsletter</span>
-          <div className={styles.inputGroup}>
-            <InputField
-              name="subscribe"
-              type={"text"}
-              placeholder={"Enter your email"}
-              value={subscribe}
-              onChange={(e) => setSubscribe(e.target.value)}
-            />
-            <Button type={"button"} bg={styles.button} text={"SUBSCRIBE"} />
+          <div className={purple ? 'flex justify-between lg:w-[500px] text-white' : 'flex justify-between lg:w-[500px]'}>
+            <div className="">
+              <h2 className="font-semibold text-[18px]">About</h2>
+              <ul>
+                <li className='pt-5'>
+                  <Link to="/about-us">About us</Link>
+                </li>
+                <li className='pt-5'>
+                  <Link to="/blog">Blog</Link>
+                </li>
+                <li className='pt-5'>
+                  <Link to="/enquiries">Contact us</Link>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h2 className="font-semibold text-[18px]">Legal</h2>
+              <ul>
+                <li className='pt-5'>
+                  <Link to="/privacy-policy">Privacy Policy</Link>
+                </li>
+                <li className='pt-5'>
+                  <Link to="/termsofuse">Terms of use</Link>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h2 className="font-semibold text-[18px]">Social</h2>
+              <ul>
+                <li className='pt-5'>
+                  <a className="flex">
+                    {purple ? <WhiteTwitter  /> : <Twitter />}
+                    <p>Twitter</p>
+                  </a>
+                </li>
+                <li className='pt-5'>
+                  
+                  <a className="flex">
+                    {purple ? <WhiteLinkedin /> : <LinkedIn />}
+                    <p>LinkedIn</p>
+                  </a>
+                </li>
+                <li className='pt-5'>
+
+                  <a className="flex">
+                    <Youtube />
+                    <p>Youtube</p>
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
-          <div className={styles.pageLinks}>
-            <div>
-              <span>About</span>
-              <Link to="/about-us">About us</Link>
-              <Link to="/blog">Blog</Link>
-              <Link to="/enquiries">Contact us</Link>
-            </div>
-            <div>
-              <span>Legal</span>
-              <Link to="/privacy-policy">Privacy Policy</Link>
-              <Link to="/termsofuse">Terms of use</Link>
-            </div>
-            <div>
-              <span>Social</span>
-              <a>
-                {purple ? <WhiteTwitter /> : <Twitter />}
-                <p>Twitter</p>
-              </a>
-              <a>
-                {purple ? <WhiteLinkedin /> : <LinkedIn />}
-                <p>LinkedIn</p>
-              </a>
-              <a>
-                <Youtube />
-                <p>Youtube</p>
-              </a>
-            </div>
-          </div>
-          <p className={styles.copy}>
-            © Copyright 2023 by Gamehauz, Inc. All rights reserved.
-          </p>
         </div>
       </div>
+          <p className={purple ? 'text-center text-white mt-14 lg:mt-32': 'text-center mt-14 lg:mt-32'}>
+            © Copyright 2023 by Gamehauz, Inc. All rights reserved.
+          </p>
     </footer>
   );
 };

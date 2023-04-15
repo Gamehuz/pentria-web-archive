@@ -144,22 +144,47 @@ const Sencilo = () => {
               <Button
                 onClick={addToFav}
                 startIcon={<HeartIcon className="w-6 h-6" />}
-                className="border-secondaryColor border text-secondaryColor  bg-inherit hover:bg-secondaryColor/30"
+                className="w-14 lg:w-32 h-12 text-secondaryColor bg-[#FAFAFA] border border-secondaryColor hover:bg-secondaryColor hover:text-white flex justify-around rounded-xl items-center"
               >
                 <p className="hidden md:block">Favourite</p>
               </Button>
             </div>
 
-            <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-3">
-              {space?.image?.map((pic, index) => (
-                <div key={index} className="aspect-w-1 aspect-h-1 w-full">
-                  <img src={pic} className="w-full h-full object-cover" />
+            <div className="mt-12 flex justify-between">
+              {space?.image?.length > 0 ? 
+
+                <>
+                <div className="aspect-w-1 aspect-h-1 w-full">
+                  <img src={space?.image[0]} className="w-[850px] h-[80vh] object-cover" />
                 </div>
-              ))}
+
+                <div>
+                  {
+                    space?.image.slice(1, 2).map(e => {
+                      return (
+                        <>
+                          <div className="aspect-w-1 aspect-h-1 w-full pt-2">
+                            <img src={e} className="w-[595px] h-[250px]  object-cover" />
+                          </div>
+                        </>
+                      )
+                    })
+                  }
+                  {/* <div className="aspect-w-1 aspect-h-1 w-full pt-2">
+                    <img src={space?.image[1]} className="w-[595px] h-[250px]  object-cover" />
+                  </div> */}
+                </div> 
+                </> : 
+
+                <>
+                  <h1>No images</h1>
+                </>
+
+              }
             </div>
 
-            <div className={`flex flex-col md:flex-row gap-4 mt-6 mb-12`}>
-              <div className={` ${styles.sencilo_equip} text-[#7E7E7E]`}>
+            <div className={`lg:flex mt-6 mb-12`}>
+              <div className={`grid grid-cols-2 lg:grid-cols-5 gap-4 text-[#7E7E7E]`}>
                 <div className="mr-4 mb-4 w-fit text-center">
                   <p className="text-[16px]">Facility Type</p>
                   <div className="flex items-center space-x-2">
@@ -314,8 +339,8 @@ const Sencilo = () => {
                 <div className="mapouter relative text-right h-full w-full">
                   <div className="gmap_canvas overflow-hidden bg-[none] h-full w-full">
                     <iframe
-                      width="100%"
-                      height="100%"
+                      width="80%"
+                      height="80%"
                       id="gmap_canvas"
                       src={`https://maps.google.com/maps?q=${stripedLcn}&t=k&z=10&ie=UTF8&iwloc=&output=embed`}
                       frameBorder="0"
@@ -326,7 +351,7 @@ const Sencilo = () => {
                   </div>
                 </div>
               </div>
-              <div className="col-span-3 w-full md:w-[30%]  overflow-y-scroll h-[300px] md:h-[600px]">
+              <div className="col-span-3 w-full md:w-[30%] h-[300px] md:h-[600px]">
                 <div className="flex justify-between">
                   <div className="flex justify-between">
                     <p className="text-xl font-medium">REVIEWS</p>
@@ -400,7 +425,7 @@ const Sencilo = () => {
           </div>
         </Container>
       </div>
-      <Footer />
+      <Footer purple={false} />
     </>
   );
 };
