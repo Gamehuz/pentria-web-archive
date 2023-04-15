@@ -34,15 +34,18 @@ const UpcomingSpaces = ({ space }) => {
 
   const ratings = () => {
     const arrayOfRatings = [];
-    space.reviews.map((review) => arrayOfRatings.push(review.rating))
+    space.reviews.map((review) => arrayOfRatings.push(review.rating));
 
-    const noOfRatings = arrayOfRatings.reduce((acc, currentValue) => acc += currentValue, 0)
+    const noOfRatings = arrayOfRatings.reduce(
+      (acc, currentValue) => (acc += currentValue),
+      0
+    );
 
     return Math.floor(noOfRatings / space.reviews.length);
-  }
+  };
 
   const star = (reviewamount) => {
-    if(reviewamount === 1) {
+    if (reviewamount === 1) {
       return (
         <div>
           <Star />
@@ -51,8 +54,8 @@ const UpcomingSpaces = ({ space }) => {
           <NoStar />
           <NoStar />
         </div>
-      )
-    } else if(reviewamount === 2) {
+      );
+    } else if (reviewamount === 2) {
       return (
         <div>
           <Star />
@@ -60,10 +63,9 @@ const UpcomingSpaces = ({ space }) => {
           <NoStar />
           <NoStar />
           <NoStar />
-        </div> 
-      )
-
-    } else if(reviewamount === 3) {
+        </div>
+      );
+    } else if (reviewamount === 3) {
       return (
         <div>
           <Star />
@@ -71,9 +73,9 @@ const UpcomingSpaces = ({ space }) => {
           <Star />
           <NoStar />
           <NoStar />
-        </div> 
-      )
-    } else if(reviewamount === 4) {
+        </div>
+      );
+    } else if (reviewamount === 4) {
       return (
         <div>
           <Star />
@@ -81,9 +83,9 @@ const UpcomingSpaces = ({ space }) => {
           <Star />
           <Star />
           <NoStar />
-        </div> 
-      )
-    } else if(reviewamount === 5) {
+        </div>
+      );
+    } else if (reviewamount === 5) {
       return (
         <div>
           <Star />
@@ -91,10 +93,10 @@ const UpcomingSpaces = ({ space }) => {
           <Star />
           <Star />
           <Star />
-        </div> 
-      )
+        </div>
+      );
     }
-  }
+  };
 
   return (
     <article key={space._id}>
@@ -121,11 +123,13 @@ const UpcomingSpaces = ({ space }) => {
       </div>
       <h3>{space.facilityType}</h3>
       <p>{space.location}</p>
-      <div>
-        {ratings() ? star(ratings()) : <p>No ratings yet</p>}
-        <div className={styles.eventDate}>
-          <span>{spaceDate}</span>
-          <p>{spaceTime}</p>
+      <div className="mr-4">
+        <div className={styles.ratingTime}>
+          <p> {ratings() ? star(ratings()) : "No ratings yet"}</p>
+          <div className={styles.eventDate}>
+            <span>{spaceDate}</span>
+            <p>{spaceTime}</p>
+          </div>
         </div>
         <Button
           className={styles.button}
