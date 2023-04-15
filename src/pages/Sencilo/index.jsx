@@ -108,8 +108,6 @@ const Sencilo = () => {
     }
   };
 
-  console.log(space?.image);
-
   if (isLoading) return <IsLoadingSkeleton />;
   return (
     <>
