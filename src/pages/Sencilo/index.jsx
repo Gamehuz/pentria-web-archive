@@ -108,6 +108,8 @@ const Sencilo = () => {
     }
   };
 
+  console.log(space?.image);
+
   if (isLoading) return <IsLoadingSkeleton />;
   return (
     <>
@@ -149,15 +151,26 @@ const Sencilo = () => {
                 <p className="hidden md:block">Favourite</p>
               </Button>
             </div>
-
-            <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-3">
-              {space?.image?.map((pic, index) => (
-                <div key={index} className="aspect-w-1 aspect-h-1 w-full">
-                  <img src={pic} className="w-full h-full object-cover" />
+            <div className="mt-6 flex items-center space-x-2">
+              {space?.image?.length < 2 ? (
+                <div className="h-full w-full">
+                  <img
+                    src={space?.image[0]}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-              ))}
+              ) : (
+                <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-3">
+                  <>
+                    {space?.image?.map((pic, index) => (
+                      <div key={index} className="aspect-w-1 aspect-h-1 w-full">
+                        <img src={pic} className="w-full h-full object-cover" />
+                      </div>
+                    ))}
+                  </>
+                </div>
+              )}
             </div>
-
             <div className={`flex flex-col md:flex-row gap-4 mt-6 mb-12`}>
               <div className={` ${styles.sencilo_equip} text-[#7E7E7E]`}>
                 <div className="mr-4 mb-4 w-fit text-center">
