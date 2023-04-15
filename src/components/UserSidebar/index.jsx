@@ -23,7 +23,7 @@ function UserSidebar({ children }) {
   const handleCloseSidebar = () => {
     dispatch(setToggleSidebar(false));
   };
-
+  console.log(toggleSidebar);
   const logout = () => {
     dispatch(handleLogout());
   };

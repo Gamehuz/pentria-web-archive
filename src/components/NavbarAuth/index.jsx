@@ -29,7 +29,9 @@ const NavbarAuth = ({ search, bg }) => {
   return (
     <div className={`${styles.authNav} ${styles[bg]} `}>
       <div className={styles.authNav_toggle}>
-        <img src={toggleNavIcon} alt="" onClick={openSidebar} />
+        <div className={styles.authNav_toggle_icon} onClick={openSidebar}>
+          <img src={toggleNavIcon} alt="toggle sidebar" />
+        </div>
         <Link to="/" className={`${styles.logoLink}`}>
           <h1>Pentria</h1>
         </Link>
@@ -70,7 +72,7 @@ const NavbarAuth = ({ search, bg }) => {
                 <Link to="/login">LOGIN</Link>
               </div>
               <div className={styles.authNavbar_signup}>
-                <Link to="/prompt">SIGN UP</Link>
+                <Link to="/prompt">SIGNUP</Link>
               </div>
             </div>
           </>
