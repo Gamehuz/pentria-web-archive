@@ -126,9 +126,11 @@ const ExploreSpaces = ({ space }) => {
       <h3>{space.facilityType}</h3>
       <p>{space.location}</p>
       <div>
-        <div>
+        <div className={styles.ratings}>
           {star(ratings())}
-          <p>{ratings() ? `${ratings()}.0 Ratings` : "No ratings yet"}</p>
+          <p className="text-[14px] w-full flex">
+            {ratings() ? `${ratings()}.0 Ratings` : "No ratings yet"}
+          </p>
         </div>
         <Button
           to={`/sencilo/${space._id}`}
