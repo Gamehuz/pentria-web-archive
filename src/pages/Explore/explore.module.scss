@@ -1,58 +1,61 @@
 .explorePage {
-    padding-top: 50px;
-    height: max-content;
+  padding-top: 50px;
+  height: max-content;
 
-    .filterBar {
-        height: 100px;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        width: 85vw;
-        margin-left: auto;
-        margin-right: auto;
-        box-shadow: 0px 10px 20px 2px rgba(0, 0, 0, 0.12);
+  .filterBar {
+    height: 100px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 85vw;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0px 10px 20px 2px rgba(0, 0, 0, 0.12);
+    select {
+      outline: none;
+      background-color: #fff;
+    }
+    div {
+      display: flex;
+      align-items: center;
+      gap: 15px;
 
-        div {
-            display: flex;
-            align-items: center;
-            gap: 15px;
+      svg {
+        width: 25px;
+        height: 25px;
+      }
+    }
+  }
 
-            svg {
-                width: 25px;
-                height: 25px
-            }
-        }
+  .spaces {
+    width: 85vw;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 80px;
+    padding-bottom: 50px;
+    min-height: max-content;
+
+    h1 {
+      padding-bottom: 40px;
     }
 
-    .spaces {
-        width: 85vw;
-        margin-left: auto;
-        margin-right: auto;
-        padding-top: 80px;
-        padding-bottom: 50px;
-        min-height: max-content;
-
-        h1 {
-            padding-bottom: 40px;
-        }
-
-        .allSpaces {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 50px;
-        }
+    .allSpaces {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 50px;
     }
+  }
 }
 
 @media (max-width: 768px) {
-    .explorePage {
-        .filterBar {
-            display: grid;
-            width: 60vw;
-            gap: 30px;
-            height: max-content;
-            padding-bottom: 20px;
-            padding-top: 20px;
-        }
+  .explorePage {
+    .filterBar {
+      display: grid;
+      width: 60vw;
+      gap: 30px;
+      height: max-content;
+      padding-bottom: 20px;
+      padding-top: 20px;
     }
+  }
 }
