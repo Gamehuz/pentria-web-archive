@@ -91,7 +91,7 @@ const Footer = ({ bg, purple }) => {
           </div>
         </div>
       </div>
-          <p className={purple ? 'text-center text-white mt-14 lg:mt-32': 'text-center mt-14 lg:mt-32'}>
+          <p className={purple ? 'text-center text-white mt-14 lg:mt-16': 'text-center mt-14 lg:mt-16'}>
             © Copyright 2023 by Gamehauz, Inc. All rights reserved.
           </p>
     </footer>
