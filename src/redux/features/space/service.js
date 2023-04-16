@@ -3,13 +3,14 @@ import { ADD_ACTIVITY } from "@/graphql/mutations/addActivity";
 import { ADD_REVIEW } from "@/graphql/mutations/addReview";
 import ADD_TO_FAVORITES from "@/graphql/mutations/addToFavorites";
 import { CREATE_SPACE } from "@/graphql/mutations/createSpace";
+import { EDIT_SPACE } from "@/graphql/mutations/editSpace";
+import { REMOVE_FROM_FAVORITES } from "@/graphql/mutations/removeFromFavorites";
+import { DELETE_SPACE } from "@/graphql/queries/deleteSpace";
+import { GET_FAVORITE_SPACES } from "@/graphql/queries/favoriteSpace";
 import { GET_SPACE } from "@/graphql/queries/space";
+import { VENDOR_SPACES } from "@/graphql/queries/vendorListings";
 import { dispatch } from "@/redux/store";
 import { toast } from "react-hot-toast";
-import { REMOVE_FROM_FAVORITES } from "../../../graphql/mutations/removeFromFavorites";
-import { DELETE_SPACE } from "../../../graphql/queries/deleteSpace";
-import { GET_FAVORITE_SPACES } from "../../../graphql/queries/favoriteSpace";
-import { VENDOR_SPACES } from "../../../graphql/queries/vendorListings";
 import { setLoading } from "../../utils/UtilSlice";
 import { setSpace } from "./spaceSlice";
 
@@ -184,6 +185,25 @@ const DeleteSpace = (id) => async () => {
   }
 };
 
+const EditSpace = (data) => async () => {
+  dispatch(setLoading(true));
+  try {
+    const result = await appolloClient.mutate({
+      mutation: EDIT_SPACE,
+      variables: {
+        ...data,
+      },
+    });
+    dispatch(setLoading(false));
+    toast.success(`space edited successfully`);
+    return result.data;
+  } catch (error) {
+    console.log(error.message);
+    dispatch(setLoading(false));
+    toast.error(error.message);
+  }
+};
+
 export {
   GetSpace,
   addToFavorites,
@@ -194,4 +214,5 @@ export {
   GetFavoriteSpaces,
   GetVendorSpaces,
   DeleteSpace,
+  EditSpace,
 };
