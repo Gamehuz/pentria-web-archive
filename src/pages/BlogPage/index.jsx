@@ -7,6 +7,7 @@ import cruize from "./assets/cruize.png";
 import heroImage from "./assets/pexels-rodnae-productions-6224736 3.png";
 import styles from "./BlogPage.module.scss";
 import SectionStories from "./components/SectionStories";
+import Subscribe from "../../components/subscribe/subscribe";
 
 const BlogPage = () => {
   const staticPropsArray = [
@@ -125,6 +126,7 @@ const BlogPage = () => {
           </section>
         </main>
       </div>
+      <Subscribe />
       <Footer bg={styles.footer} purple={true} />
     </>
   );

@@ -4,6 +4,7 @@ import styles from "./Partners.module.scss";
 import HomeNavbar from "../../components/HomeNavbar";
 
 import Footer from "../../components/Footer";
+import Subscribe from "../../components/subscribe/subscribe";
 import mobile from "./assets/9mobile.svg";
 import cart from "./assets/cart.svg";
 import mtn from "./assets/MTN.svg";
@@ -211,7 +212,8 @@ const Partners = () => {
           </div>
         </div>
       </div>
-      <Footer bg={styles.footer} purple={true} />
+      <Subscribe />
+      <Footer bg={undefined} purple={true} />
     </>
   );
 };

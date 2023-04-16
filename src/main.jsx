@@ -6,7 +6,6 @@ import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import client from "./graphql";
-import "./index.css";
 import "./index.scss";
 import { userData } from "./redux/features/user/service";
 import store from "./redux/store";

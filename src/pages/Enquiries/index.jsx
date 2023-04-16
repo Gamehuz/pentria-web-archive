@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./Enquiries.module.scss";
 
 import HomeNavbar from "../../components/HomeNavbar";
+import Subscribe from "../../components/subscribe/subscribe";
 
 import Footer from "../../components/Footer";
 import Img from "./assets/contact.svg";
@@ -123,6 +124,7 @@ const Enquiries = () => {
           </div>
         </div>
       </div>
+      <Subscribe />
       <Footer bg={styles.footer} purple={true} />
     </>
   );

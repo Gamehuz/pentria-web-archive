@@ -33,7 +33,7 @@ const Footer = ({ bg, purple }) => {
   // console.log(bg)
 
   return (
-    <footer className='py-16 px-4'>
+    <footer className={purple ? 'bg-primaryColor py-16 px-4' : 'bg-white py-16 px-4'}>
       <div className='lg:flex justify-around'>
         <h2 className={purple ? "text-white font-bold text-[38px]" : "text-primaryColor font-bold text-[38px]"}>Pentria</h2>
         <div className={styles.info}>

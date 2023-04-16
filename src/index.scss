@@ -16,6 +16,20 @@ html {
   font-family: "Poppins", sans-serif;
 }
 
+body {
+  background-color: #fff;
+}
+
+#root {
+  background-color: #fff;
+  height: 100%;
+  width: 100%;
+}
+
 a {
   text-decoration: none;
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
