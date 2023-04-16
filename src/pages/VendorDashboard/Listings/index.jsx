@@ -88,7 +88,11 @@ const VendorListings = () => {
                 </div>
               </div>
               <div className={styles.listings__itemContainer__buttons}>
-                <Button type="button" text="Edit" classes={styles.btn} />
+                <Button
+                  to={`/vendor/dashboard?checkpoint=edit-listing&id=${itm?._id}`}
+                  text="Edit"
+                  classes={styles.btn}
+                />
                 <Button
                   type="button"
                   onClick={() => handleDeleteSpace(itm?._id)}

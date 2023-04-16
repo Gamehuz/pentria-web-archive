@@ -1,21 +1,25 @@
 import { useRef, useState } from "react";
-import styles from "./CreateListing.module.scss";
+import styles from "./editListing.module.scss";
 
 import Button from "@/components/Button";
 import InputField from "@/components/InputField";
-import Menu from "./Menu/Menu";
 
 import ButtonSpinner from "@/components/ButtonSpiner";
 import { CreateSpace } from "@/redux/features/space/service";
 import { dispatch } from "@/redux/store";
 import { toast } from "react-hot-toast";
 import { useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import upload from "./assets/upload.svg";
 
-const CreateListing = () => {
+const EditListing = () => {
   const selectFile = useRef();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const id = searchParams.get("id");
   const { isLoading } = useSelector((state) => state.util);
   const [createdSpaceId, setCreatedSpaceId] = useState(null);
+  const [listingData, setListingData] = useState(null);
   const [inputFields, setInputFields] = useState({
     name: "",
     location: "",
@@ -118,8 +122,8 @@ const CreateListing = () => {
   return (
     <div className="flex flex-col md:flex-row justify-between">
       <div className="w-full md:w-1/4" />
-      <div className={styles.createlist_container}>
-        <h1>Create a new listing </h1>
+      <div className={styles.editlist_container}>
+        <h1>Edit Space </h1>
 
         <form onSubmit={handleCreateSpace}>
           <div className={styles.input_content}>
@@ -357,11 +361,11 @@ const CreateListing = () => {
             <Button text="create listing" type="submit" />
           )}
         </form>
-        <Menu spaceId={createdSpaceId} />
+        {/* <Menu spaceId={createdSpaceId} /> */}
       </div>
       <div className="w-full md:w-1/4" />
     </div>
   );
 };
 
-export default CreateListing;
+export default EditListing;
