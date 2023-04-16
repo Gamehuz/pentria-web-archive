@@ -5,6 +5,7 @@ import styles from "./aboutus.module.scss";
 import aboutusImg from "./assets/aboutusImg.png";
 import teamMember from "./assets/avatar.png";
 import Footer from "../../components/Footer";
+import Subscribe from "../../components/subscribe/subscribe";
 
 const Aboutus = () => {
     const explorables = [{}, {}, {}, {}, {}, {}, {}, {},];
@@ -63,6 +64,7 @@ const Aboutus = () => {
                     })}
                 </div>
             </section>
+            <Subscribe />
             <Footer bg={styles.footer} purple={true}/>
         </div>
 
