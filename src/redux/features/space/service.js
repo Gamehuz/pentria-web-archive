@@ -186,12 +186,13 @@ const DeleteSpace = (id) => async () => {
 };
 
 const EditSpace = (data) => async () => {
+  console.log({ ...data });
   dispatch(setLoading(true));
   try {
     const result = await appolloClient.mutate({
       mutation: EDIT_SPACE,
       variables: {
-        ...data,
+        input: data,
       },
     });
     dispatch(setLoading(false));
