@@ -1,5 +1,6 @@
 import { useLocation } from "react-router-dom";
 import CreateListing from "./CreateListing";
+import EditListing from "./EditListing";
 import VendorListings from "./Listings";
 import VendorSales from "./Sales";
 import VendorSettings from "./Settings";
@@ -24,6 +25,8 @@ const VendorDashboard = () => {
         return <CreateListing />;
       case "vendor-withdraw":
         return <Withdraw />;
+      case "edit-listing":
+        return <EditListing />;
       default:
         return <VendorListings />;
     }
