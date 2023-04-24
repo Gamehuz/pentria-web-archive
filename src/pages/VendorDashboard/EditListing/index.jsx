@@ -106,7 +106,7 @@ const EditListing = () => {
     ) {
       return toast.error("Please fill all the fields");
     }
-    if (previewImages.length === 0) {
+    if (previewImages?.length === 0) {
       return toast.error("Please select at least one image");
     }
     const res = await dispatch(
@@ -243,7 +243,7 @@ const EditListing = () => {
                 Upload space image(s)
               </div>
             )}
-            {previewImages.length > 0 && (
+            {previewImages?.length > 0 && (
               <div className="flex flex-wrap mt-2 w-full">
                 {previewImages.map((url, index) => (
                   <div className="w-[100px] h-[100px] m-[3px]" key={index}>
