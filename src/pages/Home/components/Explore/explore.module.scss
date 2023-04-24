@@ -129,21 +129,11 @@
 .spaces {
   display: flex;
   align-items: center;
-  gap: 30px;
-
-  div {
-    div {
-      color: var(--tertiary-color);
-
-      div {
-        max-width: 350px !important;
-      }
-    }
-  }
+  gap: 20px;
 
   article {
     height: max-content;
-    width: 318px;
+    width: 300px;
     max-width: 350px;
     background-color: white;
     padding-bottom: 25px;
@@ -186,6 +176,7 @@
         display: flex;
         justify-content: center;
         margin-top: 2px;
+
         svg {
           width: 20px;
           height: 20px;
@@ -250,6 +241,7 @@
 
 .ratings {
   width: 100%;
+
   p {
     margin: 0 !important;
     padding-left: 0 !important;
@@ -261,6 +253,10 @@
   margin-top: 140px;
   border-bottom: 1px solid white;
   padding-bottom: 150px;
+
+  .arrows {
+    display: none;
+  }
 
   span {
     font-weight: 700;
@@ -326,6 +322,7 @@
           display: flex;
           justify-content: center;
           margin-top: 2px;
+
           svg {
             width: 20px;
             margin-left: 10px;
@@ -390,6 +387,7 @@
             width: 65px;
             padding: 0;
           }
+
           p {
             font-size: 10px;
             color: black;
@@ -413,33 +411,43 @@
   }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
   .spaces {
-    display: flex;
 
-    .desktopRArrow,
-    .desktopLArrow {
+    .desktopLArrow,
+    .desktopRArrow {
       display: none;
     }
   }
 
   .arrows {
-    display: block;
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 30px;
+  }
 
-    svg {
-      width: 25px;
-      height: 25px;
+  .upcoming {
+
+    .arrows {
+      display: flex;
     }
+
+    .desktopLArrow,
+    .desktopRArrow {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .spaces {
+    display: flex;
   }
 
   .upcoming {
     div {
       display: flex;
-
-      .desktopLArrow,
-      .desktopRArrow {
-        display: none;
-      }
 
       article {
         .price {
