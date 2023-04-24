@@ -155,7 +155,17 @@ const Sencilo = () => {
         ? data?.spaces.length
         : startIndex + articleToShow;
 
-    return data?.spaces
+    const isSimilars = data?.spaces?.filter((item) => {
+      return JSON.stringify(item.facilityType || item.location || item.name)
+        ?.toLowerCase()
+        .includes(
+          JSON.stringify(
+            space.facilityType || space.location || space.name
+          )?.toLowerCase()
+        );
+    });
+
+    return isSimilars
       .slice(startIndex, endIndex)
       .map((space) => <Spaces key={space._id} space={space} />);
   };
@@ -487,8 +497,11 @@ const Sencilo = () => {
         <section className={styles.similarSpaces}>
           <div className={styles.header}>
             <span>Similar Spaces</span>
-            <span onClick={() => navigate("/explore")}>
-              <p>Explore All</p>
+            <span
+              className="cursor-pointer"
+              onClick={() => navigate("/explore")}
+            >
+              Explore All
             </span>
           </div>
           <div className={styles.arrows}>
