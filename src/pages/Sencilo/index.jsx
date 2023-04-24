@@ -497,12 +497,12 @@ const Sencilo = () => {
           </div>
           <div className={styles.spaces}>
             <LeftArrow
-              className={styles.desktopLArrow}
+              className={`${styles.desktopLArrow} cursor-pointer`}
               onClick={() => handlePrev()}
             />
             {renderSpaces()}
             <RightArrow
-              className={styles.desktopRArrow}
+              className={`${styles.desktopRArrow} cursor-pointer`}
               onClick={() => handleNext()}
             />
           </div>
