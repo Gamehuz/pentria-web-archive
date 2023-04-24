@@ -111,16 +111,17 @@ const EditListing = () => {
     }
     const res = await dispatch(
       EditSpace({
-        _id: id,
+        id,
         ...inputFields,
         image: previewImages,
         beds: Number(inputFields.beds),
         price: parseFloat(inputFields.price),
       })
     );
-    if (res?.createSpace?._id) {
-      navigate(-1);
-    }
+    console.log(res);
+    // if (res?.createSpace?._id) {
+    //   navigate(-1);
+    // }
   };
   return (
     <div className="flex flex-col md:flex-row justify-between">

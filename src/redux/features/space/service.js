@@ -192,7 +192,29 @@ const EditSpace = (data) => async () => {
     const result = await appolloClient.mutate({
       mutation: EDIT_SPACE,
       variables: {
-        input: data,
+        input: {
+          spaceId: data.id,
+          name: data.name,
+          image: data.image,
+          location: data.location,
+          facilityType: data.facilityType,
+          category: data.category,
+          beds: data.beds,
+          restRoome: data.restRoome,
+          pool: data.pool,
+          outdoorSpace: data.outdoorSpace,
+          kitchen: data.kitchen,
+          ac: data.ac,
+          videoGames: data.videoGames,
+          petFriendly: data.petFriendly,
+          kidFriendly: data.kidFriendly,
+          cleaningSupplies: data.cleaningSupplies,
+          workspace: data.workspace,
+          wifi: data.wifi,
+          parking: data.parking,
+          description: data.description,
+          policies: data.policies,
+        },
       },
     });
     dispatch(setLoading(false));
