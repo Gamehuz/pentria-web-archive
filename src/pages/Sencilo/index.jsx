@@ -23,6 +23,12 @@ import { calcAvgRating } from "../../helpers";
 import { AddReview, addToFavorites } from "../../redux/features/space/service";
 import Container from "./Container";
 import styles from "./sencilo.module.scss";
+// import { spaces } from "../../redux/features/user/service";
+import Spaces from "./components/similarSpaces";
+import { ReactComponent as LeftArrow } from "./assets/left-arrow.svg";
+import { ReactComponent as RightArrow } from "./assets/right-arrow.svg";
+import { useQuery } from "@apollo/client";
+import ALL_SPACES from "../../graphql/queries/spaces";
 
 const Sencilo = () => {
   const { id } = useParams();
@@ -31,14 +37,26 @@ const Sencilo = () => {
   const [existingActivities, setExistingActivities] = useState([]);
   const [reviewComment, setReviewComment] = useState("");
   const [reviewRating, setReviewRating] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [dimension, setDimension] = useState({width: 0});
+  const articleToShow = dimension.width < 768 ? 1 : dimension.width < 1100 ? 2 : 3;
 
   const { space } = useSelector((state) => state.space);
   const { user } = useSelector((state) => state.user);
   const { isLoading } = useSelector((state) => state.util);
+  const { data } = useQuery(ALL_SPACES);
   const stripedLcn = space?.location?.replace(/\s/g, "");
   useEffect(() => {
     window.scrollTo(0, 0);
     dispatch(GetSpace(id));
+
+    window.addEventListener("resize", resize);
+    resize();
+
+    return () => {
+        window.removeEventListener("resize", resize);
+    };
+    
   }, [id]);
   const addToFav = () => {
     dispatch(addToFavorites(id));
@@ -108,6 +126,39 @@ const Sencilo = () => {
     }
   };
 
+  const resize = () => {
+    setDimension({
+      width: window.innerWidth
+    })
+  }
+
+  const handlePrev = () => {
+    if (currentIndex === 0) {
+      setCurrentIndex(data?.spaces.length - 1);
+    } else {
+      setCurrentIndex(currentIndex - 1);
+    }
+  };
+
+  const handleNext = () => {
+    if (currentIndex === data?.spaces.length - 1) {
+      setCurrentIndex(0);
+    } else {
+      setCurrentIndex(currentIndex + 1);
+    }
+  };
+
+  const renderSpaces = () => {
+    const startIndex = currentIndex > 1 ? currentIndex - 1 : 0;
+    const endIndex = startIndex + articleToShow > data?.spaces.length ? data?.spaces.length : startIndex + articleToShow;
+
+    return data?.spaces.slice(startIndex, endIndex).map((space) => (
+      <Spaces key={space._id} space={space} />
+    ));
+  };
+
+  
+
   if (isLoading) return <IsLoadingSkeleton />;
   return (
     <>
@@ -115,7 +166,6 @@ const Sencilo = () => {
         {/* The nav */}
 
         <NavbarAuth />
-
         {/* the sencilo pictures */}
         <Container>
           <div className="mt-4">
@@ -355,7 +405,7 @@ const Sencilo = () => {
                   </div>
                 </div>
               </div>
-              <div className="col-span-3 w-full md:w-[30%] h-[300px] md:h-[600px]">
+              <div className="col-span-3 w-full md:w-[30%] h-max md:h-[600px] pb-12">
                 <div className="flex justify-between">
                   <div className="flex justify-between">
                     <p className="text-xl font-medium">REVIEWS</p>
@@ -428,6 +478,23 @@ const Sencilo = () => {
             </div>
           </div>
         </Container>
+        <section className={styles.similarSpaces}>
+          <div className={styles.header}>
+            <span>Similar Spaces</span>
+            <span onClick={() => navigate("/explore")}>
+              <p>Explore All</p>
+            </span>     
+          </div>
+          <div className={styles.arrows}>
+            <LeftArrow onClick={() => handlePrev()} />
+            <RightArrow onClick={() => handleNext()} />
+          </div>
+          <div className={styles.spaces}>
+            <LeftArrow className={styles.desktopLArrow} onClick={() => handlePrev()}/>
+            {renderSpaces()}
+            <RightArrow className={styles.desktopRArrow} onClick={() => handleNext()} />
+          </div>
+        </section>
       </div>
       <Footer purple={false} />
     </>
