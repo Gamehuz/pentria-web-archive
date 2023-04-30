@@ -44,44 +44,54 @@ const LoginPage = () => {
   return (
     <div className={styles.loginPage}>
       <Nav />
-      <section className={styles.login}>
-        <h2>Login to Pentria</h2>
-        <form onSubmit={handleLogin}>
-          <label className={styles.email}>
-            Email
-            <InputField
-              type={"email"}
-              name={"email"}
-              placeholder={"Enter your email"}
-              value={loginData.email}
-              onChange={(e) => trackLoginInput(e)}
-            />
-          </label>
-          <div className={styles.passwordWrap}>
-            <label className={styles.password}>
-              Password
+      <section className={styles.loginWrap}>
+        <div className="hidden md:block" />
+        <div className={styles.login}>
+          <h2>Login to Pentria</h2>
+          <form onSubmit={handleLogin}>
+            <label className={styles.email}>
+              Email
               <InputField
-                type={togglePassword ? "text" : "password"}
-                name={"password"}
-                placeholder={"Password"}
-                value={loginData.password}
+                type={"email"}
+                name={"email"}
+                placeholder={"Enter your email"}
+                value={loginData.email}
                 onChange={(e) => trackLoginInput(e)}
-                setTogglePassword={() => setTogglePassword(!togglePassword)}
               />
             </label>
+            <div className={styles.passwordWrap}>
+              <label className={styles.password}>
+                Password
+                <InputField
+                  type={togglePassword ? "text" : "password"}
+                  name={"password"}
+                  placeholder={"Password"}
+                  value={loginData.password}
+                  onChange={(e) => trackLoginInput(e)}
+                  setTogglePassword={() => setTogglePassword(!togglePassword)}
+                />
+              </label>
+            </div>
+            <Link className={styles.forgotPassword}>Forgot your password?</Link>
+            <Button type="submit" bg={styles.signin} text={"SIGN IN"} />
+          </form>
+          <span>
+            <div></div>
+            <p>OR</p>
+            <div></div>
+          </span>
+          <div className={styles.othersignin}>
+            <div className={styles.socials}>
+              <div className={`${styles.google} ${styles.rounded}`}>
+                <i className="fab fa-google"></i>
+              </div>
+              <div className={`${styles.fb} ${styles.rounded}`}>
+                <i className="fab fa-facebook-f"></i>
+              </div>
+            </div>
           </div>
-          <Link className={styles.forgotPassword}>Forgot your password?</Link>
-          <Button type="submit" bg={styles.signin} text={"SIGN IN"} />
-        </form>
-        <span>
-          <div></div>
-          <p>OR</p>
-          <div></div>
-        </span>
-        <div className={styles.othersignin}>
-          <Button bg={styles.button} text={"LOGIN WITH GOOGLE"} />
-          <Button bg={styles.button} text={"LOGIN WITH FACEBOOK"} />
         </div>
+        <div className="hidden md:block" />
       </section>
     </div>
   );
