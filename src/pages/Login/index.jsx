@@ -7,6 +7,8 @@ import InputField from "../../components/InputField";
 import Nav from "../../components/Nav";
 import { loginUser, userData } from "../../redux/features/user/service";
 import styles from "./login.module.scss";
+import { ReactComponent as Google } from "./assets/google.svg";
+import { ReactComponent as FaceBook } from "./assets/facebook.svg";
 
 const LoginPage = () => {
   const [loginData, setLoginData] = useState({
@@ -79,8 +81,8 @@ const LoginPage = () => {
           <div></div>
         </span>
         <div className={styles.othersignin}>
-          <Button bg={styles.button} text={"LOGIN WITH GOOGLE"} />
-          <Button bg={styles.button} text={"LOGIN WITH FACEBOOK"} />
+          <Button bg={styles.button} text={<Google width={30} height={30}/>} />
+          <Button bg={styles.button} text={<FaceBook width={30} height={30}/>} />
         </div>
       </section>
     </div>
