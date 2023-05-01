@@ -4,7 +4,7 @@
   cursor: pointer;
   display: flex;
   justify-content: center;
-  color: white;
+  color: white !important;
   margin: 1rem 0;
   align-items: center;
   background-color: var(--secondary-color);
@@ -19,16 +19,6 @@
   -moz-transition: all 0.3s ease-in-out;
   -ms-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
-}
-
-.defaultBg {
-  background-color: var(--secondary-color);
-  color: var(--primary-color) !important;
-}
-
-.tertiary {
-  background-color: var(--tertiary-color);
-  color: var(--primary-color);
 }
 
 .button button {

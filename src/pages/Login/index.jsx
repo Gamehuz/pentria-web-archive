@@ -73,7 +73,9 @@ const LoginPage = () => {
               </label>
             </div>
             <Link className={styles.forgotPassword}>Forgot your password?</Link>
-            <Button type="submit" bg={styles.signin} text={"SIGN IN"} />
+            <div className={styles.centerBtn}>
+              <Button type="submit" text={"SIGN IN"} />
+            </div>
           </form>
           <span>
             <div></div>
