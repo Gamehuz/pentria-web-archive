@@ -4,10 +4,21 @@
   cursor: pointer;
   display: flex;
   justify-content: center;
+  color: white;
   margin: 1rem 0;
   align-items: center;
   background-color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
   color: var(--primary-color);
+  &:hover {
+    background-color: transparent;
+    color: var(--secondary-color) !important;
+  }
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
 }
 
 .defaultBg {
@@ -34,7 +45,7 @@
   line-height: 24px;
   list-style: none;
   text-transform: uppercase;
-  color: white;
+  // color: white;
 }
 
 .button a {
@@ -49,7 +60,7 @@
   line-height: 24px;
   text-transform: uppercase;
   text-decoration: none;
-  color: white;
+  // color: white;
   display: flex;
   justify-content: center;
   align-items: center;
