@@ -1,4 +1,4 @@
-.createlist_container {
+.editlist_container {
   width: 100%;
   max-width: 100%;
   // margin: auto;
@@ -105,5 +105,9 @@
         }
       }
     }
+  }
+  .cancel {
+    background: #de0303 !important;
+    color: #fff;
   }
 }

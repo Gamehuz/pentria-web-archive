@@ -27,7 +27,11 @@ const Partners = () => {
               service provider in your area, only on Pentria.
             </p>
             <form>
-              <input type="email" name="email" />
+              <input
+                type="email"
+                name="email"
+                placeholder="john.doe@gmail.com"
+              />
               <input type="submit" value="Join" />
             </form>
             <div className={styles.users}>

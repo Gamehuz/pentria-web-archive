@@ -105,6 +105,14 @@ const Explore = () => {
     return matchRatingFilter;
   };
 
+  const searchSpaces = (filtered) => {
+    return filtered?.filter(
+      (space) =>
+        space.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        space.location.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  };
+
   useEffect(() => {
     spaces().then((data) => setAllSpaces(data.spaces));
   });
@@ -180,9 +188,9 @@ const Explore = () => {
           </div>
         </article>
         <div className={styles.spaces}>
-          <h1>{ratingFilter().length} Results</h1>
+          <h1>{searchSpaces(ratingFilter())?.length} Results</h1>
           <div className={styles.allSpaces}>
-            {ratingFilter().map((space) => {
+            {searchSpaces(ratingFilter())?.map((space) => {
               return <Space space={space} key={space._id} />;
             })}
           </div>
