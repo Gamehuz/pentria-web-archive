@@ -2,7 +2,6 @@ import { useMutation } from "@apollo/client";
 import moment from "moment";
 import PropTypes from "prop-types";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import Button from "../../../../../components/Button";
 import ADD_TO_FAVORITES from "../../../../../graphql/mutations/addToFavorites";
 import { ReactComponent as NoStar } from "../../../assets/no-star.svg";
@@ -12,7 +11,6 @@ import styles from "../explore.module.scss";
 
 const UpcomingSpaces = ({ space }) => {
   const [favorite, setFavorite] = useState(false);
-  const navigate = useNavigate();
 
   const toggleFavorite = () => {
     setFavorite(!favorite);
@@ -27,10 +25,6 @@ const UpcomingSpaces = ({ space }) => {
       spaceId: space._id,
     },
   });
-
-  const spaceSencilo = (id) => {
-    navigate(`/sencilo/${id}`);
-  };
 
   const ratings = () => {
     const arrayOfRatings = [];
@@ -123,7 +117,7 @@ const UpcomingSpaces = ({ space }) => {
       </div>
       <h3>{space.facilityType}</h3>
       <p>{space.location}</p>
-      <div className="mr-4">
+      <div className="pr-2 w-full flex justify-between">
         <div className={styles.ratingTime}>
           <p> {ratings() ? star(ratings()) : "No ratings yet"}</p>
           <div className={styles.eventDate}>
@@ -131,12 +125,7 @@ const UpcomingSpaces = ({ space }) => {
             <p>{spaceTime}</p>
           </div>
         </div>
-        <Button
-          className={styles.button}
-          type={"button"}
-          text={"GET TICKET"}
-          onClick={() => spaceSencilo(space._id)}
-        />
+        <Button to={`/sencilo/${space._id}`} text="GET TICKET" />
       </div>
     </article>
   );

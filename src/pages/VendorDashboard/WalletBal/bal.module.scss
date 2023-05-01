@@ -27,3 +27,13 @@
     }
   }
 }
+
+@media screen and (max-width: 700px) {
+  .bal {
+    flex-direction: column;
+    align-items: center;
+    &__balance {
+      margin-bottom: 2rem;
+    }
+  }
+}
