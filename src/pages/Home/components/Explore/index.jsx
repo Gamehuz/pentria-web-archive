@@ -19,7 +19,7 @@ const Explore = () => {
   const [currentUpcomingIndex, setCurrentUpcomingIndex] = useState(0);
   const [dimension, setDimension] = useState({width: 0});
   const articleToShow = dimension.width < 768 ? 1 : dimension.width < 1100 ? 2 : 3;
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const resize = () => {
     setDimension({
@@ -35,7 +35,6 @@ const Explore = () => {
         window.removeEventListener("resize", resize);
     };
 }, []);
-  console.log(dimension.width)
 
   const handlePrev = () => {
     if (currentIndex === 0) {
@@ -87,7 +86,6 @@ const Explore = () => {
     ));
   };
 
-  console.log(data);
   return (
     <section className={styles.explore}>
       <span>
@@ -98,6 +96,7 @@ const Explore = () => {
         <h2>Spaces to Go</h2>
         <span onClick={() => navigate("/explore")}>Explore All</span>
       </div>
+      <p className={styles.page}>{currentIndex + 1} of {data?.spaces.length}</p>
       <div className={styles.arrows}>
         <LeftArrow onClick={() => handlePrev()} />
         <RightArrow onClick={() => handleNext()}/>
@@ -138,6 +137,7 @@ const Explore = () => {
       </div>
       <div className={styles.upcoming}>
         <span>Upcoming Events</span>
+        <p className={styles.page} style={{ color: "white" }}>{currentUpcomingIndex + 1} of {data?.spaces.length}</p>
         <div className={styles.arrows}>
           <LeftArrow onClick={() => handleUpcomingPrev()}/>
           <RightArrow onClick={() => handleUpcomingNext()}/>
