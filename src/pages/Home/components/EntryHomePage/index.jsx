@@ -28,7 +28,6 @@ const EntryHome = () => {
   const explore = () => {
     navigate(`/explore?${filter.recreationName}=${filter.location}`);
   }
-  
   return (
     <div className="m-auto px-16 pt-10 bg-[#FAFAFA]">
 
