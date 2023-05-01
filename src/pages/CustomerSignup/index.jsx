@@ -6,8 +6,6 @@ import Button from "../../components/Button";
 import Nav from "../../components/Nav";
 import { signupGuest } from "../../redux/features/user/service";
 import { dispatch } from "../../redux/store";
-import { ReactComponent as Google } from "./assets/google.svg";
-import { ReactComponent as FaceBook } from "./assets/facebook.svg";
 
 const CustomerSignup = () => {
   const navigate = useNavigate();
@@ -490,8 +488,14 @@ const CustomerSignup = () => {
           <div></div>
         </span>
         <div className={styles.othersignin}>
-          <Button bg={styles.button} text={<Google width={30} height={30}/>} />
-          <Button bg={styles.button} text={<FaceBook width={30} height={30}/>} />
+          <div className={styles.socials}>
+            <div className={`${styles.google} ${styles.rounded}`}>
+              <i className="fab fa-google"></i>
+            </div>
+            <div className={`${styles.fb} ${styles.rounded}`}>
+              <i className="fab fa-facebook-f"></i>
+            </div>
+          </div>
         </div>
       </div>
     </>
