@@ -21,7 +21,7 @@
 
       .left_form {
         max-width: 100%;
-        width: 45%;
+        width: 85%;
 
         @media (max-width: 666px) {
           max-width: 100%;
@@ -188,9 +188,11 @@
 .social {
   width: 100%;
   display: flex;
+
   button {
     margin-right: 10px;
   }
+
   .yellow {
     background-color: var(--tertiary-color);
     margin-right: 10px;
@@ -202,12 +204,14 @@
   display: flex !important;
   align-items: center;
   position: relative;
+
   span {
     position: absolute;
     right: 10px;
     top: 10px;
     cursor: pointer;
   }
+
   input {
     width: 100%;
   }

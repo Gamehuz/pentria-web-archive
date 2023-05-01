@@ -11,6 +11,7 @@ import ExploreSpaces from "./components/exploreSpaces";
 import UpcomingSpaces from "./components/upcomingSpaces";
 import styles from "./explore.module.scss";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Explore = () => {
   const { data, loading } = useQuery(ALL_SPACES);
@@ -18,6 +19,7 @@ const Explore = () => {
   const [currentUpcomingIndex, setCurrentUpcomingIndex] = useState(0);
   const [dimension, setDimension] = useState({width: 0});
   const articleToShow = dimension.width < 768 ? 1 : dimension.width < 1100 ? 2 : 3;
+  const navigate = useNavigate()
 
   const resize = () => {
     setDimension({
@@ -94,7 +96,7 @@ const Explore = () => {
       </span>
       <div className={styles.exploreHeader}>
         <h2>Spaces to Go</h2>
-        <span>Explore All</span>
+        <span onClick={() => navigate("/explore")}>Explore All</span>
       </div>
       <div className={styles.arrows}>
         <LeftArrow onClick={() => handlePrev()} />
