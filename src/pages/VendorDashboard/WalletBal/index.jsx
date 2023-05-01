@@ -27,7 +27,6 @@ const WalletBal = () => {
       <div className={styles.bal__withdraw}>
         <Button
           to={"/vendor/dashboard?checkpoint=vendor-withdraw"}
-          bg={styles.bal__withdraw__btn}
           text="Withdraw"
         />
       </div>

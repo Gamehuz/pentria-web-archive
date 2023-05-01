@@ -27,6 +27,7 @@
   color: var(--primary-color);
 
   letter-spacing: 1px;
+
   a {
     text-decoration: none;
     color: var(--primary-color);
@@ -78,6 +79,7 @@
   margin: 0 1rem;
   list-style: none;
   color: var(--primary-color);
+
   a {
     text-decoration: none;
     color: var(--primary-color);
@@ -108,6 +110,7 @@
   padding: 0 1rem;
   background-color: var(--tertiary-color);
   border-radius: 5px;
+
   a {
     text-decoration: none;
     color: var(--primary-color);
@@ -127,11 +130,13 @@
   .homeNavbarLogo {
     font-size: 28px;
   }
+
   .homeNavbar_btn {
     width: 100%;
     padding: 0 1rem;
     // justify-content: initial;
   }
+
   .HomeNavbar_container {
     width: 100%;
     position: absolute;
@@ -158,10 +163,12 @@
     width: 100%;
     text-align: center;
   }
+
   .homeNavbar_login {
     width: 100%;
     text-align: center;
   }
+
   .mobile_menu {
     display: block;
     font-size: 1.8rem;
@@ -174,18 +181,27 @@
   }
 }
 
+.highlight {
+  a {
+    color: var(--tertiary-color);
+  }
+}
+
 @media screen and (min-width: 768px) and (max-width: 1000px) {
   .homeNavbar {
     padding: 0 2rem;
   }
+
   .homeNavbarLogo {
     font-size: 28px;
   }
+
   .homeNavbar_btn {
     width: 100%;
     padding: 0 1rem;
     // justify-content: initial;
   }
+
   .HomeNavbar_container {
     width: 100%;
     position: absolute;
@@ -219,10 +235,12 @@
     width: 100%;
     text-align: center;
   }
+
   .homeNavbar_login {
     width: 100%;
     text-align: center;
   }
+
   .mobile_menu {
     display: block;
     font-size: 1.8rem;

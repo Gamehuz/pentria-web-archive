@@ -91,13 +91,13 @@ const VendorListings = () => {
                 <Button
                   to={`/vendor/dashboard?checkpoint=edit-listing&id=${itm?._id}`}
                   text="Edit"
-                  classes={styles.btn}
+                  classes="bg-[#bf4d01]"
                 />
                 <Button
                   type="button"
                   onClick={() => handleDeleteSpace(itm?._id)}
                   text="Remove"
-                  classes={styles.btn}
+                  classes="bg-[#bf4d01]"
                 />
               </div>
             </div>

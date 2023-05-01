@@ -1,8 +1,5 @@
-import React from "react";
 import styles from "./Partners.module.scss";
-
 import HomeNavbar from "../../components/HomeNavbar";
-
 import Footer from "../../components/Footer";
 import Subscribe from "../../components/subscribe/subscribe";
 import mobile from "./assets/9mobile.svg";
@@ -30,7 +27,11 @@ const Partners = () => {
               service provider in your area, only on Pentria.
             </p>
             <form>
-              <input type="email" name="email" />
+              <input
+                type="email"
+                name="email"
+                placeholder="john.doe@gmail.com"
+              />
               <input type="submit" value="Join" />
             </form>
             <div className={styles.users}>
