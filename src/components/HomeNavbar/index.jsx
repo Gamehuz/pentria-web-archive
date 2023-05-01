@@ -5,12 +5,15 @@ import { Link } from "react-router-dom";
 import ButtonSpinner from "../ButtonSpiner/index";
 import mobileMenu from "./assets/menu-hamburger.svg";
 import styles from "./homenav.module.scss";
+import { useLocation } from "react-router-dom";
 
 const HomeNavbar = ({ bg }) => {
   const [toggleNav, setToggleNav] = React.useState(false);
   const { token, user } = useSelector((state) => state.user);
   const { isLoading } = useSelector((state) => state.util);
   const userType = user?.accountType;
+  const {pathname} = useLocation();
+  
   return (
     <div
       className={`${toggleNav ? styles.activeHomeNav : ""} ${
@@ -22,16 +25,16 @@ const HomeNavbar = ({ bg }) => {
       </h1>
       <div className={`${styles.HomeNavbar_container} }`}>
         <ul className={styles.homeNavbarLinks}>
-          <li className={styles.homeNavbarLink}>
+          <li className={`${styles.homeNavbarLink} ${pathname === "/partners" ? styles.highlight : ""}`}>
             <Link to="/partners">Partners</Link>
           </li>
-          <li className={styles.homeNavbarLink}>
+          <li className={`${styles.homeNavbarLink} ${pathname === "/about-us" ? styles.highlight : ""}`}>
             <Link to="/about-us">About</Link>
           </li>
-          <li className={styles.homeNavbarLink}>
+          <li className={`${styles.homeNavbarLink} ${pathname === "/enquiries" ? styles.highlight : ""}`}>
             <Link to="/enquiries">Enquiries</Link>
           </li>
-          <li className={styles.homeNavbarLink}>
+          <li className={`${styles.homeNavbarLink} ${pathname === "/blog" ? styles.highlight : ""}`}>
             <Link to="/blog">Blog</Link>
           </li>
         </ul>

@@ -1,7 +1,5 @@
 import styles from "./Partners.module.scss";
-
 import HomeNavbar from "../../components/HomeNavbar";
-
 import Footer from "../../components/Footer";
 import Subscribe from "../../components/subscribe/subscribe";
 import mobile from "./assets/9mobile.svg";

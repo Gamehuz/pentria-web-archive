@@ -7,6 +7,8 @@ import InputField from "../../components/InputField";
 import Nav from "../../components/Nav";
 import { loginUser, userData } from "../../redux/features/user/service";
 import styles from "./login.module.scss";
+import { ReactComponent as Google } from "./assets/google.svg";
+import { ReactComponent as FaceBook } from "./assets/facebook.svg";
 
 const LoginPage = () => {
   const [loginData, setLoginData] = useState({

@@ -1,6 +1,6 @@
 import NavbarAuth from "@/components/NavbarAuth";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import Footer from "../../components/Footer";
 import Nav from "../../components/Nav";
 import { spaces } from "../../redux/features/user/service";
@@ -13,7 +13,7 @@ import styles from "./explore.module.scss";
 
 const Explore = () => {
   const [allSpaces, setAllSpaces] = useState([]);
-  const { searchQuery } = useSelector((state) => state.util);
+  // const { searchQuery } = useSelector((state) => state.util);
 
   const [filterValues, setFilterValues] = useState({
     location: "",
@@ -30,6 +30,15 @@ const Explore = () => {
       [name]: value,
     });
   };
+
+  const reset = () => {
+    setFilterValues({
+      location: "",
+      price: "",
+      facility: "",
+      rating: "",
+    })
+  }
 
   const locationFilter = () => {
     if (filterValues.location === "") {
@@ -107,6 +116,7 @@ const Explore = () => {
       <Nav />
       <NavbarAuth />
       <section className={styles.explorePage}>
+        <p className={styles.reset} onClick={() => reset()}>Reset Filters</p>
         <article className={styles.filterBar}>
           <div>
             <MapPin />
