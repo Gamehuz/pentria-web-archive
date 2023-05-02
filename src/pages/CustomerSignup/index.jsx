@@ -217,9 +217,6 @@ const CustomerSignup = () => {
     const value = password;
 
     if (value.trim() === "") passwordError = "Password is required";
-    else if (!passwordTest.test(value))
-      passwordError =
-        "Password must be atleast 8 characters 1 uppercase and lowercase";
 
     setPasswordError(passwordError);
     clearError();
