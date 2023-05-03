@@ -1,7 +1,6 @@
 import NavbarAuth from "@/components/NavbarAuth";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-// import { useSelector } from "react-redux";
 import { useSelector } from "react-redux";
 import Footer from "../../components/Footer";
 import Nav from "../../components/Nav";

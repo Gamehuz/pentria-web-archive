@@ -45,7 +45,7 @@ const EntryHome = () => {
             playtime at a recreation space near you.
           </p>
           <div className={`flex gap-4 pt-8`}>
-            <Button type={"button"} text={"GET TICKETS"} onClick={() => explore()} />
+            <Button type={"button"} text={"GET TICKETS"} onClick={() => navigate("/explore")} />
             <button>BECOME A PARTNER</button>
           </div>
         </div>
@@ -60,7 +60,7 @@ const EntryHome = () => {
           <MapPin/>
             <select 
               name="location" 
-              className="bg-transparent"
+              className="bg-transparent pl-4"
               value={filter.location}
               onChange={(e) => handleFilter(e)}
             >
@@ -71,7 +71,7 @@ const EntryHome = () => {
           <div className="flex items-center lg:border-l-2 border-secondaryColor lg:pl-8">
           <Search/>
             <input
-              className=" bg-transparent focus-within:outline-none p-5 w-[200px] lg:w-[500px]"
+              className=" bg-transparent focus-within:outline-none p-5 max-w-[180px] lg:w-[500px]"
               placeholder={"Enter facility type or recreation space"}
               type={"text"}
               value={filter.recreationName}
