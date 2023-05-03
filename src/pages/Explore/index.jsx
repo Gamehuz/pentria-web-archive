@@ -1,7 +1,7 @@
 import NavbarAuth from "@/components/NavbarAuth";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Footer from "../../components/Footer";
 import Nav from "../../components/Nav";
 import { spaces } from "../../redux/features/user/service";
@@ -14,7 +14,7 @@ import styles from "./explore.module.scss";
 
 const Explore = () => {
   const [allSpaces, setAllSpaces] = useState([]);
-  // const { searchQuery } = useSelector((state) => state.util);
+  const { searchQuery } = useSelector((state) => state.util);
   const [params] = useSearchParams()
   const queryValues = [...params];
 
