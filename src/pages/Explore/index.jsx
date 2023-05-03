@@ -2,6 +2,7 @@ import NavbarAuth from "@/components/NavbarAuth";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 // import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Footer from "../../components/Footer";
 import Nav from "../../components/Nav";
 import { spaces } from "../../redux/features/user/service";
@@ -14,11 +15,11 @@ import styles from "./explore.module.scss";
 
 const Explore = () => {
   const [allSpaces, setAllSpaces] = useState([]);
-  // const { searchQuery } = useSelector((state) => state.util);
-  const [params] = useSearchParams()
+  const { searchQuery } = useSelector((state) => state.util);
+  const [params] = useSearchParams();
   const queryValues = [...params];
 
-  console.log(queryValues[0])
+  console.log(queryValues[0]);
 
   const [filterValues, setFilterValues] = useState({
     location: "",
@@ -42,8 +43,8 @@ const Explore = () => {
       price: "",
       facility: "",
       rating: "",
-    })
-  }
+    });
+  };
 
   const locationFilter = () => {
     if (filterValues.location === "") {
@@ -118,23 +119,25 @@ const Explore = () => {
   });
 
   useEffect(() => {
-    if(queryValues) {
+    if (queryValues) {
       setFilterValues({
         ...filterValues,
         location: queryValues[0][1],
-        facility: queryValues[0][0]
-      })
+        facility: queryValues[0][0],
+      });
     } else {
-      reset()
+      reset();
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <div>
       <Nav />
       <NavbarAuth />
       <section className={styles.explorePage}>
-        <p className={styles.reset} onClick={() => reset()}>Reset Filters</p>
+        <p className={styles.reset} onClick={() => reset()}>
+          Reset Filters
+        </p>
         <article className={styles.filterBar}>
           <div>
             <MapPin />
