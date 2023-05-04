@@ -129,16 +129,29 @@
 .page {
   font-size: 24px;
   font-weight: 500;
-}
-
-.arrows {
-  display: none;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .spaces {
   display: flex;
   align-items: center;
-  gap: 20px;
+  justify-content: space-evenly;
+  position: relative;
+
+  .desktopLArrow {
+    position: absolute;
+    left: -30px;
+    height: 35px;
+    width: 35px;
+  }
+
+  .desktopRArrow {
+    position: absolute;
+    right: -30px;
+    height: 35px;
+    width: 35px;
+  }
 
   article {
     height: max-content;
@@ -146,6 +159,7 @@
     max-width: 350px;
     background-color: white;
     padding-bottom: 25px;
+    transition: 0.5s ease-in-out;
 
     img {
       height: 200px;
@@ -262,9 +276,20 @@
   margin-top: 140px;
   border-bottom: 1px solid white;
   padding-bottom: 150px;
+  position: relative;
 
-  .arrows {
-    display: none;
+  .desktopLArrow {
+    position: absolute;
+    left: -30px;
+    height: 35px;
+    width: 35px;
+  }
+
+  .desktopRArrow {
+    position: absolute;
+    right: -30px;
+    height: 35px;
+    width: 35px;
   }
 
   span {
@@ -277,6 +302,7 @@
   div {
     display: flex;
     align-items: center;
+    justify-content: space-evenly;
     gap: 20px;
 
     div {
@@ -416,35 +442,6 @@
         padding-left: 15px;
         font-size: 10px;
       }
-    }
-  }
-}
-
-@media (max-width: 1200px) {
-  .spaces {
-
-    .desktopLArrow,
-    .desktopRArrow {
-      display: none;
-    }
-  }
-
-  .arrows {
-    width: 80%;
-    display: flex;
-    justify-content: space-between;
-    padding-bottom: 30px;
-  }
-
-  .upcoming {
-
-    .arrows {
-      display: flex;
-    }
-
-    .desktopLArrow,
-    .desktopRArrow {
-      display: none;
     }
   }
 }
