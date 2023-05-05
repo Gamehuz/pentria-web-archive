@@ -38,12 +38,12 @@ const EditListing = () => {
     parking: space?.parking,
     outdoorSpace: space?.outdoorSpace,
     kitchen: space?.kitchen,
-    restRoome: space?.restRoome,
+    restRoome: space?.restRoome || false,
     ac: space?.ac,
     videoGames: space?.videoGames,
     petFriendly: space?.petFriendly,
     cleaningSupplies: space?.cleaningSupplies,
-    tabletopGames: space?.tabletopGames,
+    tabletopGames: space?.tabletopGames || false,
     kidFriendly: space?.kidFriendly,
     workspace: space?.workspace,
   });
@@ -416,7 +416,7 @@ const EditListing = () => {
             <ButtonSpinner />
           ) : (
             <div className="flex justify-between">
-              <Button text="Edit Space" type="submit" />
+              <Button text="Save changes" type="submit" />
               <Button
                 text="Cancel"
                 type="button"

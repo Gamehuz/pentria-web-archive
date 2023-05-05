@@ -186,7 +186,7 @@ const DeleteSpace = (id) => async () => {
 };
 
 const EditSpace = (data) => async () => {
-  console.log({ ...data });
+  console.log(data);
   dispatch(setLoading(true));
   try {
     const result = await appolloClient.mutate({
@@ -218,12 +218,16 @@ const EditSpace = (data) => async () => {
       },
     });
     dispatch(setLoading(false));
-    toast.success(`space edited successfully`);
+    toast.success(`Changes saved`);
     return result.data;
   } catch (error) {
     console.log(error.message);
     dispatch(setLoading(false));
-    toast.error(error.message);
+    if (error.message === "Not author") {
+      toast.error("You are not authorized to edit this space");
+    } else {
+      toast.error(error.message);
+    }
   }
 };
 

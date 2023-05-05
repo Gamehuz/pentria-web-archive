@@ -1,14 +1,14 @@
+import ButtonSpinner from "@/components/ButtonSpiner";
 import { dispatch } from "@/redux/store";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
+import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import InputField from "../../components/InputField";
 import Nav from "../../components/Nav";
 import { loginUser, userData } from "../../redux/features/user/service";
 import styles from "./login.module.scss";
-import { ReactComponent as Google } from "./assets/google.svg";
-import { ReactComponent as FaceBook } from "./assets/facebook.svg";
 
 const LoginPage = () => {
   const [loginData, setLoginData] = useState({
@@ -17,6 +17,7 @@ const LoginPage = () => {
   });
   const [togglePassword, setTogglePassword] = useState(false);
   const navigate = useNavigate();
+  const { isLoading } = useSelector((state) => state.util);
 
   const trackLoginInput = (e) => {
     const { name, value } = e.target;
@@ -76,7 +77,11 @@ const LoginPage = () => {
             </div>
             <Link className={styles.forgotPassword}>Forgot your password?</Link>
             <div className={styles.centerBtn}>
-              <Button type="submit" text={"SIGN IN"} />
+              {isLoading ? (
+                <ButtonSpinner />
+              ) : (
+                <Button type="submit" text={"SIGN IN"} />
+              )}
             </div>
           </form>
           <span>
