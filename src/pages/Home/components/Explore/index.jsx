@@ -2,10 +2,8 @@ import { useQuery } from "@apollo/client";
 import ALL_SPACES from "../../../../graphql/queries/spaces";
 import { ReactComponent as LeftArrow } from "../../assets/left-arrow.svg";
 import { ReactComponent as RightArrow } from "../../assets/right-arrow.svg";
-// import { Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
-// import { Swiper, SwiperSlide } from "swiper/react";
 import ButtonSpinner from "../../../../components/ButtonSpiner";
 import ExploreSpaces from "./components/exploreSpaces";
 import UpcomingSpaces from "./components/upcomingSpaces";
@@ -18,7 +16,7 @@ const Explore = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentUpcomingIndex, setCurrentUpcomingIndex] = useState(0);
   const [dimension, setDimension] = useState({width: 0});
-  const articleToShow = dimension.width < 768 ? 1 : dimension.width < 1100 ? 2 : 3;
+  const articleToShow = dimension.width < 750 ? 1 : dimension.width < 1100 ? 2 : 3;
   const navigate = useNavigate();
 
   const resize = () => {
@@ -96,86 +94,32 @@ const Explore = () => {
         <h2>Spaces to Go</h2>
         <span onClick={() => navigate("/explore")}>Explore All</span>
       </div>
-      <p className={styles.page}>{currentIndex + 1} of {data?.spaces.length}</p>
-      <div className={styles.arrows}>
-        <LeftArrow onClick={() => handlePrev()} />
-        <RightArrow onClick={() => handleNext()}/>
-      </div>
+      {/* className={`slide ${index === currentSlide ? 'current' : ''}`}
+          style={{ left: `${index * 100}%` }} */}
       <div className={styles.spaces}>
         <LeftArrow className={styles.desktopLArrow} onClick={() => handlePrev()}/>
         {loading ? (
-          // <div className={styles.spinner}>
-          //   <div></div>
-          //   <div></div>
-          //   <div></div>
-          //   <div></div>
-          //   <div></div>
-          //   <div></div>
-          //   <div></div>
-          //   <div></div>
-          //   <div></div>
-          //   <div></div>
-          //   <div></div>
-          //   <div></div>
-          // </div>
           <ButtonSpinner />
         ) : (
           ""
         )}
-        {/* <Swiper navigation={true} modules={[Navigation]}>
-          {data &&
-            data?.spaces.map((space) => {
-              return (
-                <SwiperSlide key={space._id}>
-                  <ExploreSpaces space={space} key={space._id} />
-                </SwiperSlide>
-              );
-            })}
-        </Swiper> */}
         {renderSpaces()}
         <RightArrow className={styles.desktopRArrow} onClick={() => handleNext()}/>
       </div>
+      <p className={styles.page}>{currentIndex + 1} of {data?.spaces.length}...</p>
       <div className={styles.upcoming}>
         <span>Upcoming Events</span>
-        <p className={styles.page} style={{ color: "white" }}>{currentUpcomingIndex + 1} of {data?.spaces.length}</p>
-        <div className={styles.arrows}>
-          <LeftArrow onClick={() => handleUpcomingPrev()}/>
-          <RightArrow onClick={() => handleUpcomingNext()}/>
-        </div>
         <div>
           <LeftArrow className={styles.desktopLArrow} onClick={() => handleUpcomingPrev()}/>
           {loading ? (
-            // <div className={styles.spinner}>
-            //   <div></div>
-            //   <div></div>
-            //   <div></div>
-            //   <div></div>
-            //   <div></div>
-            //   <div></div>
-            //   <div></div>
-            //   <div></div>
-            //   <div></div>
-            //   <div></div>
-            //   <div></div>
-            //   <div></div>
-            // </div>
             <ButtonSpinner />
           ) : (
             ""
           )}
-          {/* <Swiper navigation={true} modules={[Navigation]}>
-            {data &&
-              data?.spaces.map((space) => {
-                return (
-                  <SwiperSlide key={space._id}>
-                    <UpcomingSpaces space={space} key={space._id} />
-                  </SwiperSlide>
-                );
-              })}
-          </Swiper> */}
           {renderUpcomingSpaces()}
           <RightArrow className={styles.desktopRArrow} onClick={() => handleUpcomingNext()}/>
         </div>
+        <p className={styles.page} style={{ color: "white" }}>{currentUpcomingIndex + 1} of {data?.spaces.length}...</p>
       </div>
     </section>
   );

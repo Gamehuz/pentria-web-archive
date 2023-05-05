@@ -1,10 +1,8 @@
 import NavbarAuth from "@/components/NavbarAuth";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-// import { useSelector } from "react-redux";
 import { useSelector } from "react-redux";
 import Footer from "../../components/Footer";
-import Nav from "../../components/Nav";
 import { spaces } from "../../redux/features/user/service";
 import { ReactComponent as Facility } from "./assets/facility.svg";
 import { ReactComponent as MapPin } from "./assets/map-pin.svg";
@@ -118,21 +116,22 @@ const Explore = () => {
     spaces().then((data) => setAllSpaces(data.spaces));
   });
 
+  console.log(queryValues[0])
+
   useEffect(() => {
-    if (queryValues) {
+    if (queryValues[0]) {
       setFilterValues({
         ...filterValues,
         location: queryValues[0][1],
         facility: queryValues[0][0],
       });
-    } else {
+    } else if(queryValues === []) {
       reset();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <div>
-      <Nav />
       <NavbarAuth />
       <section className={styles.explorePage}>
         <p className={styles.reset} onClick={() => reset()}>
