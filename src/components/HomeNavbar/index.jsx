@@ -19,7 +19,7 @@ const HomeNavbar = () => {
   const {pathname} = useLocation();
 
   useEffect(() => {
-    if (pathname.includes('explore') || pathname.includes('dashboard') || pathname.includes('login') || pathname.includes('signup')) {
+    if (pathname.includes('explore') || pathname.includes('dashboard') || pathname.includes('login') || pathname.includes('/signup') || pathname.includes('prompt')) {
       setShow(true)
     }
   },[]);
