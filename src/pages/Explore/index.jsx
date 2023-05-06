@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import HomeNavbar from "../../components/HomeNavbar";
+import { useSearchParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Footer from "../../components/Footer";
 import { spaces } from "../../redux/features/user/service";
@@ -13,6 +14,10 @@ import styles from "./explore.module.scss";
 const Explore = () => {
   const [allSpaces, setAllSpaces] = useState([]);
   const { searchQuery } = useSelector((state) => state.util);
+  const [params] = useSearchParams();
+  const queryValues = [...params];
+
+  console.log(queryValues[0]);
 
   const [filterValues, setFilterValues] = useState({
     location: "",
@@ -36,8 +41,8 @@ const Explore = () => {
       price: "",
       facility: "",
       rating: "",
-    })
-  }
+    });
+  };
 
   const locationFilter = () => {
     if (filterValues.location === "") {
@@ -110,11 +115,28 @@ const Explore = () => {
   useEffect(() => {
     spaces().then((data) => setAllSpaces(data.spaces));
   });
+
+  console.log(queryValues[0])
+
+  useEffect(() => {
+    if (queryValues[0]) {
+      setFilterValues({
+        ...filterValues,
+        location: queryValues[0][1],
+        facility: queryValues[0][0],
+      });
+    } else if(queryValues === []) {
+      reset();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <div>
       <HomeNavbar />
       <section className={styles.explorePage}>
-        <p className={styles.reset} onClick={() => reset()}>Reset Filters</p>
+        <p className={styles.reset} onClick={() => reset()}>
+          Reset Filters
+        </p>
         <article className={styles.filterBar}>
           <div>
             <MapPin />

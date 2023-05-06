@@ -111,8 +111,8 @@ export const userData = () => async () => {
     return result.data;
   } catch (error) {
     dispatch(setLoading(false));
-    dispatch(setError("Error fetching user's data"));
-    // toast.error("Error fetching user's data");
+    dispatch(setError("Please sign up"));
+    // toast.error("Please sign up");
   }
 };
 

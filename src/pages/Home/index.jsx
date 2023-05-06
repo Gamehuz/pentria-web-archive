@@ -1,6 +1,6 @@
 import Footer from "../../components/Footer";
 import HomeNavbar from "../../components/HomeNavbar";
-import MobileNavbar from '../../components/Nav/Mobile'
+// import MobileNavbar from '../../components/Nav/Mobile'
 import EntryHome from "./components/EntryHomePage";
 import Explore from "./components/Explore";
 import PartnersAndFAQ from "./components/PartnersAndFAQ.jsx";

@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ButtonSpinner from "../ButtonSpiner/index";
-import mobileMenu from "./assets/menu-hamburger.svg";
+// import mobileMenu from "./assets/menu-hamburger.svg";
 import styles from "./homenav.module.scss";
 import { useLocation } from "react-router-dom";
 import SearchInput from "../SearchInput";
@@ -19,7 +19,7 @@ const HomeNavbar = () => {
   const {pathname} = useLocation();
 
   useEffect(() => {
-    if (pathname.includes('explore') || pathname.includes('dashboard')) {
+    if (pathname.includes('explore') || pathname.includes('dashboard') || pathname.includes('login') || pathname.includes('signup')) {
       setShow(true)
     }
   },[]);
@@ -60,7 +60,7 @@ const HomeNavbar = () => {
 
           (
             <>
-              <div className="pb-4 pl-4">
+              <div className="pb-4 pl-4 lg:pt-6">
                 <SearchInput />
               </div>
             </>

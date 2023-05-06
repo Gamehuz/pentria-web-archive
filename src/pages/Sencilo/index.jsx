@@ -1,7 +1,6 @@
 import Footer from "@/components/Footer";
 import InputField from "@/components/InputField";
 import IsLoadingSkeleton from "@/components/LoadingSkeleton";
-import NavbarAuth from "@/components/NavbarAuth";
 import { GetSpace } from "@/redux/features/space/service";
 import { dispatch } from "@/redux/store";
 import {
@@ -24,6 +23,7 @@ import { AddReview, addToFavorites } from "../../redux/features/space/service";
 import Container from "./Container";
 import styles from "./sencilo.module.scss";
 // import { spaces } from "../../redux/features/user/service";
+import HomeNavbar from "@/components/HomeNavbar/";
 import { useQuery } from "@apollo/client";
 import ALL_SPACES from "../../graphql/queries/spaces";
 import { ReactComponent as LeftArrow } from "./assets/left-arrow.svg";
@@ -106,7 +106,7 @@ const Sencilo = () => {
 
   const handleSubmitReview = async (e) => {
     e.preventDefault();
-    if (!user.firstName) return toast.error("Please login to submit a review");
+    if (!user?.firstName) return toast.error("Please login to submit a review");
     if (reviewComment === "") {
       toast.error("Please write a review");
       return;
@@ -172,10 +172,10 @@ const Sencilo = () => {
 
   return (
     <>
-      <div className="bg-[#FAFAFA] mt-[6rem] font-poppins text-[#7E7E7E] mb-6">
+      <div className="bg-[#FAFAFA] font-poppins text-[#7E7E7E] mb-6">
         {/* The nav */}
 
-        <NavbarAuth />
+        <HomeNavbar />
         {/* the sencilo pictures */}
         {isLoading ? (
           <IsLoadingSkeleton />
@@ -207,7 +207,7 @@ const Sencilo = () => {
                 <Button
                   onClick={addToFav}
                   startIcon={<HeartIcon className="w-6 h-6" />}
-                  className="w-14 lg:w-32 h-12 text-secondaryColor bg-[#FAFAFA] border border-secondaryColor hover:bg-secondaryColor hover:text-white flex justify-around rounded-xl items-center"
+                  className="w-fit p-[5px] lg:w-32 md:h-12 h-fit text-secondaryColor bg-[#FAFAFA] border md:border-none border-secondaryColor hover:bg-secondaryColor hover:text-white flex justify-around rounded-xl items-center"
                 >
                   <p className="hidden md:block">Favourite</p>
                 </Button>
@@ -340,9 +340,9 @@ const Sencilo = () => {
                     </p>
                   </div>
                 </div>
-                <div className="col-span-3">
+                <div className="col-span-3 w-fit">
                   <p className="text-xl font-medium text-black">MENU</p>
-                  <div className="mt-4 bg-white rounded-xl py-6 px-[0px] space-y-8 md:px-[1.5rem]">
+                  <div className="mt-4 bg-white rounded-xl py-6 px-[0px] space-y-8 md:px-[1rem]">
                     {space?.activities?.length > 0 ? (
                       <>
                         {space?.activities?.map((act, index) => (
@@ -350,13 +350,13 @@ const Sencilo = () => {
                             className="grid grid-cols-2 gap-6 shadow-xl"
                             key={index}
                           >
-                            <div className="col-span-1 w-[150px] h-[200px]">
+                            <div className="col-span-1 md:w-[200px] w-[180px] h-[200px]">
                               <img
                                 src={act?.image}
                                 className="h-full w-full object-cover"
                               />
                             </div>
-                            <div className="w-full space-y-3 pb-2">
+                            <div className="w-[300px] space-y-3 pb-2">
                               <h2 className="text-2xl font-black text-secondaryColor">
                                 {act?.currency} {act?.price}
                                 <p className="text-base inline text-grayColor">
@@ -434,7 +434,7 @@ const Sencilo = () => {
                   </div>
                   {startReview && (
                     <form className="pr-2" onSubmit={handleSubmitReview}>
-                      <div className="flex h-fit">
+                      <div className="flex items-center h-fit">
                         <InputField
                           type="text"
                           name="review"
@@ -442,9 +442,10 @@ const Sencilo = () => {
                           onChange={(e) => setReviewComment(e.target.value)}
                         />
                         <select
-                          className="py-[5px] px-[10px] ml-2 border border-gray-300 rounded-md"
+                          className="py-[0px] px-[10px] ml-2 border h-14 border-gray-300 rounded-md"
                           onChange={(e) => handleSelectRating(e)}
                         >
+                          <option value="0">Select Rating</option>
                           <option value="1.0">1.0</option>
                           <option value="2.0">2.0</option>
                           <option value="3.0">3.0</option>
