@@ -37,7 +37,7 @@ const NavbarAuth = ({ search, bg }) => {
         </Link>
       </div>
       <div className={styles.authNav_search}>
-        <SearchInput />
+        {/* <SearchInput /> */}
       </div>
       <div className={styles.authNav_user_btn}>
         {user?.firstName ? (

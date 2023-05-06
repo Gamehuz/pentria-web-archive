@@ -112,7 +112,7 @@ export const userData = () => async () => {
   } catch (error) {
     dispatch(setLoading(false));
     dispatch(setError("Please sign up"));
-    toast.error("Please sign up");
+    // toast.error("Please sign up");
   }
 };
 

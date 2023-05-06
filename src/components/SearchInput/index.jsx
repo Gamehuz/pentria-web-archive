@@ -1,8 +1,7 @@
-import React from "react";
+// import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchQuery } from "../../redux/utils/UtilSlice";
 import searchIcon from "./searchIcon.svg";
-import styles from "./searchinput.module.scss";
 
 /**
  * A component that renders a search input field and accepts a className prop that is of type string and is required.
@@ -19,15 +18,16 @@ const SearchInput = () => {
   };
 
   return (
-    <div className={styles.sidebar_input}>
-      <div className={styles.sidebar_inputWrap}>
-        <img src={searchIcon} alt="" className={styles.searchIcon} />
+    <div className=''>
+      <div className="flex">
         <input
           type="text"
           placeholder="Search"
+          className="w-full px-4 py-2 bg-[#E9E9E9] rounded-3xl shadow-sm outline-none lg:px-10"
           value={searchQuery}
           onChange={(e) => getSearchValue(e)}
         />
+        <img src={searchIcon} alt="" className='relative right-10' />
       </div>
     </div>
   );

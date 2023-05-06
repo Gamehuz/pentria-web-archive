@@ -2,8 +2,6 @@ import { Route, Routes as Switch } from "react-router-dom";
 import UserLayout from "./Layouts/User";
 import { Authenticated, RequireToken } from "./auth";
 import Aboutus from "./pages/AboutUs";
-import AdminSettings from "./pages/AdminSettings";
-import AdminTicket from "./pages/AdminTicket";
 import BlogPage from "./pages/BlogPage";
 import BookingPage from "./pages/BookingPage";
 import CustomerSignup from "./pages/CustomerSignup";
@@ -68,8 +66,6 @@ const Routes = () => {
             </UserLayout>
           }
         />
-        <Route exact path="/admin/settings" element={<AdminSettings />} />
-        <Route exact path="/admin/ticket" element={<AdminTicket />} />
         <Route
           path="/user/dashboard"
           element={

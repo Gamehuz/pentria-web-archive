@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import InputField from "../../components/InputField";
-import Nav from "../../components/Nav";
+import HomeNavbar from "../../components/HomeNavbar";
 import { loginUser, userData } from "../../redux/features/user/service";
 import styles from "./login.module.scss";
 
@@ -46,7 +46,7 @@ const LoginPage = () => {
 
   return (
     <div className={styles.loginPage}>
-      <Nav />
+      <HomeNavbar />
       <section className={styles.loginWrap}>
         <div className="hidden md:block" />
         <div className={styles.login}>

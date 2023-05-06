@@ -1,5 +1,5 @@
-import NavbarAuth from "@/components/NavbarAuth";
 import { useEffect, useState } from "react";
+import HomeNavbar from "../../components/HomeNavbar";
 import { useSearchParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Footer from "../../components/Footer";
@@ -132,7 +132,7 @@ const Explore = () => {
   }, []);
   return (
     <div>
-      <NavbarAuth />
+      <HomeNavbar />
       <section className={styles.explorePage}>
         <p className={styles.reset} onClick={() => reset()}>
           Reset Filters
