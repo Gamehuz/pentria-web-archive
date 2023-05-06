@@ -1,11 +1,23 @@
 .loginPage {
   background-color: var(--primary-color);
 
-  .login {
-    width: 85vw;
-    margin-left: auto;
-    margin-right: auto;
+  .loginWrap {
+    display: flex;
+    justify-content: space-between;
+    @media screen and (max-width: 700px) {
+      flex-direction: column;
+      margin-top: 0;
+    }
+    align-items: center;
+    width: 100%;
+    margin: 1rem 2rem;
+  }
 
+  .login {
+    width: 50%;
+    @media screen and (max-width: 700px) {
+      width: 100% !important;
+    }
     .error {
       color: red;
       border: 2px solid red;
@@ -22,7 +34,7 @@
 
     h2 {
       color: var(--secondary-color);
-      margin-top: 80px;
+      margin-top: 2rem;
       margin-bottom: 60px;
       font-size: 26px;
       font-weight: 700;
@@ -34,17 +46,8 @@
       color: var(--dim-color);
       font-weight: 400;
       font-size: 16px;
-      height: 120px;
-
-      div {
-        margin-left: 0;
-        padding: 0 0 0 25px;
-
-        input {
-          padding: 0;
-          font-size: 14px;
-        }
-      }
+      // height: 120px;
+      width: 100%;
     }
 
     .password {
@@ -70,17 +73,30 @@
     span {
       display: flex;
       align-items: center;
+      justify-content: center;
+      @media screen and (max-width: 700px) {
+        justify-content: start;
+      }
       gap: 8px;
-      margin-left: 1rem;
+      // margin-left: 1rem;
 
       div {
         width: 100px;
-        border-top: 1px solid var(--dim-color);
+        // border-top: 1px solid var(--dim-color);
       }
 
       p {
-        font-size: 20px;
+        font-size: 14px;
         font-weight: 700;
+      }
+    }
+
+    .centerBtn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      @media screen and (max-width: 700px) {
+        justify-content: start;
       }
     }
 
@@ -96,6 +112,50 @@
         background-color: var(--tertiary-color);
         color: white;
         font-size: 14px;
+      justify-content: center;
+      @media screen and (max-width: 700px) {
+        justify-content: start;
+      }
+      .socials {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        .rounded {
+          background-color: white;
+          color: black;
+          border: 1px solid var(--dim-color);
+          padding: 10px 20px;
+          border-radius: 5px;
+          font-size: 14px;
+          font-weight: 700;
+          -webkit-border-radius: 5px;
+          -moz-border-radius: 5px;
+          -ms-border-radius: 5px;
+          -o-border-radius: 5px;
+          &:hover {
+            color: black;
+            border: 1px solid var(--secondary-color);
+            background-color: transparent !important;
+          }
+          cursor: pointer;
+          transition: all 0.3s ease-in-out;
+          -webkit-transition: all 0.3s ease-in-out;
+          -moz-transition: all 0.3s ease-in-out;
+          -ms-transition: all 0.3s ease-in-out;
+          -o-transition: all 0.3s ease-in-out;
+        }
+        .google {
+          background-color: #db4437;
+          color: white;
+          margin-right: 2rem;
+        }
+        .fb {
+          background-color: #3b5998;
+          color: white;
+        }
       }
     }
   }
@@ -115,4 +175,5 @@
       }
     }
   }
+}
 }

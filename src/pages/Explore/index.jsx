@@ -1,8 +1,7 @@
-import NavbarAuth from "@/components/NavbarAuth";
 import { useEffect, useState } from "react";
+import HomeNavbar from "../../components/HomeNavbar";
 import { useSelector } from "react-redux";
 import Footer from "../../components/Footer";
-import Nav from "../../components/Nav";
 import { spaces } from "../../redux/features/user/service";
 import { ReactComponent as Facility } from "./assets/facility.svg";
 import { ReactComponent as MapPin } from "./assets/map-pin.svg";
@@ -30,6 +29,15 @@ const Explore = () => {
       [name]: value,
     });
   };
+
+  const reset = () => {
+    setFilterValues({
+      location: "",
+      price: "",
+      facility: "",
+      rating: "",
+    })
+  }
 
   const locationFilter = () => {
     if (filterValues.location === "") {
@@ -91,14 +99,22 @@ const Explore = () => {
     return matchRatingFilter;
   };
 
+  const searchSpaces = (filtered) => {
+    return filtered?.filter(
+      (space) =>
+        space.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        space.location.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  };
+
   useEffect(() => {
     spaces().then((data) => setAllSpaces(data.spaces));
   });
   return (
     <div>
-      <Nav />
-      <NavbarAuth />
+      <HomeNavbar />
       <section className={styles.explorePage}>
+        <p className={styles.reset} onClick={() => reset()}>Reset Filters</p>
         <article className={styles.filterBar}>
           <div>
             <MapPin />
@@ -152,9 +168,9 @@ const Explore = () => {
           </div>
         </article>
         <div className={styles.spaces}>
-          <h1>{ratingFilter().length} Results</h1>
+          <h1>{searchSpaces(ratingFilter())?.length} Results</h1>
           <div className={styles.allSpaces}>
-            {ratingFilter().map((space) => {
+            {searchSpaces(ratingFilter())?.map((space) => {
               return <Space space={space} key={space._id} />;
             })}
           </div>

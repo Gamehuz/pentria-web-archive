@@ -30,6 +30,7 @@
   list-style: none;
   padding: 12px 4rem;
   color: #3e2180;
+
   a {
     text-decoration: none;
     color: #3e2180;
@@ -39,6 +40,7 @@
 .homeNavbar_signup {
   background-color: #3e2180;
   padding: 0px 30px;
+
   @media (max-width: 780px) {
     padding: 0px 10px;
   }
@@ -94,6 +96,172 @@
   .container {
     max-width: 100%;
     padding: 0 16px;
+  }
+}
+
+.similarSpaces {
+  width: 85vw;
+  margin-left: auto;
+  margin-right: auto;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
+
+    span {
+      color: black;
+    }
+
+    :first-child {
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    :last-child {
+      p {
+        font-size: 12px;
+        font-weight: 500;
+      }
+
+    }
+  }
+
+  .arrows {
+    display: none;
+  }
+
+  .spaces {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    .cards {
+      width: 318px;
+      height: 380px;
+
+      .desktopLArrow,
+      .desktopRArrow {
+        cursor: pointer;
+      }
+
+      img {
+        width: 100%;
+        height: 213px;
+      }
+
+      .price {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 5px;
+        margin-left: 10px;
+
+        span {
+          margin: 0;
+          gap: 0;
+
+          p {
+            color: var(--tertiary-color);
+          }
+        }
+
+        div {
+          margin-right: 7px;
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+
+          svg {
+            margin-left: 5px;
+            margin-top: 7px;
+          }
+        }
+
+        .unfavorite {
+          background-color: #F5F5F5;
+        }
+
+        .favorite {
+          background-color: var(--secondary-color)
+        }
+      }
+
+      h3 {
+        margin-left: 10px;
+        font-size: 16px;
+        font-weight: 600;
+        color: black;
+      }
+
+      .location {
+        font-size: 12px;
+        margin-left: 10px;
+        color: var(--dim-color)
+      }
+
+      .reviews {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-left: 10px;
+        margin-right: 10px;
+
+        .ratings {
+          display: flex;
+          gap: 15px;
+
+          div {
+            display: flex;
+          }
+
+          svg {
+            width: 15px;
+            height: 15px;
+          }
+
+          p {
+            font-size: 12px;
+          }
+        }
+
+        div:last-child {
+          max-width: 120px;
+          height: 50px;
+        }
+      }
+    }
+  }
+}
+
+
+
+@media (max-width: 1200px) {
+  .similarSpaces {
+    .header {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .spaces {
+
+      .desktopLArrow,
+      .desktopRArrow {
+        display: none;
+      }
+    }
+
+    .arrows {
+      width: 80%;
+      display: flex !important;
+      justify-content: space-between;
+      padding-bottom: 10px;
+      padding-top: 20px;
+      cursor: pointer;
+    }
+
   }
 }
 
@@ -176,6 +344,7 @@
   // grid-template-columns: repeat(2, 1fr) !important;
   gap: 16px;
   justify-content: space-between;
+
   @media screen and (max-width: 768px) {
     flex-direction: column;
     height: 100% !important;
@@ -188,6 +357,7 @@
   // grid-template-columns: repeat(2, 1fr) !important;
   gap: 16px;
   justify-content: space-between;
+
   @media screen and (max-width: 768px) {
     flex-direction: column;
   }
@@ -222,6 +392,7 @@
 
 .sencilo_equip {
   display: flex;
+
   @media screen and (max-width: 768px) {
     // flex-direction: column;
   }

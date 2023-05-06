@@ -1,9 +1,7 @@
 import { Route, Routes as Switch } from "react-router-dom";
-import { Authenticated, RequireToken } from "./auth";
 import UserLayout from "./Layouts/User";
+import { Authenticated, RequireToken } from "./auth";
 import Aboutus from "./pages/AboutUs";
-import AdminSettings from "./pages/AdminSettings";
-import AdminTicket from "./pages/AdminTicket";
 import BlogPage from "./pages/BlogPage";
 import BookingPage from "./pages/BookingPage";
 import CustomerSignup from "./pages/CustomerSignup";
@@ -15,9 +13,11 @@ import LoginPage from "./pages/Login";
 import LoginOrSignUp from "./pages/LoginOrSignUp";
 import Partners from "./pages/Partners";
 import Payment from "./pages/Payment";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 import PromptPage from "./pages/PromptPage";
 import Receipt from "./pages/Receipt";
 import Sencilo from "./pages/Sencilo";
+import TermOfUse from "./pages/TermOfUse";
 import UserDashboard from "./pages/UserDashboard";
 import VendorDashboard from "./pages/VendorDashboard";
 import VendorSignup from "./pages/VendorSIgnUp";
@@ -66,8 +66,6 @@ const Routes = () => {
             </UserLayout>
           }
         />
-        <Route exact path="/admin/settings" element={<AdminSettings />} />
-        <Route exact path="/admin/ticket" element={<AdminTicket />} />
         <Route
           path="/user/dashboard"
           element={
@@ -78,6 +76,8 @@ const Routes = () => {
         />
       </Route>
       <Route path="/explore" element={<Explore />} />
+      <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+      <Route path="/termsofuse" element={<TermOfUse />} />
     </Switch>
   );
 };

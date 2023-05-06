@@ -112,7 +112,7 @@ export const userData = () => async () => {
   } catch (error) {
     dispatch(setLoading(false));
     dispatch(setError("Error fetching user's data"));
-    toast.error("Error fetching user's data");
+    // toast.error("Error fetching user's data");
   }
 };
 

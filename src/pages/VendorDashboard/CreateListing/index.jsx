@@ -1,15 +1,15 @@
 import { useRef, useState } from "react";
 import styles from "./CreateListing.module.scss";
 
-import Button from "../../../components/Button";
-import InputField from "../../../components/InputField";
+import Button from "@/components/Button";
+import InputField from "@/components/InputField";
 import Menu from "./Menu/Menu";
 
+import ButtonSpinner from "@/components/ButtonSpiner";
+import { CreateSpace } from "@/redux/features/space/service";
 import { dispatch } from "@/redux/store";
 import { toast } from "react-hot-toast";
 import { useSelector } from "react-redux";
-import ButtonSpinner from "../../../components/ButtonSpiner";
-import { CreateSpace } from "../../../redux/features/space/service";
 import upload from "./assets/upload.svg";
 
 const CreateListing = () => {
@@ -195,23 +195,25 @@ const CreateListing = () => {
                 Upload space image(s)
               </div>
             )}
-            <div className="flex flex-wrap mt-2 w-full">
-              {previewImages.map((url, index) => (
-                <div className="w-[100px] h-[100px] m-[3px]" key={index}>
-                  <img
-                    src={url}
-                    alt={`Preview ${index}`}
-                    className=" object-cover w-full h-full"
-                  />
-                  <div
-                    className="flex  cursor-pointer text-[red] justify-center items-center"
-                    onClick={() => handleDelSelected(index)}
-                  >
-                    Delete
+            {previewImages.length > 0 && (
+              <div className="flex flex-wrap mt-2 w-full">
+                {previewImages.map((url, index) => (
+                  <div className="w-[100px] h-[100px] m-[3px]" key={index}>
+                    <img
+                      src={url}
+                      alt={`Preview ${index}`}
+                      className=" object-cover w-full h-full"
+                    />
+                    <div
+                      className="flex  cursor-pointer text-[red] justify-center items-center"
+                      onClick={() => handleDelSelected(index)}
+                    >
+                      Delete
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
           </div>
 
           <div className={styles.features}>

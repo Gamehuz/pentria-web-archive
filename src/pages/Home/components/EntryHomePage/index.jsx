@@ -25,12 +25,12 @@ const EntryHome = () => {
         <div>
           <div className='text-primaryColor text-[48px] font-extrabold'>
             <h1 >Enter the </h1>
-            <div className="flex">
+            <div className="md:flex">
               <span className="circle-play h-[115px] w[420px] text-center">PLAY!</span>
-              <img className="relative right-[192px] w-[300px]" src={Circle} alt="" />
+              <img className="hidden lg:block lg:relative top-[190px] lg:top-0 left-[30px] lg:left-[-200px] w-[300px]" src={Circle} alt="" />
             </div>
           </div>
-          <p className={`font-semibold text-[18px] pt-8 w-[350px]`}>
+          <p className={`font-semibold text-[18px] pt-8 lg:w-[350px]`}>
             Beat the queue with one-click ticket reservation. Enjoy seamless
             playtime at a recreation space near you.
           </p>

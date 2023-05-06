@@ -485,8 +485,14 @@ const CustomerSignup = () => {
           <div></div>
         </span>
         <div className={styles.othersignin}>
-          <Button bg={styles.button} text={"LOGIN WITH GOOGLE"} />
-          <Button bg={styles.button} text={"LOGIN WITH FACEBOOK"} />
+          <div className={styles.socials}>
+            <div className={`${styles.google} ${styles.rounded}`}>
+              <i className="fab fa-google"></i>
+            </div>
+            <div className={`${styles.fb} ${styles.rounded}`}>
+              <i className="fab fa-facebook-f"></i>
+            </div>
+          </div>
         </div>
       </div>
     </>
