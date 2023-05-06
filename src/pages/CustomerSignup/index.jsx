@@ -3,7 +3,7 @@ import styles from "./CustomerSignUp.module.scss";
 
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
-import Nav from "../../components/Nav";
+import HomeNavbar from "../../components/HomeNavbar";
 import { signupGuest } from "../../redux/features/user/service";
 import { dispatch } from "../../redux/store";
 
@@ -322,7 +322,7 @@ const CustomerSignup = () => {
 
   return (
     <>
-      <Nav />
+      <HomeNavbar />
       <div className={styles.container}>
         <h3>Sign Up</h3>
         <form onSubmit={handleSubmit}>

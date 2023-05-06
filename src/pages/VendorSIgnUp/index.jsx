@@ -3,7 +3,7 @@ import styles from "./VendorSignup.module.scss";
 
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
-import Nav from "../../components/Nav";
+import HomeNavbar from "../../components/HomeNavbar";
 import { signupVendor } from "../../redux/features/user/service";
 import { dispatch } from "../../redux/store";
 
@@ -420,7 +420,7 @@ const VendorSignup = () => {
 
   return (
     <>
-      <Nav />
+      <HomeNavbar />
       <div className={styles.container}>
         <h3>Sign Up</h3>
         <form onSubmit={handleSubmit}>
