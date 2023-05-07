@@ -31,7 +31,7 @@ export const signupGuest = (values) => async () => {
         accountType: "GUEST",
       },
     });
-    dispatch(setUser(result.data?.register));
+    // dispatch(setUser(result.data?.register));
     toast.success("Signup successful");
     dispatch(setLoading(false));
     return result.data;
@@ -65,7 +65,7 @@ export const signupVendor = (values) => async () => {
         occupation: values.occupation,
       },
     });
-    dispatch(setUser(result.data?.register));
+    // dispatch(setUser(result.data?.register));
     toast.success("Signup successful");
     dispatch(setLoading(false));
     return result.data;

@@ -37,7 +37,7 @@ export function Authenticated() {
       ? "/vendor/dashboard"
       : user?.accountType === "ADMIN"
       ? "/admin/dashboard"
-      : "/";
+      : "/login";
 
   if (user?.firstName) {
     return <Navigate to={userLink} replace />;
