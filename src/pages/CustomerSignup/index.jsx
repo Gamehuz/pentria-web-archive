@@ -19,7 +19,7 @@ const CustomerSignup = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [uploadID, setUploadID] = useState(null);
+  // const [uploadID, setUploadID] = useState(null);
   const [togglePassword, setTogglePassword] = useState(false);
 
   // error states
@@ -36,9 +36,6 @@ const CustomerSignup = () => {
 
   // regex for input  validation
   const emailTest = new RegExp(/\S+@\S+\.\S+/);
-  const passwordTest = new RegExp(
-    /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,10}$/
-  );
   const phoneNumberTest = new RegExp(
     /^[+]*[(]{0,3}[0-9]{1,4}[)]{0,1}[-\s./0-9]{8,15}$/
   );
@@ -71,9 +68,9 @@ const CustomerSignup = () => {
       case "password":
         setPassword(value);
         break;
-      case "identification":
-        setUploadID(value);
-        break;
+      // case "identification":
+      //   setUploadID(value);
+      //   break;
       case "confirmPassword":
         setConfirmPassword(value);
         break;
@@ -86,46 +83,6 @@ const CustomerSignup = () => {
   //   const { name } = e.target;
   //   validateField(name);
   // };
-
-  const validateField = (name) => {
-    let isValid = false;
-    console.log(name);
-    switch (name) {
-      case "firstname":
-        validateFirstname();
-        break;
-      case "lastname":
-        validateLastname();
-        break;
-      case "address":
-        validateAddress();
-        break;
-      case "city":
-        validateCity();
-        break;
-      case "state":
-        validateState();
-        break;
-      case "email":
-        validateEmail();
-        break;
-      case "phoneNumber":
-        validatePhonenumber();
-        break;
-      case "password":
-        validatepassword();
-        break;
-      case "identification":
-        validateIdentification();
-        break;
-      case "confirmPassword":
-        validateConfirmPassword();
-        break;
-      default:
-        break;
-    }
-    return isValid;
-  };
 
   const clearError = () => {
     setTimeout(() => {
@@ -237,17 +194,6 @@ const CustomerSignup = () => {
     return confirmPasswordError === "";
   };
 
-  const validateIdentification = () => {
-    let uploadIDError = "";
-
-    const value = uploadID;
-    if (value === null) uploadIDError = "A means of ID is required";
-    // setUploadIDError(uploadIDError);
-    clearError();
-
-    return uploadIDError === "";
-  };
-
   const validateAllFields = () => {
     const isValidFirstname = validateFirstname();
     const isValidLastname = validateLastname();
@@ -283,7 +229,7 @@ const CustomerSignup = () => {
     setEmail("");
     setPassword("");
     setPhoneNumber("");
-    setUploadID("");
+    // setUploadID("");
     setConfirmPassword("");
   };
 

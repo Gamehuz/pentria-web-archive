@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./Enquiries.module.scss";
 
 import HomeNavbar from "../../components/HomeNavbar";

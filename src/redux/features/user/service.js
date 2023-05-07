@@ -31,10 +31,10 @@ export const signupGuest = (values) => async () => {
         accountType: "GUEST",
       },
     });
-    dispatch(setUser(result.data?.register));
+    // dispatch(setUser(result.data?.register));
     toast.success("Signup successful");
     dispatch(setLoading(false));
-    return result.data;
+    return result.data.verifyBankAccount;
   } catch (error) {
     console.log(error);
     dispatch(setError(error.message));
@@ -65,7 +65,7 @@ export const signupVendor = (values) => async () => {
         occupation: values.occupation,
       },
     });
-    dispatch(setUser(result.data?.register));
+    // dispatch(setUser(result.data?.register));
     toast.success("Signup successful");
     dispatch(setLoading(false));
     return result.data;
@@ -201,6 +201,7 @@ export const getBanks = async () => {
   }
 };
 
+
 export const verifyBanks = (values) => async () => {
   dispatch(setLoading(true));
   try {
@@ -212,7 +213,7 @@ export const verifyBanks = (values) => async () => {
       },
     });
     dispatch(setLoading(false));
-    toast.success("Banks verified");
+    toast.success("Account verified");
     return result.data;
   } catch (error) {
     dispatch(setLoading(false));
