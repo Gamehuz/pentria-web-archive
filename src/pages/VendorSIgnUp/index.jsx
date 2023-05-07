@@ -1,10 +1,14 @@
-import { React, useRef, useState } from "react";
+import { useState, useEffect } from "react";
+import { useQuery } from "@apollo/client";
+
+
+import GET_BANKS from "../../graphql/queries/getBanks";
 import styles from "./VendorSignup.module.scss";
 
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import HomeNavbar from "../../components/HomeNavbar";
-import { signupVendor } from "../../redux/features/user/service";
+import { signupVendor, verifyBanks } from "../../redux/features/user/service";
 import { dispatch } from "../../redux/store";
 
 const VendorSignup = () => {
@@ -25,6 +29,7 @@ const VendorSignup = () => {
     bankName: "",
     accountNumber: "",
     accountName: "",
+    code: 0
   });
   const [occupation, setOccupation] = useState("");
   const [uploadID, setUploadID] = useState("");
@@ -46,19 +51,49 @@ const VendorSignup = () => {
     accountName: false,
   });
   const [occupationError, setOccupationError] = useState(false);
-  const [uploadIDError, setUploadIDError] = useState(false);
+  // const [uploadIDError, setUploadIDError] = useState(false);
+
+  const { loading, error, data } = useQuery(GET_BANKS);
 
   // regex for input  validation
   const emailTest = new RegExp(/\S+@\S+\.\S+/);
-  const passwordTest = new RegExp(
-    /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,10}$/
-  );
   const nameTest = new RegExp(/^[A-Za-z]{3,}$/);
   const phoneNumberTest = new RegExp(
     /^[+]*[(]{0,3}[0-9]{1,4}[)]{0,1}[-\s./0-9]{8,15}$/
   );
 
-  const selectFile = useRef();
+  useEffect(() => {
+    if (data) {
+      console.log(data)
+    }
+  }, [data])
+
+
+  const fetchBank = async (e) => {
+
+    e.preventDefault();
+    const { name, value } = e.target;
+
+    setBankdetails({ ...bankDetails, [name]: value });
+    if(value.length < 10) {
+      console.log("less than 10")
+      return
+    }
+
+    console.log(value)
+
+    const res = await dispatch(verifyBanks({
+      accountNumber: value,
+      code: bankDetails.code
+    })) ;
+
+    const bank = data.getBanks.find(bank => bank.code === bankDetails.code)
+
+    console.log(res.verifyBankAccount)
+    setBankdetails({ ...bankDetails, accountName: res.verifyBankAccount.account_name, accountNumber: value, bankName: bank.name });
+
+  }
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -96,6 +131,9 @@ const VendorSignup = () => {
         break;
       case "bankName":
         setBankdetails({ ...bankDetails, bankName: value });
+        break;
+      case "code":
+        setBankdetails({ ...bankDetails, code: value, accountNumber: 0 });
         break;
       case "accountNumber":
         setBankdetails({ ...bankDetails, accountNumber: value });
@@ -194,7 +232,6 @@ const VendorSignup = () => {
         accountName: false,
       });
       setOccupationError(false);
-      setUploadIDError(false);
     }, 4000);
   };
 
@@ -313,7 +350,7 @@ const VendorSignup = () => {
       bankName:
         bankDetails.bankName === "" ? "Please add your bank name" : false,
       accountNumber:
-        bankDetails.accountNumber === ""
+        bankDetails.accountNumber === "" || bankDetails.accountNumber.length < 10
           ? "Please add your account number"
           : false,
       accountName:
@@ -338,7 +375,7 @@ const VendorSignup = () => {
 
     const value = uploadID;
     if (value.length === undefined) uploadIDError = "A means of ID is required";
-    setUploadIDError(uploadIDError);
+    // setUploadIDError(uploadIDError);
     clearError();
 
     return uploadIDError === "";
@@ -581,20 +618,33 @@ const VendorSignup = () => {
                     </option>
                   ))}
                 </select> */}
-                <label htmlFor="bankName">Bank Name</label>
-                <input
-                  type="text"
-                  name="bankName"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={bankDetails.bankName}
-                />
+                <label htmlFor="code">Select Bank</label>
+                {
+                  !data ? (<> <p>Loading...</p> </>) :
+                  (
+                    <>
+                      <select
+                        name="code"
+                        onChange={handleChange}
+                        value={bankDetails.code}
+                      >
+                        {data?.getBanks.map((bank) => ( 
+                          <option key={bank.id} value={bank.code}>
+                            {bank.name}
+                          </option>
+                        ))
+                        }
+                      </select>
+                    </>
+                  )
+                }
                 {bankDetailsError && <span>{bankDetailsError.bankName}</span>}
                 <label htmlFor="acountNumber">Account Number</label>
                 <input
                   type="number"
                   name="accountNumber"
-                  onChange={handleChange}
+                  onChange={fetchBank}
+                  disabled={bankDetails.code === 0 || bankDetails.accountNumber.length > 9}
                   onBlur={handleBlur}
                   value={bankDetails.accountNumber}
                 />
@@ -606,6 +656,7 @@ const VendorSignup = () => {
                   type="text"
                   name="accountName"
                   onChange={handleChange}
+                  disabled={true}
                   onBlur={handleBlur}
                   value={bankDetails.accountName}
                 />

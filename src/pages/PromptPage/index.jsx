@@ -1,4 +1,4 @@
-import React from "react";
+
 import styles from "./PromptPage.module.scss";
 import {useNavigate} from "react-router-dom"
 
