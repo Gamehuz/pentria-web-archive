@@ -607,17 +607,6 @@ const VendorSignup = () => {
                 <p>
                   Banking information should tally with the details on your ID
                 </p>
-                {/* <select
-                  name="bank"
-                  id="bank"
-                  onChange={(e) => handleBankChange(e)}
-                >
-                  {bankInfo.map((bank) => (
-                    <option key={bank.id} value={bank.code}>
-                      {bank.name}
-                    </option>
-                  ))}
-                </select> */}
                 <label htmlFor="code">Select Bank</label>
                 {
                   !data ? (<> <p>Loading...</p> </>) :
@@ -676,28 +665,6 @@ const VendorSignup = () => {
                 />
                 {occupationError && <p>{occupationError}</p>}
               </div>
-
-              {/* <div className={styles.identification}>
-                <label htmlFor="identification">Identification</label>
-                <p>
-                  Upload a photo of your NIN or other government approved ID
-                </p>
-                <input
-                  type="file"
-                  name="identification"
-                  accept="image/*"
-                  ref={selectFile}
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  value={uploadID}
-                  hidden
-                />
-                <div className={styles.upload} onClick={handleSelectFile}>
-                  <img src={upload} alt="upload" />
-                  Upload your ID
-                </div>
-                {uploadIDError && <p>{uploadIDError}</p>}
-              </div> */}
             </div>
           </div>
           <Button type="submit" text="Sign Up" />

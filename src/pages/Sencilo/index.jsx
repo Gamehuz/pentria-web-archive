@@ -270,21 +270,21 @@ const Sencilo = () => {
                     <p>Restroom</p>
                     <div className="flex items-center space-x-2">
                       <GiShower className="w-6 h-6" />
-                      <p className="">{space?.restroom}</p>
+                      <p className="">{space?.restroom ? 'Yes' : 'No'}</p>
                     </div>
                   </div>
                   <div className="w-fit mr-4 text-center">
                     <p>Wifi</p>
                     <div className="flex items-center space-x-2">
                       <AiOutlineWifi className="w-6 h-6" />
-                      <p className="">{`${space?.wifi}`}</p>
+                      <p className="">{`${space?.wifi ? 'Yes' : 'No'}`}</p>
                     </div>
                   </div>
                   <div className="w-fit text-center">
                     <p>Packing</p>
                     <div className="flex items-center space-x-2">
                       <AiOutlineCheckCircle className="w-6 h-6" />
-                      <p className="">{`${space?.parking}`}</p>
+                      <p className="">{`${space?.parking ? 'Yes' : 'No'}`}</p>
                     </div>
                   </div>
                 </div>

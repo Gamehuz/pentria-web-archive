@@ -5,7 +5,7 @@ function UserComp() {
   const { user } = useSelector((state) => state.user);
   const userLink =
     user?.accountType === "GUEST"
-      ? "/user/dashboard"
+      ? "/user/dashboard?checkpoint=history"
       : user?.accountType === "VENDOR"
       ? "/vendor/dashboard?checkpoint=listings"
       : "/login";
