@@ -1,8 +1,4 @@
 .vendorsettings {
-  display: flex;
-  margin-top: 50px;
-  gap: 70px;
-  background-color: var(--primary-color);
 
   .hamburger {
     display: none;
@@ -130,16 +126,11 @@
         }
 
         input {
-          color: var(--secondary-color);
-          height: 20px;
+          // color: var(--secondary-color);
           font-weight: 400;
           font-size: 14px;
         }
 
-        input:disabled {
-          color: #ddd;
-          background-color: #ddd;
-        }
       }
     }
 

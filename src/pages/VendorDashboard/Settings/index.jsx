@@ -137,24 +137,8 @@ const VendorSettings = () => {
   }, [accountDetails.bank, accountDetails.accountNumber.length === 10]);
 
   return (
-    <div className="px-4">
+    <div className="px-4 pt-5">
       <section className={styles.vendorsettings}>
-        <div className={styles.hamburger} onClick={() => toggle()}>
-          <Menu />
-        </div>
-        {/* <aside className={toggleDashboardMenu ? styles.aside : ""}>
-          <h1>Dashboard</h1>
-          <div className={styles.link}>
-            <Link>Listings</Link>
-            <Link>Earnings</Link>
-            <Link>Withdrawals</Link>
-            <Link>Settings</Link>
-          </div>
-          <Button bg={styles.button} text={"LOGOUT"} />
-          <p onClick={() => toggle()} className={styles.x}>
-            X
-          </p>
-        </aside> */}
         <div className={styles.forms}>
           <form>
             <h2>Account Settings</h2>
@@ -300,7 +284,7 @@ const VendorSettings = () => {
                 value={accountDetails.bank}
                 onChange={editaccountDetails}
               >
-                <option hidden>Select bank</option>
+                <option >Select bank</option>
                 {banks?.map((bank) => {
                   return <option key={bank.id}>{bank.name}</option>;
                 })}
