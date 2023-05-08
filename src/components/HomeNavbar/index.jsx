@@ -3,8 +3,10 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ButtonSpinner from "../ButtonSpiner/index";
+import UserComp from "../auth/UserComp";
 // import mobileMenu from "./assets/menu-hamburger.svg";
 import styles from "./homenav.module.scss";
+import auth from "../NavbarAuth/navbarAuth.module.scss";
 import { useLocation } from "react-router-dom";
 import SearchInput from "../SearchInput";
 import { Bars3Icon } from "@heroicons/react/24/outline";
@@ -15,7 +17,6 @@ const HomeNavbar = () => {
   const [show, setShow] = React.useState(false);
   const { token, user } = useSelector((state) => state.user);
   const { isLoading } = useSelector((state) => state.util);
-  const userType = user?.accountType;
   const {pathname} = useLocation();
 
   useEffect(() => {
@@ -74,17 +75,7 @@ const HomeNavbar = () => {
             <>
               {token ? (
                 <>
-                  {userType === "GUEST" ? (
-                    <div className={styles.homeNavbar_dashboard}>
-                      <Link to="/user/dashboard">DASHBOARD</Link>
-                    </div>
-                  ) : (
-                    <>
-                      <div className={styles.homeNavbar_dashboard}>
-                        <Link to="/vendor/dashboard">DASHBOARD</Link>
-                      </div>
-                    </>
-                  )}
+                  <UserComp />
                 </>
               ) : (
                 <>

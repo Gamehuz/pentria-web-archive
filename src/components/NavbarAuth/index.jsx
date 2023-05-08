@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { dispatch } from "../../redux/store";
 import { setToggleSidebar } from "../../redux/utils/UtilSlice";
-import SearchInput from "../SearchInput";
+import UserComp from "../auth/UserComp";
 import toggleNavIcon from "./assets/menu-hamburger.svg";
 import styles from "./navbarAuth.module.scss";
 
@@ -16,15 +16,6 @@ const NavbarAuth = ({ search, bg }) => {
     setSidebar(!sidebar);
     dispatch(setToggleSidebar(sidebar));
   };
-
-  const userLink =
-    user?.accountType === "GUEST"
-      ? "/user/dashboard"
-      : user?.accountType === "VENDOR"
-      ? "/vendor/dashboard"
-      : user?.accountType === "ADMIN"
-      ? "/admin/dashboard"
-      : "/login";
 
   return (
     <div className={`${styles.authNav} ${styles[bg]} `}>
@@ -41,29 +32,8 @@ const NavbarAuth = ({ search, bg }) => {
       </div>
       <div className={styles.authNav_user_btn}>
         {user?.firstName ? (
-          <div className={styles.authNav_user}>
-            <Link to={`${userLink}`} className={styles.authNav_user_desktop}>
-              <img
-                className={styles.userimg}
-                src={
-                  user?.company_logo_url ? user?.company_logo_url : "/dummy.svg"
-                }
-                alt={user?.firstName}
-              />
-              <div className={styles.authNav_user_desktop_nameDetails}>
-                <div className={styles.authNav_user_desktop_name_arr}>
-                  <p className={styles.name}>
-                    {user?.firstName} {user?.lastName}
-                  </p>
-                  {/* <img
-                    src={dropdown_arr}
-                    alt="dropdown arrow"
-                    className={styles.arrow}
-                  /> */}
-                </div>
-                {/* <p className={styles.workspace_name}>{user?.company_name}</p> */}
-              </div>
-            </Link>
+          <div className="md:pr-5">
+            <UserComp />
           </div>
         ) : (
           <>
@@ -76,17 +46,6 @@ const NavbarAuth = ({ search, bg }) => {
               </div>
             </div>
           </>
-        )}
-        {user && (
-          <div className={styles.authNav_user_mobile}>
-            <img
-              className={styles.userimg}
-              src={
-                user?.company_logo_url ? user?.company_logo_url : "/dummy.svg  "
-              }
-              alt={user?.firstName}
-            />
-          </div>
         )}
       </div>
     </div>
