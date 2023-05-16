@@ -12,7 +12,6 @@ import QRCode from "react-qr-code";
 // eslint-disable-next-line no-unused-vars
 import {GET_RECEIPT} from "../../graphql/queries/bookings";
 // eslint-disable-next-line no-unused-vars
-import Nav from "../../components/Nav";
 import styles from "./receipt.module.scss"
 
 function useQuery() {
@@ -38,7 +37,6 @@ const Receipt = () => {
     if (error) {
         return (
             <div>
-                <Nav />
                 <div className={styles.error}>
                     <h1>Oops!</h1>
                     <p>Something went wrong. Please try again.</p>
@@ -49,7 +47,6 @@ const Receipt = () => {
 
     return (
         <div className={styles.receipt}>
-            <Nav />
             {!data? <div className={styles.loading}>Loading...</div> :
 
             <>

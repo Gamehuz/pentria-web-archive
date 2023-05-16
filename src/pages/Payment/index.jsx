@@ -1,4 +1,4 @@
-import Nav from "../../components/Nav";
+// import Nav from "../../components/Nav";
 import styles from "./payment.module.scss";
 import { ReactComponent as MapPin } from "./assets/map-pin.svg"
 import Button from "../../components/Button";
@@ -78,7 +78,7 @@ const Payment = () => {
     
     return (
         <div className={styles.payment}>
-            <Nav />
+            {/* <Nav /> */}
             <section className={styles.paymentDetails}>
                 <h1>Booking Details</h1>
                 <h2>{paymentSpaceDetails?.facilityType.toUpperCase()}</h2>

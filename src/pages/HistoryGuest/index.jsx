@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import HistoryTable from "../../components/HistoryTable";
-import Nav from "../../components/Nav";
+// import Nav from "../../components/Nav";
 import { customerBookings, userData } from "../../redux/features/user/service";
 import { ReactComponent as Arrow } from "./assets/leftarrow.svg";
 import styles from "./historyguest.module.scss";
@@ -21,7 +21,6 @@ const VendorGuest = () => {
   }, [userId])
   return (
     <div className={styles.historyguest}>
-      <Nav />
       <div className={styles.historyguestHeader}>
         <Link>
           <Arrow />
