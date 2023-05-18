@@ -22,10 +22,10 @@ function AuthComp() {
                 <>
                   <div className="flex space-x-10">
                     <div>
-                      <Link className={`auth-outline`} to="/login">LOGIN</Link>
+                      <Link className={`btn-outline`} to="/prompt">Sign Up</Link>
                     </div>
                     <div>
-                    <Link className={` auth-primaryColor`} to="/prompt">SIGNUP</Link>
+                    <Link className={` btn`} to="/login">Login</Link>
                     </div>
                   </div>
                 </>

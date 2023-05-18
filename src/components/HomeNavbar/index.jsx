@@ -17,7 +17,7 @@ const HomeNavbar = () => {
   
   return (
     <div
-      className='bg-white flex justify-between items-center px-4 py-4 lg:px-10 lg:py-6 text-primaryColor'
+      className='hidden bg-white lg:flex justify-between items-center px-4 py-4 lg:px-10 lg:py-6 text-primaryColor'
     >
       <h1 className={`text-[38px] font-bold`}>
         <Link to="/">Pentria</Link>

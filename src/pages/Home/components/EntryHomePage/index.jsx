@@ -1,10 +1,7 @@
-import Button from "../../../../components/Button";
-// import InputField from "../../../../components/InputField";
+
+
 import { ReactComponent as MapPin } from "../.././assets/map-pin.svg";
-import arrowImg from "../../assets/Arrow.png";
-import homepageImg from "../../assets/homepageImg.png";
 import { ReactComponent as Search } from "../../assets/search.svg";
-// import styles from "./entryhomepage.module.scss";
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
 import Circle from '../../assets/circles.png'
@@ -29,33 +26,35 @@ const EntryHome = () => {
     navigate(`/explore?${filter.recreationName}=${filter.location}`);
   }
   return (
-    <div className="m-auto px-16 pt-10 bg-[#FAFAFA]">
+    <div className="m-auto px-16 pt-10 bg-[#FAFAFA] lg:h-[120vh]">
 
       <div className='lg:flex justify-between'>
         <div>
           <div className='text-primaryColor text-[48px] font-extrabold'>
             <h1 >Enter the </h1>
             <div className="md:flex">
-              <span className="circle-play h-[115px] w[420px] text-center">PLAY!</span>
-              <img className="hidden lg:block lg:relative top-[190px] lg:top-0 left-[30px] lg:left-[-200px] w-[300px]" src={Circle} alt="" />
+              <span className="circle-play h-[115px] w-[300px] text-center"> {'PLAY >>'} </span>
+              <img className="hidden lg:block lg:relative top-[190px] lg:top-0 left-[30px] lg:left-[-340px] w-[300px]" src={Circle} alt="" />
             </div>
           </div>
-          <p className={`font-semibold text-[18px] pt-8 lg:w-[350px] w-[300px]`}>
-            Beat the queue with one-click ticket reservation. Enjoy seamless
-            playtime at a recreation space near you.
+          <p className={`font-semibold text-[18px] pt-8`}>
+          Beat the queue with one-click playtime reservation.
           </p>
-          <div className={`flex gap-4 pt-8`}>
-            <Button type={"button"} text={"GET TICKETS"} onClick={() => navigate("/explore")} />
-            <button>BECOME A PARTNER</button>
+          <div className={`md:flex text-center lg:space-x-6 py-8`}>
+            <button className="btn mb-2 lg:mb-0 w-48 ">Get Tickets</button>
+            <button className="btn-outline w-48 ">Become a Vendor</button>
           </div>
         </div>
         <div className={`flex`}>
-          <img className="w-[110px] h-[75px] relative right-9 top-[180px] hidden lg:block" src={arrowImg} alt="Fancy Arrow" />
-          <img className="w-[650px] h-[300px] lg:h-[480px]" src={homepageImg} alt="A fancy city" />
+          <img className="w-[140px] h-[75px] relative right-24  hidden lg:block" src="/Frame.png" alt="Fancy Arrow" />
+          <div>
+            <img className="" src="/hero.png" alt="A fancy city" />
+            <img className="hidden lg:block absolute top-80 right-80" src="/hero1.png" alt="" />
+          </div>
         </div>
       </div>
 
-      <div className={'lg:flex m-auto bg-white p-5 h-44 lg:h-[75px] justify-between lg:w-[986px] bottom-[-20px] relative lg:bottom-10 shadow-lg'}>
+      <div className={'lg:flex mx-auto lg:mt-60 bg-white p-5 h-44 lg:h-[75px] justify-between lg:w-[986px] bottom-[-20px] relative lg:bottom-10 shadow-lg'}>
           <div className="flex items-center">
           <MapPin/>
             <select 
