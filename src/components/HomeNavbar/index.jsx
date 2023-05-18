@@ -1,104 +1,46 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import ButtonSpinner from "../ButtonSpiner/index";
-import UserComp from "../auth/UserComp";
 // import mobileMenu from "./assets/menu-hamburger.svg";
-import styles from "./homenav.module.scss";
-import auth from "../NavbarAuth/navbarAuth.module.scss";
 import { useLocation } from "react-router-dom";
-import SearchInput from "../SearchInput";
-import { Bars3Icon } from "@heroicons/react/24/outline";
+import AuthComp from "../auth/AuthComp";
 
 
 const HomeNavbar = () => {
-  const [toggleNav, setToggleNav] = React.useState(false);
-  const [show, setShow] = React.useState(false);
-  const { token, user } = useSelector((state) => state.user);
-  const { isLoading } = useSelector((state) => state.util);
+
   const {pathname} = useLocation();
 
-  useEffect(() => {
-    if (pathname.includes('explore') || pathname.includes('dashboard') || pathname.includes('login') || pathname.includes('/signup') || pathname.includes('prompt')) {
-      setShow(true)
-    }
-  },[]);
+  // useEffect(() => {
+  //   if (pathname.includes('explore') || pathname.includes('dashboard') || pathname.includes('login') || pathname.includes('/signup') || pathname.includes('prompt')) {
+  //     setShow(true)
+  //   }
+  // },[]);
   
   return (
     <div
-      className={!show ? `bg-primaryColor ${toggleNav ? styles.activeHomeNav : ""} ${
-        styles.homeNavbar
-      } ` : `bg-white ${toggleNav ? styles.activeHomeNav : ""} ${
-        styles.homeNavbar
-      } `}
+      className='hidden bg-white lg:flex justify-between items-center px-4 py-4 lg:px-10 lg:py-6 text-primaryColor'
     >
-      <h1 className={`${show ? 'text-primaryColor' : 'text-white'} ${styles.homeNavbarLogo}`}>
+      <h1 className={`text-[38px] font-bold`}>
         <Link to="/">Pentria</Link>
       </h1>
-      <div className={`${show ? 'bg-white' : 'bg-primaryColor'} ${styles.HomeNavbar_container} }`}>
-
-        {
-          !show ? 
-          (
-            <>
-              <ul className={`lg:flex`}>
-                <li className={`${styles.homeNavbarLink} ${pathname === "/about-us" ? styles.highlight : ""}`}>
+      <div className={``}>
+              <ul className={`lg:flex space-x-10 text-[19px]`}>
+                <li className={` ${pathname === "/about-us" ? 'light' : ""}`}>
                   <Link to="/about-us">About</Link>
                 </li>
-                <li className={`${styles.homeNavbarLink} ${pathname === "/explore" ? styles.highlight : ""}`}>
+                <li className={` ${pathname === "/explore" ? 'light' : ""}`}>
                   <Link to="/explore">Explore</Link>
                 </li>
-                <li className={`${styles.homeNavbarLink} ${pathname === "/partners" ? styles.highlight : ""}`}>
-                  <Link to="/partners">Partners</Link>
+                <li className={` ${pathname === "/vendor" ? 'light' : ""}`}>
+                  <Link to="/vendor">Vendors</Link>
                 </li>
-                <li className={`${styles.homeNavbarLink} ${pathname === "/enquiries" ? styles.highlight : ""}`}>
+                <li className={` ${pathname === "/enquiries" ? 'light' : ""}`}>
                   <Link to="/enquiries">Enquiries</Link>
                 </li>
               </ul>
-            </>
-          ) :
 
-          (
-            <>
-              <div className="pb-4 pl-4 lg:pt-6">
-                <SearchInput />
-              </div>
-            </>
-          )
-        }
-
-        <div className={styles.homeNavbar_btn}>
-          {isLoading ? (
-            <ButtonSpinner />
-          ) : (
-            <>
-              {token ? (
-                <>
-                  <UserComp />
-                </>
-              ) : (
-                <>
-                  <div className="flex space-x-10">
-                    <div>
-                      <Link className={`${show ? 'text-primaryColor' : 'text-white'} px-4 py-2`} to="/login">LOGIN</Link>
-                    </div>
-                    <div>
-                    <Link className={`${show ? 'bg-primaryColor' : 'bg-secondaryColor'} px-4 py-2 text-white`} to="/prompt">SIGNUP</Link>
-                    </div>
-                  </div>
-                </>
-              )}
-            </>
-          )}
-        </div>
-      </div>
-      <div
-        className={styles.mobile_menu}
-        onClick={() => setToggleNav(!toggleNav)}
-      >
-        <Bars3Icon className={`${ show ? 'text-primaryColor' : 'text-white' } w-8`} />
-      </div>
+        
+      </div>  
+      <AuthComp />                          
     </div>
   );
 };

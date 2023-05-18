@@ -2,18 +2,18 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  font-family: "Josefin Sans", sans-serif;
 }
 
 :root {
   --primary-color: #fafafa;
-  --secondary-color: #3e2180;
+  --secondary-color: #3E1992;
   --dim-color: #7e7e7e;
   --tertiary-color: #bf4d01;
 }
 
 html {
-  font-family: "Poppins", sans-serif;
+  font-family: "Josefin Sans", sans-serif;
 }
 
 body {
@@ -33,3 +33,22 @@ a {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer components{
+  .auth-outline {
+    @apply flex justify-between  px-3 py-3 m-auto rounded-xl text-center text-[16px] border border-primaryColor text-primaryColor font-semibold;
+  }
+
+  .btn-outline {
+    @apply px-3 py-3 text-primaryColor rounded-xl text-center text-[16px] font-semibold border border-primaryColor hover:bg-primaryColor hover:text-white transition-colors duration-300; ;
+  }
+
+  .btn {
+    @apply px-3 py-3 text-white rounded-xl text-center bg-primaryColor text-[16px] font-semibold border border-primaryColor hover:bg-white hover:text-primaryColor transition-colors duration-300;
+  }
+
+  .auth-primaryColor {
+    @apply px-3 py-3  rounded-xl text-center text-[16px] bg-primaryColor text-white font-semibold;
+  }
+}

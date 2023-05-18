@@ -25,6 +25,7 @@ const DatePicker = ({ onDayClick }) => {
   const currentMonthDays = Array.from({ length: daysInMonth }, (_, i) => i + 1);
 
   const handleDayClick = (day) => {
+    console.log(day)
     const selectedDate = new Date(date.getFullYear(), date.getMonth(), day);
     setSelectedDay(selectedDate);
     let year =
@@ -75,13 +76,6 @@ const DatePicker = ({ onDayClick }) => {
         </div>
       </div>
       <div className="date-picker__body">
-        {/* <div className="date-picker__days-of-week">
-          {daysOfWeek.map((day) => (
-            <div key={day} className="date-picker__day-of-week">
-              {day}
-            </div>
-          ))}
-        </div> */}
         <div className="date-picker__days">
           {currentMonthDays.map((day) => {
             const isPast =

@@ -50,14 +50,14 @@ const Withdraw = () => {
   return (
     <div className={styles.withdraw}>
       <div
-        className="items-center flex text-[#000000] font-bold font-poppins text-[14px] cursor-pointer"
+        className="items-center flex text-[#000000] font-bold font-Josefin Sans text-[14px] cursor-pointer"
         onClick={() => navigate(-1)}
       >
         <i className="fas mr-1/2 fa-arrow-left"></i>
         <span>Back</span>
       </div>
       <div className="mt-[2rem]">
-        <h1 className="text-black text-[24px] md:text-[34px] font-poppins font-bold">
+        <h1 className="text-black text-[24px] md:text-[34px] font-Josefin Sans font-bold">
           Withdrawal
         </h1>
         <div className="mt-[1rem]">
@@ -76,7 +76,7 @@ const Withdraw = () => {
         </div>
         <form className="mt-[2rem]" onSubmit={handleWithdraw}>
           <div className="">
-            <label className="text-[#000000] font-poppins text-[20px]">
+            <label className="text-[#000000] font-Josefin Sans text-[20px]">
               Bank name
             </label>
             <InputField
@@ -87,7 +87,7 @@ const Withdraw = () => {
             />
           </div>
           <div className="mt-[3rem]">
-            <label className="text-[#000000] font-poppins text-[20px]">
+            <label className="text-[#000000] font-Josefin Sans text-[20px]">
               Account number
             </label>
             <InputField
@@ -98,7 +98,7 @@ const Withdraw = () => {
             />
           </div>
           <div className="mt-[3rem]">
-            <label className="text-[#000000] font-poppins text-[20px]">
+            <label className="text-[#000000] font-Josefin Sans text-[20px]">
               Withdrawal Amount
             </label>
             <div className="flex items-center w-full flex-wrap">
